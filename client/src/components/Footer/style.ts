@@ -3,12 +3,13 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
 
     linhaPontilhada: {
-        width: "100%",
+        width: "90%",
         borderStyle: "dashed",
-        borderColor: "black",
+        borderColor: "black", 
         borderWidth: 1.2,
-        marginTop: 20,
-    },
+        marginTop: 20, 
+        alignSelf: "center",
+      },
     container: {
         justifyContent: 'center',
         alignItems: 'center'

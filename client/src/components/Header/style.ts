@@ -2,27 +2,17 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     container: {
-        alignItems: "center"
+        flexDirection: "row",
+        alignSelf: "center",
+        marginTop: 15
     },
-    inputContainer: {
-      flexDirection: "row",
-      alignItems: "center",
-      paddingHorizontal: 15,
-      borderWidth: 2,
-      borderRadius: 6,
-      width: "90%",
-      marginTop: 20
-    },    
-    icon: {
-      width: 25,
-      height: 25,
-      marginRight: 5,
-    },
-    input: {
-      flex: 1,
-      height: 40,
-    },
-
+    textfont: {
+        alignItems: "center",
+        padding: 15,
+        fontSize: 17,
+        color: "#5b5b5c",
+        fontWeight: "600"
+      }
   });
    
   export default styles
