@@ -33,11 +33,12 @@ const styles = StyleSheet.create({
         marginRight:15
       },
     linhaPontilhada: {
-        width: "100%",
+        width: "90%",
         borderStyle: "dashed",
         borderColor: "black", 
         borderWidth: 1.2,
         marginTop: 20, 
+        alignSelf: "center"
       },
 
   });

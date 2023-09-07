@@ -11,6 +11,7 @@ export default function Header() {
                 />
                 <TextInput placeholder="Equipamento / Localidad / Endereço"style={styles.input}/>
             </View>
+            
         </View>
  
     );
