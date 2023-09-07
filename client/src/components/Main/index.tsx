@@ -1,20 +1,16 @@
 import React, { useState } from "react";
 import {View, Text, Image} from "react-native"
-import styles from "./style"
+import { StyleSheet } from "react-native";
+import NavBar from "../NavBar";
 
 
 export default function Main() {
     return (
-        <View >
-          <Text style={styles.Textfont}>Oláaaaaaaaaaaa</Text>
+        <View>
+          <NavBar/>
         </View>
     );
   }
   
-  
-  
-  
-  
-  
-  
-  
+
+   
