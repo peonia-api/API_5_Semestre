@@ -88,7 +88,7 @@ Na tabela abaixo é possível visualizar os resultados de cada Sprint clicando e
 <div align="center">
     <p> 
     
-![image].
+![image](https://github.com/peonia-api/API_5_Semestre/blob/main/images/Backlog%20-%20Sprint%201.png).
     
 </p>
 </div>
@@ -136,12 +136,12 @@ Foram usadas as seguintes ferramentas, linguagens e tecnologias para a execuçã
 - [Git](https://git-scm.com): Versionamento
 - [GitHub](https://github.com/): Armazenamento de código
 - [Teams](https://teams.microsoft.com): Comunicação
-- [Slack].(https://slack.com/intl/pt-br): Comunicação com o cliente
+- [Slack](https://slack.com/intl/pt-br): Comunicação com o cliente
 - [NodeJS](https://nodejs.org/): Runtime
 - [React Native](https://reactnative.dev/docs/getting-started): Framework
 - [TypeORM](https://typeorm.io/): Framework
 - [DevOps](https://azure.microsoft.com/pt-br/products/devops): Planejamento e Gestão
-- [MongoDB](https://www.mongodb.com/docs/): Banco de dados
+- [MongoDB](https://www.mongodb.com/docs/): Banco de dados NoSQL
 
 → [Voltar ao topo](#topo)    
     
