@@ -17,7 +17,6 @@
   
  <h3 align="center" id="wireframe"> WIREFRAME </h3>
 <p align="center">
-<img src="https://github.com/peonia-api/API_4_Semestre/blob/main/imagens/be292628-27c9-458a-9f3f-0bdc9630f464.png" width="49%"/>
 </p>
 </br
   
