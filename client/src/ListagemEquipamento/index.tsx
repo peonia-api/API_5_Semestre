@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, Image, StyleSheet, FlatList } from "react-native";
 import styles from "./style";
+import Footer from "../components/Footer";
 
 export default function ListaEquipamento() {
     const data = [
@@ -32,6 +33,9 @@ export default function ListaEquipamento() {
 
       ];
   return (
+    <View>
+
+   
     <FlatList
       data={data}
       keyExtractor={(item) => item.id.toString()}
@@ -45,6 +49,8 @@ export default function ListaEquipamento() {
       )}
       contentContainerStyle={styles.container}
     />
+    <Footer/>
+     </View>
   );
   
 }

@@ -4,6 +4,7 @@ import Pesquisa from "../Pesquisa";
 import Cadastro from "../Cadastro";
 import styles from "./style";
 import ListaEquipamento from "../../ListagemEquipamento";
+import Detalhe from "../Detalhe";
 
 export default function Header() {
     const [opcaoSelecionada, setOpcaoSelecionada] = useState(null);
@@ -29,7 +30,7 @@ export default function Header() {
             <View style={styles.conteudoSelecionado}>
                 {opcaoSelecionada === 'Opcao1' && <ListaEquipamento />}
                 {opcaoSelecionada === 'Opcao2' && <Cadastro/>}
-                {opcaoSelecionada === 'Opcao3' && <Cadastro />}
+                {opcaoSelecionada === 'Opcao3' && <Detalhe />}
             </View>
         </View>
     );

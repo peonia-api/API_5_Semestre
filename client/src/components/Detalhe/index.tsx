@@ -7,7 +7,7 @@ import { Picker } from "@react-native-picker/picker";
 
 
 
-export default function Cadastro() {
+export default function Detalhe() {
     const [selectedEquipa, setSelectedEquipa] = useState<string>(''); 
 
     const handleEquipamentoChange = (equipamento: string) => {
@@ -53,13 +53,16 @@ export default function Cadastro() {
 
                 <TextInput placeholder="Observação" style={styles.inputInteiro} />
             </View>
-            <View style={styles.containerBotao}>
-            <View style={styles.linhaPontilhada} />
-            <TouchableOpacity style={styles.botao}>
-                <Text style={styles.textoBotao}>Cadastrar</Text>
-            </TouchableOpacity>
-            </View>
 
+            <View style={styles.linhaPontilhada} />
+            <View style={styles.containerBotao}>
+                <TouchableOpacity style={styles.botaoDesativar}>
+                    <Text style={styles.textoBotao}>DESATIVAR</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.botaoAtivar}>
+                    <Text style={styles.textoBotao}>ATIVAR</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     );
 }

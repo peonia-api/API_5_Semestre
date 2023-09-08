@@ -8,7 +8,6 @@ export default function Main() {
         <View>
           <NavBar/>
           <Header/>
-          <Footer/>
         </View>
     );
   }
