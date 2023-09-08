@@ -17,34 +17,36 @@ export default function Navigation() {
         activeColor="#000000"
         shifting={false}
         inactiveColor="#3e2465"
-        barStyle={{ backgroundColor: '#9a99ff' }}
+        barStyle={{ backgroundColor: '#a4a3ff' }}
         sceneAnimationEnabled={false} 
       >
-        <Tab.Screen
-          name="ListaEquipamento"
-          component={ListaEquipamento}
-          options={{
-            tabBarLabel: 'Lista Equipamento',
-            tabBarIcon: () => (
-              <Icon name="list" size={25} color="#000000" />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Mapa"
-          component={Cadastro}
-          options={{
-            tabBarLabel: 'Mapa',
-            tabBarIcon: () => (
-              <Icon name="map-pin" size={25} color="#000000" />
-            ),
-          }}
-        />
         <Tab.Screen
           name="Detalhe"
           component={Detalhe} 
           options={{
             tabBarLabel: 'Detalhe',
+            tabBarIcon: () => (
+              <Icon name="list" size={25} color="#000000" />
+            ),
+          }}
+        />
+
+        <Tab.Screen
+          name="Cadastro"
+          component={Cadastro} 
+          options={{
+            tabBarLabel: 'Cadastro',
+            tabBarIcon: () => (
+              <Icon name="map" size={25} color="#000000" />
+            ),
+          }}
+        />
+
+        <Tab.Screen
+          name="Lista Equipamento"
+          component={ListaEquipamento} 
+          options={{
+            tabBarLabel: 'Lista Equipamento',
             tabBarIcon: () => (
               <Icon name="list" size={25} color="#000000" />
             ),
