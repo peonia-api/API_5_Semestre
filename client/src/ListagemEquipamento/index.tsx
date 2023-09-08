@@ -49,7 +49,8 @@ export default function ListaEquipamento() {
       )}
       contentContainerStyle={styles.container}
     />
-    <Footer/>
+    
+      <Footer/>
      </View>
   );
   
