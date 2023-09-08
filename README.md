@@ -69,9 +69,9 @@ Na tabela abaixo é possível visualizar os resultados de cada Sprint clicando e
 | Sprint | Entrega | Status | Relatório |
 |:-----:|:----------:|:---------:|:---------:|
 | 01 | 24/09/2023 |	EM DESENVVOLVIMENTO | EM BREVE |
-| 02 | 15/10/2023 |	AGUARDANDO | - |
-| 03 | 05/11/2023 |	AGUARDANDO | - |
-| 04 | 26/11/2023 |	AGUARDANDO | - |
+| 02 | 15/10/2023 |	- | - |
+| 03 | 05/11/2023 |	- | - |
+| 04 | 26/11/2023 |	- | - |
 
 
 → [Voltar ao topo](#topo)
