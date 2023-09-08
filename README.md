@@ -1,6 +1,6 @@
 <br id="topo">
 
-<h1 align="center"> EQUIPE PEÔNIA </br> APRENDIZAGEM POR PROJETOS INTEGRADOS 4º SEMESTRE ADS - 2023 </h1>
+<h1 align="center"> EQUIPE PEÔNIA </br> APRENDIZAGEM POR PROJETOS INTEGRADOS 5º SEMESTRE ADS - 2023 </h1>
 <p align="center">
     <a href="#objetivo">Objetivo</a> | 
     <a href="#requisitos">Requisitos</a> | 
@@ -15,25 +15,35 @@
 
 <h2> :dart: Objetivo</h2>
 
-<p align="justify"> O projeto consiste em desenvolver uma plataforma de gerenciamento de chamados internos para a Ionic Health. Essa plataforma deve ser capaz de receber demandas de correção urgente (hotfix) e novas funcionalidades (feature), direcionando-as para as equipes responsáveis. Além disso, deve permitir a aprovação de novas funcionalidades por um comitê de avaliação. Com essa plataforma, a empresa poderia melhorar a comunicação interna, colaboração entre as equipes e monitorar o desempenho do processo de desenvolvimento de produtos.</p>
+<p align="justify"> Como parte das atividades das áreas de engenharia de empresas de Saneamento, Elétrica, Telecomunicações, ou corporações onde as áreas demandam a realização de obras e manutenção de equipamentos em campo, se faz necessário utilizar uma aplicação móvel onde seja possível realizar a gestão dos dados relativos aos equipamentos (ativos) da companhia, via aplicativo móvel, possibilitando manter o cadastro dos ativos atualizados.
+
+Este recurso é amplamente utilizado em processos de manobras, onde um equipamento precisa ser desativado para que seja realizada uma manutenção. Durante esta etapa de manutenção parte da rede de serviços pode ser afetada, e por sua vez afetar os clientes conectados a ela, e ter o cadastro destes ativos atualizados em campo em tempo real é primordial para que a qualidade dos serviços prestados para os consumidores.
+
+Dessa forma, o projeto consiste no desenvolvimento de um aplicativo mobile que permita o gerenciamento (online e offline) de equipamentos públicos em campo (Ativos) para a Imagem Geosistemas. Esse aplicativo deve ainda ser capaz de garantir a gestão desses equipamentos (consultar, atualizar, desativar e cadastrar), premitindo a conexão com sensores e comunicação a serviços externos e exibindo esses quipamentos em tempo real nos mapas (conforme a posição geográfica do usuário em um raio de 10km).</p>
 
 <span id="requisitos">
 
 <h2> :bookmark_tabs: Requisitos Funcionais </h2>
 
-- [x] Cadastro de grupo de usuários;
-- [x] Permissão por grupo e por usuário;
-- [x] Distinção de usuários por times;
-- [x] Fila de chamados para cada time;
-- [x] Configuração e personalização de formulário de chamados;
-- [x] Árvore de Decisão para escalonamento de chamados;
-- [x] Cadastro de soluções para problemas conhecidos;
-- [x] Formulário de abertura de chamado com indicação de interessados;
+- [x] Cadastro de usuários, incluindo foto;
+- [x] Liberação de usuários mediante processo de autenticação;
+- [x] Recuperação de senha via confirmação de envio de código (6 dígitos);
+- [x] Criptografia de senhas;
+- [x] Cadastro de equipamentos (Ativos), incluindo foto(s);
+- [x] Ativação e Desativação de equipamentos;
+- [x] Busca de equipamentos cadastrados (raio de 10km) de acordo com posição geográfica do App;
+- [x] Visualização pontual em mapa dos equipamentos cadastrados (tanto os ativos quanto os inativos);
+- [x] Visualização detalhada do equipamento disponíveis no raio de ação do App, ao clicar;
+- [x] Filtros de busca de quipamentos (baseado no seu tipo);
+- [x] Sincronia para envio de dados (online), em até 30 segundos, quando no uso offline da aplicação;
 
 <h2> 📋 Requisitos Não Funcionais </h2>
 
-- [x] React;
-- [x] NodeJS;
+- [x] Condições de iluminação de tela adaptáveis a necessidade do usuário;
+- [x] Segurança das informações em caso de perda do dispositivo móvel;
+- [x] Aplicação de A2F (2 fatores) para autenticação em cada acesso;
+- [x] Validação dos dados inseridos na aplicação (equipamentos e usuários);
+- [x] Banco de dados mobile para armazenamento dos dados atualizados dos equipamentos durante estado offline do App;
  
 
  → [Voltar ao topo](#topo)
@@ -43,45 +53,11 @@
 <h4> Entrega da Sprint 1 </h4>
 <p align="center"> 
 
-https://user-images.githubusercontent.com/86448876/229383850-07c43960-d344-4bc1-937e-2391f1a4f639.mp4
-
 
 </p>
-
-<h4> Entrega da Sprint 2 </h4>
-<p align="center"> 
-
-https://user-images.githubusercontent.com/86115352/233875755-5246a1ff-8b22-466d-9b65-061e43662dbd.mp4
-
-
-
-https://user-images.githubusercontent.com/86115352/233876936-91b7e7fe-1404-4cfc-a987-a5cbba259e0d.mp4
-
-
-
-https://user-images.githubusercontent.com/86115352/233877053-97b2f78b-c03e-4a55-a84d-9995c23f0cf9.mp4
-
-</p>
-<h4> Entrega da Sprint 3 </h4>
-<p align="center"> 
-
-https://github.com/peonia-api/API_4_Semestre/assets/86448876/52bd5e2f-9586-40a0-b2df-8b6c3db24b9a
- 
-</p>
-
-<h4> Entrega da Sprint 4 </h4>
-
-Para visualizar o vídeo que ilustra o fluxo do usuário padrão, acesse este [link](https://clipchamp.com/watch/8KruCz3Wpls).
-    
-Para acessar o vídeo que demonstra o fluxo do usuário Diretor, acesse este [link](https://clipchamp.com/watch/tK9AXBtIvTg).
-
-
-https://github.com/peonia-api/API_4_Semestre/assets/86115352/90962519-6285-4790-8d80-379a15f303a5
-
-
-https://github.com/peonia-api/API_4_Semestre/assets/86115352/c558bbaf-6f40-47b3-bd0f-d16a869c4a41
-    
+  
 <br>
+
     
 → [Voltar ao topo](#topo)
     
@@ -92,25 +68,16 @@ Na tabela abaixo é possível visualizar os resultados de cada Sprint clicando e
     
 | Sprint | Entrega | Status | Relatório |
 |:-----:|:----------:|:---------:|:---------:|
-| 01 | 02/04/2023 | :heavy_check_mark:	 | [ver relatório](https://github.com/peonia-api/API_4_Semestre/blob/main/relatorios/Sprint1.MD) |
-| 02 | 23/04/2023 | :heavy_check_mark:	 | [ver relatório](https://github.com/peonia-api/API_4_Semestre/blob/main/relatorios/Sprint2.MD) |
-| 03 | 14/05/2023 | :heavy_check_mark:	 | [ver relatório](https://github.com/peonia-api/API_4_Semestre/blob/main/relatorios/Sprint3.MD) |
-| 04 | 04/06/2023 | :heavy_check_mark:	 | [ver relatório](https://github.com/peonia-api/API_4_Semestre/blob/main/relatorios/Sprint4.MD) |
+| 01 | 24/09/2023 |	EM DESENVVOLVIMENTO | EM BREVE |
+| 02 | 15/10/2023 |	AGUARDANDO | - |
+| 03 | 05/11/2023 |	AGUARDANDO | - |
+| 04 | 26/11/2023 |	AGUARDANDO | - |
+
 
 → [Voltar ao topo](#topo)
     
 <span id="documentacao">
 <h2> :clipboard: Documentação</h2>
-    
-Para acessar a documentação e entender como usar a aplicação, basta acessar este [link](https://github.com/peonia-api/API_4_Semestre/blob/main/documenta%C3%A7%C3%A3o/Documenta%C3%A7%C3%A3o.pdf).
-
-O dicionário de dados pode ser acessado por este [link](https://github.com/peonia-api/API_4_Semestre/blob/main/documenta%C3%A7%C3%A3o/Dicion%C3%A1rios%20de%20Dados.pdf).
-    
-Por fim, a aplicação pode ser acessada clicando neste [link](http://35.233.194.15/) ou escaneando o QR Code abaixo:
-    
-<div align="center">
-    <img src="imagens/QRCode-Servidor.jpeg" alt="QR Code para acesso à aplicação" height="30%" width="30%">
-</div>
 
 → [Voltar ao topo](#topo)
     
@@ -121,7 +88,7 @@ Por fim, a aplicação pode ser acessada clicando neste [link](http://35.233.194
 <div align="center">
     <p> 
     
-![image](https://github.com/peonia-api/API_4_Semestre/assets/86448876/b494d41d-2a8f-4622-821b-ee0fb6dc02f2)
+![image].
     
 </p>
 </div>
@@ -169,15 +136,12 @@ Foram usadas as seguintes ferramentas, linguagens e tecnologias para a execuçã
 - [Git](https://git-scm.com): Versionamento
 - [GitHub](https://github.com/): Armazenamento de código
 - [Teams](https://teams.microsoft.com): Comunicação
-- [Figma](https://www.figma.com): Prototipagem
+- [Slack].(https://slack.com/intl/pt-br): Comunicação com o cliente
 - [NodeJS](https://nodejs.org/): Runtime
-- [ReactJS](https://pt-br.reactjs.org/): Framework
+- [React Native](https://reactnative.dev/docs/getting-started): Framework
 - [TypeORM](https://typeorm.io/): Framework
-- [DevOps](https://azure.microsoft.com/pt-br/products/devops): Planejamento
-- [PostgreSQL](https://www.postgresql.org/): Banco de dados
-- [EmailJS](https://www.emailjs.com/): Observer e redefinição de senha
-- [Nodemailer](https://www.npmjs.com/package/nodemailer): Observer e redefinição de senha
-- [Google Cloud Platform](https://cloud.google.com/?utm_source=google&utm_medium=cpc&utm_campaign=latam-BR-all-pt-dr-BKWS-all-all-trial-p-dr-1605194-LUAC0014411&utm_content=text-ad-none-any-DEV_c-CRE_512285710746-ADGP_Hybrid%20%7C%20BKWS%20-%20PHR%20%7C%20Txt%20~%20GCP_General-KWID_43700062788251476-kwd-295915745166&utm_term=KW_gcp-ST_GCP&gclid=EAIaIQobChMI9bqWjJOq_wIVtyKtBh04WQpvEAAYASAAEgLSfvD_BwE&gclsrc=aw.ds&hl=pt-br): Deployment
+- [DevOps](https://azure.microsoft.com/pt-br/products/devops): Planejamento e Gestão
+- [MongoDB](https://www.mongodb.com/docs/): Banco de dados
 
 → [Voltar ao topo](#topo)    
     
@@ -186,13 +150,11 @@ Foram usadas as seguintes ferramentas, linguagens e tecnologias para a execuçã
 ## 👩‍💻 Equipe
 |Função|Nome|GitHub|LinkedIn|
 | -------- |-------- |-------- |-------- |
-| Scrum Master |Mateus Henrique Lima da Silva|<a href="https://github.com/mateushlsilva" target="_blanck"><img src = "https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" target="_blank"></a> |<a href="https://www.linkedin.com/in/mateus-silva-80232a222/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>|
-| Product Owner |Davi Elias Silvestre|<a href="https://github.com/silvestredavi" target="_blanck"><img src = "https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" target="_blank"></a> |<a href="https://www.linkedin.com/in/davi-silvestre/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>|
+| Scrum Master |Diego Batista da Silva|<a href="https://github.com/diiegobsilva" target="_blanck"><img src = "https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" target="_blank"></a> |<a href="https://www.linkedin.com/in/diegobatista1/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>|
+| Product Owner |Renan Vitor Fernandes Mendonça|<a href="https://github.com/RenanVitor" target="_blanck"><img src = "https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" target="_blank"></a> |<a href="https://www.linkedin.com/in/renan-vitor" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>|
 | Developer |Ana Carolina das Neves|<a href="https://github.com/AnaCarolinaNeves" target="_blanck"><img src = "https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" target="_blank"></a>|<a href="https://www.linkedin.com/in/ana-carolina-neves-36aa68207/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>|
-| Developer |Diego Batista da Silva|<a href="https://github.com/diiegobsilva" target="_blanck"><img src = "https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" target="_blank"></a> |<a href="https://www.linkedin.com/in/diegobatista1/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>|
 | Developer |Jeniffer Cristina Freitas Pereira|<a href="https://github.com/Jennyads" target="_blanck"><img src = "https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" target="_blank"></a>|<a href="https://www.linkedin.com/in/jeniffer-pereira-65787b205/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>|
 | Developer |Larissa Aparecida Diniz Silva|<a href="https://github.com/laaridiniz" target="_blanck"><img src = "https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" target="_blank"></a> |<a href="https://www.linkedin.com/in/larissa-diniz-dev" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>|
-| Developer |Renan Vitor Fernandes Mendonça|<a href="https://github.com/RenanVitor" target="_blanck"><img src = "https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" target="_blank"></a> |<a href="https://www.linkedin.com/in/renan-vitor" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>|
-| Developer |Yasmin Aparecida Vieira|<a href="https://github.com/YasminVieira" target="_blanck"><img src = "https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" target="_blank"></a> |<a href="https://www.linkedin.com/in/yasmin-vieira-b68641213/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>|
+| Developer |Mateus Henrique Lima da Silva|<a href="https://github.com/mateushlsilva" target="_blanck"><img src = "https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" target="_blank"></a> |<a href="https://www.linkedin.com/in/mateus-silva-80232a222/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>|
 
 → [Voltar ao topo](#topo)
