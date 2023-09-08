@@ -1,6 +1,5 @@
 import { View, Text, Image, TextInput, TouchableOpacity } from "react-native"
 import NavBar from "../NavBar";
-import Header from "../Header";
 import styles from "./style";
 import { useState } from "react";
 import { Picker } from "@react-native-picker/picker";

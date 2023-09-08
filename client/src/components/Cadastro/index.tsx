@@ -1,6 +1,5 @@
 import { View, Text, Image, TextInput, TouchableOpacity } from "react-native"
 import NavBar from "../NavBar";
-import Header from "../Header";
 import styles from "./style";
 import { useState } from "react";
 import { Picker } from "@react-native-picker/picker";
@@ -54,10 +53,10 @@ export default function Cadastro() {
                 <TextInput placeholder="Observação" style={styles.inputInteiro} />
             </View>
             <View style={styles.containerBotao}>
-            <View style={styles.linhaPontilhada} />
-            <TouchableOpacity style={styles.botao}>
-                <Text style={styles.textoBotao}>Cadastrar</Text>
-            </TouchableOpacity>
+                <View style={styles.linhaPontilhada} />
+                <TouchableOpacity style={styles.botao}>
+                    <Text style={styles.textoBotao}>Cadastrar</Text>
+                </TouchableOpacity>
             </View>
 
         </View>

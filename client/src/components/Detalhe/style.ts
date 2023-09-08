@@ -3,6 +3,7 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
+    paddingTop:10
   },
   containerImagem: {
     alignItems: "center",

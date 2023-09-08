@@ -4,7 +4,7 @@ import styles from "./style";
 
 export default function NavBar() {
   return (
-    <View>
+    <View style={styles.containerTotal}>
       <View style={styles.container}>
         <View style={styles.containerCompany}>
           <Image source={require('../../assets/iconCompany.png')} style={styles.icon} />
@@ -14,7 +14,7 @@ export default function NavBar() {
           </View>
         </View>
         <View style={styles.containerPeople}>
-          <Image source={require('../../assets/iconPeople.gif')} style={styles.icon} />
+          <Image source={require('../../assets/iconPeople.png')} style={styles.icon} />
           <Text style={styles.textfont}>Usuário</Text>
         </View>
       </View>

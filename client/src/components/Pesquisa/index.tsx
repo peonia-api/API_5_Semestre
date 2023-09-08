@@ -1,7 +1,7 @@
 import { View, TextInput, Image } from "react-native"
 import styles from "./style";
 
-export default function Header() {
+export default function Pesquisa() {
     return (
         <View style={styles.container}>
             <View style={styles.inputContainer}>

@@ -4,12 +4,16 @@ const styles = StyleSheet.create({
     textfont: {
       fontWeight: "bold"
     },
+    containerTotal: {
+      backgroundColor:'#c7c7f2',
+      
+    }, 
     container: {
         height: 80,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-
+        
       }, 
     icon: {
         width: 40,
@@ -21,7 +25,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'flex-start',
         flex: 1, 
-        marginLeft:10
+        marginLeft:10,
     },  
     textContainer: {
         marginLeft: 5, 
@@ -36,7 +40,7 @@ const styles = StyleSheet.create({
         width: "90%",
         borderStyle: "dashed",
         borderColor: "black", 
-        borderWidth: 1.2,
+        borderWidth: 2,
         marginTop: 20, 
         alignSelf: "center"
       },
