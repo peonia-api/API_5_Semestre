@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity } from "react-native";
 import Pesquisa from "../Pesquisa";
 import Cadastro from "../Cadastro";
 import styles from "./style";
+import ListaEquipamento from "../../ListagemEquipamento";
 
 export default function Header() {
     const [opcaoSelecionada, setOpcaoSelecionada] = useState(null);
@@ -26,8 +27,8 @@ export default function Header() {
                 </TouchableOpacity>
             </View>
             <View style={styles.conteudoSelecionado}>
-                {opcaoSelecionada === 'Opcao1' && <Cadastro />}
-                {opcaoSelecionada === 'Opcao2' && <Cadastro />}
+                {opcaoSelecionada === 'Opcao1' && <ListaEquipamento />}
+                {opcaoSelecionada === 'Opcao2' && <Cadastro/>}
                 {opcaoSelecionada === 'Opcao3' && <Cadastro />}
             </View>
         </View>
