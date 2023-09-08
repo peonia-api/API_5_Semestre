@@ -1,6 +1,6 @@
 <br id="topo">
 
-<h1 align="center"> EQUIPE PEÔNIA </br> APRENDIZAGEM POR PROJETOS INTEGRADOS 5º SEMESTRE ADS - 2023 </h1>
+<h1 align="center"> EQUIPE PEÔNIA </br> APRENDIZAGEM POR PROJETOS INTEGRADOS     5º SEMESTRE ADS - 2023 </h1>
 <p align="center">
     <a href="#objetivo">Objetivo</a> | 
     <a href="#requisitos">Requisitos</a> | 
@@ -135,7 +135,7 @@ Foram usadas as seguintes ferramentas, linguagens e tecnologias para a execuçã
 - [TypeScript](https://www.typescriptlang.org/): Linguagem de programação
 - [Git](https://git-scm.com): Versionamento
 - [GitHub](https://github.com/): Armazenamento de código
-- [Teams](https://teams.microsoft.com): Comunicação
+- [Teams](https://teams.microsoft.com): Comunicação interna do grupo
 - [Slack](https://slack.com/intl/pt-br): Comunicação com o cliente
 - [NodeJS](https://nodejs.org/): Runtime
 - [React Native](https://reactnative.dev/docs/getting-started): Framework
