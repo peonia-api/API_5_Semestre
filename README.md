@@ -159,5 +159,4 @@ Foram usadas as seguintes ferramentas, linguagens e tecnologias para a execuçã
 
 → [Voltar ao topo](#topo)
 
-<h1 align="center"> <img src = "https://fatecsjc-prd.azurewebsites.net/images/logo/fatecsjc_400x192.png" height="70"  align="auto">
 <h5 align="center"> Aprendizagem por Projetos Integrados - Faculdade de Tecnologia de São José dos Campos - Prof. Jessen Vidal </h5>
