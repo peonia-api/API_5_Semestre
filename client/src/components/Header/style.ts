@@ -12,7 +12,11 @@ const styles = StyleSheet.create({
         fontSize: 17,
         color: "#5b5b5c",
         fontWeight: "600"
-      }
+      },
+    conteudoSelecionado: {
+        marginTop: 20,
+      },  
+      
   });
    
   export default styles
