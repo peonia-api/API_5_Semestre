@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity } from "react-native";
 import Pesquisa from "../Pesquisa";
 import Cadastro from "../Cadastro";
 import styles from "./style";
-import ListaEquipamento from "../../ListagemEquipamento";
+import ListaEquipamento from "../ListagemEquipamento";
 import Detalhe from "../Detalhe";
 
 export default function Header() {
