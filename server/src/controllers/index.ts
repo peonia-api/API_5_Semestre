@@ -1,5 +1,5 @@
-import AssetsController from "./AssetsController";
+import EquipmentController from "./EquipmentController";
 
 export {
-    AssetsController
+    EquipmentController
 }

@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { AppDataSource } from "../data-source";
 import { Equipment } from "../entity/Equipment";
 
-class AssetsController{
+class EquipmentController {
     public async getEquipamento(req: Request, res: Response): Promise<Response> {
         const rep = AppDataSource.getRepository(Equipment)
         const all = await rep.find()
@@ -36,4 +36,4 @@ class AssetsController{
 
 }
 
-export default new AssetsController()
+export default new EquipmentController()
