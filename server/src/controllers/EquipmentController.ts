@@ -3,13 +3,13 @@ import { AppDataSource } from "../data-source";
 import { Equipment } from "../entity/Equipment";
 
 class EquipmentController {
-    public async getEquipamento(req: Request, res: Response): Promise<Response> {
+    public async getEquipment(req: Request, res: Response): Promise<Response> {
         const rep = AppDataSource.getRepository(Equipment)
         const all = await rep.find()
         return res.json(all)
     }
 
-    public async postEquipamento(req: Request, res: Response): Promise<Response> {
+    public async postEquipment(req: Request, res: Response): Promise<Response> {
         const createEquip = req.body
         const equipRepository = AppDataSource.getRepository(Equipment)
         const insertEquip = new Equipment();
@@ -23,7 +23,7 @@ class EquipmentController {
         return res.json(allEquip)
     }
 
-    public async putStatusEquipamento(req: Request, res: Response): Promise<Response> {
+    public async putStatusEquipment(req: Request, res: Response): Promise<Response> {
         const rep = AppDataSource.getRepository(Equipment)
         const createEquip = req.body
         const equip_id: any = req.params.uuid
