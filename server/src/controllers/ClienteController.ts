@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { AppDataSource } from "../data-source";
-import { Cliente } from "../entity/Cliente";
+import { Cliente } from "../entity/Equipment";
 class ClienteController{
     public async getCli(req: Request, res: Response): Promise<Response> {
         const rep = AppDataSource.getRepository(Cliente)
@@ -16,6 +16,7 @@ class ClienteController{
         insert.date = new Date()
         const save = rep.save(insert)
         return res.json(save)
+    
     }
 }
 export default new ClienteController()
