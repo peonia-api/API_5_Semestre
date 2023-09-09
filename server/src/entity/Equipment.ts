@@ -7,22 +7,22 @@ export class Equipment {
     @ObjectIdColumn()
     equip_id: ObjectId
 
-    @Column({ nullable: false, length: 5 })
+    @Column()
     equip_tipo: number
 
-    @Column({ nullable: false, length: 30 })
+    @Column()
     equip_serial: string
 
-    @Column({ nullable: false })
+    @Column()
     equip_latitude: Double
 
-    @Column({ nullable: false })
+    @Column()
     equip_longitude: Double
 
-    @Column({ nullable: false, length: 200 })
+    @Column()
     equip_observacoes: string
 
-    // @Column({ nullable: false })
-    // equip_foto: GridFSBucket
+    @Column()
+    equip_foto: GridFSBucket
 
 }
