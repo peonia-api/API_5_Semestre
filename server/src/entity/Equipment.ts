@@ -32,8 +32,4 @@ export class Equipment {
     @Column({ type: "varchar", length: 200 })
     observations: string;
 }
-    
-
-
-
 

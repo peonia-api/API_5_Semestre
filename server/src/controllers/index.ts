@@ -1,5 +1,5 @@
-import ClienteController from "./ClienteController";
+import AssetsController from "./AssetsController";
 
 export {
-    ClienteController
+    AssetsController
 }
