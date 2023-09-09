@@ -1,28 +1,34 @@
-import { Double } from "mongodb";
-import { Column, Entity, GridFSBucket, ObjectId, ObjectIdColumn } from "typeorm";
+import { Entity, ObjectIdColumn, ObjectId, Column } from "typeorm"
+
+enum EquipmentType {
+    Tipo1 = 1,
+    Tipo2 = 2,
+    Tipo3 = 3,
+    Tipo4 = 4,
+    Tipo5 = 5
+}
 
 @Entity()
 export class Equipment {
 
     @ObjectIdColumn()
-    equip_id: ObjectId
+    id: ObjectId
 
-    @Column()
-    equip_tipo: number
+    // @Column({ type: "int", width: 5 })
+    // type: number;
 
-    @Column()
-    equip_serial: string
+    @Column({ type: "enum", enum: EquipmentType })
+    type: EquipmentType;
 
-    @Column()
-    equip_latitude: Double
+    @Column({ type: "varchar", length: 30 })
+    serial: string;
 
-    @Column()
-    equip_longitude: Double
+    @Column({ type: "double precision" })
+    latitude: number;
 
-    @Column()
-    equip_observacoes: string
+    @Column({ type: "double precision" })
+    longitude: number;
 
-    @Column()
-    equip_foto: GridFSBucket
-
+    @Column({ type: "varchar", length: 200 })
+    observations: string;
 }
