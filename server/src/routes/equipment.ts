@@ -3,8 +3,8 @@ import { EquipmentController } from "../controllers";
 
 const routes = Router()
 
-routes.get("/equipment", EquipmentController.getEquipment)
-routes.post("/equipment",  EquipmentController.postEquipment)
-routes.put("/equipment/:uuid", EquipmentController.postEquipment)
+routes.get("/listEquipment", EquipmentController.getEquipment)
+routes.post("/createEquipment",  EquipmentController.postEquipment)
+routes.put("/updateEquipment/:uuid", EquipmentController.postEquipment)
 
 export default routes;
