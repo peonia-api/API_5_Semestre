@@ -1,15 +1,24 @@
 import { Request, Response } from "express";
 import { AppDataSource } from "../data-source";
 import { Equipment } from "../entity/Equipment";
+import { loadavg } from "os";
 
 class EquipmentController {
-    public async getEquipamento(req: Request, res: Response): Promise<Response> {
+    public async getEquipment(req: Request, res: Response): Promise<Response> {
+    try{
         const rep = AppDataSource.getRepository(Equipment)
         const all = await rep.find()
         return res.json(all)
+
+    }catch(error){
+        return res.json(error)
+
+    }
+      
     }
 
-    public async postEquipamento(req: Request, res: Response): Promise<Response> {
+    public async postEquipment(req: Request, res: Response): Promise<Response> {
+    try{
         const createEquip = req.body
         const equipRepository = AppDataSource.getRepository(Equipment)
         const insertEquip = new Equipment();
@@ -21,18 +30,55 @@ class EquipmentController {
         insertEquip.observations = createEquip.observations
         const allEquip = await equipRepository.save(insertEquip)
         return res.json(allEquip)
-    }
 
-    public async putStatusEquipamento(req: Request, res: Response): Promise<Response> {
-        const rep = AppDataSource.getRepository(Equipment)
-        const createEquip = req.body
-        const equip_id: any = req.params.uuid
-        const equipRepository = AppDataSource.getRepository(Equipment)
-        const findEquip = await equipRepository.findOneBy({ id: equip_id })
-        findEquip.type = createEquip.type
-        findEquip.serial = createEquip.serial
-        return res.json(findEquip)
+    }catch(error){
+        return res.json(error)
     }
+    }
+        
+    // public async putStatusEquipment(req: Request, res: Response): Promise<Response> {
+    // try{
+    //     const rep = AppDataSource.getRepository(Equipment)
+    //     const createEquip = req.body
+    //     const equip_id: any = req.params.uuid
+    //     const findEquip = await rep.findOneBy({ id: equip_id })
+    //     findEquip.type = createEquip.type
+    //     findEquip.serial = createEquip.serial
+    //     findEquip.latitude = createEquip.latitude
+    //     findEquip.longitude = createEquip.longitude
+    //     findEquip.observations = createEquip.observations
+    //     return res.json(findEquip)
+
+    // } catch(error){
+    //     return res.json(error)
+    // }
+    // }  
+
+    public async putStatusEquipment(req: Request, res: Response): Promise<Response> {
+        try {
+            const rep = AppDataSource.getRepository(Equipment);
+            const createEquip = req.body;
+            const equip_id: any = req.params.uuid;
+            const findEquip = await rep.findOneBy({ id: equip_id });
+    
+            if (!findEquip) {
+                return res.status(404).json({ mensagem: 'Equipamento não encontrado' });
+            }
+    
+            // Substitui completamente os dados do equipamento pelo novo JSON
+            findEquip.type = createEquip.type;
+            findEquip.serial = createEquip.serial;
+            findEquip.latitude = createEquip.latitude;
+            findEquip.longitude = createEquip.longitude;
+            findEquip.observations = createEquip.observations;
+    
+            const updatedEquipment = await rep.save(findEquip);
+            return res.json(updatedEquipment);
+        } catch (error) {
+            return res.json(error);
+        }
+    }
+        
 
 }
 
