@@ -36,24 +36,6 @@ class EquipmentController {
     }
     }
         
-    // public async putStatusEquipment(req: Request, res: Response): Promise<Response> {
-    // try{
-    //     const rep = AppDataSource.getRepository(Equipment)
-    //     const createEquip = req.body
-    //     const equip_id: any = req.params.uuid
-    //     const findEquip = await rep.findOneBy({ id: equip_id })
-    //     findEquip.type = createEquip.type
-    //     findEquip.serial = createEquip.serial
-    //     findEquip.latitude = createEquip.latitude
-    //     findEquip.longitude = createEquip.longitude
-    //     findEquip.observations = createEquip.observations
-    //     return res.json(findEquip)
-
-    // } catch(error){
-    //     return res.json(error)
-    // }
-    // }  
-
     public async putStatusEquipment(req: Request, res: Response): Promise<Response> {
         try {
             const rep = AppDataSource.getRepository(Equipment);
@@ -64,21 +46,20 @@ class EquipmentController {
             if (!findEquip) {
                 return res.status(404).json({ mensagem: 'Equipamento não encontrado' });
             }
-    
-            // Substitui completamente os dados do equipamento pelo novo JSON
-            findEquip.type = createEquip.type;
-            findEquip.serial = createEquip.serial;
-            findEquip.latitude = createEquip.latitude;
-            findEquip.longitude = createEquip.longitude;
-            findEquip.observations = createEquip.observations;
-    
-            const updatedEquipment = await rep.save(findEquip);
-            return res.json(updatedEquipment);
+
+            const updatedEquip = new Equipment();
+            updatedEquip.type = createEquip.type;
+            updatedEquip.serial = createEquip.serial;
+            updatedEquip.latitude = createEquip.latitude;
+            updatedEquip.longitude = createEquip.longitude;
+            updatedEquip.observations = createEquip.observations;
+            const equipamentoAtualizado = await rep.save(updatedEquip);
+            return res.json(equipamentoAtualizado);
         } catch (error) {
             return res.json(error);
         }
     }
-        
+    
 
 }
 
