@@ -12,7 +12,7 @@ import { Entity, ObjectIdColumn, ObjectId, Column } from "typeorm"
 export class Equipment {
 
     @ObjectIdColumn()
-    id: ObjectId
+    _id: ObjectId
 
     @Column({ type: "int", width: 5 })
     type: number;
