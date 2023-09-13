@@ -39,21 +39,18 @@ class EquipmentController {
     public async putStatusEquipment(req: Request, res: Response): Promise<Response> {
         try {
             const createEquip = req.body;
-            const equip_id: any = req.params.uuid;
+            const id: any = req.params.uuid;
             const rep = AppDataSource.getRepository(Equipment);
-            const findEquip = await rep.findOneBy({ id: equip_id });
-    
-            if (!findEquip) {
-                return res.status(404).json({ mensagem: 'Equipamento não encontrado' });
-            }
-
-            const updatedEquip = new Equipment();
-            updatedEquip.type = createEquip.type;
-            updatedEquip.serial = createEquip.serial;
-            updatedEquip.latitude = createEquip.latitude;
-            updatedEquip.longitude = createEquip.longitude;
-            updatedEquip.observations = createEquip.observations;
-            const equipamentoAtualizado = await rep.save(updatedEquip);
+            const findEquip = await rep.findOneBy({ id: id });
+            console.log(findEquip);
+            
+            findEquip.type = createEquip.type;
+            findEquip.serial = createEquip.serial;
+            findEquip.latitude = createEquip.latitude;
+            findEquip.longitude = createEquip.longitude;
+            findEquip.observations = createEquip.observations;
+            findEquip.url = createEquip.url
+            const equipamentoAtualizado = await rep.save(findEquip);
             return res.json(equipamentoAtualizado);
         } catch (error) {
             return res.json(error);

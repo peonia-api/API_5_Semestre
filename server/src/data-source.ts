@@ -1,11 +1,12 @@
 import "reflect-metadata"
 import { DataSource } from "typeorm"
-
+import * as dotenv from "dotenv";
+dotenv.config();
 
 export const AppDataSource = new DataSource({
     type: "mongodb",
     database: "clientes",
-    url: "mongodb://db:27017",
+    url: `mongodb://${process.env.DB}:27017`,
     //host: "mongo-server",
     // port: 27018,
     // username: null,
