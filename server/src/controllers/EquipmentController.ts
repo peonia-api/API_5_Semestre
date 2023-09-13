@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { AppDataSource } from "../data-source";
 import { Equipment } from "../entity/Equipment";
-import { loadavg } from "os";
 
 class EquipmentController {
     public async getEquipment(req: Request, res: Response): Promise<Response> {
@@ -28,6 +27,7 @@ class EquipmentController {
         insertEquip.latitude = createEquip.latitude
         insertEquip.longitude = createEquip.longitude
         insertEquip.observations = createEquip.observations
+        insertEquip.url = createEquip.url
         const allEquip = await equipRepository.save(insertEquip)
         return res.json(allEquip)
 
@@ -47,14 +47,14 @@ class EquipmentController {
                 return res.status(404).json({ mensagem: 'Equipamento não encontrado' });
             }
 
-            findEquip.type = createEquip.type;
-            findEquip.serial = createEquip.serial;
-            findEquip.latitude = createEquip.latitude;
-            findEquip.longitude = createEquip.longitude;
-            findEquip.observations = createEquip.observations;
-            const updatedEquipment = await rep.save(findEquip);
-            return res.json(updatedEquipment);
-            
+            const updatedEquip = new Equipment();
+            updatedEquip.type = createEquip.type;
+            updatedEquip.serial = createEquip.serial;
+            updatedEquip.latitude = createEquip.latitude;
+            updatedEquip.longitude = createEquip.longitude;
+            updatedEquip.observations = createEquip.observations;
+            const equipamentoAtualizado = await rep.save(updatedEquip);
+            return res.json(equipamentoAtualizado);
         } catch (error) {
             return res.json(error);
         }
