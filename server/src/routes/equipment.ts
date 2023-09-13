@@ -5,6 +5,6 @@ const routes = Router()
 
 routes.get("/listEquipment", EquipmentController.getEquipment)
 routes.post("/createEquipment",  EquipmentController.postEquipment)
-routes.put("/updateEquipment/:uuid", EquipmentController.postEquipment)
+routes.put("/updateEquipment/:uuid", EquipmentController.putStatusEquipment)
 
 export default routes;
