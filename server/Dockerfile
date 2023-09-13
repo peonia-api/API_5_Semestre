@@ -7,6 +7,10 @@ WORKDIR /opt/server
 COPY ./src /opt/server/src
 COPY *.json /opt/server/
 
+ENV DB=db
+ENV PORT=3001
+ENV JWT_SECRET=@tokenJWT
+
 RUN npm i
 
 CMD [ "npm", "start" ]
