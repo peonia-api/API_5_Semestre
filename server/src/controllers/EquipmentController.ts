@@ -30,6 +30,7 @@ class EquipmentController {
         insertEquip.longitude = createEquip.longitude
         insertEquip.observations = createEquip.observations
         insertEquip.url = createEquip.url
+        insertEquip.status = createEquip.status
         const allEquip = await equipRepository.save(insertEquip)
         return res.json(allEquip)
 
@@ -38,7 +39,7 @@ class EquipmentController {
     }
     }
         
-    public async putStatusEquipment(req: Request, res: Response): Promise<Response> {
+    public async putEquipment(req: Request, res: Response): Promise<Response> {
         try {
             const createEquip = req.body;
             const id: any = new ObjectId(req.params.uuid)
@@ -59,6 +60,26 @@ class EquipmentController {
             return res.json({equipamentoAtualizado, "message": "Foi"});
         } catch (error) {
             return res.json(error);
+        }
+    }
+
+    public async patchStatusEquipmant(req: Request, res: Response): Promise<Response> {
+        try{
+            const { status } = req.body
+            const id:any = new ObjectId(req.params.uuid)
+
+            const rep = AppDataSource.getMongoRepository(Equipment)
+            const findEquip:any = await rep.findOneOrFail(id).catch((err) => {
+                console.log(err);
+                return res.status(404).json({'message': "Equipamento não existe!", "erro": true})
+            }) 
+
+            findEquip.status = status
+
+            rep.save(findEquip)
+            return res.status(200).json({"message": "Status alterado com sucesso!", "erro": false})
+        }catch(err){
+            return res.status(400).json({"message": "Erro ao mudar o status!", "erro": true})
         }
     }
     

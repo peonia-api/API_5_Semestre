@@ -34,5 +34,8 @@ export class Equipment {
 
     @Column()
     url: string[]
+
+    @Column()
+    status: string
 }
 
