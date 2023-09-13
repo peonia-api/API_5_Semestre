@@ -1,10 +1,11 @@
 import React from "react";
 import { View, Text, Image } from "react-native";
 import styles from "./style";
+import Pesquisa from "../Pesquisa";
 
 export default function NavBar() {
   return (
-    <View style={styles.containerTotal}>
+    <View>
       <View style={styles.container}>
         <View style={styles.containerCompany}>
           <Image source={require('../../assets/iconCompany.png')} style={styles.icon} />
@@ -19,6 +20,7 @@ export default function NavBar() {
         </View>
       </View>
       <View style={styles.linhaPontilhada} />
+      <Pesquisa/>
     </View>
   );
 }

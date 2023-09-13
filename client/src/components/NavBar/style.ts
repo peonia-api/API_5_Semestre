@@ -4,10 +4,7 @@ const styles = StyleSheet.create({
     textfont: {
       fontWeight: "bold"
     },
-    containerTotal: {
-      backgroundColor:'#c7c7f2',
-      
-    }, 
+
     container: {
         height: 80,
         flexDirection: 'row',

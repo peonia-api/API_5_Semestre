@@ -4,6 +4,8 @@ import Cadastro from '../Cadastro';
 import ListaEquipamento from '../ListagemEquipamento';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Detalhe from '../Detalhe';
+import { NavigationContainer } from '@react-navigation/native';
+import NavBar from '../NavBar';
 
 Icon.loadFont();
 
@@ -11,18 +13,18 @@ const Tab = createMaterialBottomTabNavigator();
 
 export default function Navigation() {
   return (
-
+    <NavigationContainer>
       <Tab.Navigator
         initialRouteName="Cadastro"
         activeColor="#000000"
         shifting={false}
         inactiveColor="#3e2465"
         barStyle={{ backgroundColor: '#a4a3ff' }}
-        sceneAnimationEnabled={false} 
+        sceneAnimationEnabled={false}
       >
         <Tab.Screen
           name="Detalhe"
-          component={Detalhe} 
+          component={Detalhe}
           options={{
             tabBarLabel: 'Detalhe',
             tabBarIcon: () => (
@@ -33,7 +35,7 @@ export default function Navigation() {
 
         <Tab.Screen
           name="Cadastro"
-          component={Cadastro} 
+          component={Cadastro}
           options={{
             tabBarLabel: 'Cadastro',
             tabBarIcon: () => (
@@ -44,7 +46,7 @@ export default function Navigation() {
 
         <Tab.Screen
           name="Lista Equipamento"
-          component={ListaEquipamento} 
+          component={ListaEquipamento}
           options={{
             tabBarLabel: 'Lista Equipamento',
             tabBarIcon: () => (
@@ -52,8 +54,8 @@ export default function Navigation() {
             ),
           }}
         />
-        
+
       </Tab.Navigator>
-   
+    </NavigationContainer>
   );
 }
