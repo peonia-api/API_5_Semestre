@@ -1,12 +1,15 @@
 import React from "react";
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, Button } from "react-native";
 import styles from "./style";
 import Pesquisa from "../Pesquisa";
 
-export default function NavBar() {
+export default function Mapa() {
+
+
   return (
-    <View style={styles.container}>
-        <Text>teste</Text>
+    <View >
+      
+      
     </View>
   );
 }
