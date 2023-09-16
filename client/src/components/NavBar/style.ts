@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
         marginLeft:10,
     },  
     textContainer: {
-
+      marginLeft:10
     },
     containerPeople: {
       alignItems: 'flex-end',

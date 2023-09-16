@@ -3,8 +3,9 @@ import NavBar from "../NavBar";
 import styles from "./style";
 import { useState } from "react";
 import { Picker } from "@react-native-picker/picker";
+import Icon from 'react-native-vector-icons/FontAwesome';
 
-
+Icon.loadFont();
 
 export default function Detalhe() {
     const [selectedEquipa, setSelectedEquipa] = useState<string>(''); 
@@ -19,10 +20,16 @@ export default function Detalhe() {
                 <View style={styles.containerImagem}>
                     <Image source={require('../../assets/iconImage.png')} style={styles.image} />
                 </View>
+
                 <View style={styles.containerIcons}>
-                    <Image source={require('../../assets/iconPlus.png')} />
-                    <Image source={require('../../assets/iconMinus.png')} />
-                </View>
+  <TouchableOpacity style={styles.iconsPlusMinus}>
+    <Icon name="plus" size={25} color="#000000" />
+  </TouchableOpacity>
+  <TouchableOpacity style={styles.iconsPlusMinus}>
+    <Icon name="minus" size={25} color="#000000" />
+  </TouchableOpacity>
+</View>
+
             </View>
 
             <View style={styles.containerInput}>

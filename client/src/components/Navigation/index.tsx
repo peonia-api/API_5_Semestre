@@ -5,8 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Detalhe from '../Detalhe';
 import { NavigationContainer } from '@react-navigation/native';
 import Mapa from '../Mapa';
-import { View } from 'react-native';
-import styles from '../NavBar/style';
+
 
 Icon.loadFont();
 

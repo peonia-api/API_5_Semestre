@@ -18,8 +18,18 @@ const styles = StyleSheet.create({
   },
 
   containerIcons: {
+    justifyContent: 'center', 
+    alignItems: 'center', 
     gap: 20,
-    marginLeft: 20
+    marginLeft: 30,
+  },
+  iconsPlusMinus: {
+    height: 50,
+    width: 50,
+    borderRadius: 10,
+    backgroundColor: '#c6d4f7',
+    alignItems: 'center', 
+    justifyContent: 'center', 
   },
 
   containerInput: {
