@@ -9,7 +9,7 @@ export default function Pesquisa() {
                     source={require("../../assets/search.png")}
                     style={styles.icon}
                 />
-                <TextInput placeholder="Equipamento / Localidad / Endereço" style={styles.input} />
+                <TextInput placeholder="Equipamento / Localidade / Endereço" style={styles.input} />
             </View>
 
         </View>

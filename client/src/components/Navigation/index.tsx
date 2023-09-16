@@ -38,8 +38,8 @@ export default function Navigation() {
           })}
         />
         <Tab.Screen
-          name="Cadastro"
-          component={Cadastro}
+          name="Mapa"
+          component={Mapa}
           options={{
             tabBarLabel: 'Mapa',
             tabBarIcon: () => (

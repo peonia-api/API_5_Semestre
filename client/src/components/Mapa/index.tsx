@@ -42,7 +42,7 @@ export default function Mapa() {
           onValueChange={handleEquipamentoChange}
           style={styles.picker}
         >
-          <Picker.Item label="Equipamento" value="" />
+          <Picker.Item label="Equipamento" value="" enabled={false} />
           <Picker.Item label="TRANSFORMADOR" value="TRANSFORMADOR" />
           <Picker.Item label="POSTE" value="POSTE" />
           <Picker.Item label="BOMBA HIDRÁULICA" value="BOMBA HIDRÁULICA" />
