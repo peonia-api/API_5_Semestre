@@ -90,8 +90,7 @@ const styles = StyleSheet.create({
   },
   containerBotao: {
     flexDirection: "row",
-    justifyContent: "space-between",
-    paddingHorizontal: 30,
+    justifyContent: "center",
     marginBottom: 10,
   },
 

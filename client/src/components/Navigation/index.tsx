@@ -6,6 +6,7 @@ import Detalhe from '../Detalhe';
 import { NavigationContainer } from '@react-navigation/native';
 import Mapa from '../Mapa';
 import { BotaoCadastro } from '../Botao';
+import Cadastro from '../Cadastro';
 
 
 Icon.loadFont();
@@ -37,8 +38,8 @@ export default function Navigation() {
           })}
         />
         <Tab.Screen
-          name="Mapa"
-          component={Mapa}
+          name="Cadastro"
+          component={Cadastro}
           options={{
             tabBarLabel: 'Mapa',
             tabBarIcon: () => (

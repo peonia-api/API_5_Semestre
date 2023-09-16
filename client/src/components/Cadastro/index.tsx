@@ -62,7 +62,6 @@ export default function Detalhe() {
 
             <View style={styles.linhaPontilhada} />
             <View style={styles.containerBotao}>
-                <View style={styles.linhaPontilhada} />
                 <TouchableOpacity style={styles.botao}>
                     <Text style={styles.textoBotao}>Cadastrar</Text>
                 </TouchableOpacity>
