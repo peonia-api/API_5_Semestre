@@ -18,7 +18,7 @@ export default function Navigation() {
         initialRouteName="Lista Equipamento"
         activeColor="#000000"
         shifting={false}
-        barStyle={{ backgroundColor: '#b8cdff' }}
+        barStyle={{ backgroundColor: '#a4cdea' }}
         sceneAnimationEnabled={false}
       > 
       
