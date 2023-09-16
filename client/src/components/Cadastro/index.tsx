@@ -3,26 +3,33 @@ import NavBar from "../NavBar";
 import styles from "./style";
 import { useState } from "react";
 import { Picker } from "@react-native-picker/picker";
+import Icon from 'react-native-vector-icons/FontAwesome';
 
+Icon.loadFont();
 
-
-export default function Cadastro() {
-    const [selectedEquipa, setSelectedEquipa] = useState<string>(''); 
+export default function Detalhe() {
+    const [selectedEquipa, setSelectedEquipa] = useState<string>('');
 
     const handleEquipamentoChange = (equipamento: string) => {
         setSelectedEquipa(equipamento);
     };
 
     return (
-        <View>
+        <View style={styles.containerPrincipal}>
             <View style={styles.container}>
                 <View style={styles.containerImagem}>
                     <Image source={require('../../assets/iconImage.png')} style={styles.image} />
                 </View>
+
                 <View style={styles.containerIcons}>
-                    <Image source={require('../../assets/iconPlus.png')} />
-                    <Image source={require('../../assets/iconMinus.png')} />
+                    <TouchableOpacity style={styles.iconsPlusMinus}>
+                        <Icon name="plus" size={25} color="#000000" />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.iconsPlusMinus}>
+                        <Icon name="minus" size={25} color="#000000" />
+                    </TouchableOpacity>
                 </View>
+
             </View>
 
             <View style={styles.containerInput}>
@@ -52,6 +59,8 @@ export default function Cadastro() {
 
                 <TextInput placeholder="Observação" style={styles.inputInteiro} />
             </View>
+
+            <View style={styles.linhaPontilhada} />
             <View style={styles.containerBotao}>
                 <View style={styles.linhaPontilhada} />
                 <TouchableOpacity style={styles.botao}>
