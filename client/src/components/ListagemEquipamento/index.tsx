@@ -96,6 +96,9 @@ export default function ListaEquipamento() {
           )}
         />
       </SafeAreaView>
+      <View style={styles.footerBotao}>
+        <BotaoCadastro />
+      </View>
     </View>
 
   )
