@@ -5,6 +5,7 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         paddingHorizontal: 10,
         marginBottom: 10,
+        backgroundColor: '#ffffff'
       },
       row: {
         flexDirection: "row",

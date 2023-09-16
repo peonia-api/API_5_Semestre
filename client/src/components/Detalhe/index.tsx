@@ -8,27 +8,27 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
 
 export default function Detalhe() {
-    const [selectedEquipa, setSelectedEquipa] = useState<string>(''); 
+    const [selectedEquipa, setSelectedEquipa] = useState<string>('');
 
     const handleEquipamentoChange = (equipamento: string) => {
         setSelectedEquipa(equipamento);
     };
 
     return (
-        <View>
+        <View style={styles.containerPrincipal}>
             <View style={styles.container}>
                 <View style={styles.containerImagem}>
                     <Image source={require('../../assets/iconImage.png')} style={styles.image} />
                 </View>
 
                 <View style={styles.containerIcons}>
-  <TouchableOpacity style={styles.iconsPlusMinus}>
-    <Icon name="plus" size={25} color="#000000" />
-  </TouchableOpacity>
-  <TouchableOpacity style={styles.iconsPlusMinus}>
-    <Icon name="minus" size={25} color="#000000" />
-  </TouchableOpacity>
-</View>
+                    <TouchableOpacity style={styles.iconsPlusMinus}>
+                        <Icon name="plus" size={25} color="#000000" />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.iconsPlusMinus}>
+                        <Icon name="minus" size={25} color="#000000" />
+                    </TouchableOpacity>
+                </View>
 
             </View>
 

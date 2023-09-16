@@ -20,7 +20,8 @@ export default function Navigation() {
         shifting={false}
         barStyle={{ backgroundColor: '#b8cdff' }}
         sceneAnimationEnabled={false}
-      >
+      > 
+      
       <Tab.Screen
           name="Lista Equipamento"
           component={ListaEquipamento}

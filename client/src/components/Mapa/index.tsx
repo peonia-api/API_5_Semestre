@@ -5,7 +5,7 @@ import Pesquisa from "../Pesquisa";
 
 export default function NavBar() {
   return (
-    <View>
+    <View style={styles.container}>
         <Text>teste</Text>
     </View>
   );
