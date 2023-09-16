@@ -19,8 +19,7 @@ export default function Navigation() {
         initialRouteName="Lista Equipamento"
         activeColor="#000000"
         shifting={false}
-        inactiveColor="#3e2465"
-        barStyle={{ backgroundColor: '#a4a3ff' }}
+        barStyle={{ backgroundColor: '#507db5' }}
         sceneAnimationEnabled={false}
       >
       <Tab.Screen

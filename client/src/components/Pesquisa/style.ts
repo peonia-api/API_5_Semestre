@@ -2,7 +2,8 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     container: {
-        alignItems: "center"
+        alignItems: "center",
+        marginBottom: 10
     },
     inputContainer: {
       flexDirection: "row",
@@ -11,7 +12,7 @@ const styles = StyleSheet.create({
       borderWidth: 2,
       borderRadius: 6,
       width: "90%",
-      marginTop: 20
+      marginTop: 10
     },    
     icon: {
       width: 25,

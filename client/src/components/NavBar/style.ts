@@ -6,17 +6,22 @@ const styles = StyleSheet.create({
     },
 
     container: {
-        height: 80,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
         
-      }, 
+      },   
+
+      gradient: {
+        paddingTop:25,
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 100,   
+      },
+
     icon: {
         width: 40,
         height: 40 ,
-        marginTop: 40,
-        marginRight: 5
     },
     containerCompany: {
         flexDirection: 'row',
@@ -25,20 +30,16 @@ const styles = StyleSheet.create({
         marginLeft:10,
     },  
     textContainer: {
-        marginLeft: 5, 
-        marginTop:45
+
     },
     containerPeople: {
-        marginTop:15,
-        alignItems: 'flex-end',
-        marginRight:15
+      alignItems: 'flex-end',
+      marginRight:15
       },
     linhaPontilhada: {
-        width: "90%",
-        borderStyle: "dashed",
-        borderColor: "black", 
-        borderWidth: 2,
-        marginTop: 20, 
+        width: "100%",
+        borderColor: "#235fe6", 
+        borderWidth: 1,
         alignSelf: "center"
       },
   });
