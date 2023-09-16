@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
       },
     linhaPontilhada: {
         width: "100%",
-        borderColor: "#235fe6", 
+        borderColor: "#678eeb", 
         borderWidth: 1,
         alignSelf: "center"
       },

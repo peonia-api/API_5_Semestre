@@ -81,11 +81,11 @@ const styles = StyleSheet.create({
   },
 
   linhaPontilhada: {
-    width: "90%",
+    width: "100%",
     borderStyle: "dashed",
-    borderColor: "black",
-    borderWidth: 1.2,
-    marginTop: 20,
+    borderColor: "#dfe6f7",
+    borderWidth: 1,
+    marginTop: 10,
     alignSelf: "center",
   },
   botaoDesativar: {

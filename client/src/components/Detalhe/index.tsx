@@ -62,6 +62,7 @@ export default function Detalhe() {
                     <Text style={styles.textoBotao}>ATIVAR</Text>
                 </TouchableOpacity>
             </View>
+
         </View>
     );
 }

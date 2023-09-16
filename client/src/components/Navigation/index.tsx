@@ -1,12 +1,12 @@
 import React from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import Cadastro from '../Cadastro';
 import ListaEquipamento from '../ListagemEquipamento';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Detalhe from '../Detalhe';
 import { NavigationContainer } from '@react-navigation/native';
-import NavBar from '../NavBar';
 import Mapa from '../Mapa';
+import { View } from 'react-native';
+import styles from '../NavBar/style';
 
 Icon.loadFont();
 
@@ -19,7 +19,7 @@ export default function Navigation() {
         initialRouteName="Lista Equipamento"
         activeColor="#000000"
         shifting={false}
-        barStyle={{ backgroundColor: '#507db5' }}
+        barStyle={{ backgroundColor: '#b8cdff' }}
         sceneAnimationEnabled={false}
       >
       <Tab.Screen
@@ -55,6 +55,7 @@ export default function Navigation() {
         />
 
       </Tab.Navigator>
+
     </NavigationContainer>
   );
 }

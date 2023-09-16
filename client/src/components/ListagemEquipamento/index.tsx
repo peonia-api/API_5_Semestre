@@ -81,23 +81,19 @@ export default function ListaEquipamento() {
       
   return (
     <View>
-
-   
-    <FlatList
-      data={data}
-      keyExtractor={(item) => item.id.toString()}
-      numColumns={2}
-      renderItem={({ item }) => (
-        <View style={styles.column}>
-          <Image source={item.image} style={styles.image} />
-          <Text style={styles.textfont}>{item.text1}</Text>
-          <Text>{item.text2}</Text>
-        </View>
-      )}
-      contentContainerStyle={styles.container}
-    />
-    
-   
+      <FlatList
+        data={data}
+        keyExtractor={(item) => item.id.toString()}
+        numColumns={2}
+        renderItem={({ item }) => (
+          <View style={styles.column}>
+            <Image source={item.image} style={styles.image} />
+            <Text style={styles.textfont}>{item.text1}</Text>
+            <Text>{item.text2}</Text>
+          </View>
+        )}
+        contentContainerStyle={styles.container}
+      />
      </View>
   );
   
