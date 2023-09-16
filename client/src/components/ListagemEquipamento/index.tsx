@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, Image, StyleSheet, FlatList } from "react-native";
 import styles from "./style";
-import Footer from "../Navigation";
+
 
 export default function ListaEquipamento() {
     const data = [
@@ -50,7 +50,7 @@ export default function ListaEquipamento() {
       contentContainerStyle={styles.container}
     />
     
-      <Footer/>
+   
      </View>
   );
   
