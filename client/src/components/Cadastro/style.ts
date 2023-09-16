@@ -103,20 +103,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     alignSelf: "center",
   },
-  botaoDesativar: {
-    backgroundColor: 'red',
-    marginTop: 12,
-    padding: 12,
-    borderRadius: 5,
-    width: '40%'
-  },
-  botaoAtivar: {
-    backgroundColor: 'green',
-    marginTop: 12,
-    padding: 12,
-    borderRadius: 5,
-    width: '40%'
-  },
   textoBotao: {
     color: 'white',
     fontSize: 16,

@@ -30,6 +30,23 @@ const styles = StyleSheet.create({
       textfont: {
         fontWeight: "bold",
       },
+      containerBotao: {
+        flexDirection: "row",
+        justifyContent: "center",
+      },
+      botao: {
+        backgroundColor: 'green',
+        marginTop: 12,
+        padding: 12,
+        borderRadius: 5,
+        width: '80%'
+      },
+      textoBotao: {
+        color: 'white',
+        fontSize: 16,
+        textAlign: 'center',
+        textTransform: 'uppercase'
+      },
     });
   
   export default styles

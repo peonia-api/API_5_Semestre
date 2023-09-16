@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Detalhe from '../Detalhe';
 import { NavigationContainer } from '@react-navigation/native';
 import Mapa from '../Mapa';
+import { BotaoCadastro } from '../Botao';
 
 
 Icon.loadFont();
@@ -25,12 +26,15 @@ export default function Navigation() {
       <Tab.Screen
           name="Lista Equipamento"
           component={ListaEquipamento}
-          options={{
+          options={({ navigation }) => ({
             tabBarLabel: 'Lista Equipamento',
             tabBarIcon: () => (
               <Icon name="list" size={25} color="#000000" />
             ),
-          }}
+            headerRight: () => (
+              <BotaoCadastro/>
+            ),
+          })}
         />
         <Tab.Screen
           name="Mapa"

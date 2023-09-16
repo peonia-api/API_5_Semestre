@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-    containerBotao: {
+    containerBotao2: {
         flexDirection: "row",
         justifyContent: "space-between",
         paddingHorizontal: 30,
@@ -34,6 +34,11 @@ const styles = StyleSheet.create({
         borderWidth: 1.2,
         marginTop: 20,
         alignSelf: "center",
+      },
+      
+      containerBotao: {
+        flexDirection: "row",
+        justifyContent: "center",
       },
       botao: {
         backgroundColor: 'green',
