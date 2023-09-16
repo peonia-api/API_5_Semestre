@@ -8,7 +8,7 @@ export default function NavBar() {
   return (
     <View>
       <LinearGradient
-        colors={['#bdd9e5', '#a4cdea', '#8abcf0', '#71adf5', '#589dfb', '#3c8ef9']}
+        colors={['#3c8ef9', '#589dfb', '#71adf5', '#8abcf0', '#a4cdea', '#bdd9e5']}
         style={styles.gradient}
       >
         <View style={styles.container}>
