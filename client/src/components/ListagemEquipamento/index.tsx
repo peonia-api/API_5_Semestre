@@ -28,6 +28,53 @@ export default function ListaEquipamento() {
           image: require('../../assets/iconImage.png'),
           text1: "Transformador #T1003",
           text2: "21215 04:05 - 15:57",
+        },        {
+          id: 5,
+          image: require('../../assets/iconImage.png'),
+          text1: "Transformador #T1000",
+          text2: "21212 01:02 - 12:54",
+        },
+        {
+          id: 6,
+          image: require('../../assets/iconImage.png'),
+          text1: "Transformador #T1001",
+          text2: "21213 02:03 - 13:55",
+        },
+        {
+          id: 7,
+          image: require('../../assets/iconImage.png'),
+          text1: "Transformador #T1002",
+          text2: "21214 03:04 - 14:56",
+        },
+        {
+          id: 8,
+          image: require('../../assets/iconImage.png'),
+          text1: "Transformador #T1003",
+          text2: "21215 04:05 - 15:57",
+        },
+        {
+          id: 9,
+          image: require('../../assets/iconImage.png'),
+          text1: "Transformador #T1000",
+          text2: "21212 01:02 - 12:54",
+        },
+        {
+          id: 10,
+          image: require('../../assets/iconImage.png'),
+          text1: "Transformador #T1001",
+          text2: "21213 02:03 - 13:55",
+        },
+        {
+          id: 11,
+          image: require('../../assets/iconImage.png'),
+          text1: "Transformador #T1002",
+          text2: "21214 03:04 - 14:56",
+        },
+        {
+          id: 12,
+          image: require('../../assets/iconImage.png'),
+          text1: "Transformador #T1003",
+          text2: "21215 04:05 - 15:57",
         },
       ];
 
