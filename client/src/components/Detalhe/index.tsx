@@ -54,7 +54,7 @@ export default function Detalhe() {
                     <TextInput placeholder="Latitude" style={styles.inputLoLa} />
 
                     <Text style={styles.textFont}>LONGITUDE:</Text>
-                    <TextInput placeholder="Logitude" style={styles.inputLoLa} />
+                    <TextInput placeholder="Longitude" style={styles.inputLoLa} />
                 </View>
 
                 <TextInput placeholder="Observação" style={styles.inputInteiro} />

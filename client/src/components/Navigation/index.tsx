@@ -5,37 +5,44 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Detalhe from '../Detalhe';
 import { NavigationContainer } from '@react-navigation/native';
 import Mapa from '../Mapa';
-import { BotaoCadastro } from '../Botao';
+import { createStackNavigator } from '@react-navigation/stack';
 import Cadastro from '../Cadastro';
-
 
 Icon.loadFont();
 
 const Tab = createMaterialBottomTabNavigator();
+const CadastroStack = createStackNavigator(); // Crie a pilha de navegação aqui
 
+function CadastroStackScreen() {
+  return (
+    <CadastroStack.Navigator>
+      <CadastroStack.Screen
+        name="Cadastro"
+        component={Cadastro}
+        options={{ headerShown: false }}
+      />
+    </CadastroStack.Navigator>
+  );
+}
 export default function Navigation() {
   return (
     <NavigationContainer>
       <Tab.Navigator
-        initialRouteName="Lista Equipamento"
+        initialRouteName="Equipamentos"
         activeColor="#000000"
         shifting={false}
         barStyle={{ backgroundColor: '#a4cdea' }}
         sceneAnimationEnabled={false}
-      > 
-      
-      <Tab.Screen
-          name="Lista Equipamento"
+      >
+        <Tab.Screen
+          name="Equipamentos"
           component={ListaEquipamento}
-          options={({ navigation }) => ({
-            tabBarLabel: 'Lista Equipamento',
+          options={{
+            tabBarLabel: 'Equipamentos',
             tabBarIcon: () => (
               <Icon name="list" size={25} color="#000000" />
             ),
-            headerRight: () => (
-              <BotaoCadastro/>
-            ),
-          })}
+          }}
         />
         <Tab.Screen
           name="Mapa"
@@ -47,20 +54,17 @@ export default function Navigation() {
             ),
           }}
         />
-
         <Tab.Screen
-          name="Detalhe"
+          name="Detalhes"
           component={Detalhe}
           options={{
-            tabBarLabel: 'Detalhe',
+            tabBarLabel: 'Detalhes',
             tabBarIcon: () => (
               <Icon name="list" size={25} color="#000000" />
             ),
           }}
         />
-
       </Tab.Navigator>
-
     </NavigationContainer>
   );
 }

@@ -1,10 +1,12 @@
 import React from "react";
-import { View, Text, Image, StyleSheet, FlatList, ScrollView, TouchableOpacity, SafeAreaView } from "react-native";
+import { View, Text, Image, FlatList, SafeAreaView } from "react-native";
 import styles from "./style";
-import { BotaoCadastro } from "../Botao";
-
+import  {BotaoCadastro}  from "../Botao";
+import Cadastro from '../Cadastro';
+import { useNavigation } from '@react-navigation/native';
 
 export default function ListaEquipamento() {
+  const navigation = useNavigation();
   const data = [
     {
       id: 1,
@@ -100,7 +102,6 @@ export default function ListaEquipamento() {
         <BotaoCadastro />
       </View>
     </View>
-
   )
 }
 

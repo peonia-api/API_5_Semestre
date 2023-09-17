@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 Icon.loadFont();
 
-export default function Detalhe() {
+export default function Cadastro() {
     const [selectedEquipa, setSelectedEquipa] = useState<string>('');
 
     const handleEquipamentoChange = (equipamento: string) => {
