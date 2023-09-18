@@ -22,7 +22,7 @@ class Equipmente{
 
     async put(body: EquipmenteProps): Promise<EquipmenteProps>{
         try{
-            const res = await api.put(`/equipment/updateEquipment/${body.id}`, body)
+            const res = await api.put(`/equipment/updateEquipment/${body.equipmente.id}`, body)
             return res.data
         }catch(err){
             throw err
@@ -31,7 +31,7 @@ class Equipmente{
 
     async patch(body: EquipmenteProps): Promise<EquipmenteProps>{
         try{
-            const res = await api.patch(`/equipment/alterStatusEquipment/${body.id}`, body)
+            const res = await api.patch(`/equipment/alterStatusEquipment/${body.equipmente.id}`, body)
             return res.data
         }catch(err){
             throw err
