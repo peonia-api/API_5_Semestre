@@ -1,5 +1,4 @@
 import { View, Text, Image, TextInput, TouchableOpacity } from "react-native"
-import NavBar from "../NavBar";
 import styles from "./style";
 import React, { useState, useEffect } from "react";
 import { Picker } from "@react-native-picker/picker";
@@ -24,7 +23,7 @@ export default function Detalhe() {
 
         console.log(result);
 
-        //esta com erro porém não interfere, parece que é um bug do vs code. Não há nada para se preocupar, relaxa
+        //está com erro porém não interfere, parece que é um bug do vs code. Não há nada para se preocupar, relaxa
         if (!result.canceled) {
             setImage(result.assets[0].uri);
         }
@@ -64,7 +63,7 @@ export default function Detalhe() {
                         onValueChange={handleEquipamentoChange}
                         style={styles.picker}
                     >
-                        <Picker.Item label="Equipamento" value="" />
+                        <Picker.Item label="Equipamento" value="" enabled={false}/>
                         <Picker.Item label="TRANSFORMADOR" value="TRANSFORMADOR" />
                         <Picker.Item label="POSTE" value="POSTE" />
                         <Picker.Item label="BOMBA HIDRÁULICA" value="BOMBA HIDRÁULICA" />
