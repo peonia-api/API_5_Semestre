@@ -6,7 +6,7 @@ import { Equipmente } from "../services";
 export const ContextoEquipmente = createContext({} as EquipmenteProps)
 
 export function Provider({ children }: any){
-    const [ equipmente, setEquipmente ] = useState({} as Props)
+    const [ equipmente, setEquipmente ] = useState({} as Props[])
 
     useEffect(() => {
         (async function () {

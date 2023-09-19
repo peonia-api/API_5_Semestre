@@ -85,7 +85,7 @@ export default function ListaEquipamento() {
   ];
 
   const { equipmente } = useContextoEquipmente()
-  console.log(equipmente);
+  console.log(equipmente[0]._id);
   //está com erro porém não sei se interfere, ao clicar em uma imagem, vai para a tela de detalhe sem problemas ¯\_(ツ)_/¯
   const handleItemPress = (itemId) => {
     // Navegue para a tela de detalhes, passando o ID como parâmetro
