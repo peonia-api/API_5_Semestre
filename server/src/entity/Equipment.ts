@@ -36,6 +36,6 @@ export class Equipment {
     url: string[]
 
     @Column()
-    status: string
+    status: boolean
 }
 

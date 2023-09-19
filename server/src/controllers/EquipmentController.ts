@@ -7,17 +7,32 @@ import { ObjectId } from 'mongodb';
 
 class EquipmentController {
     public async getEquipment(req: Request, res: Response): Promise<Response> {
-    try{
-        const rep = AppDataSource.getRepository(Equipment)
-        const all = await rep.find()
-        return res.json(all)
+        try{
+            const rep = AppDataSource.getRepository(Equipment)
+            const all = await rep.find()
+            return res.json(all)
 
-    }catch(error){
-        return res.json(error)
+        }catch(error){
+            return res.json(error)
 
+        }
     }
-      
+
+    public async getOne(req: Request, res: Response): Promise<Response>{
+        try{
+            const id:any = new ObjectId(req.params.uuid)
+            const rep = AppDataSource.getMongoRepository(Equipment)
+            const findEquip:any = await rep.findOneOrFail(id).catch((err) => {
+                console.log(err);
+                return res.status(404).json({'message': "Equipamento não existe!"})
+                
+            })
+            return res.status(200).json(findEquip)
+        }catch(err){
+            return res.status(400).json({'message': 'Erro ao pegar o equipamento!', "erro": true})
+        }
     }
+
 
     public async postEquipment(req: Request, res: Response): Promise<Response> {
     try{
