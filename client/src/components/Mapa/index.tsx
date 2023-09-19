@@ -36,6 +36,7 @@ export default function Mapa() {
 
   return (
     <View style={styles.containerPrincipal}>
+      <Pesquisa />
       <View style={styles.containerTrans}>
         <Picker
           selectedValue={selectedEquipa}

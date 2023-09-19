@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
   containerPrincipal: {
     flex: 1,
     backgroundColor: "#ffffff",
-    paddingTop: 10,
+    
   },
   picker: {
     width: "95%",

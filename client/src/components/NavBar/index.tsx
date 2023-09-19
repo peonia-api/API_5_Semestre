@@ -26,7 +26,6 @@ export default function NavBar() {
         </View>
       </LinearGradient>
         <View style={styles.linhaPontilhada} />
-      <Pesquisa />
     </View>
   );
 }
