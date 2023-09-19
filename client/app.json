@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Marcador",
-    "slug": "Marcador",
+    "name": "cadastro_equipamentos",
+    "slug": "cadastro_equipamentos",
     "version": "1.0.0",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
@@ -19,7 +19,7 @@
       "adaptiveIcon": {
         "backgroundColor": "#ffffff"
       },
-      "package": "com.marcadorTruco.marcador"
+      "package": "com.cadastro_equipamentos.cadastro_equipamentos"
     },
     "web": {
       "favicon": "./assets/favicon.png"
