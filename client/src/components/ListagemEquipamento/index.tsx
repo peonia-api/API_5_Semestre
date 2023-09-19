@@ -4,6 +4,7 @@ import styles from "./style";
 import { BotaoCadastro } from "../Botao";
 import Cadastro from '../Cadastro';
 import { useNavigation } from '@react-navigation/native';
+import Pesquisa from "../Pesquisa";
 
 export default function ListaEquipamento() {
   const navigation = useNavigation();
@@ -90,19 +91,20 @@ export default function ListaEquipamento() {
   return (
     <View>
       <SafeAreaView style={styles.container}>
-        <FlatList
-          data={data}
-          keyExtractor={(item) => item.id.toString()}
-          numColumns={2}
-          renderItem={({ item }) => (
-            <TouchableOpacity style={styles.column} onPress={() => handleItemPress(item.id)}>
-              <Image source={item.image} style={styles.image} />
-              <Text style={styles.textfont}>{item.text1}</Text>
-              <Text>{item.text2}</Text>
-            </TouchableOpacity>
-          )}
-        />
-      </SafeAreaView>
+      <Pesquisa />
+          <FlatList
+            data={data}
+            keyExtractor={(item) => item.id.toString()}
+            numColumns={2}
+            renderItem={({ item }) => (
+              <TouchableOpacity style={styles.column} onPress={() => handleItemPress(item.id)}>
+                <Image source={item.image} style={styles.image} />
+                <Text style={styles.textfont}>{item.text1}</Text>
+                <Text>{item.text2}</Text>
+              </TouchableOpacity>
+            )}
+          />
+        </SafeAreaView>
       <View style={styles.footerBotao}>
         <BotaoCadastro />
       </View>

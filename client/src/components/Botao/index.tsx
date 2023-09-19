@@ -10,10 +10,10 @@ export function BotoesDetalhes() {
   return (
     <View style={styles.containerBotao2}>
       <TouchableOpacity style={styles.botaoDesativar}>
-        <Text style={styles.textoBotao}>DESATIVAR</Text>
+        <Text style={styles.textoBotao}>Desativar</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.botaoAtivar}>
-        <Text style={styles.textoBotao}>ATIVAR</Text>
+        <Text style={styles.textoBotao}>Ativar</Text>
       </TouchableOpacity>
     </View>
   );
