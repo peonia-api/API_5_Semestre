@@ -50,7 +50,7 @@ export default function Detalhe() {
                         <Icon name="plus" size={25} color="#000000" />
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.iconsPlusMinus} onPress={removeImage}>
-                        <Icon name="minus" size={25} color="#000000" />
+                        <Icon name="trash" size={25} color="#000000" />
                     </TouchableOpacity>
                 </View>
 
@@ -64,9 +64,9 @@ export default function Detalhe() {
                         style={styles.picker}
                     >
                         <Picker.Item label="Equipamento" value="" enabled={false}/>
-                        <Picker.Item label="TRANSFORMADOR" value="TRANSFORMADOR" />
-                        <Picker.Item label="POSTE" value="POSTE" />
-                        <Picker.Item label="BOMBA HIDRÁULICA" value="BOMBA HIDRÁULICA" />
+                        <Picker.Item label="Transformador" value="Transformador" />
+                        <Picker.Item label="Poste" value="Poste" />
+                        <Picker.Item label="Bomba hidráulica" value="Bomba hidráulica" />
                     </Picker>
                     <TextInput placeholder="Número" style={styles.input} />
                 </View>
@@ -74,23 +74,23 @@ export default function Detalhe() {
                 <TextInput placeholder="IMEI" style={styles.inputInteiro} />
 
                 <View style={styles.container}>
-                    <Text style={styles.textFont}>LATITUDE:</Text>
+                    <Text style={styles.textFont}>Latitude:</Text>
                     <TextInput placeholder="Latitude" style={styles.inputLoLa} />
 
-                    <Text style={styles.textFont}>LONGITUDE:</Text>
+                    <Text style={styles.textFont}>Longitude:</Text>
                     <TextInput placeholder="Longitude" style={styles.inputLoLa} />
                 </View>
 
-                <TextInput placeholder="Observação" style={styles.inputInteiro} />
+                <TextInput placeholder="Observações" style={styles.inputInteiro} />
             </View>
 
             <View style={styles.linhaPontilhada} />
             <View style={styles.containerBotao}>
                 <TouchableOpacity style={styles.botaoDesativar}>
-                    <Text style={styles.textoBotao}>DESATIVAR</Text>
+                    <Text style={styles.textoBotao}>Desativar</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.botaoAtivar}>
-                    <Text style={styles.textoBotao}>ATIVAR</Text>
+                    <Text style={styles.textoBotao}>Ativar</Text>
                 </TouchableOpacity>
             </View>
 

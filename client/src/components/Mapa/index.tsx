@@ -43,9 +43,9 @@ export default function Mapa() {
           style={styles.picker}
         >
           <Picker.Item label="Equipamento" value="" enabled={false} />
-          <Picker.Item label="TRANSFORMADOR" value="TRANSFORMADOR" />
-          <Picker.Item label="POSTE" value="POSTE" />
-          <Picker.Item label="BOMBA HIDRÁULICA" value="BOMBA HIDRÁULICA" />
+          <Picker.Item label="Transformador" value="Transformador" />
+          <Picker.Item label="Poste" value="Poste" />
+          <Picker.Item label="Bomba hidráulica" value="Bomba hidráulica" />
         </Picker>
       </View>
 

@@ -40,7 +40,7 @@ export default function Navigation() {
           options={{
             tabBarLabel: 'Equipamentos',
             tabBarIcon: () => (
-              <Icon name="list" size={25} color="#000000" />
+              <Icon name="desktop" size={25} color="#000000" />
             ),
           }}
         />
