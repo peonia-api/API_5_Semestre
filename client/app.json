@@ -1,7 +1,15 @@
 {
   "expo": {
-    "name": "Marcador",
-    "slug": "Marcador",
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to let you share them with your friends."
+        }
+      ]
+    ],
+    "name": "cadastro_equipamentos",
+    "slug": "cadastro_equipamentos",
     "version": "1.0.0",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
@@ -19,7 +27,7 @@
       "adaptiveIcon": {
         "backgroundColor": "#ffffff"
       },
-      "package": "com.marcadorTruco.marcador"
+      "package": "com.cadastro_equipamentos.cadastro_equipamentos"
     },
     "web": {
       "favicon": "./assets/favicon.png"

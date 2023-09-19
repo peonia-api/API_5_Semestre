@@ -1,11 +1,12 @@
 import React from "react";
-import { View, Text, Image, FlatList, SafeAreaView } from "react-native";
+import { View, Text, Image, FlatList, SafeAreaView, TouchableOpacity } from "react-native";
 import styles from "./style";
-import  {BotaoCadastro}  from "../Botao";
+import { BotaoCadastro } from "../Botao";
 import Cadastro from '../Cadastro';
 import { useNavigation } from '@react-navigation/native';
 import { useContextoEquipmente } from '../../hooks'
 import { Equipmente } from '../../services'
+import Pesquisa from "../Pesquisa";
 
 export default function ListaEquipamento() {
   const navigation = useNavigation();
@@ -85,23 +86,29 @@ export default function ListaEquipamento() {
 
   const { equipmente } = useContextoEquipmente()
   console.log(equipmente);
+  //está com erro porém não sei se interfere, ao clicar em uma imagem, vai para a tela de detalhe sem problemas ¯\_(ツ)_/¯
+  const handleItemPress = (itemId) => {
+    // Navegue para a tela de detalhes, passando o ID como parâmetro
+    navigation.navigate('Detalhes', { itemId });
+  };
 
   return (
     <View>
       <SafeAreaView style={styles.container}>
-        <FlatList
-          data={data}
-          keyExtractor={(item) => item.id.toString()}
-          numColumns={2}
-          renderItem={({ item }) => (
-            <View style={styles.column}>
-              <Image source={item.image} style={styles.image} />
-              <Text style={styles.textfont}>{item.text1}</Text>
-              <Text>{item.text2}</Text>
-            </View>
-          )}
-        />
-      </SafeAreaView>
+      <Pesquisa />
+          <FlatList
+            data={data}
+            keyExtractor={(item) => item.id.toString()}
+            numColumns={2}
+            renderItem={({ item }) => (
+              <TouchableOpacity style={styles.column} onPress={() => handleItemPress(item.id)}>
+                <Image source={item.image} style={styles.image} />
+                <Text style={styles.textfont}>{item.text1}</Text>
+                <Text>{item.text2}</Text>
+              </TouchableOpacity>
+            )}
+          />
+        </SafeAreaView>
       <View style={styles.footerBotao}>
         <BotaoCadastro />
       </View>
