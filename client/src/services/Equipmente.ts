@@ -4,9 +4,10 @@ import api from './api'
 class Equipmente{
     async get(): Promise<EquipmenteProps> {
         try{
-            const { data }= await api.get('/equipment/listEquipment')
+            const { data } = await api.get('/equipment/listEquipment')
             return data
         }catch(err){
+            console.error("Deu erro Aqui");
             throw err
         }
     }
@@ -15,23 +16,23 @@ class Equipmente{
         try{
             const res = await api.post('/equipment/createEquipment', body)
             return res.data
-        }catch(err){
+        }catch(err){            
             throw err
         }
     }
 
-    async put(body: EquipmenteProps): Promise<EquipmenteProps>{
+    async put(id: string, body: EquipmenteProps): Promise<EquipmenteProps>{
         try{
-            const res = await api.put(`/equipment/updateEquipment/${body.equipmente.id}`, body)
+            const res = await api.put(`/equipment/updateEquipment/${id}`, body)
             return res.data
         }catch(err){
             throw err
         }
     }
 
-    async patch(body: EquipmenteProps): Promise<EquipmenteProps>{
+    async patch(id: string, body: EquipmenteProps): Promise<EquipmenteProps>{
         try{
-            const res = await api.patch(`/equipment/alterStatusEquipment/${body.equipmente.id}`, body)
+            const res = await api.patch(`/equipment/alterStatusEquipment/${id}`, body)
             return res.data
         }catch(err){
             throw err

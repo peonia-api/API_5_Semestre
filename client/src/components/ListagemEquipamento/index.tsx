@@ -4,6 +4,8 @@ import styles from "./style";
 import  {BotaoCadastro}  from "../Botao";
 import Cadastro from '../Cadastro';
 import { useNavigation } from '@react-navigation/native';
+import { useContextoEquipmente } from '../../hooks'
+import { Equipmente } from '../../services'
 
 export default function ListaEquipamento() {
   const navigation = useNavigation();
@@ -81,6 +83,8 @@ export default function ListaEquipamento() {
     },
   ];
 
+  const { equipmente } = useContextoEquipmente()
+  console.log(equipmente);
 
   return (
     <View>

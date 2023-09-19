@@ -10,8 +10,8 @@ export function Provider({ children }: any){
 
     useEffect(() => {
         (async function () {
-            const resp = await Equipmente.get()
-            setEquipmente(resp.equipmente)
+            const resp:any = await Equipmente.get()            
+            setEquipmente(resp)
         })()
     }, [])
 
