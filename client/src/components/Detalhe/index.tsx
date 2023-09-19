@@ -13,22 +13,26 @@ export default function Detalhe() {
 
     const [image, setImage] = useState(null);
 
-  const pickImage = async () => {
-    // No permissions request is necessary for launching the image library
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    });
+    const pickImage = async () => {
+        // No permissions request is necessary for launching the image library
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1,
+        });
 
-    console.log(result);
+        console.log(result);
 
-    //está com erro porém não interfere, parece que é um bug do vs code. Não há nada para se preocupar, relaxa
-    if (!result.canceled) {
-        setImage(result.assets[0].uri);
-    }
-  };
+        //esta com erro porém não interfere, parece que é um bug do vs code. Não há nada para se preocupar, relaxa
+        if (!result.canceled) {
+            setImage(result.assets[0].uri);
+        }
+    };
+
+    const removeImage = () => {
+        setImage(null); 
+    };
 
     const handleEquipamentoChange = (equipamento: string) => {
         setSelectedEquipa(equipamento);
@@ -46,7 +50,7 @@ export default function Detalhe() {
                     <TouchableOpacity style={styles.iconsPlusMinus} onPress={pickImage}>
                         <Icon name="plus" size={25} color="#000000" />
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.iconsPlusMinus}>
+                    <TouchableOpacity style={styles.iconsPlusMinus} onPress={removeImage}>
                         <Icon name="minus" size={25} color="#000000" />
                     </TouchableOpacity>
                 </View>
