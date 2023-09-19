@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { Picker } from "@react-native-picker/picker";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import * as ImagePicker from 'expo-image-picker';
+import { BotoesDetalhes } from "../Botao";
 
 Icon.loadFont();
 
@@ -86,13 +87,15 @@ export default function Detalhe() {
 
             <View style={styles.linhaPontilhada} />
             <View style={styles.containerBotao}>
-                <TouchableOpacity style={styles.botaoDesativar}>
-                    <Text style={styles.textoBotao}>Desativar</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.botaoAtivar}>
-                    <Text style={styles.textoBotao}>Ativar</Text>
-                </TouchableOpacity>
+            <BotoesDetalhes
+            text="Ativar"
+            style={styles.botaoAtivar}
+            label="Ativar Equipamento"
+            message="Equipamento ativado com sucesso"
+            />
+            <BotoesDetalhes text="Desativar" style={styles.botaoDesativar} label="Desativar Equipamento" message="Equipamento desativado com sucesso" />
             </View>
+
 
         </View>
     );

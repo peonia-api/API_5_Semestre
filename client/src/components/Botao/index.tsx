@@ -1,23 +1,25 @@
 import React from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import styles from "./style";
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import Cadastro from '../Cadastro';
-
 import { useNavigation } from "@react-navigation/native";
+import AlertEquipmentt from "../Swal";
 
-export function BotoesDetalhes() {
+
+
+export function BotoesDetalhes(text: string, style: any, label: string, message: string) {
+  const handlePress = () => {
+    AlertEquipmentt(text, label, message); 
+  };
+
   return (
     <View style={styles.containerBotao2}>
-      <TouchableOpacity style={styles.botaoDesativar}>
-        <Text style={styles.textoBotao}>Desativar</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.botaoAtivar}>
-        <Text style={styles.textoBotao}>Ativar</Text>
+      <TouchableOpacity style={style} onPress={handlePress}>
+        <Text style={styles.textoBotao}>{text}</Text>
       </TouchableOpacity>
     </View>
   );
 }
+
 
 export function BotaoCadastro() {
   const navigation = useNavigation(); 
