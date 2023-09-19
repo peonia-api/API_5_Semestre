@@ -12,6 +12,15 @@ class Equipmente{
         }
     }
 
+    async getOne(id: string): Promise<EquipmenteProps>{
+        try{
+            const { data } = await api.get(`/equipment/listOne/${id}`)
+            return data
+        }catch(err){
+            throw err
+        }
+    }
+
     async post(body: EquipmenteProps): Promise<EquipmenteProps>{
         try{
             const res = await api.post('/equipment/createEquipment', body)
