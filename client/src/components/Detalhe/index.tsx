@@ -11,7 +11,7 @@ Icon.loadFont();
 export default function Detalhe() {
     const [selectedEquipa, setSelectedEquipa] = useState<string>('');
 
-    const [image, setImage] = useState(null);
+    const [image, setImage] = useState<any>(null);
 
     const pickImage = async () => {
         // No permissions request is necessary for launching the image library
@@ -23,15 +23,13 @@ export default function Detalhe() {
         });
 
         console.log(result);
-
-        //está com erro porém não interfere, parece que é um bug do vs code. Não há nada para se preocupar, relaxa
         if (!result.canceled) {
             setImage(result.assets[0].uri);
         }
     };
 
     const removeImage = () => {
-        setImage(null); 
+        setImage(null);
     };
 
     const handleEquipamentoChange = (equipamento: string) => {
@@ -64,7 +62,7 @@ export default function Detalhe() {
                         onValueChange={handleEquipamentoChange}
                         style={styles.picker}
                     >
-                        <Picker.Item label="Equipamento" value="" enabled={false}/>
+                        <Picker.Item label="Equipamento" value="" enabled={false} />
                         <Picker.Item label="Transformador" value="Transformador" />
                         <Picker.Item label="Poste" value="Poste" />
                         <Picker.Item label="Bomba hidráulica" value="Bomba hidráulica" />
@@ -87,13 +85,13 @@ export default function Detalhe() {
 
             <View style={styles.linhaPontilhada} />
             <View style={styles.containerBotao}>
-            <BotoesDetalhes
-            text="Ativar"
-            style={styles.botaoAtivar}
-            label="Ativar Equipamento"
-            message="Equipamento ativado com sucesso"
-            />
-            <BotoesDetalhes text="Desativar" style={styles.botaoDesativar} label="Desativar Equipamento" message="Equipamento desativado com sucesso" />
+                <BotoesDetalhes
+                    text="Ativar"
+                    style={styles.botaoAtivar}
+                    label="Ativar Equipamento"
+                    message="Equipamento ativado com sucesso"
+                />
+                <BotoesDetalhes text="Desativar" style={styles.botaoDesativar} label="Desativar Equipamento" message="Equipamento desativado com sucesso" />
             </View>
 
 

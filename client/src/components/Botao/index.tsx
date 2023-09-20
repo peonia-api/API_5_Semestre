@@ -4,9 +4,14 @@ import styles from "./style";
 import { useNavigation } from "@react-navigation/native";
 import AlertEquipmentt from "../Swal";
 
+interface props {
+  text: string;
+  style: any;
+  label: string;
+  message: string;
+}
 
-
-export function BotoesDetalhes(text: string, style: any, label: string, message: string) {
+export function BotoesDetalhes({text, style, label, message}:props) {
   const handlePress = () => {
     AlertEquipmentt(text, label, message); 
   };
