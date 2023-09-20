@@ -7,7 +7,7 @@ WORKDIR /opt/server
 COPY ./src /opt/server/src
 COPY *.json /opt/server/
 
-ENV DB=db
+ENV DB=mongodb://localhost:27017
 ENV PORT=3001
 ENV JWT_SECRET=@tokenJWT
 

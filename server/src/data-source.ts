@@ -7,7 +7,7 @@ dotenv.config();
 export const AppDataSource = new DataSource({
     type: "mongodb",
     database: "clientes",
-    url: `mongodb://${process.env.DB}:27017`,
+    url: `${process.env.DB}`,
     //host: "mongo-server",
     // port: 27018,
     // username: null,

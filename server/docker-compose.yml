@@ -11,7 +11,7 @@ services:
     ports:
       - '3001:3001'
     environment:
-      - DB=db
+      - DB=mongodb://db:27017
       - PORT=3001
       - JWT_SECRET=@tokenJWT
     networks:
@@ -24,7 +24,13 @@ services:
       - '27018:27017'
     networks:
       - host
+    volumes:
+      - app:/data/db
   
 networks: 
   host:
     driver: bridge
+
+volumes:
+  app:
+    driver: local
