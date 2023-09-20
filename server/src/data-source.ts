@@ -1,19 +1,22 @@
 import "reflect-metadata"
 import { DataSource } from "typeorm"
+import { Equipment } from "./entities";
 import * as dotenv from "dotenv";
 dotenv.config();
 
 export const AppDataSource = new DataSource({
     type: "mongodb",
     database: "clientes",
-    url: `mongodb://${process.env.DB}:27017`,
+    url: `${process.env.DB}`,
     //host: "mongo-server",
     // port: 27018,
     // username: null,
     // password: null,
     synchronize: true,
     logging: false,
-    entities: ["src/entity/*.ts"],
+    entities: [
+      __dirname + "/entities/*.ts"
+    ],
     migrations: [],
     subscribers: [],
 })
