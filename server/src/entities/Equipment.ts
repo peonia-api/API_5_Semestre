@@ -12,7 +12,7 @@ export class Equipment {
     @ObjectIdColumn()
     _id: ObjectId;
 
-    @Column({ type: "int", width: 5 })
+    @Column()
     type: string;
 
     @Column({ type: "varchar", length: 30 })
