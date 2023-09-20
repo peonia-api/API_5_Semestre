@@ -90,34 +90,33 @@ export default function ListaEquipamento({ navigation }: any) {
   const handleCadastro = () => {
     navigation.navigate('Cadastro');
   }
-
   return (
-    <View>
-      <ScrollView>
-        <SafeAreaView style={styles.container}>
-          <Pesquisa />
-          <FlatList
-            data={data}
-            keyExtractor={(item) => item.id.toString()}
-            numColumns={2}
-            renderItem={({ item }) => (
-              <TouchableOpacity style={styles.column} onPress={() => handleItemPress(item.id)}>
-                <Image source={item.image} style={styles.image} />
-                <Text style={styles.textfont}>{item.text1}</Text>
-                <Text>{item.text2}</Text>
-              </TouchableOpacity>
-            )}
-          />
-        </SafeAreaView>
-        <View style={styles.footerBotao}>
-          <View style={styles.containerBotao}>
-            <TouchableOpacity style={styles.botao} onPress={handleCadastro}>
-              <Text style={styles.textoBotao}>Cadastrar</Text>
+    <View style={styles.container}>
+      <SafeAreaView>
+        <Pesquisa />
+      </SafeAreaView>
+      <View style={styles.listaContainer}>
+        <FlatList
+          data={data}
+          keyExtractor={(item) => item.id.toString()}
+          numColumns={2}
+          renderItem={({ item }) => (
+            <TouchableOpacity style={styles.column} onPress={() => handleItemPress(item.id)}>
+              <Image source={item.image} style={styles.image} />
+              <Text style={styles.textfont}>{item.text1}</Text>
+              <Text>{item.text2}</Text>
             </TouchableOpacity>
-          </View>
+          )}
+        />
+      </View>
+      <View style={styles.footerBotao}>
+        <View style={styles.containerBotao}>
+          <TouchableOpacity style={styles.botao} onPress={handleCadastro}>
+            <Text style={styles.textoBotao}>Cadastrar</Text>
+          </TouchableOpacity>
         </View>
-      </ScrollView>
+      </View>
     </View>
-  )
+  );
 }
 
