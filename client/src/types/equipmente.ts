@@ -3,6 +3,8 @@ import { Double } from "react-native/Libraries/Types/CodegenTypes";
 export default interface EquipmenteProps{
     equipmente: Props[]
     setEquipmente: Function
+    confirm: boolean
+    setConfirm: Function
 }
 
 export interface Props{

@@ -8,8 +8,7 @@ import { useContextoEquipmente } from '../../hooks'
 import { Equipmente } from '../../services'
 import Pesquisa from "../Pesquisa";
 
-export default function ListaEquipamento() {
-  const navigation = useNavigation();
+export default function ListaEquipamento({navigation}:any) {
   const data = [
     {
       id: 1,
@@ -85,9 +84,9 @@ export default function ListaEquipamento() {
   ];
 
   const { equipmente } = useContextoEquipmente()
-  console.log(equipmente[0]._id);
+  // console.log(equipmente[0]._id);
   //está com erro porém não sei se interfere, ao clicar em uma imagem, vai para a tela de detalhe sem problemas ¯\_(ツ)_/¯
-  const handleItemPress = (itemId) => {
+  const handleItemPress = (itemId: any) => {
     // Navegue para a tela de detalhes, passando o ID como parâmetro
     navigation.navigate('Detalhes', { itemId });
   };

@@ -89,9 +89,9 @@ export default function Detalhe() {
                     text="Ativar"
                     style={styles.botaoAtivar}
                     label="Ativar Equipamento"
-                    message="Equipamento ativado com sucesso"
+                    message="ativado"
                 />
-                <BotoesDetalhes text="Desativar" style={styles.botaoDesativar} label="Desativar Equipamento" message="Equipamento desativado com sucesso" />
+                <BotoesDetalhes text="Desativar" style={styles.botaoDesativar} label="Desativar Equipamento" message="desativado" />
             </View>
 
 
