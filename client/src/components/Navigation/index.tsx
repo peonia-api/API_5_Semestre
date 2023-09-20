@@ -59,7 +59,7 @@ const TabNavigator = () => {
 export default function Navigation() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="TabNavigator">
+      <Stack.Navigator screenOptions={{headerShown: false}}>
         {/* navbar */}
         <Stack.Screen name="TabNavigator" component={TabNavigator} />
         {/* outras rotas */}

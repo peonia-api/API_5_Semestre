@@ -4,6 +4,7 @@ import styles from "./style";
 import { useState } from "react";
 import { Picker } from "@react-native-picker/picker";
 import Icon from 'react-native-vector-icons/FontAwesome';
+import React from "react";
 
 Icon.loadFont();
 
