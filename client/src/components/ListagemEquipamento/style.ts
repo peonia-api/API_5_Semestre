@@ -30,10 +30,6 @@ const styles = StyleSheet.create({
   textfont: {
     fontWeight: "bold",
   },
-  containerBotao: {
-    flexDirection: "row",
-    justifyContent: "center",
-  },
   footerBotao: {
     position: "absolute",
     bottom: 0,
@@ -44,7 +40,17 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 16,
     textAlign: 'center',
-    textTransform: 'uppercase'
+  },
+  containerBotao: {
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+  botao: {
+    backgroundColor: 'green',
+    marginTop: 12,
+    padding: 12,
+    borderRadius: 5,
+    width: '80%'
   },
 });
 

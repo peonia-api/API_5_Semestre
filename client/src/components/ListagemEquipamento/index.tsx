@@ -1,15 +1,11 @@
 import React from "react";
-import { View, Text, Image, FlatList, SafeAreaView, TouchableOpacity } from "react-native";
+import { View, Text, Image, FlatList, SafeAreaView, TouchableOpacity, ScrollView } from "react-native";
 import styles from "./style";
-import { BotaoCadastro } from "../Botao";
-import Cadastro from '../Cadastro';
-import { useNavigation } from '@react-navigation/native';
 import { useContextoEquipmente } from '../../hooks'
 import { Equipmente } from '../../services'
 import Pesquisa from "../Pesquisa";
 
-export default function ListaEquipamento() {
-  const navigation = useNavigation();
+export default function ListaEquipamento({ navigation }: any) {
   const data = [
     {
       id: 1,
@@ -85,17 +81,21 @@ export default function ListaEquipamento() {
   ];
 
   const { equipmente } = useContextoEquipmente()
-  console.log(equipmente[0]._id);
-  //está com erro porém não sei se interfere, ao clicar em uma imagem, vai para a tela de detalhe sem problemas ¯\_(ツ)_/¯
-  const handleItemPress = (itemId) => {
+  // console.log(equipmente[0]._id);
+  const handleItemPress = (itemId: any) => {
     // Navegue para a tela de detalhes, passando o ID como parâmetro
     navigation.navigate('Detalhes', { itemId });
   };
 
+  const handleCadastro = () => {
+    navigation.navigate('Cadastro');
+  }
+
   return (
     <View>
-      <SafeAreaView style={styles.container}>
-      <Pesquisa />
+      <ScrollView>
+        <SafeAreaView style={styles.container}>
+          <Pesquisa />
           <FlatList
             data={data}
             keyExtractor={(item) => item.id.toString()}
@@ -109,9 +109,14 @@ export default function ListaEquipamento() {
             )}
           />
         </SafeAreaView>
-      <View style={styles.footerBotao}>
-        <BotaoCadastro />
-      </View>
+        <View style={styles.footerBotao}>
+          <View style={styles.containerBotao}>
+            <TouchableOpacity style={styles.botao} onPress={handleCadastro}>
+              <Text style={styles.textoBotao}>Cadastrar</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ScrollView>
     </View>
   )
 }

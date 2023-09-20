@@ -1,5 +1,29 @@
 import React from 'react';
-import { StyleSheet, Alert} from 'react-native';
+import { StyleSheet, Alert } from 'react-native';
+import { useContextoEquipmente } from '../../hooks';
+
+const AlertEquipmentt = (title: string, label: string, message: string) => {
+  const { setConfirm } = useContextoEquipmente();
+
+  return (
+    Alert.alert(`${title}`, `${label}`, [
+      {
+        text: 'NÃO',
+        onPress: () => {
+          console.log(`Equipamento não ${message}`);
+          setConfirm(false);
+        },
+      },
+      {
+        text: 'SIM',
+        onPress: () => {
+          console.log(`Equipamento ${message} com sucesso`);
+          setConfirm(true);
+        },
+      },
+    ])
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -8,16 +32,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
-const AlertEquipmentt = (title: string, label: string, message: string) =>
-    Alert.alert(`${title}`, `${label}`, [
-      {
-        text: 'NÃO',
-        onPress: () => console.log(`${message}`),
-        style: 'cancel',
-      },
-      {text: 'SIM', onPress: () => console.log(`${message}`)},
-    ]
-    
-  );
 
 export default AlertEquipmentt;

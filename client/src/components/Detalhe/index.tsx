@@ -1,4 +1,4 @@
-import { View, Text, Image, TextInput, TouchableOpacity } from "react-native"
+import { View, Text, Image, TextInput, TouchableOpacity, ScrollView } from "react-native"
 import styles from "./style";
 import React, { useState, useEffect } from "react";
 import { Picker } from "@react-native-picker/picker";
@@ -38,63 +38,63 @@ export default function Detalhe() {
 
     return (
         <View style={styles.containerPrincipal}>
-            <View style={styles.container}>
-                <View style={styles.containerImagem} >
-                    {image && <Image source={{ uri: image }} style={styles.image} />}
-                    {/* <Image source={require('../../assets/iconImage.png')} style={styles.image}  /> */}
-                </View>
-
-                <View style={styles.containerIcons}>
-                    <TouchableOpacity style={styles.iconsPlusMinus} onPress={pickImage}>
-                        <Icon name="plus" size={25} color="#000000" />
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.iconsPlusMinus} onPress={removeImage}>
-                        <Icon name="trash" size={25} color="#000000" />
-                    </TouchableOpacity>
-                </View>
-
-            </View>
-
-            <View style={styles.containerInput}>
-                <View style={styles.containerTrans}>
-                    <Picker
-                        selectedValue={selectedEquipa}
-                        onValueChange={handleEquipamentoChange}
-                        style={styles.picker}
-                    >
-                        <Picker.Item label="Equipamento" value="" enabled={false} />
-                        <Picker.Item label="Transformador" value="Transformador" />
-                        <Picker.Item label="Poste" value="Poste" />
-                        <Picker.Item label="Bomba hidráulica" value="Bomba hidráulica" />
-                    </Picker>
-                    <TextInput placeholder="Número" style={styles.input} />
-                </View>
-
-                <TextInput placeholder="IMEI" style={styles.inputInteiro} />
-
+            <ScrollView>
                 <View style={styles.container}>
-                    <Text style={styles.textFont}>Latitude:</Text>
-                    <TextInput placeholder="Latitude" style={styles.inputLoLa} />
+                    <View style={styles.containerImagem} >
+                        {image && <Image source={{ uri: image }} style={styles.image} />}
+                        {/* <Image source={require('../../assets/iconImage.png')} style={styles.image}  /> */}
+                    </View>
 
-                    <Text style={styles.textFont}>Longitude:</Text>
-                    <TextInput placeholder="Longitude" style={styles.inputLoLa} />
+                    <View style={styles.containerIcons}>
+                        <TouchableOpacity style={styles.iconsPlusMinus} onPress={pickImage}>
+                            <Icon name="plus" size={25} color="#000000" />
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.iconsPlusMinus} onPress={removeImage}>
+                            <Icon name="trash" size={25} color="#000000" />
+                        </TouchableOpacity>
+                    </View>
+
+                    </View>
+
+                <View style={styles.containerInput}>
+                    <View style={styles.containerTrans}>
+                        <Picker
+                            selectedValue={selectedEquipa}
+                            onValueChange={handleEquipamentoChange}
+                            style={styles.picker}
+                        >
+                            <Picker.Item label="Equipamento" value="" enabled={false} />
+                            <Picker.Item label="Transformador" value="Transformador" />
+                            <Picker.Item label="Poste" value="Poste" />
+                            <Picker.Item label="Bomba hidráulica" value="Bomba hidráulica" />
+                        </Picker>
+                        <TextInput placeholder="Número" style={styles.input} />
+                    </View>
+
+                    <TextInput placeholder="IMEI" style={styles.inputInteiro} />
+
+                    <View style={styles.container}>
+                        <Text style={styles.textFont}>Latitude:</Text>
+                        <TextInput placeholder="Latitude" style={styles.inputLoLa} />
+
+                        <Text style={styles.textFont}>Longitude:</Text>
+                        <TextInput placeholder="Longitude" style={styles.inputLoLa} />
+                    </View>
+
+                    <TextInput placeholder="Observações" style={styles.inputInteiro} />
                 </View>
 
-                <TextInput placeholder="Observações" style={styles.inputInteiro} />
-            </View>
-
-            <View style={styles.linhaPontilhada} />
-            <View style={styles.containerBotao}>
-                <BotoesDetalhes
-                    text="Ativar"
-                    style={styles.botaoAtivar}
-                    label="Ativar Equipamento"
-                    message="Equipamento ativado com sucesso"
-                />
-                <BotoesDetalhes text="Desativar" style={styles.botaoDesativar} label="Desativar Equipamento" message="Equipamento desativado com sucesso" />
-            </View>
-
-
+                <View style={styles.linhaPontilhada} />
+                <View style={styles.containerBotao}>
+                    <BotoesDetalhes
+                        text="Ativar"
+                        style={styles.botaoAtivar}
+                        label="Ativar Equipamento"
+                        message="ativado"
+                    />
+                    <BotoesDetalhes text="Desativar" style={styles.botaoDesativar} label="Desativar Equipamento" message="desativado" />
+                </View>
+            </ScrollView>
         </View>
     );
 }
