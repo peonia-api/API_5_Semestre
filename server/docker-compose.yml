@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  server:
+    container_name: NODE_APP
+    build: '.'
+    depends_on:
+      - db
+    links:
+      - db
+    ports:
+      - '3001:3001'
+    environment:
+      - DB=mongodb://db:27017
+      - PORT=3001
+      - JWT_SECRET=@tokenJWT
+    networks:
+      - host
+
+  db:
+    image: 'mongo'
+    container_name: MONGODB_APP
+    ports:
+      - '27018:27017'
+    networks:
+      - host
+    volumes:
+      - app:/data/db
+  
+networks: 
+  host:
+    driver: bridge
+
+volumes:
+  app:
+    driver: local
