@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { AppDataSource } from "../data-source";
-import { Equipment } from "../entity/Equipment";
+import { Equipment } from "../entities/Equipment";
 import { ObjectId } from 'mongodb';
 
 
