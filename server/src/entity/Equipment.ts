@@ -1,24 +1,19 @@
-import { Entity, ObjectIdColumn, ObjectId, Column } from "typeorm"
+import { Entity, ObjectIdColumn, ObjectId, Column } from "typeorm";
 
-// enum EquipmentType {
-//     Tipo1 = 1,
-//     Tipo2 = 2,
-//     Tipo3 = 3,
-//     Tipo4 = 4,
-//     Tipo5 = 5
-// }
+enum EquipmentType {
+    PosteDeMadeira = 1,
+    Transformador = 2,
+    Chave = 3
+}
 
 @Entity()
 export class Equipment {
 
     @ObjectIdColumn()
-    _id: ObjectId
+    _id: ObjectId;
 
-    @Column({ type: "int", width: 5 })
+    @Column({ type: "int", width: 5, enum: EquipmentType })
     type: number;
-
-    // @Column({ type: "enum", enum: EquipmentType })
-    // type: EquipmentType;
 
     @Column({ type: "varchar", length: 30 })
     serial: string;
@@ -33,9 +28,8 @@ export class Equipment {
     observations: string;
 
     @Column()
-    url: string[]
+    url: string[];
 
     @Column()
-    status: boolean
+    status: boolean;
 }
-
