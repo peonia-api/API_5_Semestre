@@ -1,10 +1,10 @@
 import { Entity, ObjectIdColumn, ObjectId, Column } from "typeorm";
 
-enum EquipmentType {
-    PosteDeMadeira = 1,
-    Transformador = 2,
-    Chave = 3
-}
+// enum EquipmentType {
+//     PosteDeMadeira = 1,
+//     Transformador = 2,
+//     Chave = 3
+// }
 
 @Entity()
 export class Equipment {
@@ -12,8 +12,8 @@ export class Equipment {
     @ObjectIdColumn()
     _id: ObjectId;
 
-    @Column({ type: "int", width: 5, enum: EquipmentType })
-    type: number;
+    @Column({ type: "int", width: 5 })
+    type: string;
 
     @Column({ type: "varchar", length: 30 })
     serial: string;
