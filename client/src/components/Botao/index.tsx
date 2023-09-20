@@ -26,20 +26,15 @@ export function BotoesDetalhes({text, style, label, message}:props) {
 }
 
 
-export function BotaoCadastro() {
-  const navigation = useNavigation(); 
+// export function BotaoCadastro() {
 
-  const handleCadastrarPress = () => {
-    // navigation.navigate("Cadastro"); 
-  };
-
-  return (
-    <View>
-      <View style={styles.containerBotao}>
-        <TouchableOpacity style={styles.botao} onPress={handleCadastrarPress}>
-          <Text style={styles.textoBotao}>Cadastrar</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
-  );
-}
+//   return (
+//     <View>
+//       <View style={styles.containerBotao}>
+//         <TouchableOpacity style={styles.botao}>
+//           <Text style={styles.textoBotao}>Cadastrar</Text>
+//         </TouchableOpacity>
+//       </View>
+//     </View>
+//   );
+// }

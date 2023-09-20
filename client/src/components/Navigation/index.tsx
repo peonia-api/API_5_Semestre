@@ -1,70 +1,70 @@
 import React from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import ListaEquipamento from '../ListagemEquipamento';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import Detalhe from '../Detalhe';
 import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import ListaEquipamento from '../ListagemEquipamento';
+import Detalhe from '../Detalhe';
 import Mapa from '../Mapa';
-import { createStackNavigator } from '@react-navigation/stack';
 import Cadastro from '../Cadastro';
 
 Icon.loadFont();
 
+const Stack = createNativeStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
-const CadastroStack = createStackNavigator(); // Crie a pilha de navegação aqui
 
-function CadastroStackScreen() {
+const TabNavigator = () => {
   return (
-    <CadastroStack.Navigator>
-      <CadastroStack.Screen
-        name="Cadastro"
-        component={Cadastro}
-        options={{ headerShown: false }}
+    <Tab.Navigator
+      initialRouteName="Equipamentos"
+      activeColor="#000000"
+      shifting={false}
+      barStyle={{ backgroundColor: '#a4cdea' }}
+      sceneAnimationEnabled={false}
+    >
+      <Tab.Screen
+        name="Equipamentos"
+        component={ListaEquipamento}
+        options={{
+          tabBarLabel: 'Equipamentos',
+          tabBarIcon: () => (
+            <Icon name="desktop" size={25} color="#000000" />
+          ),
+        }}
       />
-    </CadastroStack.Navigator>
+      <Tab.Screen
+        name="Mapa"
+        component={Mapa}
+        options={{
+          tabBarLabel: 'Mapa',
+          tabBarIcon: () => (
+            <Icon name="map" size={25} color="#000000" />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Detalhes"
+        component={Detalhe}
+        options={{
+          tabBarLabel: 'Detalhes',
+          tabBarIcon: () => (
+            <Icon name="list" size={25} color="#000000" />
+          ),
+        }}
+      />
+    </Tab.Navigator>
   );
-}
+};
+
 export default function Navigation() {
   return (
     <NavigationContainer>
-      <Tab.Navigator
-        initialRouteName="Equipamentos"
-        activeColor="#000000"
-        shifting={false}
-        barStyle={{ backgroundColor: '#a4cdea' }}
-        sceneAnimationEnabled={false}
-      >
-        <Tab.Screen
-          name="Equipamentos"
-          component={ListaEquipamento}
-          options={{
-            tabBarLabel: 'Equipamentos',
-            tabBarIcon: () => (
-              <Icon name="desktop" size={25} color="#000000" />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Mapa"
-          component={Mapa}
-          options={{
-            tabBarLabel: 'Mapa',
-            tabBarIcon: () => (
-              <Icon name="map" size={25} color="#000000" />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Detalhes"
-          component={Detalhe}
-          options={{
-            tabBarLabel: 'Detalhes',
-            tabBarIcon: () => (
-              <Icon name="list" size={25} color="#000000" />
-            ),
-          }}
-        />
-      </Tab.Navigator>
+      <Stack.Navigator initialRouteName="TabNavigator">
+        {/* navbar */}
+        <Stack.Screen name="TabNavigator" component={TabNavigator} />
+        {/* outras rotas */}
+        <Stack.Screen name="Cadastro" component={Cadastro} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
