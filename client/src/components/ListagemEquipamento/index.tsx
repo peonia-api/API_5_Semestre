@@ -4,6 +4,7 @@ import styles from "./style";
 import { useContextoEquipmente } from '../../hooks'
 import { Equipmente } from '../../services'
 import Pesquisa from "../Pesquisa";
+import { listBuckets } from '../../supabase/upload'
 
 export default function ListaEquipamento({ navigation }: any) {
   const data = [
@@ -90,6 +91,8 @@ export default function ListaEquipamento({ navigation }: any) {
   const handleCadastro = () => {
     navigation.navigate('Cadastro');
   }
+
+  listBuckets()
   return (
     <View style={styles.container}>
       <SafeAreaView>
