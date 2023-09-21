@@ -141,8 +141,9 @@ Foram usadas as seguintes ferramentas, linguagens e tecnologias para a execuçã
 - [React Native](https://reactnative.dev/docs/getting-started): Framework
 - [TypeORM](https://typeorm.io/): Framework
 - [DevOps](https://azure.microsoft.com/pt-br/products/devops): Planejamento e Gestão
+- [API Expo Geolocation](https://docs.expo.dev/versions/latest/sdk/location/): API de Geolocalização
 - [MongoDB](https://www.mongodb.com/docs/): Banco de dados NoSQL
-- [PostgresSQL](https://www.postgresql.org/docs/): Banco de dados NoSQL
+- [PostgresSQL](https://www.postgresql.org/docs/): Banco de dados SQL
 
 → [Voltar ao topo](#topo)    
     
