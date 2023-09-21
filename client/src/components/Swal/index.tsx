@@ -10,12 +10,14 @@ export function AlertEquipmentt(title:string, label:string, message:string) {
       {
         text: 'NÃO',
         onPress: (e) => {
+          console.log(`Equipamento não ${message}`);
           setConfirm(false)
         },
       },
       {
         text: 'SIM',
         onPress: (e) => {
+          console.log(`Equipamento ${message} com sucesso`);
            setConfirm(true)
         },
       },

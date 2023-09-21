@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, Image, TouchableOpacity, Alert } from "react-native";
 import styles from "./style";
-import { useNavigation } from "@react-navigation/native";
-import {AlertEquipmentt} from "../Swal";
+//import { useNavigation } from "@react-navigation/native";
+
+import { useContextoEquipmente } from "../../hooks";
 
 interface props {
   text: string;
@@ -12,9 +13,41 @@ interface props {
 }
 
 export function BotoesDetalhes({ text, style, label, message }: props) {
+  const [ confirm, setConfirm ] = useState(null as any)
+
+  //const { setConfirm, confirm } = useContextoEquipmente()
+
   // const handlePress = () => {
   //   AlertEquipmentt(text, label, message);
   // };
+
+  function AlertEquipmentt(title:string, label:string, message:string) {
+  
+      Alert.alert(`${title}`, `${label}`, [
+        {
+          text: 'NÃO',
+          onPress: (e) => {
+            setConfirm(false)
+          },
+        },
+        {
+          text: 'SIM',
+          onPress: (e) => {
+             setConfirm(true)
+          },
+        },
+      ])
+  }
+
+  if(confirm === true){
+    console.log(`Equipamento ${message} com sucesso`);
+    setConfirm(null)
+  }
+  else if(confirm === false && confirm != null){
+    console.log(`Equipamento não ${message}`);
+    setConfirm(null)
+  }
+  
 
   return (
     <View style={styles.containerBotao2}>
