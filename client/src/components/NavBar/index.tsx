@@ -19,10 +19,6 @@ export default function NavBar() {
               <Text style={styles.textfont}>Gestão de Equipamentos</Text>
             </View>
           </View>
-          <View style={styles.containerPeople}>
-            <Image source={require('../../assets/iconPeople.png')} style={styles.icon} />
-            <Text style={styles.textfont}>Usuário</Text>
-          </View>
         </View>
       </LinearGradient>
         <View style={styles.linhaPontilhada} />
