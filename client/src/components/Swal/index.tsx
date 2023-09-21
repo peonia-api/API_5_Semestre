@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Alert } from 'react-native';
 import { useContextoEquipmente } from '../../hooks';
 
-const AlertEquipmentt = (title: string, label: string, message: string) => {
+export default function AlertEquipmentt(title: string, label: string, message: string): void {
   const { setConfirm } = useContextoEquipmente();
 
   return (
@@ -33,4 +33,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AlertEquipmentt;
+
