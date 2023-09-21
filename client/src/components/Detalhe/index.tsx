@@ -49,6 +49,9 @@ export default function Detalhe() {
                         <TouchableOpacity style={styles.iconsPlusMinus} onPress={pickImage}>
                             <Icon name="plus" size={25} color="#000000" />
                         </TouchableOpacity>
+                        {/* <TouchableOpacity style={styles.iconsPlusMinus} onPress={pickImage}>
+                            <Icon name="camera" size={25} color="#000000" />
+                        </TouchableOpacity> */}
                         <TouchableOpacity style={styles.iconsPlusMinus} onPress={removeImage}>
                             <Icon name="trash" size={25} color="#000000" />
                         </TouchableOpacity>
@@ -73,7 +76,7 @@ export default function Detalhe() {
 
                     <TextInput placeholder="IMEI" style={styles.inputInteiro} />
 
-                    <View style={styles.container}>
+                    <View style={styles.containerLoLa}>
                         <Text style={styles.textFont}>Latitude:</Text>
                         <TextInput placeholder="Latitude" style={styles.inputLoLa} />
 
@@ -84,7 +87,6 @@ export default function Detalhe() {
                     <TextInput placeholder="Observações" style={styles.inputInteiro} />
                 </View>
 
-                <View style={styles.linhaPontilhada} />
                 <View style={styles.containerBotao}>
                     <BotoesDetalhes
                         text="Ativar"
@@ -92,7 +94,12 @@ export default function Detalhe() {
                         label="Ativar Equipamento"
                         message="ativado"
                     />
-                    <BotoesDetalhes text="Desativar" style={styles.botaoDesativar} label="Desativar Equipamento" message="desativado" />
+                    <BotoesDetalhes 
+                        text="Desativar" 
+                        style={styles.botaoDesativar} 
+                        label="Desativar Equipamento" 
+                        message="desativado" 
+                    />
                 </View>
             </ScrollView>
         </View>
