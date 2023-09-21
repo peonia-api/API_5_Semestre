@@ -8,7 +8,7 @@ export const ContextoEquipmente = createContext({} as EquipmenteProps)
 
 export function Provider({ children }: any){
     const [ equipmente, setEquipmente ] = useState({} as Props[])
-    const [confirm, setConfirm] = useState(false)
+    const [confirm, setConfirm] = useState(null as any)
 
     useEffect(() => {
         (async function () {

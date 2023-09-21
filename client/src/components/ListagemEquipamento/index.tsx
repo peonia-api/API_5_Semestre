@@ -7,6 +7,8 @@ import Pesquisa from "../Pesquisa";
 import { listBuckets } from '../../supabase/upload'
 
 export default function ListaEquipamento({ navigation }: any) {
+  const { equipmente } = useContextoEquipmente()
+
   const data = [
     {
       id: 1,
@@ -81,8 +83,7 @@ export default function ListaEquipamento({ navigation }: any) {
     },
   ];
 
-  const { equipmente } = useContextoEquipmente()
-  // console.log(equipmente[0]._id);
+   //console.log(equipmente[0]._id);
   const handleItemPress = (itemId: any) => {
     // Navegue para a tela de detalhes, passando o ID como parâmetro
     navigation.navigate('Detalhes', { itemId });

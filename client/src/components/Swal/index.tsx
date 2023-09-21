@@ -1,29 +1,28 @@
-import React from 'react';
-import { StyleSheet, Alert } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Alert, View, Modal, Text, TouchableOpacity } from 'react-native';
 import { useContextoEquipmente } from '../../hooks';
 
-export default function AlertEquipmentt(title: string, label: string, message: string): void {
-  const { setConfirm } = useContextoEquipmente();
+export function AlertEquipmentt(title:string, label:string, message:string) {
+  const { setConfirm } = useContextoEquipmente()
 
   return (
     Alert.alert(`${title}`, `${label}`, [
       {
         text: 'NÃO',
-        onPress: () => {
-          console.log(`Equipamento não ${message}`);
-          setConfirm(false);
+        onPress: (e) => {
+          setConfirm(false)
         },
       },
       {
         text: 'SIM',
-        onPress: () => {
-          console.log(`Equipamento ${message} com sucesso`);
-          setConfirm(true);
+        onPress: (e) => {
+           setConfirm(true)
         },
       },
     ])
-  );
-};
+
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
