@@ -1,4 +1,4 @@
-import { View, Text, Image, TextInput, TouchableOpacity, ScrollView } from "react-native"
+import { View, Text, Image, TextInput, TouchableOpacity, ScrollView, Alert } from "react-native"
 import styles from "./style";
 import React, { useState, useEffect } from "react";
 import { Picker } from "@react-native-picker/picker";
@@ -10,21 +10,24 @@ Icon.loadFont();
 
 export default function Detalhe() {
     const [selectedEquipa, setSelectedEquipa] = useState<string>('');
-
     const [image, setImage] = useState<any>(null);
 
     const pickImage = async () => {
-        // No permissions request is necessary for launching the image library
-        let result = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.All,
-            allowsEditing: true,
-            aspect: [4, 3],
-            quality: 1,
-        });
+        const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
-        console.log(result);
-        if (!result.canceled) {
-            setImage(result.assets[0].uri);
+        if (status === 'granted') {
+            let result = await ImagePicker.launchImageLibraryAsync({
+                mediaTypes: ImagePicker.MediaTypeOptions.All,
+                allowsEditing: true,
+                aspect: [4, 3],
+                quality: 1,
+            });
+
+            if (!result.canceled) {
+                setImage(result.assets[0].uri);
+            }
+        } else {
+            Alert.alert("Permissão negada", "Você precisa permitir o acesso à galeria de imagens para adicionar uma imagem.");
         }
     };
 
@@ -57,7 +60,7 @@ export default function Detalhe() {
                         </TouchableOpacity>
                     </View>
 
-                    </View>
+                </View>
 
                 <View style={styles.containerInput}>
                     <View style={styles.containerTrans}>
@@ -94,11 +97,11 @@ export default function Detalhe() {
                         label="Ativar Equipamento"
                         message="ativado"
                     />
-                    <BotoesDetalhes 
-                        text="Desativar" 
-                        style={styles.botaoDesativar} 
-                        label="Desativar Equipamento" 
-                        message="desativado" 
+                    <BotoesDetalhes
+                        text="Desativar"
+                        style={styles.botaoDesativar}
+                        label="Desativar Equipamento"
+                        message="desativado"
                     />
                 </View>
             </ScrollView>
