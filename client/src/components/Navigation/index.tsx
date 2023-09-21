@@ -63,7 +63,7 @@ export default function Navigation() {
         {/* navbar */}
         <Stack.Screen name="TabNavigator" component={TabNavigator} />
         {/* outras rotas */}
-        <Stack.Screen name="Cadastro" component={Cadastro} />
+        <Stack.Screen name="Cadastro" component={Cadastro} options={{ headerBackVisible: true, headerShown: true}} />
       </Stack.Navigator>
     </NavigationContainer>
   );

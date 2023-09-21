@@ -1,71 +1,55 @@
-import React, { useState } from "react";
-import { View, Text, Image, Button, TextInput, FlatList } from "react-native";
-import styles from "./style";
-import Pesquisa from "../Pesquisa";
-import { Picker } from "@react-native-picker/picker";
+import React, { useEffect, useState } from "react";
+import { View } from "react-native";
+import MapView, { Marker } from "react-native-maps";
+import { requestForegroundPermissionsAsync, getCurrentPositionAsync, LocationObject } from "expo-location";
+
 
 export default function Mapa() {
-  const [selectedEquipa, setSelectedEquipa] = useState<string>('');
+  const [location, setLocation] = useState<LocationObject | null>(null);
 
-  const handleEquipamentoChange = (equipamento: string) => {
-    setSelectedEquipa(equipamento);
-  };
+  async function requestLocationsPermissions() {
+    const { granted } = await requestForegroundPermissionsAsync();
 
-  const data = [
-    {
-      id: 1,
-      text1: "Transformador #T1000",
-      text2: "21215-321",
-    },
-    {
-      id: 2,
-      text1: "Transformador #T1001",
-      text2: "21215-321",
-    },
-    {
-      id: 3,
-      text1: "Transformador #T1002",
-      text2: "21215-321",
-    },
-    {
-      id: 4,
-      text1: "Transformador #T1003",
-      text2: "21215-321",
+    if (granted) {
+      const currentPosition = await getCurrentPositionAsync();
+      setLocation(currentPosition);
     }
+  }
+
+  useEffect(() => {
+    requestLocationsPermissions();
+  }, []);
+
+
+  const coordenadas = [
+    { latitude: -23.171898582924346, longitude: -45.8159475113561, title: "Pereira Lanches", serial: "12345" },
+    { latitude: -23.171616557695884, longitude: -45.81613711352644, title: "Marmitaria Jerônimoo", serial: "67890" },
+    { latitude: -23.17172230680727, longitude: -45.81550332926822, title: "Adega da Avenidas", serial: "54321" },
+    { latitude: -23.171568866892837, longitude: -45.81582811550731, title: "Espetinho do Jerônimoo", serial: "98765" },
+    { latitude: -23.17181556483889, longitude: -45.81586181915286, title: "Lucia Confecções", serial: "13579" },
   ];
-
   return (
-    <View style={styles.containerPrincipal}>
-      <Pesquisa />
-      <View style={styles.containerTrans}>
-        <Picker
-          selectedValue={selectedEquipa}
-          onValueChange={handleEquipamentoChange}
-          style={styles.picker}
+    <View style={{ flex: 1 }}>
+      {location && (
+        <MapView
+          style={{ flex: 1 }}
+          initialRegion={{
+            latitude: location.coords.latitude,
+            longitude: location.coords.longitude,
+            latitudeDelta: 0.010,
+            longitudeDelta: 0.010,
+          }}
         >
-          <Picker.Item label="Equipamento" value="" enabled={false} />
-          <Picker.Item label="Transformador" value="Transformador" />
-          <Picker.Item label="Poste" value="Poste" />
-          <Picker.Item label="Bomba hidráulica" value="Bomba hidráulica" />
-        </Picker>
-      </View>
-
-      <View>
-        <Text>Mapa</Text>
-      </View>
-
-      <FlatList
-        data={data}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
-          <View style={styles.itemContainer}>
-            <View style={styles.item}>
-              <Text style={styles.textfont}>{item.text1}</Text>
-              <Text>{item.text2}</Text>
-            </View>
-          </View>
-        )}
-      />
+        {coordenadas.map((coordenada, index) => (
+          <Marker
+            key={index}
+            coordinate={coordenada}
+            title={`${coordenada.title} (Serial: ${coordenada.serial})`}
+            description={`Latitude: ${coordenada.latitude}, Longitude: ${coordenada.longitude}`}
+          />
+        ))}
+        </MapView>
+      )}
     </View>
   );
 }

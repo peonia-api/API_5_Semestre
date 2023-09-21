@@ -2,10 +2,14 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     flexDirection: "column",
     paddingHorizontal: 10,
-    marginBottom: 10,
     backgroundColor: '#ffffff'
+  },
+  listaContainer: {
+    flex: 1,
+    marginBottom: 60, 
   },
   row: {
     flexDirection: "row",
@@ -31,10 +35,10 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   footerBotao: {
+    width: "100%",
+    marginBottom: 5,
     position: "absolute",
     bottom: 0,
-    width: "100%",
-    marginBottom: 5
   },
   textoBotao: {
     color: 'white',
