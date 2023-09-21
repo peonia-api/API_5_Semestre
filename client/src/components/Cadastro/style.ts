@@ -1,37 +1,52 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
+  
   containerPrincipal: {
     backgroundColor: '#ffffff',
   },
+
+  // scrollView: {
+  //   marginHorizontal: 20,
+  // },
+
   container: {
-    flexDirection: "row",
-    paddingTop:10
+    flexDirection: "column",
+    paddingTop: 10,
+    marginTop: 10
   },
+
   containerImagem: {
     alignItems: "center",
-    width: 250,
-    height: 150,
+    justifyContent: 'center',
+    width: 325,
+    height: 200,
     borderWidth: 1,
     borderRadius: 5,
     backgroundColor: '#f2f2f2',
-    gap: 30,
+    // gap: 30,
     marginLeft: 30
   },
+
   image: {
-    top: "25%"
+    width: '100%', 
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
 
   containerIcons: {
+    flexDirection: "row",
     justifyContent: 'center', 
     alignItems: 'center', 
-    gap: 20,
-    marginLeft: 30,
+    gap: 50,
   },
+
   iconsPlusMinus: {
     height: 50,
     width: 50,
     borderRadius: 10,
+    marginTop: 20,
     backgroundColor: '#a4cdea',
     alignItems: 'center', 
     justifyContent: 'center', 
@@ -56,7 +71,7 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
     backgroundColor: '#f2f2f2',
     borderRadius: 5,
-    marginBottom: 15,
+    marginBottom: 15
   },
 
   containerTrans: {
@@ -69,8 +84,7 @@ const styles = StyleSheet.create({
     width: '90%',
     paddingLeft: 15,
     backgroundColor: '#f2f2f2',
-    borderRadius: 5,
-    marginBottom: 15,
+    borderRadius: 5
   },
 
   textFont: {
@@ -79,42 +93,37 @@ const styles = StyleSheet.create({
     padding: 5
   },
 
+  containerLoLa: {
+    flexDirection: "row",
+    paddingTop: 10,
+    marginTop: 10
+  },
+
   inputLoLa: {
     height: 55,
     width: '24%',
     paddingLeft: 15,
     backgroundColor: '#fafafa',
     borderRadius: 5,
-    marginBottom: 15,
-
+    marginBottom: 15
   },
+
   containerBotao: {
     flexDirection: "row",
     justifyContent: "center",
+    marginTop: 10,
     marginBottom: 10,
   },
 
-  linhaPontilhada: {
-    width: "100%",
-    borderStyle: "dashed",
-    borderColor: "#dfe6f7",
-    borderWidth: 1,
-    marginTop: 10,
-    alignSelf: "center",
-  },
-  textoBotao: {
-    color: 'white',
-    fontSize: 16,
-    textAlign: 'center',
-    textTransform: 'uppercase'
-  },
-  botao: {
-    backgroundColor: 'green',
-    marginTop: 12,
-    padding: 12,
-    borderRadius: 5,
-    width: '80%'
-  },
+  // linhaPontilhada: {
+  //   width: "100%",
+  //   borderStyle: "dashed",
+  //   borderColor: "#dfe6f7",
+  //   borderWidth: 1,
+  //   marginTop: 10,
+  //   marginBottom: 10,
+  //   alignSelf: "center",
+  // },
 
 });
 

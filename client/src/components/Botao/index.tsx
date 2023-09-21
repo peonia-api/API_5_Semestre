@@ -11,9 +11,9 @@ interface props {
   message: string;
 }
 
-export function BotoesDetalhes({text, style, label, message}:props) {
+export function BotoesDetalhes({ text, style, label, message }: props) {
   const handlePress = () => {
-    AlertEquipmentt(text, label, message); 
+    AlertEquipmentt(text, label, message);
   };
 
   return (
@@ -26,15 +26,15 @@ export function BotoesDetalhes({text, style, label, message}:props) {
 }
 
 
-// export function BotaoCadastro() {
+export function BotaoCadastro() {
 
-//   return (
-//     <View>
-//       <View style={styles.containerBotao}>
-//         <TouchableOpacity style={styles.botao}>
-//           <Text style={styles.textoBotao}>Cadastrar</Text>
-//         </TouchableOpacity>
-//       </View>
-//     </View>
-//   );
-// }
+  return (
+    <View>
+      <View style={styles.containerBotao}>
+        <TouchableOpacity style={styles.botao}>
+          <Text style={styles.textoBotao}>Cadastrar</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+}
