@@ -9,6 +9,17 @@ const styles = StyleSheet.create({
   // scrollView: {
   //   marginHorizontal: 20,
   // },
+  uploadingAnimation: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 999, // Isso coloca a animação na frente de outros elementos
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Um fundo semi-transparente para escurecer a tela de fundo
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 
   container: {
     flexDirection: "column",
