@@ -6,14 +6,21 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import * as ImagePicker from 'expo-image-picker';
 import { BotaoCadastro, BotoesDetalhes } from "../Botao";
 import  upload  from '../../supabase/upload'
-
+import { useContextoEquipmente } from '../../hooks'
 
 Icon.loadFont();
 
 export default function Cadastro() {
     const [selectedEquipa, setSelectedEquipa] = useState<string>('');
     const [image, setImage] = useState<any>(null);
+    const { createEquipment } = useContextoEquipmente()
 
+    const [ numero, setNumero ] = useState<number>(null as any)
+    const [ serial, setSerial ] = useState<string>(null as any)
+    const [ latitude, setLatitude ] = useState<number>(null as any)
+    const [ longitude, setLongitude ] = useState<number>(null as any)
+    const [ observacao, setObservacao ] = useState<string>(null as any)
+ 
     const pickImage = async () => {
         const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
@@ -43,10 +50,22 @@ export default function Cadastro() {
         setSelectedEquipa(equipamento);
     };
 
-    const uploadImage = async(event:any) => {
-        upload('v', { uri: image })
-    } 
-
+    const uploadImage = async() => {
+        upload(serial, { uri: image }).then((res:any) => {
+            createEquipment({
+                type: selectedEquipa,
+                numero: numero,
+                serial: serial,
+                latitude: latitude,
+                longitude: longitude,
+                observations: observacao,
+                url: res,
+                status: true
+            })
+        })
+    }
+ 
+    
     return (
         <View style={styles.containerPrincipal}>
             <ScrollView>
@@ -82,24 +101,46 @@ export default function Cadastro() {
                             <Picker.Item label="Poste" value="Poste" />
                             <Picker.Item label="Bomba hidráulica" value="Bomba hidráulica" />
                         </Picker>
-                        <TextInput placeholder="Número" style={styles.input} />
+                        <TextInput 
+                            placeholder="Número" 
+                            keyboardType="numeric" 
+                            style={styles.input} 
+                            onChangeText={(e:any) => setNumero(e)} 
+                        />
                     </View>
 
-                    <TextInput placeholder="IMEI" style={styles.inputInteiro} />
+                    <TextInput 
+                        placeholder="IMEI" 
+                        style={styles.inputInteiro} 
+                        onChangeText={(e:any) => setSerial(e)} 
+                    />
 
                     <View style={styles.containerLoLa}>
                         <Text style={styles.textFont}>Latitude:</Text>
-                        <TextInput placeholder="Latitude" style={styles.inputLoLa} />
+                        <TextInput 
+                            placeholder="Latitude"
+                            keyboardType="numeric" 
+                            style={styles.inputLoLa} 
+                            onChangeText={(e:any) => setLatitude(e)} />
 
                         <Text style={styles.textFont}>Longitude:</Text>
-                        <TextInput placeholder="Longitude" style={styles.inputLoLa} />
+                        <TextInput 
+                            placeholder="Longitude" 
+                            keyboardType="numeric" 
+                            style={styles.inputLoLa} 
+                            onChangeText={(e:any) => setLongitude(e)}    
+                        />
                     </View>
 
-                    <TextInput placeholder="Observações" style={styles.inputInteiro} />
+                    <TextInput 
+                        placeholder="Observações" 
+                        style={styles.inputInteiro} 
+                        onChangeText={(e:any) => setObservacao(e)}
+                    />
                 </View>
 
                 <View style={styles.containerBotao}>
-                    <BotaoCadastro handle={(event:any) => uploadImage(event)} />
+                    <BotaoCadastro handle={(event:any) => uploadImage()} />
                 </View>
             </ScrollView>
         </View>

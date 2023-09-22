@@ -7,7 +7,8 @@ import React from 'react';
 export const ContextoEquipmente = createContext({} as EquipmenteProps)
 
 export function Provider({ children }: any){
-    const [ equipmente, setEquipmente ] = useState({} as Props[])
+    const [ equipmente, setEquipmente ] = useState<Props[]>([]);
+    
     
 
     useEffect(() => {
@@ -17,8 +18,18 @@ export function Provider({ children }: any){
         })()
     }, [])
 
+    const createEquipment = async (newEquipment: Props) => {
+        try {
+          const createdEquipment = await Equipmente.post(newEquipment);
+          setEquipmente((prevEquipmente) => [...prevEquipmente, createdEquipment]);
+        } catch (error) {
+          console.error('Erro ao criar equipamento:', error);
+        }
+      };
+    
+
     return (
-        <ContextoEquipmente.Provider value={{equipmente, setEquipmente}}>
+        <ContextoEquipmente.Provider value={{equipmente, setEquipmente, createEquipment}}>
             {children}
         </ContextoEquipmente.Provider>
     )

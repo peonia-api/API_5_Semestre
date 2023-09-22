@@ -5,12 +5,13 @@ export default async function upload(name:string, file:any){
     console.log(file);
     try{
         if(file.uri !== null){
+            const nameNew =  name + "." + file.uri.split('.')[3]
             const { data, error } = await supabase
             .storage
             .from('imagens')
-            .upload(name, file)
+            .upload(nameNew, file)
     
-            return data
+            return [urlupload + nameNew]
         }
     }catch(err){
         return err
