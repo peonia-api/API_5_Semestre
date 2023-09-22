@@ -23,12 +23,11 @@ export default function ListaEquipamento({ navigation }: any) {
       </SafeAreaView>
       <View style={styles.listaContainer}>
         <FlatList
-          data={equipmente} // Usar o array de equipamentos obtido do contexto
-          keyExtractor={(item) => item._id.toString()} // Ou use uma chave única apropriada do seu objeto
+          data={equipmente}
+          keyExtractor={(item) => item._id.toString()}
           numColumns={2}
           renderItem={({ item }) => (
             <TouchableOpacity style={styles.column} onPress={() => handleItemPress(item._id)}>
-              {/* Use os dados do equipamento para renderizar */}
               <Image source={{ uri: item.url[0] }} style={styles.image} />
               <Text style={styles.textfont}>{item.type}</Text>
               <Text>{item.serial}</Text>
