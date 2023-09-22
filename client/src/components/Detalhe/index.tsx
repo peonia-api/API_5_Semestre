@@ -14,7 +14,7 @@ Icon.loadFont();
 export default function Detalhe({ route, navigation }: any) {
     
     const { equipmente, setLoaded, loaded, getEquipment } = useContextoEquipmente();
-    const [ novoEquipamento, setNovoEquipamento ] = useState<any>()
+   // const [ novoEquipamento, setNovoEquipamento ] = useState<any>()
     
     // Encontre o equipamento com base no itemId
 
@@ -29,29 +29,30 @@ export default function Detalhe({ route, navigation }: any) {
 
     // Use o useEffect para atualizar os estados quando um novo equipamento for selecionado
    useFocusEffect(useCallback(() => {
-        setLoaded(true)
         try{
             const {itemId} = route.params
             //const novoEquipamento = equipmente.find(equip => equip._id === itemId);
             async function init() {
-                setNovoEquipamento(await getEquipment(itemId))
+                //setNovoEquipamento(await getEquipment(itemId))
+                const novoEquipamento = await getEquipment(itemId)
+                if (novoEquipamento) {
+                    setSelectedEquipa(novoEquipamento?.type || '');
+                    setImage(novoEquipamento?.url[0] || null);
+                    setNumero(novoEquipamento?.numero.toString() || '');
+                    setImei(novoEquipamento?.serial || '');
+                    setLatitude(novoEquipamento?.latitude.toString() || '');
+                    setLongitude(novoEquipamento?.longitude.toString() || '');
+                    setObservacoes(novoEquipamento?.observations || '');
+                }
             }
             init()
-            console.log(novoEquipamento);
+            console.log(itemId);
+          
             
-            if (novoEquipamento) {
-                setSelectedEquipa(novoEquipamento?.type || '');
-                setImage(novoEquipamento?.url[0] || null);
-                setNumero(novoEquipamento?.numero.toString() || '');
-                setImei(novoEquipamento?.serial || '');
-                setLatitude(novoEquipamento?.latitude.toString() || '');
-                setLongitude(novoEquipamento?.longitude.toString() || '');
-                setObservacoes(novoEquipamento?.observations || '');
-            }
+            
         }catch(err){
             console.log("Assim não");
-        }finally{
-            setLoaded(false)
+            //navigation.navigate('Cadastro')
         }
         
         

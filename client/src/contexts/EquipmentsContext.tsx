@@ -32,6 +32,8 @@ export function Provider({ children }: any){
       try{
         setLoaded(true)
         const getOne = await Equipmente.getOne(id) 
+        console.log(getOne);
+        
         return getOne
       }catch(err){
         console.error(err);
