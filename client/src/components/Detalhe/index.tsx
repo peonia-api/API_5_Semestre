@@ -81,10 +81,10 @@ export default function Detalhe() {
 
                     <View style={styles.containerLoLa}>
                         <Text style={styles.textFont}>Latitude:</Text>
-                        <TextInput placeholder="Latitude" style={styles.inputLoLa} />
+                        <TextInput keyboardType="numeric" placeholder="Latitude" style={styles.inputLoLa} />
 
                         <Text style={styles.textFont}>Longitude:</Text>
-                        <TextInput placeholder="Longitude" style={styles.inputLoLa} />
+                        <TextInput keyboardType="numeric" placeholder="Longitude" style={styles.inputLoLa} />
                     </View>
 
                     <TextInput placeholder="Observações" style={styles.inputInteiro} />
