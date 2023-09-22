@@ -10,7 +10,7 @@ import { useContextoEquipmente } from '../../hooks'
 
 Icon.loadFont();
 
-export default function Cadastro() {
+export default function Cadastro({ navigation }: any) {
     const [selectedEquipa, setSelectedEquipa] = useState<string>('');
     const [image, setImage] = useState<any>(null);
     const { createEquipment } = useContextoEquipmente()
@@ -62,6 +62,7 @@ export default function Cadastro() {
                 url: res,
                 status: true
             })
+            navigation.navigate('Equipamentos');
         })
     }
  
