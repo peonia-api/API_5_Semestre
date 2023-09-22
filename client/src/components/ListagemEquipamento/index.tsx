@@ -1,90 +1,13 @@
 import React from "react";
-import { View, Text, Image, FlatList, SafeAreaView, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, Image, FlatList, SafeAreaView, TouchableOpacity } from "react-native";
 import styles from "./style";
-import { useContextoEquipmente } from '../../hooks'
-import { Equipmente } from '../../services'
+import { useContextoEquipmente } from '../../hooks';
 import Pesquisa from "../Pesquisa";
 
-
 export default function ListaEquipamento({ navigation }: any) {
-  const { equipmente } = useContextoEquipmente()
+  const { equipmente } = useContextoEquipmente();
 
-  const data = [
-    {
-      id: 1,
-      image: require('../../assets/iconImage.png'),
-      text1: "Transformador #T1000",
-      text2: "21212 01:02 - 12:54",
-    },
-    {
-      id: 2,
-      image: require('../../assets/iconImage.png'),
-      text1: "Transformador #T1001",
-      text2: "21213 02:03 - 13:55",
-    },
-    {
-      id: 3,
-      image: require('../../assets/iconImage.png'),
-      text1: "Transformador #T1002",
-      text2: "21214 03:04 - 14:56",
-    },
-    {
-      id: 4,
-      image: require('../../assets/iconImage.png'),
-      text1: "Transformador #T1003",
-      text2: "21215 04:05 - 15:57",
-    }, {
-      id: 5,
-      image: require('../../assets/iconImage.png'),
-      text1: "Transformador #T1000",
-      text2: "21212 01:02 - 12:54",
-    },
-    {
-      id: 6,
-      image: require('../../assets/iconImage.png'),
-      text1: "Transformador #T1001",
-      text2: "21213 02:03 - 13:55",
-    },
-    {
-      id: 7,
-      image: require('../../assets/iconImage.png'),
-      text1: "Transformador #T1002",
-      text2: "21214 03:04 - 14:56",
-    },
-    {
-      id: 8,
-      image: require('../../assets/iconImage.png'),
-      text1: "Transformador #T1003",
-      text2: "21215 04:05 - 15:57",
-    },
-    {
-      id: 9,
-      image: require('../../assets/iconImage.png'),
-      text1: "Transformador #T1000",
-      text2: "21212 01:02 - 12:54",
-    },
-    {
-      id: 10,
-      image: require('../../assets/iconImage.png'),
-      text1: "Transformador #T1001",
-      text2: "21213 02:03 - 13:55",
-    },
-    {
-      id: 11,
-      image: require('../../assets/iconImage.png'),
-      text1: "Transformador #T1002",
-      text2: "21214 03:04 - 14:56",
-    },
-    {
-      id: 12,
-      image: require('../../assets/iconImage.png'),
-      text1: "Transformador #T1003",
-      text2: "21215 04:05 - 15:57",
-    },
-  ];
-
-   //console.log(equipmente[0]._id);
-  const handleItemPress = (itemId: any) => {
+  const handleItemPress = (itemId: string) => {
     // Navegue para a tela de detalhes, passando o ID como parâmetro
     navigation.navigate('Detalhes', { itemId });
   };
@@ -93,7 +16,6 @@ export default function ListaEquipamento({ navigation }: any) {
     navigation.navigate('Cadastro');
   }
 
- 
   return (
     <View style={styles.container}>
       <SafeAreaView>
@@ -101,14 +23,15 @@ export default function ListaEquipamento({ navigation }: any) {
       </SafeAreaView>
       <View style={styles.listaContainer}>
         <FlatList
-          data={data}
-          keyExtractor={(item) => item.id.toString()}
+          data={equipmente} // Usar o array de equipamentos obtido do contexto
+          keyExtractor={(item) => item._id.toString()} // Ou use uma chave única apropriada do seu objeto
           numColumns={2}
           renderItem={({ item }) => (
-            <TouchableOpacity style={styles.column} onPress={() => handleItemPress(item.id)}>
-              <Image source={item.image} style={styles.image} />
-              <Text style={styles.textfont}>{item.text1}</Text>
-              <Text>{item.text2}</Text>
+            <TouchableOpacity style={styles.column} onPress={() => handleItemPress(item._id)}>
+              {/* Use os dados do equipamento para renderizar */}
+              <Image source={{ uri: item.url[0] }} style={styles.image} />
+              <Text style={styles.textfont}>{item.type}</Text>
+              <Text>{item.serial}</Text>
             </TouchableOpacity>
           )}
         />
@@ -123,4 +46,3 @@ export default function ListaEquipamento({ navigation }: any) {
     </View>
   );
 }
-
