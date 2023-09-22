@@ -40,6 +40,7 @@ class EquipmentController {
         const equipRepository = AppDataSource.getRepository(Equipment)
         const insertEquip = new Equipment();
         insertEquip.type = createEquip.type
+        insertEquip.numero = createEquip.numero
         insertEquip.serial = createEquip.serial
         insertEquip.latitude = createEquip.latitude
         insertEquip.longitude = createEquip.longitude
@@ -65,6 +66,7 @@ class EquipmentController {
                 
             }) 
             findEquip.type = createEquip.type;
+            findEquip.numero = createEquip.numero;
             findEquip.serial = createEquip.serial;
             findEquip.latitude = createEquip.latitude;
             findEquip.longitude = createEquip.longitude;
