@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, Image, FlatList, SafeAreaView, TouchableOpacity } from "react-native";
 import styles from "./style";
 import { useContextoEquipmente } from '../../hooks';
 import Pesquisa from "../Pesquisa";
+import LottieView from 'lottie-react-native';
 
 export default function ListaEquipamento({ navigation }: any) {
-  const { equipmente } = useContextoEquipmente();
+  const { equipmente, loaded } = useContextoEquipmente();
+  
+  
+  
 
   const handleItemPress = (itemId: string) => {
     // Navegue para a tela de detalhes, passando o ID como parâmetro
@@ -22,6 +26,20 @@ export default function ListaEquipamento({ navigation }: any) {
         <Pesquisa />
       </SafeAreaView>
       <View style={styles.listaContainer}>
+        {loaded && (
+          <View style={styles.uploadingAnimation}>
+          <LottieView
+              autoPlay={true}
+              loop={true}
+              style={{
+                  width: '100%',
+                  height: '100%',
+                  backgroundColor: 'white',
+              }}
+              source={require('../../assets/carregando.json')}
+          />
+      </View>
+        )}
         <FlatList
           data={equipmente}
           keyExtractor={(item) => item._id.toString()}

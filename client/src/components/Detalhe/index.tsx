@@ -102,7 +102,7 @@ export default function Detalhe({ route }: any) {
                             <Picker.Item label="Poste" value="Poste" />
                             <Picker.Item label="Bomba hidráulica" value="Bomba hidráulica" />
                         </Picker>
-                        <TextInput placeholder="Número" style={styles.input} defaultValue={numero} />
+                        <TextInput placeholder="Número" keyboardType="numeric" style={styles.input} defaultValue={numero} />
                     </View>
 
                     <TextInput placeholder="IMEI" style={styles.inputInteiro} defaultValue={imei} />

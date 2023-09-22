@@ -8,13 +8,14 @@ export const ContextoEquipmente = createContext({} as EquipmenteProps)
 
 export function Provider({ children }: any){
     const [ equipmente, setEquipmente ] = useState<Props[]>([]);
-    
+    const [loaded, setLoaded] = useState(true);
     
 
     useEffect(() => {
         (async function () {
             const resp:any = await Equipmente.get()            
             setEquipmente(resp)
+            setLoaded(false)
         })()
     }, [])
 
@@ -29,7 +30,7 @@ export function Provider({ children }: any){
     
 
     return (
-        <ContextoEquipmente.Provider value={{equipmente, setEquipmente, createEquipment}}>
+        <ContextoEquipmente.Provider value={{equipmente, setEquipmente, createEquipment, loaded}}>
             {children}
         </ContextoEquipmente.Provider>
     )
