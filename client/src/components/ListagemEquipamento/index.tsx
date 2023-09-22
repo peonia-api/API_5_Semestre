@@ -1,15 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, Image, FlatList, SafeAreaView, TouchableOpacity } from "react-native";
 import styles from "./style";
 import { useContextoEquipmente } from '../../hooks';
 import Pesquisa from "../Pesquisa";
 import LottieView from 'lottie-react-native';
+import { Props } from "../../types/equipmente";
 
 export default function ListaEquipamento({ navigation }: any) {
   const { equipmente, loaded } = useContextoEquipmente();
   
   
   console.log(loaded);
+  const [filteredEquipments, setFilteredEquipments] = useState<Props[]>(equipmente);
+  const [searchValue, setSearchValue] = useState(""); 
+
+  useEffect(() => {
+    const filtered = equipmente.filter((item) =>
+      item.type.toLowerCase().includes(searchValue.toLowerCase()) ||
+      item.serial.toLowerCase().includes(searchValue.toLowerCase())
+    );
+    setFilteredEquipments(filtered);
+  }, [searchValue, equipmente]);
   
 
   const handleItemPress = (itemId: string) => {
@@ -24,7 +35,7 @@ export default function ListaEquipamento({ navigation }: any) {
   return (
     <View style={styles.container}>
       <SafeAreaView>
-        <Pesquisa />
+        <Pesquisa onSearch={(text) => setSearchValue(text)} />
       </SafeAreaView>
       <View style={styles.listaContainer}>
         {loaded && (
@@ -42,7 +53,7 @@ export default function ListaEquipamento({ navigation }: any) {
           </View>
         )}
         <FlatList
-          data={equipmente}
+          data={filteredEquipments}
           keyExtractor={(item) => item._id.toString()}
           numColumns={2}
           renderItem={({ item }) => (
