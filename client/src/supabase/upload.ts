@@ -1,15 +1,20 @@
-import { supabase } from './index'
+import { supabase, urlupload } from './conection'
 
-export const listBuckets = async() => {
+export default async function upload(name:string, file:any){
+    console.log(name);
+    console.log(file);
+    try{
+        if(file.uri !== null){
+            const { data, error } = await supabase
+            .storage
+            .from('imagens')
+            .upload(name, file)
     
-    
-    const { data, error } = await supabase
-    .storage
-    .from('imagens')
-    .list()
+            return data
+        }
+    }catch(err){
+        return err
+    }
 
-    
-    console.log(data);
-    
-    return data
+            
 }

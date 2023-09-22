@@ -5,6 +5,8 @@ import { Picker } from "@react-native-picker/picker";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import * as ImagePicker from 'expo-image-picker';
 import { BotaoCadastro, BotoesDetalhes } from "../Botao";
+import  upload  from '../../supabase/upload'
+
 
 Icon.loadFont();
 
@@ -25,6 +27,8 @@ export default function Cadastro() {
 
             if (!result.canceled) {
                 setImage(result.assets[0].uri);
+                //console.log(result);
+                
             }
         } else {
             Alert.alert("Permissão negada", "Você precisa permitir o acesso à galeria de imagens para adicionar uma imagem.");
@@ -38,6 +42,10 @@ export default function Cadastro() {
     const handleEquipamentoChange = (equipamento: string) => {
         setSelectedEquipa(equipamento);
     };
+
+    const uploadImage = async(event:any) => {
+        upload('v', { uri: image })
+    } 
 
     return (
         <View style={styles.containerPrincipal}>
@@ -91,7 +99,7 @@ export default function Cadastro() {
                 </View>
 
                 <View style={styles.containerBotao}>
-                    <BotaoCadastro />
+                    <BotaoCadastro handle={(event:any) => uploadImage(event)} />
                 </View>
             </ScrollView>
         </View>

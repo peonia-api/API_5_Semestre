@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, Image, TouchableOpacity, Alert } from "react-native";
+import { View, Text, Image, TouchableOpacity, Alert, GestureResponderEvent } from "react-native";
 import styles from "./style";
 //import { useNavigation } from "@react-navigation/native";
 
@@ -11,6 +11,8 @@ interface props {
   label: string;
   message: string;
 }
+
+
 
 export function BotoesDetalhes({ text, style, label, message }: props) {
   const [ confirm, setConfirm ] = useState(null as any)
@@ -59,12 +61,12 @@ export function BotoesDetalhes({ text, style, label, message }: props) {
 }
 
 
-export function BotaoCadastro() {
+export function BotaoCadastro({ handle }: { handle: (event: GestureResponderEvent) => void }) {
 
   return (
     <View>
       <View style={styles.containerBotao}>
-        <TouchableOpacity style={styles.botao}>
+        <TouchableOpacity style={styles.botao} onPress={handle}>
           <Text style={styles.textoBotao}>Cadastrar</Text>
         </TouchableOpacity>
       </View>

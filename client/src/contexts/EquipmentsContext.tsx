@@ -8,7 +8,7 @@ export const ContextoEquipmente = createContext({} as EquipmenteProps)
 
 export function Provider({ children }: any){
     const [ equipmente, setEquipmente ] = useState({} as Props[])
-    const [confirm, setConfirm] = useState(null as any)
+    
 
     useEffect(() => {
         (async function () {
@@ -18,7 +18,7 @@ export function Provider({ children }: any){
     }, [])
 
     return (
-        <ContextoEquipmente.Provider value={{equipmente, setEquipmente, confirm, setConfirm}}>
+        <ContextoEquipmente.Provider value={{equipmente, setEquipmente}}>
             {children}
         </ContextoEquipmente.Provider>
     )
