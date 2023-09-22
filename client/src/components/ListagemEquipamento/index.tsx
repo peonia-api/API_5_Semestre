@@ -9,6 +9,7 @@ export default function ListaEquipamento({ navigation }: any) {
   const { equipmente, loaded } = useContextoEquipmente();
   
   
+  console.log(loaded);
   
 
   const handleItemPress = (itemId: string) => {
@@ -38,7 +39,7 @@ export default function ListaEquipamento({ navigation }: any) {
               }}
               source={require('../../assets/carregando.json')}
           />
-      </View>
+          </View>
         )}
         <FlatList
           data={equipmente}

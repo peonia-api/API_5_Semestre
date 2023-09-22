@@ -1,44 +1,61 @@
 import { View, Text, Image, TextInput, TouchableOpacity, ScrollView, Alert } from "react-native"
 import styles from "./style";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Picker } from "@react-native-picker/picker";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import * as ImagePicker from 'expo-image-picker';
 import { BotoesDetalhes } from "../Botao";
 import { useContextoEquipmente } from "../../hooks";
+import LottieView from 'lottie-react-native';
+import { useFocusEffect } from "@react-navigation/native";
 
 Icon.loadFont();
 
-export default function Detalhe({ route }: any) {
-    const { itemId } = route.params;
-    const { equipmente } = useContextoEquipmente();
-
+export default function Detalhe({ route, navigation }: any) {
+    
+    const { equipmente, setLoaded, loaded, getEquipment } = useContextoEquipmente();
+    const [ novoEquipamento, setNovoEquipamento ] = useState<any>()
+    
     // Encontre o equipamento com base no itemId
-    const equipamentoSelecionado = equipmente.find(equip => equip._id === itemId);
 
     // Defina estados iniciais com base no equipamento selecionado
-    const [selectedEquipa, setSelectedEquipa] = useState<string>(equipamentoSelecionado?.type || '');
-    const [image, setImage] = useState<any>(equipamentoSelecionado?.url[0] || null);
-    const [numero, setNumero] = useState<string>(equipamentoSelecionado?.numero.toString() || '');
-    const [imei, setImei] = useState<string>(equipamentoSelecionado?.serial || '');
-    const [latitude, setLatitude] = useState<string>(equipamentoSelecionado?.latitude.toString() || '');
-    const [longitude, setLongitude] = useState<string>(equipamentoSelecionado?.longitude.toString() || '');
-    const [observacoes, setObservacoes] = useState<string>(equipamentoSelecionado?.observations || '');
+    const [selectedEquipa, setSelectedEquipa] = useState<string>();
+    const [image, setImage] = useState<any>();
+    const [numero, setNumero] = useState<string>();
+    const [imei, setImei] = useState<string>();
+    const [latitude, setLatitude] = useState<string>();
+    const [longitude, setLongitude] = useState<string>();
+    const [observacoes, setObservacoes] = useState<string>();
 
     // Use o useEffect para atualizar os estados quando um novo equipamento for selecionado
-    useEffect(() => {
-        const novoEquipamento = equipmente.find(equip => equip._id === itemId);
-
-        if (novoEquipamento) {
-            setSelectedEquipa(novoEquipamento.type);
-            setImage(novoEquipamento.url[0]);
-            setNumero(novoEquipamento.numero.toString());
-            setImei(novoEquipamento.serial);
-            setLatitude(novoEquipamento.latitude.toString());
-            setLongitude(novoEquipamento.longitude.toString());
-            setObservacoes(novoEquipamento.observations);
+   useFocusEffect(useCallback(() => {
+        setLoaded(true)
+        try{
+            const {itemId} = route.params
+            //const novoEquipamento = equipmente.find(equip => equip._id === itemId);
+            async function init() {
+                setNovoEquipamento(await getEquipment(itemId))
+            }
+            init()
+            console.log(novoEquipamento);
+            
+            if (novoEquipamento) {
+                setSelectedEquipa(novoEquipamento?.type || '');
+                setImage(novoEquipamento?.url[0] || null);
+                setNumero(novoEquipamento?.numero.toString() || '');
+                setImei(novoEquipamento?.serial || '');
+                setLatitude(novoEquipamento?.latitude.toString() || '');
+                setLongitude(novoEquipamento?.longitude.toString() || '');
+                setObservacoes(novoEquipamento?.observations || '');
+            }
+        }catch(err){
+            console.log("Assim não");
+        }finally{
+            setLoaded(false)
         }
-    }, [itemId, equipmente]);
+        
+        
+    }, [equipmente, route.params]))
 
     const pickImage = async () => {
         const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -69,6 +86,20 @@ export default function Detalhe({ route }: any) {
 
     return (
         <View style={styles.containerPrincipal}>
+            {loaded && (
+          <View style={styles.uploadingAnimation}>
+          <LottieView
+              autoPlay={true}
+              loop={true}
+              style={{
+                  width: '100%',
+                  height: '100%',
+                  backgroundColor: 'white',
+              }}
+              source={require('../../assets/carregando.json')}
+          />
+          </View>
+        )}
             <ScrollView>
                 <View style={styles.container}>
                     <View style={styles.containerImagem} >

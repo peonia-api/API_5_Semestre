@@ -4,7 +4,9 @@ export default interface EquipmenteProps{
     equipmente: Props[]
     setEquipmente: Function
     createEquipment: Function
+    getEquipment: Function
     loaded: boolean
+    setLoaded: Function
 }
 
 export interface Props{
