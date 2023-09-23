@@ -31,6 +31,13 @@
  <span id="poliglota">
 
 ## 🖥️ Implementação - Banco Poliglota
+<p align="justify">A implementação do requisito de Banco de Dados Poliglota (Persistência Poliglota) define a estrutura de persistência de dados conforme o seguinte escopo:</p>
+
+<p align="justify"> - Persistência dos dados relativos aos dados dos equipamentos em Banco NoSQL - MongoDB;</p>
+
+<p align="justify"> - Persistência dos dados relativos aos dados dos usuários em Banco SQL - Postgres / MySQL;</p>
+
+<p align="justify"> Neste caso, a implementação foi feita em repositório a parte que será usado na 2ª Sprint, quando iremos tratar do cadastro e gestão de usuários no App. Você pode acessar [clicando aqui](https://github.com/RenanVitor/poliglotaMySQL/tree/main).</p>
 <br>
   
  <span id="entrega">
