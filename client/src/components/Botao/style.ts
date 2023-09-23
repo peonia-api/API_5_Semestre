@@ -2,9 +2,10 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     containerBotao2: {
-        flexDirection: "row",
+        flexDirection: "column",
         justifyContent: "space-between",
         paddingHorizontal: 30,
+        width: '40%',
         marginBottom: 10,
       },
       botaoDesativar: {
@@ -45,6 +46,13 @@ const styles = StyleSheet.create({
         padding: 12,
         borderRadius: 5,
         width: '80%'
+      },
+      botaoAtualizar: {
+        backgroundColor: 'blue',
+        marginTop: 12,
+        padding: 12,
+        borderRadius: 5,
+        width: '40%'
       },
 });
 

@@ -10,11 +10,12 @@ interface props {
   style: any;
   label: string;
   message: string;
+  handle: () => void; 
 }
 
 
 
-export function BotoesDetalhes({ text, style, label, message }: props) {
+export function BotoesDetalhes({ text, style, label, message, handle }: props) {
   const [ confirm, setConfirm ] = useState(null as any)
 
   //const { setConfirm, confirm } = useContextoEquipmente()
@@ -60,9 +61,18 @@ export function BotoesDetalhes({ text, style, label, message }: props) {
   );
 }
 
+export function BotaoAtualizar() {
+  return (
+    <View style={styles.containerBotao2}>
+      <TouchableOpacity style={styles.botaoAtualizar}>
+        <Text style={styles.textoBotao}>Atualizar</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
 
 export function BotaoCadastro({ handle }: { handle: (event: GestureResponderEvent) => void }) {
-
   return (
     <View>
       <View style={styles.containerBotao}>
@@ -73,3 +83,4 @@ export function BotaoCadastro({ handle }: { handle: (event: GestureResponderEven
     </View>
   );
 }
+

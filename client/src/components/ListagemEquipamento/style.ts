@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   },
   listaContainer: {
     flex: 1,
-    marginBottom: 60, 
+    marginBottom: 60
   },
   row: {
     flexDirection: "row",
@@ -20,11 +20,13 @@ const styles = StyleSheet.create({
     flex: 1,
     marginRight: 5,
     alignItems: "center",
+    paddingTop: 15
   },
   column2: {
     flex: 1,
     marginLeft: 5,
     alignItems: "center",
+    paddingTop: 15
   },
   image: {
     width: "100%",

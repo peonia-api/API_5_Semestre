@@ -140,6 +140,13 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     width: 100
   },
+  botaoAtualizar: {
+    backgroundColor: 'blue',
+    marginTop: 12,
+    padding: 12,
+    borderRadius: 5,
+    width: 100
+  },
 
   textoBotao: {
     color: 'white',

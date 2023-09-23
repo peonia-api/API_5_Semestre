@@ -4,10 +4,11 @@ import React, { useState, useEffect, useCallback } from "react";
 import { Picker } from "@react-native-picker/picker";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import * as ImagePicker from 'expo-image-picker';
-import { BotoesDetalhes } from "../Botao";
+import {  BotoesDetalhes } from "../Botao";
 import { useContextoEquipmente } from "../../hooks";
 import LottieView from 'lottie-react-native';
 import { useFocusEffect } from "@react-navigation/native";
+import { stat } from "react-native-fs";
 
 Icon.loadFont();
 
@@ -26,6 +27,7 @@ export default function Detalhe({ route, navigation }: any) {
     const [latitude, setLatitude] = useState<string>();
     const [longitude, setLongitude] = useState<string>();
     const [observacoes, setObservacoes] = useState<string>();
+    const [status, setStatus] = useState<boolean>();
 
     // Use o useEffect para atualizar os estados quando um novo equipamento for selecionado
    useFocusEffect(useCallback(() => {
@@ -43,6 +45,7 @@ export default function Detalhe({ route, navigation }: any) {
                     setLatitude(novoEquipamento?.latitude.toString() || '');
                     setLongitude(novoEquipamento?.longitude.toString() || '');
                     setObservacoes(novoEquipamento?.observations || '');
+                    setStatus(novoEquipamento?.status || '')
                 }
             }
             init()
@@ -57,6 +60,9 @@ export default function Detalhe({ route, navigation }: any) {
         
         
     }, [equipmente, route.params]))
+
+    console.log("esse é status do equipamento: " + status);
+    
 
     const pickImage = async () => {
         const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -84,6 +90,42 @@ export default function Detalhe({ route, navigation }: any) {
     const handleEquipamentoChange = (equipamento: string) => {
         setSelectedEquipa(equipamento);
     };
+
+
+    const handleAtualizar = () => {
+
+
+      };
+
+      const handleStatus = () => {
+
+
+      };
+
+    const handleStatusBotao = () => {
+        if (status === true)
+        return (
+            <BotoesDetalhes
+            text="Desativar"
+            style={styles.botaoDesativar}
+            label="Desativar Equipamento"
+            message="desativado"
+            handle={handleStatus}
+        />)
+
+        else {
+            return(
+                <BotoesDetalhes
+                text="Ativar"
+                style={styles.botaoAtivar}
+                label="Ativar Equipamento"
+                message="ativado"
+                handle={handleStatus}
+            />
+            )
+        }
+      };
+
 
     return (
         <View style={styles.containerPrincipal}>
@@ -151,19 +193,18 @@ export default function Detalhe({ route, navigation }: any) {
                 </View>
 
                 <View style={styles.containerBotao}>
+
+                    {handleStatusBotao()}
+
                     <BotoesDetalhes
-                        text="Ativar"
-                        style={styles.botaoAtivar}
-                        label="Ativar Equipamento"
-                        message="ativado"
-                    />
-                    <BotoesDetalhes
-                        text="Desativar"
-                        style={styles.botaoDesativar}
-                        label="Desativar Equipamento"
-                        message="desativado"
-                    />
+                    text="Atualizar"
+                    style={styles.botaoAtualizar}
+                    label="Atualizar Equipamento"
+                    message="Atualizado"
+                    handle={handleAtualizar}
+                />
                 </View>
+
             </ScrollView>
         </View>
     );
