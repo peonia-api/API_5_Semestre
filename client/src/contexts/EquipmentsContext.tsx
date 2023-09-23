@@ -41,11 +41,27 @@ export function Provider({ children }: any){
         setLoaded(false)
       }
     }
+
+
+    const putEquipment = async (uuid: string, updatedEquipment: Props) => {
+      try {
+        setLoaded(true);
+        await Equipmente.put(uuid, updatedEquipment);
+        console.log('Equipamento atualizado com sucesso');
+      }
+       
+      catch (err) {
+        console.error('Erro ao atualizar equipamento:', err);
+      } finally {
+        setLoaded(false);
+      }
+    };
+    
     
 
     return (
-        <ContextoEquipmente.Provider value={{equipmente, setEquipmente, createEquipment, getEquipment ,loaded, setLoaded}}>
-            {children}
-        </ContextoEquipmente.Provider>
+      <ContextoEquipmente.Provider value={{ equipmente, setEquipmente, createEquipment, getEquipment, putEquipment, loaded, setLoaded }}>
+      {children}
+    </ContextoEquipmente.Provider>
     )
 }

@@ -1,4 +1,4 @@
-import { View, Text, Image, TextInput, TouchableOpacity, ScrollView, Alert, Switch } from "react-native"
+import { View, Text, Image, TextInput, TouchableOpacity, ScrollView, Alert } from "react-native"
 import styles from "./style";
 import React, { useState, useEffect, useCallback } from "react";
 import { Picker } from "@react-native-picker/picker";
@@ -8,7 +8,6 @@ import {  BotoesDetalhes } from "../Botao";
 import { useContextoEquipmente } from "../../hooks";
 import LottieView from 'lottie-react-native';
 import { useFocusEffect } from "@react-navigation/native";
-import { stat } from "react-native-fs";
 
 Icon.loadFont();
 
@@ -194,17 +193,6 @@ export default function Detalhe({ route, navigation }: any) {
                     <TextInput placeholder="Observações" style={styles.inputInteiro} defaultValue={observacoes} />
                    
                 </View>
-
-                <View style={styles.containerStatus}>
-                    <Text style={styles.statusText}>Status</Text>
-                    <Switch
-                        style={styles.switch}
-                        trackColor={{ false: "#767577", true: "#81b0ff" }}
-                        ios_backgroundColor="#3e3e3e"
-                        onValueChange={toggleSwitch}
-                        value={status}
-                    />
-                    </View>
 
 
                 <View style={styles.containerBotao}>

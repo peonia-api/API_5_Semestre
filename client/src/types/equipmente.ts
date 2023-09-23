@@ -7,6 +7,7 @@ export default interface EquipmenteProps{
     getEquipment: Function
     loaded: boolean
     setLoaded: Function
+    putEquipment: Function
 }
 
 export interface Props{
