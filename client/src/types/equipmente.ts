@@ -11,6 +11,7 @@ export default interface EquipmenteProps{
 }
 
 export interface Props{
+    ativado: boolean;
     _id: string
     type: string,
     numero: number,
