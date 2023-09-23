@@ -31,11 +31,13 @@
  <span id="poliglota">
 
 ## 🖥️ Implementação - Banco Poliglota
+<br>
   
  <span id="entrega">
  
 ## 👩‍💻 Entrega
 <p align="center">
+<br>
 
 </p>
 <br>
