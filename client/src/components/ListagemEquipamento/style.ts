@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   },
   listaContainer: {
     flex: 1,
-    marginBottom: 60, 
+    marginBottom: 60
   },
   row: {
     flexDirection: "row",
@@ -20,11 +20,13 @@ const styles = StyleSheet.create({
     flex: 1,
     marginRight: 5,
     alignItems: "center",
+    paddingTop: 15
   },
   column2: {
     flex: 1,
     marginLeft: 5,
     alignItems: "center",
+    paddingTop: 15
   },
   image: {
     width: "100%",
@@ -55,6 +57,17 @@ const styles = StyleSheet.create({
     padding: 12,
     borderRadius: 5,
     width: '80%'
+  },
+  uploadingAnimation: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 999, // Isso coloca a animação na frente de outros elementos
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Um fundo semi-transparente para escurecer a tela de fundo
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 

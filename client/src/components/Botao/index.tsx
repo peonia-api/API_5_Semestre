@@ -1,40 +1,103 @@
-import React from "react";
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
+import { View, Text, Image, TouchableOpacity, Alert, GestureResponderEvent } from "react-native";
 import styles from "./style";
-import { useNavigation } from "@react-navigation/native";
-import AlertEquipmentt from "../Swal";
+//import { useNavigation } from "@react-navigation/native";
+
+import { useContextoEquipmente } from "../../hooks";
 
 interface props {
   text: string;
   style: any;
   label: string;
   message: string;
+  id: string
+  status: any
 }
 
-export function BotoesDetalhes({text, style, label, message}:props) {
-  const handlePress = () => {
-    AlertEquipmentt(text, label, message); 
-  };
+
+
+export function BotoesDetalhes({ text, style, label, message, id, status }: props) {
+  const [ confirm, setConfirm ] = useState(null as any)
+  const { patchStatus } = useContextoEquipmente()
+  //const { setConfirm, confirm } = useContextoEquipmente()
+
+  // const handlePress = () => {
+  //   AlertEquipmentt(text, label, message);
+  // };
+
+  function AlertEquipmentt(title:string, label:string, message:string) {
+  
+      Alert.alert(`${title}`, `${label}`, [
+        {
+          text: 'NÃO',
+          onPress: (e) => {
+            setConfirm(false)
+          },
+        },
+        {
+          text: 'SIM',
+          onPress: (e) => {
+             setConfirm(true)
+          },
+        },
+      ])
+  }
+
+
+  async function patch (id:string) {
+    if(status === true){
+      await patchStatus(id, {status: false})
+    }else{
+      await patchStatus(id, {status: true})
+    }
+
+  } 
+
+
+  if(confirm === true){
+    patch(id)
+    console.log(`Equipamento ${message} com sucesso`);
+    setConfirm(null)
+  }
+  else if(confirm === false && confirm != null){
+    console.log(`Equipamento não ${message}`);
+    setConfirm(null)
+  }
+  
 
   return (
     <View style={styles.containerBotao2}>
-      <TouchableOpacity style={style} onPress={handlePress}>
+      <TouchableOpacity style={style} onPress={() => AlertEquipmentt(text, label, message)}>
         <Text style={styles.textoBotao}>{text}</Text>
       </TouchableOpacity>
     </View>
   );
 }
 
+interface BotaoAtualizarProps {
+  handle: () => Promise<void>;
+}
 
-// export function BotaoCadastro() {
+export function BotaoAtualizar({ handle }: BotaoAtualizarProps) {
+  return (
+    <View style={styles.containerBotao2}>
+      <TouchableOpacity style={styles.botaoAtualizar} onPress={handle}>
+        <Text style={styles.textoBotao}>Atualizar</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
 
-//   return (
-//     <View>
-//       <View style={styles.containerBotao}>
-//         <TouchableOpacity style={styles.botao}>
-//           <Text style={styles.textoBotao}>Cadastrar</Text>
-//         </TouchableOpacity>
-//       </View>
-//     </View>
-//   );
-// }
+
+export function BotaoCadastro({ handle }: { handle: (event: GestureResponderEvent) => void }) {
+  return (
+    <View>
+      <View style={styles.containerBotao}>
+        <TouchableOpacity style={styles.botao} onPress={handle}>
+          <Text style={styles.textoBotao}>Cadastrar</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+}
+

@@ -80,12 +80,14 @@ const styles = StyleSheet.create({
   },
 
   inputInteiro: {
+    margin:10,
     height: 55,
     width: '90%',
     paddingLeft: 15,
     backgroundColor: '#f2f2f2',
     borderRadius: 5
   },
+
 
   textFont: {
     fontWeight: "600",
@@ -140,12 +142,30 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     width: 100
   },
+  botaoAtualizar: {
+    backgroundColor: 'blue',
+    marginTop: 12,
+    padding: 12,
+    borderRadius: 5,
+    width: 100
+  },
 
   textoBotao: {
     color: 'white',
     fontSize: 16,
     textAlign: 'center',
-  }
+  },
+  uploadingAnimation: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 999, // Isso coloca a animação na frente de outros elementos
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Um fundo semi-transparente para escurecer a tela de fundo
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 
 });
 
