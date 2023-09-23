@@ -41,7 +41,7 @@
 
 <p align="justify"> Implementação de server e rotas feita em repositório a parte que será usado na 2ª Sprint, quando iremos tratar do cadastro e gestão de usuários no App. Você pode acessar o repositório clicando no link abaixo.</p>
 
-[Repositório para persistência de dados dos usuários no Postgres](https://github.com/RenanVitor/poliglotaMySQL/tree/main)
+- [Repositório para persistência de dados dos usuários no Postgres](https://github.com/RenanVitor/poliglotaMySQL/tree/main)
 <br>
   
  <span id="entrega">
