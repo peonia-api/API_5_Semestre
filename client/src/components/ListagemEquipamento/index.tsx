@@ -28,9 +28,9 @@ export default function ListaEquipamento({ navigation }: any) {
     navigation.navigate('Detalhes', { itemId });
   };
 
-  const handleCadastro = () => {
-    navigation.navigate('Cadastro');
-  }
+  // const handleCadastro = () => {
+  //   navigation.navigate('Cadastro');
+  // }
 
   return (
     <View style={styles.container}>
@@ -77,13 +77,13 @@ export default function ListaEquipamento({ navigation }: any) {
           )}
         />
       </View>
-      <View style={styles.footerBotao}>
+      {/* <View style={styles.footerBotao}>
         <View style={styles.containerBotao}>
           <TouchableOpacity style={styles.botao} onPress={handleCadastro}>
             <Text style={styles.textoBotao}>Cadastrar</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </View> */}
     </View>
   );
 }

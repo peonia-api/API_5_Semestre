@@ -12,7 +12,7 @@ import { Props } from "../../types";
 
 Icon.loadFont();
 
-export default function Detalhe({ route, navigation }: any) {
+export default function Detalhes({ route, navigation }: any) {
 
     const { equipmente, setLoaded, loaded, getEquipment, putEquipment } = useContextoEquipmente();
     // const [ novoEquipamento, setNovoEquipamento ] = useState<any>()
