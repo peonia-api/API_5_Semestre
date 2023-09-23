@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   },
   listaContainer: {
     flex: 1,
-    marginBottom: 60
+    marginBottom: 20
   },
   row: {
     flexDirection: "row",
@@ -20,7 +20,12 @@ const styles = StyleSheet.create({
     flex: 1,
     marginRight: 5,
     alignItems: "center",
-    paddingTop: 15
+    paddingTop: 15,
+    marginTop: 10,
+    borderRadius: 5,
+    marginLeft: 5,
+    marginBottom: 5
+    
   },
   column2: {
     flex: 1,
@@ -35,28 +40,6 @@ const styles = StyleSheet.create({
   },
   textfont: {
     fontWeight: "bold",
-  },
-  footerBotao: {
-    width: "100%",
-    marginBottom: 5,
-    position: "absolute",
-    bottom: 0,
-  },
-  textoBotao: {
-    color: 'white',
-    fontSize: 16,
-    textAlign: 'center',
-  },
-  containerBotao: {
-    flexDirection: "row",
-    justifyContent: "center",
-  },
-  botao: {
-    backgroundColor: 'green',
-    marginTop: 12,
-    padding: 12,
-    borderRadius: 5,
-    width: '80%'
   },
   uploadingAnimation: {
     position: 'absolute',
