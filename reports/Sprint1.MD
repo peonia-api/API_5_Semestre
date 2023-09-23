@@ -35,11 +35,11 @@
 
 <p align="justify"> - Persistência dos dados relativos aos dados dos equipamentos em Banco NoSQL - MongoDB;</p>
 
-<p align="justify"> A implementação já está definida neste repositório para ser acessada pela App na 1ª Sprint.</p>
+<p align="justify"> A implementação de server e rotas já está definida neste repositório para ser acessada pela App na 1ª Sprint.</p>
 
 <p align="justify"> - Persistência dos dados relativos aos dados dos usuários em Banco SQL - Postgres / MySQL:</p>
 
-<p align="justify"> Neste caso, a implementação foi feita em repositório a parte que será usado na 2ª Sprint, quando iremos tratar do cadastro e gestão de usuários no App. Você pode acessar o repositório clicando no link abaixo.</p>
+<p align="justify"> Implementação de server e rotas feita em repositório a parte que será usado na 2ª Sprint, quando iremos tratar do cadastro e gestão de usuários no App. Você pode acessar o repositório clicando no link abaixo.</p>
 
 [Repositório para persistência de dados dos usuários no Postgres](https://github.com/RenanVitor/poliglotaMySQL/tree/main)
 <br>
