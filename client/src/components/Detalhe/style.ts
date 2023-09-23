@@ -80,12 +80,39 @@ const styles = StyleSheet.create({
   },
 
   inputInteiro: {
+    margin:10,
     height: 55,
     width: '90%',
     paddingLeft: 15,
     backgroundColor: '#f2f2f2',
     borderRadius: 5
   },
+
+  inputStatus: {
+    height: 55,
+    width: '50%',
+    paddingLeft: 15,
+    backgroundColor: '#f2f2f2',
+    borderRadius: 5
+  },
+
+  containerStatus: {
+    flexDirection: "row",
+    marginTop: 10,
+    alignItems: "center", 
+    marginLeft: 30
+  },
+  
+  statusText: {
+    fontSize: 18, 
+    marginRight: 30,
+    fontWeight: "bold"
+  },
+  
+  switch: {
+    transform: [{ scaleX: 2 }, { scaleY: 2 }], 
+  },
+  
 
   textFont: {
     fontWeight: "600",

@@ -1,4 +1,4 @@
-import { View, Text, Image, TextInput, TouchableOpacity, ScrollView, Alert } from "react-native"
+import { View, Text, Image, TextInput, TouchableOpacity, ScrollView, Alert, Switch } from "react-native"
 import styles from "./style";
 import React, { useState, useEffect, useCallback } from "react";
 import { Picker } from "@react-native-picker/picker";
@@ -28,6 +28,8 @@ export default function Detalhe({ route, navigation }: any) {
     const [longitude, setLongitude] = useState<string>();
     const [observacoes, setObservacoes] = useState<string>();
     const [status, setStatus] = useState<boolean>();
+    const [isEnabled, setIsEnabled] = useState(false);
+    const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
     // Use o useEffect para atualizar os estados quando um novo equipamento for selecionado
    useFocusEffect(useCallback(() => {
@@ -190,7 +192,20 @@ export default function Detalhe({ route, navigation }: any) {
                     </View>
 
                     <TextInput placeholder="Observações" style={styles.inputInteiro} defaultValue={observacoes} />
+                   
                 </View>
+
+                <View style={styles.containerStatus}>
+                    <Text style={styles.statusText}>Status</Text>
+                    <Switch
+                        style={styles.switch}
+                        trackColor={{ false: "#767577", true: "#81b0ff" }}
+                        ios_backgroundColor="#3e3e3e"
+                        onValueChange={toggleSwitch}
+                        value={status}
+                    />
+                    </View>
+
 
                 <View style={styles.containerBotao}>
 
