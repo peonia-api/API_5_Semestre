@@ -40,7 +40,7 @@
 <h2> 📋 Requisitos Não Funcionais </h2>
 
 - [x] Aplicação de A2F (2 fatores) para autenticação em cada acesso;
-- [x] Implementação de persistência poliglota; 
+- [x] Implementação de persistência poliglota;
 - [ ] Condições de iluminação de tela adaptáveis a necessidade do usuário;
 - [ ] Segurança das informações em caso de perda do dispositivo móvel;
 - [ ] Validação dos dados inseridos na aplicação (equipamentos e usuários);
@@ -143,6 +143,8 @@ Foram usadas as seguintes ferramentas, linguagens e tecnologias para a execuçã
 - [TypeORM](https://typeorm.io/): Framework
 - [DevOps](https://azure.microsoft.com/pt-br/products/devops): Planejamento e Gestão
 - [API Expo Geolocation](https://docs.expo.dev/versions/latest/sdk/location/): API de Geolocalização
+- [Docker](https://docs.docker.com): Microserviços relativos à integração Front End e Back End;
+- [Azure](https://learn.microsoft.com/en-us/azure/cloud-services/): Cloud usada para hospedar bancos de dados;
 - [MongoDB](https://www.mongodb.com/docs/): Banco de dados NoSQL
 - [PostgresSQL](https://www.postgresql.org/docs/): Banco de dados SQL
 
