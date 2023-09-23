@@ -25,25 +25,26 @@
 
 <h2> :bookmark_tabs: Requisitos Funcionais </h2>
 
-- [x] Cadastro de usuários, incluindo foto;
-- [x] Liberação de usuários mediante processo de autenticação;
-- [x] Recuperação de senha via confirmação de envio de código (6 dígitos);
-- [x] Criptografia de senhas;
 - [x] Cadastro de equipamentos (Ativos), incluindo foto(s);
 - [x] Ativação e Desativação de equipamentos;
-- [x] Busca de equipamentos cadastrados (raio de 10km) de acordo com posição geográfica do App;
 - [x] Visualização pontual em mapa dos equipamentos cadastrados (tanto os ativos quanto os inativos);
 - [x] Visualização detalhada do equipamento disponíveis no raio de ação do App, ao clicar;
-- [x] Filtros de busca de quipamentos (baseado no seu tipo);
-- [x] Sincronia para envio de dados (online), em até 30 segundos, quando no uso offline da aplicação;
+- [x] Filtros de busca de equipamentos (baseado no seu tipo);
+- [ ] Cadastro de usuários, incluindo foto;
+- [ ] Liberação de usuários mediante processo de autenticação;
+- [ ] Recuperação de senha via confirmação de envio de código (6 dígitos);
+- [ ] Criptografia de senhas;
+- [ ] Busca de equipamentos cadastrados (raio de 10km) de acordo com posição geográfica do App;
+- [ ] Sincronia para envio de dados (online), em até 30 segundos, quando no uso offline da aplicação;
 
 <h2> 📋 Requisitos Não Funcionais </h2>
 
-- [x] Condições de iluminação de tela adaptáveis a necessidade do usuário;
-- [x] Segurança das informações em caso de perda do dispositivo móvel;
 - [x] Aplicação de A2F (2 fatores) para autenticação em cada acesso;
-- [x] Validação dos dados inseridos na aplicação (equipamentos e usuários);
-- [x] Banco de dados mobile para armazenamento dos dados atualizados dos equipamentos durante estado offline do App;
+- [x] Implementação de persistência poliglota; 
+- [ ] Condições de iluminação de tela adaptáveis a necessidade do usuário;
+- [ ] Segurança das informações em caso de perda do dispositivo móvel;
+- [ ] Validação dos dados inseridos na aplicação (equipamentos e usuários);
+- [ ] Banco de dados mobile para armazenamento dos dados atualizados dos equipamentos durante estado offline do App;
  
 
  → [Voltar ao topo](#topo)
