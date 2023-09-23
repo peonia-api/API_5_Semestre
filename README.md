@@ -15,7 +15,7 @@
 
 <h2> :dart: Objetivo</h2>
 
-<p align="justify"> Como parte das atividades das áreas de engenharia de empresas de Saneamento, Elétrica, Telecomunicações, ou corporações onde as áreas demandam a realização de obras e manutenção de equipamentos em campo, se faz necessário utilizar uma aplicação móvel onde seja possível realizar a gestão dos dados relativos aos equipamentos (ativos) da companhia, via aplicativo móvel, possibilitando manter o cadastro dos ativos atualizados.</p>
+<p align="justify"> Como parte das atividades das áreas de engenharia de empresas de Saneamento, Elétrica, Telecomunicações e outros tipos de negócios em que as áreas demandam a realização de obras e manutenção de equipamentos em campo, se faz necessário utilizar uma aplicação móvel onde seja possível realizar a gestão dos dados relativos aos equipamentos (ativos) da companhia, via aplicativo móvel, possibilitando manter o cadastro dos ativos atualizados.</p>
 
 <p align="justify">Este recurso é amplamente utilizado em processos de manobras, onde um equipamento precisa ser desativado para que seja realizada uma manutenção. Durante esta etapa de manutenção parte da rede de serviços pode ser afetada, e por sua vez afetar os clientes conectados a ela, e ter o cadastro destes ativos atualizados em campo em tempo real é primordial para que a qualidade dos serviços prestados para os consumidores.</p>
 
@@ -25,23 +25,23 @@
 
 <h2> :bookmark_tabs: Requisitos Funcionais </h2>
 
-- [x] Cadastro de equipamentos (Ativos), incluindo foto(s);
-- [x] Ativação e Desativação de equipamentos;
-- [x] Visualização pontual em mapa dos equipamentos cadastrados (tanto os ativos quanto os inativos);
-- [x] Visualização detalhada do equipamento disponíveis no raio de ação do App, ao clicar;
+- [x] Cadastro de equipamentos (Ativos), incluindo fotos;
+- [x] Ativação e desativação de equipamentos;
+- [x] Visualização geográfica dos equipamentos cadastrados (tanto os ativos quanto os inativos);
+- [x] Visualização detalhada dos equipamentos disponíveis no raio de ação do App;
 - [x] Filtros de busca de equipamentos (baseado no seu tipo);
 - [ ] Cadastro de usuários, incluindo foto;
 - [ ] Liberação de usuários mediante processo de autenticação;
-- [ ] Recuperação de senha via confirmação de envio de código (6 dígitos);
+- [ ] Recuperação de senha por meio de código (6 dígitos);
 - [ ] Criptografia de senhas;
 - [ ] Busca de equipamentos cadastrados (raio de 10km) de acordo com posição geográfica do App;
-- [ ] Sincronia para envio de dados (online), em até 30 segundos, quando no uso offline da aplicação;
+- [ ] Sincronização de dados online em até 30 segundos após uso offline da aplicação;
 
 <h2> 📋 Requisitos Não Funcionais </h2>
 
-- [x] Aplicação de A2F (2 fatores) para autenticação em cada acesso;
+- [x] Aplicação de dois fatores para autenticação em cada acesso (A2F);
 - [x] Implementação de persistência poliglota;
-- [ ] Condições de iluminação de tela adaptáveis a necessidade do usuário;
+- [ ] Condições de iluminação de tela adaptáveis à necessidade do usuário;
 - [ ] Segurança das informações em caso de perda do dispositivo móvel;
 - [ ] Validação dos dados inseridos na aplicação (equipamentos e usuários);
 - [ ] Banco de dados mobile para armazenamento dos dados atualizados dos equipamentos durante estado offline do App;
@@ -128,7 +128,7 @@ Foram usadas as seguintes ferramentas, linguagens e tecnologias para a execuçã
 | Scrum Master |Diego Batista da Silva|<a href="https://github.com/diiegobsilva" target="_blanck"><img src = "https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" target="_blank"></a> |<a href="https://www.linkedin.com/in/diegobatista1/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>|
 | Product Owner |Renan Vitor Fernandes Mendonça|<a href="https://github.com/RenanVitor" target="_blanck"><img src = "https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" target="_blank"></a> |<a href="https://www.linkedin.com/in/renan-vitor" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>|
 | Developer |Ana Carolina das Neves|<a href="https://github.com/AnaCarolinaNeves" target="_blanck"><img src = "https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" target="_blank"></a>|<a href="https://www.linkedin.com/in/ana-carolina-neves-36aa68207/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>|
-| Developer |Jeniffer Cristina Freitas Pereira|<a href="https://github.com/Jennyads" target="_blanck"><img src = "https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" target="_blank"></a>|<a href="https://www.linkedin.com/in/jeniffer-pereira-65787b205/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>|
+| Developer |Jeniffer Cristina Freitas Ramos|<a href="https://github.com/Jennyads" target="_blanck"><img src = "https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" target="_blank"></a>|<a href="https://www.linkedin.com/in/jeniffer-pereira-65787b205/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>|
 | Developer |Larissa Aparecida Diniz Silva|<a href="https://github.com/laaridiniz" target="_blanck"><img src = "https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" target="_blank"></a> |<a href="https://www.linkedin.com/in/larissa-diniz-dev" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>|
 | Developer |Mateus Henrique Lima da Silva|<a href="https://github.com/mateushlsilva" target="_blanck"><img src = "https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" target="_blank"></a> |<a href="https://www.linkedin.com/in/mateus-silva-80232a222/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>|
 
