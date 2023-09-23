@@ -136,14 +136,15 @@ const styles = StyleSheet.create({
   },
 
   botaoAtivar: {
-    backgroundColor: 'green',
+    backgroundColor: '#14A3F8',
     marginTop: 12,
     padding: 12,
     borderRadius: 5,
     width: 100
   },
+
   botaoAtualizar: {
-    backgroundColor: 'blue',
+    backgroundColor: '#7914F8',
     marginTop: 12,
     padding: 12,
     borderRadius: 5,
@@ -155,6 +156,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'center',
   },
+  
   uploadingAnimation: {
     position: 'absolute',
     top: 0,
