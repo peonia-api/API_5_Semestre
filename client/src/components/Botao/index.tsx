@@ -10,14 +10,15 @@ interface props {
   style: any;
   label: string;
   message: string;
-  handle: () => void; 
+  id: string
+  status: any
 }
 
 
 
-export function BotoesDetalhes({ text, style, label, message, handle }: props) {
+export function BotoesDetalhes({ text, style, label, message, id, status }: props) {
   const [ confirm, setConfirm ] = useState(null as any)
-
+  const { patchStatus } = useContextoEquipmente()
   //const { setConfirm, confirm } = useContextoEquipmente()
 
   // const handlePress = () => {
@@ -42,7 +43,19 @@ export function BotoesDetalhes({ text, style, label, message, handle }: props) {
       ])
   }
 
+
+  async function patch (id:string) {
+    if(status === true){
+      await patchStatus(id, {status: false})
+    }else{
+      await patchStatus(id, {status: true})
+    }
+
+  } 
+
+
   if(confirm === true){
+    patch(id)
     console.log(`Equipamento ${message} com sucesso`);
     setConfirm(null)
   }

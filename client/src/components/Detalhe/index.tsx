@@ -31,10 +31,8 @@ export default function Detalhe({ route, navigation }: any) {
     const [isEnabled, setIsEnabled] = useState(false);
 
 
-    
-
     useFocusEffect(useCallback(() => {
-        
+
         try {
             const { itemId } = route.params
             //const novoEquipamento = equipmente.find(equip => equip._id === itemId);
@@ -53,7 +51,7 @@ export default function Detalhe({ route, navigation }: any) {
                 }
             }
             init()
-        
+
         } catch (err) {
             console.log("Assim não");
             //navigation.navigate('Cadastro')
@@ -62,26 +60,21 @@ export default function Detalhe({ route, navigation }: any) {
 
     }, [equipmente, route.params]))
 
-
-    
-const handleAtualizar = async () => {
+    const handleAtualizar = async () => {
         try {
             const { itemId } = route.params
-            await putEquipment(itemId, { type: selectedEquipa, numero: numero, serial: imei, latitude: latitude, longitude: longitude, observations: observacoes})
+            await putEquipment(itemId, { type: selectedEquipa, numero: numero, serial: imei, latitude: latitude, longitude: longitude, observations: observacoes })
             console.log('Equipamento atualizado com sucesso');
         }
         catch (err) {
             console.error('Erro ao atualizar equipamento:', err);
-        } 
+        }
     };
 
 
-    const handleStatus = () => {
 
 
-    };
-
-console.log(image);
+    console.log(image);
 
 
     const pickImage = async () => {
@@ -112,27 +105,35 @@ console.log(image);
     };
 
     const handleStatusBotao = () => {
-        if (status === true)
-            return (
-                <BotoesDetalhes
-                    text="Desativar"
-                    style={styles.botaoDesativar}
-                    label="Desativar Equipamento"
-                    message="desativado"
-                    handle={handleStatus}
-                />)
+        try {
+            const { itemId } = route.params
+            if (status === true)
+                return (
+                    <BotoesDetalhes
+                        text="Desativar"
+                        style={styles.botaoDesativar}
+                        label="Desativar Equipamento"
+                        message="desativado"
+                        id= {itemId}
+                        status={status}
+                    />)
 
-        else {
-            return (
-                <BotoesDetalhes
-                    text="Ativar"
-                    style={styles.botaoAtivar}
-                    label="Ativar Equipamento"
-                    message="ativado"
-                    handle={handleStatus}
-                />
-            )
+            else {
+                return (
+                    <BotoesDetalhes
+                        text="Ativar"
+                        style={styles.botaoAtivar}
+                        label="Ativar Equipamento"
+                        message="ativado"
+                        id= {itemId}
+                        status={status}
+                    />
+                )
+            }
+        } catch (err) {
+            console.error('Erro ao atualizar a Imagem:', err);
         }
+
     };
 
 
@@ -241,7 +242,7 @@ console.log(image);
 
                     {handleStatusBotao()}
 
-                    <BotaoAtualizar handle={handleAtualizar}/>
+                    <BotaoAtualizar handle={handleAtualizar} />
                 </View>
 
             </ScrollView>
