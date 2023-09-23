@@ -9,10 +9,12 @@ import { useContextoEquipmente } from "../../hooks";
 import LottieView from 'lottie-react-native';
 import { useFocusEffect } from "@react-navigation/native";
 import { Props } from "../../types";
+import { removeFileOne } from "../../supabase/delete";
+import upload from "../../supabase/upload"; 
 
 Icon.loadFont();
 
-export default function Detalhe({ route, navigation }: any) {
+export default function Detalhes({ route, navigation }: any) {
 
     const { equipmente, setLoaded, loaded, getEquipment, putEquipment } = useContextoEquipmente();
     // const [ novoEquipamento, setNovoEquipamento ] = useState<any>()
@@ -23,11 +25,12 @@ export default function Detalhe({ route, navigation }: any) {
     const [selectedEquipa, setSelectedEquipa] = useState<string>();
     const [image, setImage] = useState<any>();
     const [numero, setNumero] = useState<string>();
-    const [imei, setImei] = useState<string>();
+    const [imei, setImei] = useState<any>();
     const [latitude, setLatitude] = useState<string>();
     const [longitude, setLongitude] = useState<string>();
     const [observacoes, setObservacoes] = useState<string>();
     const [status, setStatus] = useState<boolean>();
+    const [verficaImage, setVerificaImagem] = useState<any>()
     const [isEnabled, setIsEnabled] = useState(false);
 
 
@@ -48,6 +51,7 @@ export default function Detalhe({ route, navigation }: any) {
                     setLongitude(novoEquipamento?.longitude.toString() || '');
                     setObservacoes(novoEquipamento?.observations || '');
                     setStatus(novoEquipamento?.status || '')
+                    setVerificaImagem(novoEquipamento?.url[0] || null)
                 }
             }
             init()
@@ -60,19 +64,27 @@ export default function Detalhe({ route, navigation }: any) {
 
     }, [equipmente, route.params]))
 
+
+
     const handleAtualizar = async () => {
         try {
             const { itemId } = route.params
-            await putEquipment(itemId, { type: selectedEquipa, numero: numero, serial: imei, latitude: latitude, longitude: longitude, observations: observacoes })
-            console.log('Equipamento atualizado com sucesso');
+            if(verficaImage === image){
+                await putEquipment(itemId, { type: selectedEquipa, numero: numero, serial: imei, latitude: latitude, longitude: longitude, observations: observacoes  })
+                console.log('Equipamento atualizado com sucesso');           
+            }else{  
+                const nameArquivo = verficaImage.split('/')[8]
+                removeFileOne(nameArquivo).then(async () => {
+                const response = await upload(imei, { uri: image })
+                await putEquipment(itemId, { type: selectedEquipa, numero: numero, serial: imei, latitude: latitude, longitude: longitude, observations: observacoes, url: response })
+             })  
+            }       
+            
         }
         catch (err) {
             console.error('Erro ao atualizar equipamento:', err);
         }
     };
-
-
-
 
     console.log(image);
 

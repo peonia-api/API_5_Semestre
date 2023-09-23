@@ -28,9 +28,9 @@ export default function ListaEquipamento({ navigation }: any) {
     navigation.navigate('Detalhes', { itemId });
   };
 
-  const handleCadastro = () => {
-    navigation.navigate('Cadastro');
-  }
+  // const handleCadastro = () => {
+  //   navigation.navigate('Cadastro');
+  // }
 
   return (
     <View style={styles.container}>
@@ -57,21 +57,33 @@ export default function ListaEquipamento({ navigation }: any) {
           keyExtractor={(item) => item._id.toString()}
           numColumns={2}
           renderItem={({ item }) => (
-            <TouchableOpacity style={styles.column} onPress={() => handleItemPress(item._id)}>
-              <Image source={{ uri: item.url[0] }} style={styles.image} />
+            <TouchableOpacity
+              style={[
+                styles.column,
+                { backgroundColor: item.status ? 'transparent' : 'gray' },
+              ]}
+              onPress={() => handleItemPress(item._id)}
+            >
+              <Image
+                source={{ uri: item.url[0] }}
+                style={[
+                  styles.image,
+                  { opacity: item.status ? 1 : 0.5 }, // Define a opacidade com base no status
+                ]}
+              />
               <Text style={styles.textfont}>{item.type}</Text>
               <Text>{item.serial}</Text>
             </TouchableOpacity>
           )}
         />
       </View>
-      <View style={styles.footerBotao}>
+      {/* <View style={styles.footerBotao}>
         <View style={styles.containerBotao}>
           <TouchableOpacity style={styles.botao} onPress={handleCadastro}>
             <Text style={styles.textoBotao}>Cadastrar</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </View> */}
     </View>
   );
 }

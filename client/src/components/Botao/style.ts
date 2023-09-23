@@ -2,9 +2,9 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     containerBotao2: {
-        flexDirection: "column",
-        justifyContent: "space-between",
-        paddingHorizontal: 30,
+        flexDirection: "row",
+        justifyContent: "center",
+        paddingHorizontal: 10,
         width: '40%',
         marginBottom: 10,
       },
@@ -15,13 +15,15 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         width: '40%'
       },
+
       botaoAtivar: {
         backgroundColor: 'green',
         marginTop: 12,
         padding: 12,
         borderRadius: 5,
-        width: '40%'
+        width: '100%'
       },
+
       textoBotao: {
         color: 'white',
         fontSize: 16,
@@ -40,19 +42,21 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "center",
       },
+
       botao: {
         backgroundColor: 'green',
         marginTop: 12,
         padding: 12,
         borderRadius: 5,
-        width: '80%'
+        width: '100%'
       },
+      
       botaoAtualizar: {
         backgroundColor: 'blue',
         marginTop: 12,
         padding: 12,
         borderRadius: 5,
-        width: '40%'
+        width: '100%'
       },
 });
 
