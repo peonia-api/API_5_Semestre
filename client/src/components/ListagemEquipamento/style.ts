@@ -20,7 +20,12 @@ const styles = StyleSheet.create({
     flex: 1,
     marginRight: 5,
     alignItems: "center",
-    paddingTop: 15
+    paddingTop: 15,
+    marginTop: 10,
+    borderRadius: 5,
+    marginLeft: 5,
+    marginBottom: 5
+    
   },
   column2: {
     flex: 1,
