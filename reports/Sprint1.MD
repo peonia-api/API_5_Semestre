@@ -19,7 +19,7 @@
 
 <span id="poliglota">
 
-<h1> :desktop: Implementação - Banco Poliglota </h1>
+<h1> 🖥️ Implementação - Banco Poliglota </h1>
   
 <h3 align="center" id="wireframe"> WIREFRAME </h3>
 <p align="center">
