@@ -61,10 +61,14 @@ export function BotoesDetalhes({ text, style, label, message, handle }: props) {
   );
 }
 
-export function BotaoAtualizar() {
+interface BotaoAtualizarProps {
+  handle: () => Promise<void>;
+}
+
+export function BotaoAtualizar({ handle }: BotaoAtualizarProps) {
   return (
     <View style={styles.containerBotao2}>
-      <TouchableOpacity style={styles.botaoAtualizar}>
+      <TouchableOpacity style={styles.botaoAtualizar} onPress={handle}>
         <Text style={styles.textoBotao}>Atualizar</Text>
       </TouchableOpacity>
     </View>

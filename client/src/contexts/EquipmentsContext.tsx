@@ -49,7 +49,7 @@ export function Provider({ children }: any){
         await Equipmente.put(uuid, updatedEquipment);
         console.log('Equipamento atualizado com sucesso');
       }
-       
+  
       catch (err) {
         console.error('Erro ao atualizar equipamento:', err);
       } finally {

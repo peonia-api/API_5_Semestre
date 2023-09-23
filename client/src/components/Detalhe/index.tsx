@@ -4,7 +4,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { Picker } from "@react-native-picker/picker";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import * as ImagePicker from 'expo-image-picker';
-import { BotoesDetalhes } from "../Botao";
+import { BotaoAtualizar, BotoesDetalhes } from "../Botao";
 import { useContextoEquipmente } from "../../hooks";
 import LottieView from 'lottie-react-native';
 import { useFocusEffect } from "@react-navigation/native";
@@ -29,12 +29,12 @@ export default function Detalhe({ route, navigation }: any) {
     const [observacoes, setObservacoes] = useState<string>();
     const [status, setStatus] = useState<boolean>();
     const [isEnabled, setIsEnabled] = useState(false);
-    const [updatedEquipment, setUpdatedEquipment] = useState<Props>()
 
-    // Use o useEffect para atualizar os estados quando um novo equipamento for selecionado
+
+    const { itemId } = route.params
+
     useFocusEffect(useCallback(() => {
         try {
-            const { itemId } = route.params
             //const novoEquipamento = equipmente.find(equip => equip._id === itemId);
             async function init() {
                 //setNovoEquipamento(await getEquipment(itemId))
@@ -51,10 +51,7 @@ export default function Detalhe({ route, navigation }: any) {
                 }
             }
             init()
-            console.log(itemId);
-
-
-
+        
         } catch (err) {
             console.log("Assim não");
             //navigation.navigate('Cadastro')
@@ -65,22 +62,14 @@ export default function Detalhe({ route, navigation }: any) {
 
  
     
-    const handleAtualizar = async () => {
-        const { fudeuuuId } = route.params
-
-        console.log("tesestetetetetetes"  + fudeuuuId);
-        
-        console.log(fudeuuuId);
-        
+const handleAtualizar = async () => {
         try {
-            await putEquipment(fudeuuuId, {numero: numero, imei: imei, latitude: latitude, longitude: longitude, observacoes: observacoes})
+            await putEquipment(itemId, { type: selectedEquipa, numero: numero, serial: imei, latitude: latitude, longitude: longitude, observations: observacoes})
             console.log('Equipamento atualizado com sucesso');
         }
         catch (err) {
             console.error('Erro ao atualizar equipamento:', err);
-        } finally {
-            setLoaded(false);
-        }   
+        } 
     };
 
 
@@ -199,11 +188,7 @@ export default function Detalhe({ route, navigation }: any) {
                             keyboardType="numeric"
                             style={styles.input}
                             defaultValue={numero}
-                            onChangeText={(text) =>
-                                setUpdatedEquipment((prevState: any) => ({
-                                    ...prevState,
-                                    numero: text,
-                                }))}
+                            onChangeText={(text) => setNumero(text)}
                         />
 
                     </View>
@@ -212,11 +197,7 @@ export default function Detalhe({ route, navigation }: any) {
                         placeholder="IMEI"
                         style={styles.inputInteiro}
                         defaultValue={imei}
-                        onChangeText={(text) =>
-                            setUpdatedEquipment((prevState: any) => ({
-                                ...prevState,
-                                imei: text,
-                            }))}
+                        onChangeText={(text) => setImei(text)}
                     />
 
 
@@ -227,11 +208,7 @@ export default function Detalhe({ route, navigation }: any) {
                             placeholder="Latitude"
                             style={styles.inputLoLa}
                             defaultValue={latitude}
-                            onChangeText={(text) =>
-                                setUpdatedEquipment((prevState: any) => ({
-                                    ...prevState,
-                                    latitude: text,
-                                }))}
+                            onChangeText={(text) => setLatitude(text)}
                         />
 
 
@@ -241,11 +218,7 @@ export default function Detalhe({ route, navigation }: any) {
                             placeholder="Longitude"
                             style={styles.inputLoLa}
                             defaultValue={longitude}
-                            onChangeText={(text) =>
-                                setUpdatedEquipment((prevState: any) => ({
-                                    ...prevState,
-                                    longitude: text,
-                                }))}
+                            onChangeText={(text) => setLongitude(text)}
                         />
 
                     </View>
@@ -254,11 +227,7 @@ export default function Detalhe({ route, navigation }: any) {
                         placeholder="Observações"
                         style={styles.inputInteiro}
                         defaultValue={observacoes}
-                        onChangeText={(text) =>
-                            setUpdatedEquipment((prevState: any) => ({
-                                ...prevState,
-                                observacoes: text,
-                            }))}
+                        onChangeText={(text) => setObservacoes(text)}
                     />
 
                 </View>
@@ -268,13 +237,7 @@ export default function Detalhe({ route, navigation }: any) {
 
                     {handleStatusBotao()}
 
-                    <BotoesDetalhes
-                        text="Atualizar"
-                        style={styles.botaoAtualizar}
-                        label="Atualizar Equipamento"
-                        message="Atualizado"
-                        handle={handleAtualizar}
-                    />
+                    <BotaoAtualizar handle={handleAtualizar}/>
                 </View>
 
             </ScrollView>
