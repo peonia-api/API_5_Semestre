@@ -6,7 +6,7 @@
 <p align="center">
     <a href="#mvp">MVP</a> | 
     <a href="#burndown">Burndown</a> | 
-    <a href="poliglota">Implementação - Banco Poliglota</a> | 
+    <a href="#poliglota">Implementação - Banco Poliglota</a> | 
     <a href="#entrega">Entrega</a> | 
 </p>
 
