@@ -8,6 +8,7 @@ export default interface EquipmenteProps{
     loaded: boolean
     setLoaded: Function
     putEquipment: Function
+    patchStatus: Function
 }
 
 export interface Props{

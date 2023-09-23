@@ -51,7 +51,7 @@ class Equipmente{
         }
     }
 
-    async patch(id: string, body: Props): Promise<Props>{
+    async patch(id: string, body: string): Promise<Props>{
         try{
             const res = await api.patch(`/equipment/alterStatusEquipment/${id}`, body)
             return res.data
