@@ -43,19 +43,32 @@ export function Provider({ children }: any){
     }
 
 
-    const putEquipment = async (uuid: string, updatedEquipment: Props) => {
-      try {
-        setLoaded(true);
-        await Equipmente.put(uuid, updatedEquipment);
-        console.log('Equipamento atualizado com sucesso');
-      }
-  
-      catch (err) {
-        console.error('Erro ao atualizar equipamento:', err);
-      } finally {
-        setLoaded(false);
-      }
-    };
+const putEquipment = async (uuid: string, updatedEquipment: Props) => {
+  try {
+    setLoaded(true);
+    await Equipmente.put(uuid, updatedEquipment);
+    console.log('Equipamento atualizado com sucesso');
+    const updated = await getEquipment(uuid);
+    
+    if (updated) {
+      setEquipmente((prevEquipmente) => {
+        const updatedIndex = prevEquipmente.findIndex((item) => item._id === updated._id);
+        if (updatedIndex !== -1) {
+          const updatedList = [...prevEquipmente];
+          updatedList[updatedIndex] = updated;
+          return updatedList;
+        }
+        return prevEquipmente;
+      });
+    }
+  } catch (err) {
+    console.error('Erro ao atualizar equipamento:', err);
+  } finally {
+    setLoaded(false);
+  }
+};
+
+    
     
     
 

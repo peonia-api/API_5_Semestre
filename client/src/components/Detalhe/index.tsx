@@ -31,10 +31,12 @@ export default function Detalhe({ route, navigation }: any) {
     const [isEnabled, setIsEnabled] = useState(false);
 
 
-    const { itemId } = route.params
+    
 
     useFocusEffect(useCallback(() => {
+        
         try {
+            const { itemId } = route.params
             //const novoEquipamento = equipmente.find(equip => equip._id === itemId);
             async function init() {
                 //setNovoEquipamento(await getEquipment(itemId))
@@ -60,10 +62,11 @@ export default function Detalhe({ route, navigation }: any) {
 
     }, [equipmente, route.params]))
 
- 
+
     
 const handleAtualizar = async () => {
         try {
+            const { itemId } = route.params
             await putEquipment(itemId, { type: selectedEquipa, numero: numero, serial: imei, latitude: latitude, longitude: longitude, observations: observacoes})
             console.log('Equipamento atualizado com sucesso');
         }
@@ -78,6 +81,7 @@ const handleAtualizar = async () => {
 
     };
 
+console.log(image);
 
 
     const pickImage = async () => {
