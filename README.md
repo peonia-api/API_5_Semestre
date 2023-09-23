@@ -80,6 +80,8 @@ Na tabela abaixo é possível visualizar os resultados de cada Sprint clicando e
 <span id="documentacao">
 <h2> :clipboard: Documentação</h2>
 
+Para acessar a documentação das rotas, basta acessar este [link](https://github.com/peonia-api/API_5_Semestre/tree/main/documentation/route%20documentation).
+
 → [Voltar ao topo](#topo)
     
 <span id="projeto">
