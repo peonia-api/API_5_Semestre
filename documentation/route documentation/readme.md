@@ -212,7 +212,7 @@
 
 ```json
 {
-    "status": true
+    "status": false
 }
 ```
 <p align="justify"> Parâmetros do Método:</p>
