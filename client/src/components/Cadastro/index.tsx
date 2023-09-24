@@ -50,31 +50,90 @@ export default function Cadastro({ navigation }: any) {
         setSelectedEquipa(equipamento);
     };
 
-    const uploadImage = async () => {
-        if (serial && image) {
-            setUploading(true); // Inicia a animação de envio
-
-            try {
-                const response = await upload(serial, { uri: image });
-                await createEquipment({
-                    type: selectedEquipa,
-                    numero: numero,
-                    serial: serial,
-                    latitude: latitude,
-                    longitude: longitude,
-                    observations: observacao,
-                    url: response,
-                    status: true
-                });
-            } catch (error) {
-                console.error(error);
-                Alert.alert("Erro", "Ocorreu um erro ao enviar os dados para o banco.");
-            } finally {
-                setUploading(false); // Finaliza a animação de envio
-                navigation.navigate('Equipamentos');
-            }
-        }
+const validateNumero = (numero: number | null): string | null => {
+    if (numero === null || numero <= 0) {
+      return "Número inválido";
     }
+    return null; // Retorna null se o número for válido
+  };
+  
+  const validateSerial = (serial: string | null): string | null => {
+    if (!serial=== null) {
+      return "Serial é obrigatório";
+    }
+    return null; // Retorna null se o serial for válido
+  };
+  
+  const validateLatitude = (latitude: number | null): string | null => {
+    if (latitude === null) {
+      return "Latitude inválida";
+    }
+    return null; // Retorna null se a latitude for válida
+  };
+  
+  const validateLongitude = (longitude: number | null): string | null => {
+    if (longitude === null) {
+      return "Longitude inválida";
+    }
+    return null; // Retorna null se a longitude for válida
+  };
+  
+  const validateObservacao = (observacao: string | null): string | null => {
+    // Você pode adicionar suas próprias regras de validação aqui
+    // Por exemplo, verificar o comprimento mínimo ou máximo da observação
+    if (observacao === null || observacao.length > 100) {
+      return "Observação muito longa";
+    }
+    return null; // Retorna null se a observação for válida
+  };
+  const validateImage = (image: any) => {
+    if (image === null) {
+      return "Imagem inválida";
+    }
+    return null; // Retorna null se a longitude for válida
+  };
+  
+  
+  
+  const uploadImage = async () => {
+    // Validar campos
+    const numeroError = validateNumero(numero);
+    const serialError = validateSerial(serial);
+    const latitudeError = validateLatitude(latitude);
+    const longitudeError = validateLongitude(longitude);
+    const observacaoError = validateObservacao(observacao);
+    const imageError = validateImage(image);
+
+    if (numeroError || serialError || latitudeError || longitudeError || observacaoError || imageError) {
+        Alert.alert("Erro de validação", "Por favor, verifique os campos do formulário.");
+        return; // Impede o envio se houver erros de validação
+      }
+  
+    if (serial && image) {
+      setUploading(true); 
+  
+      try {
+        const response = await upload(serial, { uri: image });
+        await createEquipment({
+          type: selectedEquipa,
+          numero: numero,
+          serial: serial,
+          latitude: latitude,
+          longitude: longitude,
+          observations: observacao,
+          url: response,
+          status: true
+        });
+      } catch (error) {
+        console.error(error);
+        Alert.alert("Erro", "Ocorreu um erro ao enviar os dados para o banco.");
+      } finally {
+        setUploading(false); // Finaliza a animação de envio
+        navigation.navigate('Equipamentos');
+      }
+    }
+   
+  };
 
     return (
         <View style={styles.containerPrincipal}>

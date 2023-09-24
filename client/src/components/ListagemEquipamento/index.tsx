@@ -68,7 +68,7 @@ export default function ListaEquipamento({ navigation }: any) {
                 source={{ uri: item.url[0] }}
                 style={[
                   styles.image,
-                  { opacity: item.status ? 1 : 0.5 }, // Define a opacidade com base no status
+                  { opacity: item.status ? 1 : 0.5 }, 
                 ]}
               />
               <Text style={styles.textfont}>{item.type}</Text>
