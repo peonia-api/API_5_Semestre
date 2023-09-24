@@ -25,7 +25,7 @@
 
 <h2> :bookmark_tabs: Requisitos Funcionais </h2>
 
-- [x] Cadastro de equipamentos (Ativos), incluindo fotos;
+- [x] Cadastro de equipamentos (Ativos), incluindo foto;
 - [x] Ativação e desativação de equipamentos;
 - [x] Visualização geográfica dos equipamentos cadastrados (tanto os ativos quanto os inativos);
 - [x] Visualização detalhada dos equipamentos disponíveis no raio de ação do App;
