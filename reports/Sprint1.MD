@@ -25,8 +25,10 @@
 <span id="burndown">
  
 ## :pushpin: Burndown
-<!--<p align="center"> <img src = "../imagens/burndown1sprint.png"></p>-->
+<!--<p align="center"> <img src = "../images/Burndown%201ª%20Sprint.jpeg"></p>-->
 <br>
+
+ <img src="https://github.com/peonia-api/API_5_Semestre/blob/main/images/Burndown%201ª%20Sprint.jpeg"/>
 
  <span id="poliglota">
 
