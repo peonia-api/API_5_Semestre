@@ -24,7 +24,7 @@
 
 <p align="justify"> Exemplo:</p>
 
-```javascript
+```json
 {   "type":"Poste",
     "numero":"7774",
     "serial":"145AE1236",
@@ -51,5 +51,6 @@
 | `status` | **true** | Boolean - Status do Equipamento (true para Ativo e false para Desativado)
 
 
- <h1 align="center"> <img src = "https://fatecsjc-prd.azurewebsites.net/images/logo/fatecsjc_400x192.png" height="70"  align="auto">
- <h5 align="center"> Aprendizagem por Projetos Integrados - Faculdade de Tecnologia de São José dos Campos - Prof. Jessen Vidal </h5>
+
+
+<h5 align="center"> Aprendizagem por Projetos Integrados - Faculdade de Tecnologia de São José dos Campos - Prof. Jessen Vidal </h5>
