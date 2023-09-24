@@ -1,6 +1,6 @@
 <br id="topo">
 
-<h1 align="center"> Documentação das rotas</br> Entendendo a lógica da API desenvolvida neste projeto. </h1>
+<h1 align="center"> Dicionário de Dados</br> Entendendo a estrutura do armazenamento dos dados deste projeto. </h1>
 <p align="center">
     <a href="#objetivo">Objetivo</a> |
     <a href="#bancodados">Banco de Dados</a> |
