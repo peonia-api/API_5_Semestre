@@ -19,8 +19,12 @@
   
 <h3 align="center" id="wireframe"> WIREFRAME </h3>
 <p align="center">
+<img src="https://github.com/peonia-api/API_5_Semestre/blob/main/images/Tela%20Cadastro%20Equipamento.jpeg" width="49%"/>
+<img src="https://github.com/peonia-api/API_5_Semestre/blob/main/images/Tela%20Detalhes%20Equipamento.jpeg" width="49%"/>
+<img src="https://github.com/peonia-api/API_5_Semestre/blob/main/images/Tela%20Listagem%20Equipamentos.jpeg" width="49%"/>
+<img src="https://github.com/peonia-api/API_5_Semestre/blob/main/images/Tela%20Mapeamento%20Equipamentos.jpeg" width="49%"/>
 </p>
-</br
+</br>
   
 <span id="burndown">
  
