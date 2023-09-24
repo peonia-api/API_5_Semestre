@@ -118,7 +118,7 @@
 <br>
 
 
-<span id="getespecific">
+<span id="getespecifico">
 
 <h2> 📔 MÉTODO: GET pelo ID</h2>
 
