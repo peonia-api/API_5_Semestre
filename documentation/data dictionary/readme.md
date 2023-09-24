@@ -4,7 +4,7 @@
 <p align="center">
     <a href="#objetivo">Objetivo</a> |
     <a href="#bancodados">Banco de Dados</a> |
-    <a href="#colecao">Coleões</a> 
+    <a href="#colecao">Coleções</a> 
 </p>
 
 
