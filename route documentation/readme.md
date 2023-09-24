@@ -24,8 +24,8 @@
 
 <p align="justify"> Exemplo:</p>
 
-<p>curl --location -g 'http://localhost:27017/equipment/createEquipment?type=Poste&numero=123456&serial=145AE782&latitude=-45.1254&longitude=14.4587&observations=Necessita%20de%20manuten%C3%A7%C3%A3o&url=[%22https%3A%2F%2Fcbrqdjaeurmeftioqfaz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimagens%2FLinux.jpeg%22]&status=true' \
---data '{   "type":"Poste",
+```javascript
+{   "type":"Poste",
     "numero":"7774",
     "serial":"145AE1236",
     "latitude":"12.4578",
@@ -33,7 +33,8 @@
     "observations":"Necessita de Manutenção",
     "url":["https://cbrqdjaeurmeftioqfaz.supabase.co/storage/v1/object/public/imagens/Linux.jpeg"],
     "status":true
-}'</p>
+}
+```
 <br>
 
 <p align="justify"> Parâmetros do Método:</p>
