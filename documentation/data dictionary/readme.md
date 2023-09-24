@@ -15,13 +15,13 @@
 <br>
 
 <span id="bancodados">
-  
-<h2> 📓: Banco de Dados</h2>
+
+<h2> 📓 Banco de Dados</h2>
 
 <p align="justify"> Para a persistência dos dados relativos aos equipamentos cadastrados na aplicação, faz-se o uso do MongoDB (NoSQL). Dessa forma, o tratamento dos dados se dá em Collections (Coleções).</p>
 <br>
 
-<p align="justify"> 📔 Coleções:</p>
+<h2> 📔 Coleções:</h2>
 
 <p align="justify"> 📔 Coleção Equipment:</p>
 
