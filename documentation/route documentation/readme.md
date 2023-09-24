@@ -27,7 +27,7 @@
 
 <p align="justify"> Endereço da rota:</p>
 
-**http://localhost:3001/equipment/createEquipment?type=Poste&numero=123456&serial=145AE782&latitude=-45.1254&longitude=14.4587&observations=Necessita_de_manutenção&url=["https://cbrqdjaeurmeftioqfaz.supabase.co/storage/v1/object/public/imagens/Linux.jpeg"]&status=true**
+**http://localhost:3001/equipment/createEquipment**
 
 <p align="justify"> Exemplo:</p>
 
@@ -48,14 +48,14 @@
 
 | PARAMS | Value | Description |
 | --- | --- | --- |
-| `type` | **Poste** | String - Tipo do Equipamento
-| `numero` | **7774** | String (varchar) - Número de identificação do Equipamento
-| `serial` | **145AE1236** | String (varchar) - Número identificador do Equipamento
-| `latitude` | **12.4578** | Number (double precision) - Posição Global do Equipamento em relação à Latitude
-| `longitude` | **-12.7853** | Number (double precision) - Posição Global do Equipamento em relação à Longitude
-| `observations` | **Necessita de Manutenção** | String - Observações geral do Equipamento
-| `url` | **https://cbrqdjaeurmeftioqfaz.supabase.co/storage/v1/object/public/imagens/Linux.jpeg** | String - Url relativa a imagem do Equipamento (assume null caso não tenha imagem)
-| `status` | **true** | Boolean - Status do Equipamento (true para Ativo e false para Desativado)
+| `type` | **Poste** | String - Tipo do Equipamento (vai pelo body da requisição)
+| `numero` | **7774** | String (varchar) - Número de identificação do Equipamento (vai pelo body da requisição)
+| `serial` | **145AE1236** | String (varchar) - Número identificador do Equipamento (vai pelo body da requisição)
+| `latitude` | **12.4578** | Number (double precision) - Posição Global do Equipamento em relação à Latitude (vai pelo body da requisição)
+| `longitude` | **-12.7853** | Number (double precision) - Posição Global do Equipamento em relação à Longitude (vai pelo body da requisição)
+| `observations` | **Necessita de Manutenção** | String - Observações geral do Equipamento (vai pelo body da requisição)
+| `url` | **https://cbrqdjaeurmeftioqfaz.supabase.co/storage/v1/object/public/imagens/Linux.jpeg** | String - Url relativa a imagem do Equipamento (assume null caso não tenha imagem). Vai pelo body da requisição)
+| `status` | **true** | Boolean - Status do Equipamento (true para Ativo e false para Desativado). Vai pelo body da requisição
 <br>
 
 
@@ -127,7 +127,7 @@
 
 <p align="justify"> Endereço da rota:</p>
 
-**http://localhost:3001/equipment/listEquipment/650daa56a3c4ce65afb9b862**
+**http://localhost:3001/equipment/listOne/650daa56a3c4ce65afb9b862**
 
 <p align="justify"> Exemplo:</p>
 
@@ -163,7 +163,7 @@
 
 <p align="justify"> Endereço da rota:</p>
 
-**http://localhost:3001/equipment/updateEquipment/650daa56a3c4ce65afb9b862/serial=145AE63**
+**http://localhost:3001/equipment/updateEquipment/650daa56a3c4ce65afb9b862**
 
 <p align="justify"> Exemplo:</p>
 
@@ -188,14 +188,14 @@
 | PARAMS | Value | Description |
 | --- | --- | --- |
 | `_id` | **650daa56a3c4ce65afb9b862** | ID de identificação do registro do Equipamento no Banco de Dados. Vai pela URL da requisição.
-| `type` | **Poste** | String - Tipo do Equipamento
-| `numero` | **7774** | String (varchar) - Número de identificação do Equipamento
-| `serial` | **145AE1236** | String (varchar) - Número identificador do Equipamento
-| `latitude` | **12.4578** | Number (double precision) - Posição Global do Equipamento em relação à Latitude
-| `longitude` | **-12.7853** | Number (double precision) - Posição Global do Equipamento em relação à Longitude
-| `observations` | **Necessita de Manutenção** | String - Observações geral do Equipamento
-| `url` | **https://cbrqdjaeurmeftioqfaz.supabase.co/storage/v1/object/public/imagens/Linux.jpeg** | String - Url relativa a imagem do Equipamento (assume null caso não tenha imagem)
-| `status` | **true** | Boolean - Status do Equipamento (true para Ativo e false para Desativado)
+| `type` | **Poste** | String - Tipo do Equipamento (vai pelo body da requisição)
+| `numero` | **7774** | String (varchar) - Número de identificação do Equipamento (vai pelo body da requisição)
+| `serial` | **145AE1236** | String (varchar) - Número identificador do Equipamento (vai pelo body da requisição)
+| `latitude` | **12.4578** | Number (double precision) - Posição Global do Equipamento em relação à Latitude (vai pelo body da requisição)
+| `longitude` | **-12.7853** | Number (double precision) - Posição Global do Equipamento em relação à Longitude (vai pelo body da requisição)
+| `observations` | **Necessita de Manutenção** | String - Observações geral do Equipamento (vai pelo body da requisição)
+| `url` | **https://cbrqdjaeurmeftioqfaz.supabase.co/storage/v1/object/public/imagens/Linux.jpeg** | String - Url relativa a imagem do Equipamento (assume null caso não tenha imagem). Vai pelo body da requisição
+| `status` | **true** | Boolean - Status do Equipamento (true para Ativo e false para Desativado). Vai pelo body da requisição
 <br>
 
 
@@ -207,7 +207,7 @@
 
 <p align="justify"> Endereço da rota:</p>
 
-**http://localhost:3001/equipment/alterStatusEquipment/650daa56a3c4ce65afb9b862?status=false**
+**http://localhost:3001/equipment/alterStatusEquipment/650daa56a3c4ce65afb9b862**
 
 <p align="justify"> Exemplo:</p>
 
@@ -221,7 +221,7 @@
 | PARAMS | Value | Description |
 | --- | --- | --- |
 | `_id` | **650daa56a3c4ce65afb9b862** | ID de identificação do registro do Equipamento no Banco de Dados. Vai pela URL da requisição.
-| `status` | **false** | Boolean - Status do Equipamento (true para Ativo e false para Desativado). Vai pela URL da requisição.
+| `status` | **false** | Boolean - Status do Equipamento (true para Ativo e false para Desativado). Vai pelo body da requisição.
 <br>
 
 
