@@ -32,7 +32,8 @@
 <p align="justify"> Exemplo:</p>
 
 ```json
-{   "type":"Poste",
+{
+    "type":"Poste",
     "numero":"7774",
     "serial":"145AE1236",
     "latitude":"12.4578",
