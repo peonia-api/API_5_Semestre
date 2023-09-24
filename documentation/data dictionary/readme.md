@@ -3,7 +3,8 @@
 <h1 align="center"> Documentação das rotas</br> Entendendo a lógica da API desenvolvida neste projeto. </h1>
 <p align="center">
     <a href="#objetivo">Objetivo</a> |
-    <a href="#bancodados">Banco de Dados</a> 
+    <a href="#bancodados">Banco de Dados</a> |
+    <a href="#colecao">Coleões</a> 
 </p>
 
 
@@ -20,6 +21,8 @@
 
 <p align="justify"> Para a persistência dos dados relativos aos equipamentos cadastrados na aplicação, faz-se o uso do MongoDB (NoSQL). Dessa forma, o tratamento dos dados se dá em Collections (Coleções).</p>
 <br>
+
+<span id="colecao">
 
 <h2> 📔 Coleções:</h2>
 
@@ -38,7 +41,6 @@
 | `observations` | String | **Necessita de Manutenção** | Observações gerais do Equipamento
 | `url` | String | **https://cbrqdjaeurmeftioqfaz.supabase.co/storage/v1/object/public/imagens/Linux.jpeg** | Url relativa a imagem do Equipamento (assume null caso não tenha imagem).
 | `status` | boolean | **true** | Status do Equipamento (true para Ativo e false para Desativado)
-
 <br>
 
 
