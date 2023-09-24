@@ -82,7 +82,7 @@ Na tabela abaixo é possível visualizar os resultados de cada Sprint clicando e
 
 - Para acessar a documentação das rotas, basta acessar este [link](https://github.com/peonia-api/API_5_Semestre/tree/main/documentation/route%20documentation).
 
-- - Para acessar o dicionário de dados, basta acessar este [link](https://github.com/peonia-api/API_5_Semestre/tree/main/documentation/data%20dictionary).
+- Para acessar o dicionário de dados, basta acessar este [link](https://github.com/peonia-api/API_5_Semestre/tree/main/documentation/data%20dictionary).
 
 → [Voltar ao topo](#topo)
     
