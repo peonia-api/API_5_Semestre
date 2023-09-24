@@ -13,9 +13,9 @@
 <span id="mvp">
  
 ## :rocket: MVP 
-<p align="justify">Nesta sprint optamos por focar naquilo que consideramos a essência da aplicação: a gestão dos equipamentos.</p>
+<p align="justify">Nesta sprint optou-se por focar no que foi considerado a essência da aplicação: a gestão dos equipamentos.</p>
 
-<p>Dessa forma, o usuário já consegue fazer o cadastro desses equipamentos e também executar atividades como a listagem, edição, ativação ou desativação de um Ativo para manobra (manutenção).</p>
+<p>Dessa forma, o usuário já será capaz de fazer o cadastro desses equipamentos e também executar atividades como a listagem, edição, ativação ou desativação de um Ativo para manobra (manutenção) e também visualizar quais equipamentos estão listados no mapa (de acordo com a posição global a qual ele se encontra).</p>
   
 <h3 align="center" id="wireframe"> WIREFRAME </h3>
 <p align="center">
