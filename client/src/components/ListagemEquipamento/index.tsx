@@ -6,11 +6,13 @@ import Pesquisa from "../Pesquisa";
 import LottieView from 'lottie-react-native';
 import { Props } from "../../types/equipmente";
 
-export default function ListaEquipamento({ navigation }: any) {
+
+
+function ListaEquipamento({ navigation }: any) {
   const { equipmente, loaded } = useContextoEquipmente();
   
   
-  console.log(loaded);
+  
   const [filteredEquipments, setFilteredEquipments] = useState<Props[]>(equipmente);
   const [searchValue, setSearchValue] = useState(""); 
 
@@ -54,7 +56,7 @@ export default function ListaEquipamento({ navigation }: any) {
         )}
         <FlatList
           data={filteredEquipments}
-          keyExtractor={(item) => item._id.toString()}
+          keyExtractor={(item) => item._id}
           numColumns={2}
           renderItem={({ item }) => (
             <TouchableOpacity
@@ -87,3 +89,5 @@ export default function ListaEquipamento({ navigation }: any) {
     </View>
   );
 }
+
+export default React.memo(ListaEquipamento)

@@ -72,7 +72,7 @@ export default function Detalhe({ route, navigation }: any) {
         try {
             setLoaded(true)
             if(verficaImage === image){
-                await putEquipment(itemId, { type: selectedEquipa, numero: numero, serial: imei, latitude: latitude, longitude: longitude, observations: observacoes  })
+                await putEquipment(itemId, { type: selectedEquipa, numero: numero, serial: imei, latitude: latitude, longitude: longitude, observations: observacoes, url: [image]  })
                 console.log('Equipamento atualizado com sucesso');           
             }else{  
                 console.log("entrou aqquiiiiii");
@@ -88,6 +88,7 @@ export default function Detalhe({ route, navigation }: any) {
             console.error('Erro ao atualizar equipamento:', err);
         }
          finally{
+            setLoaded(false)
             navigation.navigate('Equipamentos')
         }
     };
