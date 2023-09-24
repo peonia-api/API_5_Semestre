@@ -7,7 +7,7 @@
     <a href="#get">Método GET</a> |
     <a href="#getespecifico">Método GET pelo ID</a> |
     <a href="#update">Método PUT pelo ID</a> |
-    <a href="#status">Método PATCH pelo ID</a> |
+    <a href="#status">Método PATCH pelo ID</a>
 </p>
 
 <span id="objetivo">
