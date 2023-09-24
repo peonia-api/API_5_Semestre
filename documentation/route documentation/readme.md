@@ -27,7 +27,7 @@
 
 <p align="justify"> Endereço da rota:</p>
 
-**http://localhost:27017/equipment/createEquipment?type=Poste&numero=123456&serial=145AE782&latitude=-45.1254&longitude=14.4587&observations=Necessita de manutenção&url=["https://cbrqdjaeurmeftioqfaz.supabase.co/storage/v1/object/public/imagens/Linux.jpeg"]&status=true**
+<p> **http://localhost:27017/equipment/createEquipment?type=Poste&numero=123456&serial=145AE782&latitude=-45.1254&longitude=14.4587&observations=Necessita de manutenção&url=["https://cbrqdjaeurmeftioqfaz.supabase.co/storage/v1/object/public/imagens/Linux.jpeg"]&status=true**</p>
 
 <p align="justify"> Exemplo:</p>
 
