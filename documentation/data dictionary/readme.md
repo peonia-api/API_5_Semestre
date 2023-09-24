@@ -3,7 +3,7 @@
 <h1 align="center"> Documentação das rotas</br> Entendendo a lógica da API desenvolvida neste projeto. </h1>
 <p align="center">
     <a href="#objetivo">Objetivo</a> |
-    <a href="#bancodados">Objetivo</a> |
+    <a href="#bancodados">Banco de Dados</a> 
 </p>
 
 
