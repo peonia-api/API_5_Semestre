@@ -45,10 +45,9 @@ export function Provider({ children }: any) {
 
   const putEquipment = async (uuid: string, updatedEquipment: Props) => {
     try {
-      setLoaded(true);
-      await Equipmente.put(uuid, updatedEquipment);
-      console.log('Equipamento atualizado com sucesso');
-      const updated = await getEquipment(uuid);
+      const updated = await Equipmente.put(uuid, updatedEquipment);
+      //console.log('Equipamento atualizado com sucesso');
+      //const updated = await getEquipment(uuid);
 
       if (updated) {
         setEquipmente((prevEquipmente) => {

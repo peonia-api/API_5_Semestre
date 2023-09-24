@@ -14,9 +14,11 @@ import upload from "../../supabase/upload";
 
 Icon.loadFont();
 
-export default function Detalhes({ route, navigation }: any) {
+export default function Detalhe({ route, navigation }: any) {
 
     const { equipmente, setLoaded, loaded, getEquipment, putEquipment } = useContextoEquipmente();
+    const { itemId } = route.params
+
     // const [ novoEquipamento, setNovoEquipamento ] = useState<any>()
 
     // Encontre o equipamento com base no itemId
@@ -35,12 +37,11 @@ export default function Detalhes({ route, navigation }: any) {
 
 
     useFocusEffect(useCallback(() => {
+    const { itemId } = route.params
 
         try {
-            const { itemId } = route.params
-            //const novoEquipamento = equipmente.find(equip => equip._id === itemId);
+
             async function init() {
-                //setNovoEquipamento(await getEquipment(itemId))
                 const novoEquipamento = await getEquipment(itemId)
                 if (novoEquipamento) {
                     setSelectedEquipa(novoEquipamento?.type || '');
@@ -64,17 +65,19 @@ export default function Detalhes({ route, navigation }: any) {
 
     }, [equipmente, route.params]))
 
-
+    console.log(image);
+    
 
     const handleAtualizar = async () => {
         try {
-            const { itemId } = route.params
+            setLoaded(true)
             if(verficaImage === image){
                 await putEquipment(itemId, { type: selectedEquipa, numero: numero, serial: imei, latitude: latitude, longitude: longitude, observations: observacoes  })
                 console.log('Equipamento atualizado com sucesso');           
             }else{  
+                console.log("entrou aqquiiiiii");
                 const nameArquivo = verficaImage.split('/')[8]
-                removeFileOne(nameArquivo).then(async () => {
+                removeFileOne(nameArquivo).then(async (res) => {   
                 const response = await upload(imei, { uri: image })
                 await putEquipment(itemId, { type: selectedEquipa, numero: numero, serial: imei, latitude: latitude, longitude: longitude, observations: observacoes, url: response })
              })  
@@ -84,11 +87,12 @@ export default function Detalhes({ route, navigation }: any) {
         catch (err) {
             console.error('Erro ao atualizar equipamento:', err);
         }
+         finally{
+            navigation.navigate('Equipamentos')
+        }
     };
 
-    console.log(image);
-
-
+  
     const pickImage = async () => {
         const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
@@ -118,7 +122,6 @@ export default function Detalhes({ route, navigation }: any) {
 
     const handleStatusBotao = () => {
         try {
-            const { itemId } = route.params
             if (status === true)
                 return (
                     <BotoesDetalhes
