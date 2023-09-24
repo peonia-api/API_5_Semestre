@@ -112,9 +112,9 @@
     }
 ```
 
-<p align="justify"> Parâmetros do Método:</p>
+<p align="justify"> Parâmetro do Método:</p>
 
-<p align="justify"> Não exige parâmetros, tendo em vista que retorna em JSON todos os registros já feitos no banco de dados.</p>
+<p align="justify"> Não exige nenhum parâmetro, tendo em vista que retorna em JSON todos os registros já feitos no banco de dados.</p>
 <br>
 
 
@@ -146,9 +146,9 @@
     }
 ```
 
-<p align="justify"> Parâmetros do Método:</p>
+<p align="justify"> Parâmetro do Método:</p>
 
-| PARAMS | Value | Description |
+| PARAM | Value | Description |
 | --- | --- | --- |
 | `_id` | **650daa56a3c4ce65afb9b862** | ID de identificação do registro do Equipamento no Banco de Dados. Vai pela URL da requisição.
 <br>
