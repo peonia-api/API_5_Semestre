@@ -3,12 +3,13 @@
 <h1 align="center"> Documentação das rotas</br> Entendendo a lógica da API desenvolvida neste projeto. </h1>
 <p align="center">
     <a href="#objetivo">Objetivo</a> | 
-    <a href="#post">Método POST</a> |
-    <a href="#get">Método GET</a> |
-    <a href="#getespecifico">Método GET pelo ID</a> |
-    <a href="#update">Método PUT pelo ID</a> |
-    <a href="#status">Método PATCH pelo ID</a>
+    <a href="#post">Método: POST</a> |
+    <a href="#get">Método: GET</a> |
+    <a href="#getespecifico">Método: GET pelo ID</a> |
+    <a href="#update">Método: PUT pelo ID</a> |
+    <a href="#status">Método: PATCH pelo ID</a>
 </p>
+
 
 <span id="objetivo">
 
@@ -20,13 +21,13 @@
 
 <span id="post">
 
-<h2> 📔 MÉTODO POST</h2>
+<h2> 📔 MÉTODO: POST</h2>
 
 <p align="justify"> Requisição, via JSON, para a criação de um registro de um Equipamento no Banco de Dados.</p>
 
 <p align="justify"> Endereço da rota:</p>
 
-**http://localhost:27017/equipment/createEquipment**
+**http://localhost:27017/equipment/createEquipment?type=Poste&numero=123456&serial=145AE782&latitude=-45.1254&longitude=14.4587&observations=Necessita de manutenção&url=["https://cbrqdjaeurmeftioqfaz.supabase.co/storage/v1/object/public/imagens/Linux.jpeg"]&status=true**
 
 <p align="justify"> Exemplo:</p>
 
@@ -59,7 +60,7 @@
 
 <span id="get">
 
-<h2> 📔 MÉTODO GET</h2>
+<h2> 📔 MÉTODO: GET</h2>
 
 <p align="justify"> Requisição para a listagem de todos os Equipamentos cadastrados no aplicativo, retornando os resultados no formado JSON.</p>
 
@@ -119,7 +120,7 @@
 
 <span id="getespecific">
 
-<h2> 📔 MÉTODO GET pelo ID</h2>
+<h2> 📔 MÉTODO: GET pelo ID</h2>
 
 <p align="justify"> Requisição para busca e exibição de um Equipamento identificado pelo seu ID no Banco de Dados, retornando o resultado no formado JSON.</p>
 
@@ -144,6 +145,7 @@
         "status": true
     }
 ```
+
 <p align="justify"> Parâmetros do Método:</p>
 
 | PARAMS | Value | Description |
@@ -154,13 +156,13 @@
 
 <span id="update">
 
-<h2> 📔 MÉTODO PUT pelo ID</h2>
+<h2> 📔 MÉTODO: PUT pelo ID</h2>
 
 <p align="justify"> Requisição para alterar os dados de um Equipamento específico, identificado pelo seu ID no Banco de Dados.</p>
 
 <p align="justify"> Endereço da rota:</p>
 
-**http://localhost:27017/equipment/updateEquipment/650daa56a3c4ce65afb9b862**
+**http://localhost:27017/equipment/updateEquipment/650daa56a3c4ce65afb9b862/serial=145AE63**
 
 <p align="justify"> Exemplo:</p>
 
@@ -169,7 +171,7 @@
     "_id": "650daa56a3c4ce65afb9b862",
     "type": "Poste",
     "numero": "777",
-    "serial": "145AE63",
+    "serial": "145AE63", <-----
     "latitude": "12.4569",
     "longitude": "10.4578",
     "observations": "Necessita de manutenção",
@@ -179,6 +181,7 @@
     "status": false
 }
 ```
+
 <p align="justify"> Parâmetros do Método:</p>
 
 | PARAMS | Value | Description |
@@ -197,7 +200,7 @@
 
 <span id="status">
 
-<h2> 📔 MÉTODO PATCH pelo ID</h2>
+<h2> 📔 MÉTODO: PATCH pelo ID</h2>
 
 <p align="justify"> Requisição exclusiva para a alteração do Status de um Equipamento quando da Ativação e Desativação dele para manobra.</p>
 
@@ -216,11 +219,15 @@
 
 | PARAMS | Value | Description |
 | --- | --- | --- |
+| `_id` | **650daa56a3c4ce65afb9b862** | ID de identificação do registro do Equipamento no Banco de Dados. Vai pela URL da requisição.
 | `status` | **false** | Boolean - Status do Equipamento (true para Ativo e false para Desativado). Vai pela URL da requisição.
 <br>
 
+
 → [Voltar ao topo](#topo)
 
+
 <br>
+
 
 <h5 align="center"> Aprendizagem por Projetos Integrados - Faculdade de Tecnologia de São José dos Campos - Prof. Jessen Vidal </h5>
