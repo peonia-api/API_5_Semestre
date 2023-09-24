@@ -18,11 +18,11 @@
 
 <p align="justify"> Requisição, via JSON, para a criação de um registro de um Equipamento no Banco de Dados.</p>
 
-<p align="justify"> ### Endereço da rota:</p>
+<p align="justify"> Endereço da rota:</p>
 
-<p>http://localhost:27017/equipment/createEquipment</p>
+**http://localhost:27017/equipment/createEquipment**
 
-<p align="justify"> ### Exemplo:</p>
+<p align="justify"> Exemplo:</p>
 
 ```json
 {   "type":"Poste",
@@ -37,7 +37,7 @@
 ```
 <br>
 
-<p align="justify"> ### Parâmetros do Método:</p>
+<p align="justify"> Parâmetros do Método:</p>
 
 | PARAMS | Value | Description |
 | --- | --- | --- |
