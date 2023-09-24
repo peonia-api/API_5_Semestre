@@ -27,7 +27,7 @@
 
 <p align="justify"> Endereço da rota:</p>
 
-<p> **http://localhost:27017/equipment/createEquipment?type=Poste&numero=123456&serial=145AE782&latitude=-45.1254&longitude=14.4587&observations=Necessita de manutenção&url=["https://cbrqdjaeurmeftioqfaz.supabase.co/storage/v1/object/public/imagens/Linux.jpeg"]&status=true**</p>
+**http://localhost:3001/equipment/createEquipment?type=Poste&numero=123456&serial=145AE782&latitude=-45.1254&longitude=14.4587&observations=Necessita_de_manutenção&url=["https://cbrqdjaeurmeftioqfaz.supabase.co/storage/v1/object/public/imagens/Linux.jpeg"]&status=true**
 
 <p align="justify"> Exemplo:</p>
 
@@ -67,7 +67,7 @@
 
 <p align="justify"> Endereço da rota:</p>
 
-**http://localhost:27017/equipment/listEquipment**
+**http://localhost:3001/equipment/listEquipment**
 
 <p align="justify"> Exemplo:</p>
 
@@ -92,7 +92,7 @@
         "serial": "T-PDS4565464654",
         "latitude": "-23.253956",
         "longitude": "-45.906574",
-        "observations": "Transformador ",
+        "observations": "Transformador",
         "url": [
             "https://cbrqdjaeurmeftioqfaz.supabase.co/storage/v1/object/public/imagens/T-PDS4565464654.jpeg"
         ],
@@ -105,7 +105,7 @@
         "serial": "P-tygdjgmmm",
         "latitude": "-55.82368",
         "longitude": "-86.646985",
-        "observations": "Teste dasdsadasdasdasd",
+        "observations": "Teste",
         "url": [
             "https://cbrqdjaeurmeftioqfaz.supabase.co/storage/v1/object/public/imagens/P-tygdjgmmm.jpeg"
         ],
@@ -127,7 +127,7 @@
 
 <p align="justify"> Endereço da rota:</p>
 
-**http://localhost:27017/equipment/listEquipment/650daa56a3c4ce65afb9b862**
+**http://localhost:3001/equipment/listEquipment/650daa56a3c4ce65afb9b862**
 
 <p align="justify"> Exemplo:</p>
 
@@ -163,7 +163,7 @@
 
 <p align="justify"> Endereço da rota:</p>
 
-**http://localhost:27017/equipment/updateEquipment/650daa56a3c4ce65afb9b862/serial=145AE63**
+**http://localhost:3001/equipment/updateEquipment/650daa56a3c4ce65afb9b862/serial=145AE63**
 
 <p align="justify"> Exemplo:</p>
 
@@ -207,7 +207,7 @@
 
 <p align="justify"> Endereço da rota:</p>
 
-**http://localhost:27017/equipment/alterStatusEquipment/650daa56a3c4ce65afb9b862?status=false**
+**http://localhost:3001/equipment/alterStatusEquipment/650daa56a3c4ce65afb9b862?status=false**
 
 <p align="justify"> Exemplo:</p>
 
