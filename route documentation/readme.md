@@ -1,6 +1,6 @@
 <br id="topo">
 
-<h1 align="center"> Documentação das rotas</br> Documentação da API desenvolvida nesta API. </h1>
+<h1 align="center"> Documentação das rotas</br> Entendendo a lógica da API desenvolvida neste projeto. </h1>
 <p align="center">
     <a href="#objetivo">Objetivo</a> | 
     <a href="#post">Método POST</a> |
