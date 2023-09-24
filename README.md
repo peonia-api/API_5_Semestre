@@ -91,7 +91,7 @@ Na tabela abaixo é possível visualizar os resultados de cada Sprint clicando e
 <div align="center">
     <p> 
     
-![image](https://github.com/peonia-api/API_5_Semestre/blob/main/images/Backlog%20-%20Sprint%201.png).
+![image](https://github.com/peonia-api/API_5_Semestre/blob/main/images/Backlog%20Priorizado.png).
     
 </p>
 </div>
