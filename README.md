@@ -54,9 +54,7 @@
 <h4> Entrega da Sprint 1 </h4>
 <p align="center"> 
     
-https://github.com/peonia-api/API_5_Semestre/blob/main/videos/Vídeo%20Demonstração%2001.mp4
-
-https://github.com/peonia-api/API_5_Semestre/blob/main/videos/Vídeo%20Demonstração%2002.mp4
+- A apresentação relativa à entrega da 1ª Sprint pode ser acessada por este [link](https://www.youtube.com/watch?v=yIUAITkMCFo).
 
 </p>
   
@@ -82,6 +80,10 @@ Na tabela abaixo é possível visualizar os resultados de cada Sprint clicando e
     
 <span id="documentacao">
 <h2> :clipboard: Documentação</h2>
+
+- Para acessar a documentação das rotas e entender como funciona a API do back, basta acessar este [link](https://github.com/peonia-api/API_5_Semestre/tree/main/documentation/route%20documentation);
+
+- O dicionário de dados pode ser acessado por este [link](https://github.com/peonia-api/API_5_Semestre/tree/main/documentation/data%20dictionary).
 
 → [Voltar ao topo](#topo)
     
