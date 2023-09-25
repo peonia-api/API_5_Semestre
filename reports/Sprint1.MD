@@ -15,7 +15,7 @@
 ## :rocket: MVP 
 <p align="justify">Nesta sprint optou-se por focar no que foi considerado a essência da aplicação: a gestão dos equipamentos.</p>
 
-<p>Dessa forma, o usuário já será capaz de fazer o cadastro desses equipamentos e também executar atividades como a listagem, edição, ativação ou desativação de um Ativo para manobra (manutenção) e também visualizar quais equipamentos estão listados no mapa (de acordo com a posição global a qual ele se encontra).</p>
+<p>Dessa forma, o usuário já será capaz de fazer o cadastro desses equipamentos e também executar atividades como a listagem, edição, ativação ou desativação de um Ativo para manobra (com identificação visual) e também visualizar quais equipamentos estão listados no mapa (de acordo com a posição global a qual ele se encontra).</p>
   
 <h3 align="center" id="wireframe"> WIREFRAME </h3>
 <p align="center">
@@ -54,12 +54,13 @@
  
 ## 👩‍💻 Entrega
 <p align="center">
-<br>
+
+- A apresentação relativa à entrega da 1ª Sprint pode ser acessada por este [link](https://www.youtube.com/watch?v=yIUAITkMCFo).
 
 </p>
 <br>
-   
-  → [Voltar ao topo](#topo)
+
+→ [Voltar ao topo](#topo)
 
 <h1 align="center"> <img src = "https://user-images.githubusercontent.com/71477357/161321048-dc637b2e-0314-4e07-b2f9-8cda9f653356.png" height="70"  align="auto">
 <h5 align="center"> Aprendizagem por Projetos Integrados - Faculdade de Tecnologia de São José dos Campos - Prof. Jessen Vidal </h5>
