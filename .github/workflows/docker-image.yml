@@ -19,7 +19,7 @@ jobs:
         DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
         DOCKERHUB_PASS: ${{ secrets.DOCKERHUB_PASS }}
       run:
-        echo ${{ secrets.DOCKER_TOKEN }} | docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
+        docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
     - name: Build the Docker image
       run: docker build server/. -t ${{ secrets.DOCKERHUB_USERNAME }}/server:1.0
     - name: docker push
