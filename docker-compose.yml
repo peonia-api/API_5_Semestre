@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  server:
+    container_name: auth2fa
+    build: '.'
+    depends_on:
+      - db
+    links:
+      - db
+    ports:
+      - '5000:5000'
+    networks:
+      - host
+
+  db:
+    image: 'mongo'
+    container_name: mongodb
+    ports:
+      - '27018:27017'
+    networks:
+      - host
+    volumes:
+      - app-mongo:/data/db
+  
+networks: 
+  host:
+    driver: bridge
+
+volumes:
+  app-mongo:
+    driver: local
