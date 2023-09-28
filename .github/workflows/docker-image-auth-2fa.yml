@@ -1,0 +1,26 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "auth2fa" ]
+  pull_request:
+    branches: [ "auth2fa" ]
+
+jobs:
+
+  push:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: docker login
+      env:
+        DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+        DOCKERHUB_PASS: ${{ secrets.DOCKERHUB_PASS }}
+        VERSION: $(date +%d%M%m)
+      run:
+        docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
+    - name: Build the Docker image
+      run: docker build server/. -t ${{ secrets.DOCKERHUB_USERNAME }}/auth-2fa:1.$VERSION
+    - name: docker push
+      run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/auth-2fa:1.$VERSION
