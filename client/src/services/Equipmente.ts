@@ -45,7 +45,7 @@ class Equipmente{
     async put(id: string, body: Props): Promise<Props>{
         try{
             const res = await api.put(`/equipment/updateEquipment/${id}`, body)
-            return res.data
+            return res.data.equipamentoAtualizado
         }catch(err){
             throw err
         }

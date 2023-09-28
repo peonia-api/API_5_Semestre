@@ -74,11 +74,9 @@ export function BotoesDetalhes({ text, style, label, message, id, status }: prop
   );
 }
 
-interface BotaoAtualizarProps {
-  handle: () => Promise<void>;
-}
 
-export function BotaoAtualizar({ handle }: BotaoAtualizarProps) {
+
+export function BotaoAtualizar({ handle }: { handle: (event: GestureResponderEvent) => void }) {
   return (
     <View style={styles.containerBotao2}>
       <TouchableOpacity style={styles.botaoAtualizar} onPress={handle}>
@@ -93,7 +91,7 @@ export function BotaoCadastro({ handle }: { handle: (event: GestureResponderEven
   return (
     <View>
       <View style={styles.containerBotao}>
-        <TouchableOpacity style={styles.botao} onPress={handle}>
+        <TouchableOpacity style={styles.botaoCadastro} onPress={handle}>
           <Text style={styles.textoBotao}>Cadastrar</Text>
         </TouchableOpacity>
       </View>
