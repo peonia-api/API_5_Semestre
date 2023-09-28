@@ -21,6 +21,6 @@ jobs:
       run:
         docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
     - name: Build the Docker image
-      run: docker build server/. -t ${{ secrets.DOCKERHUB_USERNAME }}/auth-2fa:1.$VERSION
+      run: docker build . -t ${{ secrets.DOCKERHUB_USERNAME }}/auth-2fa:1.$VERSION
     - name: docker push
       run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/auth-2fa:1.$VERSION
