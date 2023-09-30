@@ -1,123 +1,93 @@
-import React from "react";
-import { View, Text, Image, FlatList, SafeAreaView, TouchableOpacity, ScrollView } from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, Text, Image, FlatList, SafeAreaView, TouchableOpacity } from "react-native";
 import styles from "./style";
-import { useContextoEquipmente } from '../../hooks'
-import { Equipmente } from '../../services'
+import { useContextoEquipmente } from '../../hooks';
 import Pesquisa from "../Pesquisa";
+import LottieView from 'lottie-react-native';
+import { Props } from "../../types/equipmente";
 
-export default function ListaEquipamento({ navigation }: any) {
-  const data = [
-    {
-      id: 1,
-      image: require('../../assets/iconImage.png'),
-      text1: "Transformador #T1000",
-      text2: "21212 01:02 - 12:54",
-    },
-    {
-      id: 2,
-      image: require('../../assets/iconImage.png'),
-      text1: "Transformador #T1001",
-      text2: "21213 02:03 - 13:55",
-    },
-    {
-      id: 3,
-      image: require('../../assets/iconImage.png'),
-      text1: "Transformador #T1002",
-      text2: "21214 03:04 - 14:56",
-    },
-    {
-      id: 4,
-      image: require('../../assets/iconImage.png'),
-      text1: "Transformador #T1003",
-      text2: "21215 04:05 - 15:57",
-    }, {
-      id: 5,
-      image: require('../../assets/iconImage.png'),
-      text1: "Transformador #T1000",
-      text2: "21212 01:02 - 12:54",
-    },
-    {
-      id: 6,
-      image: require('../../assets/iconImage.png'),
-      text1: "Transformador #T1001",
-      text2: "21213 02:03 - 13:55",
-    },
-    {
-      id: 7,
-      image: require('../../assets/iconImage.png'),
-      text1: "Transformador #T1002",
-      text2: "21214 03:04 - 14:56",
-    },
-    {
-      id: 8,
-      image: require('../../assets/iconImage.png'),
-      text1: "Transformador #T1003",
-      text2: "21215 04:05 - 15:57",
-    },
-    {
-      id: 9,
-      image: require('../../assets/iconImage.png'),
-      text1: "Transformador #T1000",
-      text2: "21212 01:02 - 12:54",
-    },
-    {
-      id: 10,
-      image: require('../../assets/iconImage.png'),
-      text1: "Transformador #T1001",
-      text2: "21213 02:03 - 13:55",
-    },
-    {
-      id: 11,
-      image: require('../../assets/iconImage.png'),
-      text1: "Transformador #T1002",
-      text2: "21214 03:04 - 14:56",
-    },
-    {
-      id: 12,
-      image: require('../../assets/iconImage.png'),
-      text1: "Transformador #T1003",
-      text2: "21215 04:05 - 15:57",
-    },
-  ];
 
-  const { equipmente } = useContextoEquipmente()
-  // console.log(equipmente[0]._id);
-  const handleItemPress = (itemId: any) => {
+
+function ListaEquipamento({ navigation }: any) {
+  const { equipmente, loaded } = useContextoEquipmente();
+  
+  
+  
+  const [filteredEquipments, setFilteredEquipments] = useState<Props[]>(equipmente);
+  const [searchValue, setSearchValue] = useState(""); 
+
+  useEffect(() => {
+    const filtered = equipmente.filter((item) =>
+      item.type.toLowerCase().includes(searchValue.toLowerCase()) ||
+      item.serial.toLowerCase().includes(searchValue.toLowerCase())
+    );
+    setFilteredEquipments(filtered);
+  }, [searchValue, equipmente]);
+  
+
+  const handleItemPress = (itemId: string) => {
     // Navegue para a tela de detalhes, passando o ID como parâmetro
     navigation.navigate('Detalhes', { itemId });
   };
 
-  const handleCadastro = () => {
-    navigation.navigate('Cadastro');
-  }
+  // const handleCadastro = () => {
+  //   navigation.navigate('Cadastro');
+  // }
 
   return (
-    <View>
-      <ScrollView>
-        <SafeAreaView style={styles.container}>
-          <Pesquisa />
-          <FlatList
-            data={data}
-            keyExtractor={(item) => item.id.toString()}
-            numColumns={2}
-            renderItem={({ item }) => (
-              <TouchableOpacity style={styles.column} onPress={() => handleItemPress(item.id)}>
-                <Image source={item.image} style={styles.image} />
-                <Text style={styles.textfont}>{item.text1}</Text>
-                <Text>{item.text2}</Text>
-              </TouchableOpacity>
-            )}
+    <View style={styles.container}>
+      <SafeAreaView>
+        <Pesquisa onSearch={(text) => setSearchValue(text)} />
+      </SafeAreaView>
+      <View style={styles.listaContainer}>
+        {loaded && (
+          <View style={styles.uploadingAnimation}>
+          <LottieView
+              autoPlay={true}
+              loop={true}
+              style={{
+                  width: '100%',
+                  height: '100%',
+                  backgroundColor: 'white',
+              }}
+              source={require('../../assets/carregando.json')}
           />
-        </SafeAreaView>
-        <View style={styles.footerBotao}>
-          <View style={styles.containerBotao}>
-            <TouchableOpacity style={styles.botao} onPress={handleCadastro}>
-              <Text style={styles.textoBotao}>Cadastrar</Text>
-            </TouchableOpacity>
           </View>
+        )}
+        <FlatList
+          data={filteredEquipments}
+          keyExtractor={(item) => item._id}
+          numColumns={2}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              style={[
+                styles.column,
+                { backgroundColor: item.status ? 'transparent' : 'gray' },
+              ]}
+              onPress={() => handleItemPress(item._id)}
+            >
+              <Image
+                source={{ uri: item.url[0] }}
+                style={[
+                  styles.image,
+                  { opacity: item.status ? 1 : 0.5 }, 
+                ]}
+              />
+              <Text style={styles.textfont}>{item.type}</Text>
+              <Text>{item.serial}</Text>
+            </TouchableOpacity>
+          )}
+        />
+      </View>
+      {/* <View style={styles.footerBotao}>
+        <View style={styles.containerBotao}>
+          <TouchableOpacity style={styles.botao} onPress={handleCadastro}>
+            <Text style={styles.textoBotao}>Cadastrar</Text>
+          </TouchableOpacity>
         </View>
-      </ScrollView>
+      </View> */}
     </View>
-  )
+  );
 }
 
+export default React.memo(ListaEquipamento)

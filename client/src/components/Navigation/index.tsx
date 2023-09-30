@@ -4,9 +4,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ListaEquipamento from '../ListagemEquipamento';
-import Detalhe from '../Detalhe';
+import Detalhe from '../Detalhes';
 import Mapa from '../Mapa';
 import Cadastro from '../Cadastro';
+import Detalhes from '../Detalhes';
 
 Icon.loadFont();
 
@@ -28,7 +29,7 @@ const TabNavigator = () => {
         options={{
           tabBarLabel: 'Equipamentos',
           tabBarIcon: () => (
-            <Icon name="desktop" size={25} color="#000000" />
+            <Icon name="list" size={25} color="#000000" />
           ),
         }}
       />
@@ -43,12 +44,12 @@ const TabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Detalhes"
-        component={Detalhe}
+        name="Cadastro"
+        component={Cadastro}
         options={{
-          tabBarLabel: 'Detalhes',
+          tabBarLabel: 'Cadastrar',
           tabBarIcon: () => (
-            <Icon name="list" size={25} color="#000000" />
+            <Icon name="plus" size={25} color="#000000" />
           ),
         }}
       />
@@ -63,7 +64,7 @@ export default function Navigation() {
         {/* navbar */}
         <Stack.Screen name="TabNavigator" component={TabNavigator} />
         {/* outras rotas */}
-        <Stack.Screen name="Cadastro" component={Cadastro} />
+        <Stack.Screen name="Detalhes" component={Detalhes} options={{ headerBackVisible: true, headerShown: true}} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -15,6 +15,9 @@ export class Equipment {
     @Column()
     type: string;
 
+    @Column()
+    numero: number;
+    
     @Column({ type: "varchar", length: 30 })
     serial: string;
 

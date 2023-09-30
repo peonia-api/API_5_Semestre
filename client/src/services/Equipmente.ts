@@ -1,6 +1,18 @@
 import { EquipmenteProps } from '../types'
 import api from './api'
 
+export interface Props{
+    _id: string
+    type: string,
+    numero: number,
+    serial: string,
+    latitude: number,
+    longitude: number,
+    observations: string,
+    url: string[],
+    status: boolean
+}
+
 class Equipmente{
     async get(): Promise<EquipmenteProps> {
         try{
@@ -12,7 +24,7 @@ class Equipmente{
         }
     }
 
-    async getOne(id: string): Promise<EquipmenteProps>{
+    async getOne(id: string): Promise<Props>{
         try{
             const { data } = await api.get(`/equipment/listOne/${id}`)
             return data
@@ -21,7 +33,7 @@ class Equipmente{
         }
     }
 
-    async post(body: EquipmenteProps): Promise<EquipmenteProps>{
+    async post(body: Props): Promise<Props>{
         try{
             const res = await api.post('/equipment/createEquipment', body)
             return res.data
@@ -30,16 +42,16 @@ class Equipmente{
         }
     }
 
-    async put(id: string, body: EquipmenteProps): Promise<EquipmenteProps>{
+    async put(id: string, body: Props): Promise<Props>{
         try{
             const res = await api.put(`/equipment/updateEquipment/${id}`, body)
-            return res.data
+            return res.data.equipamentoAtualizado
         }catch(err){
             throw err
         }
     }
 
-    async patch(id: string, body: EquipmenteProps): Promise<EquipmenteProps>{
+    async patch(id: string, body: string): Promise<Props>{
         try{
             const res = await api.patch(`/equipment/alterStatusEquipment/${id}`, body)
             return res.data
