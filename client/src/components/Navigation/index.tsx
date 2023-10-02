@@ -8,6 +8,7 @@ import Detalhe from '../Detalhes';
 import Mapa from '../Mapa';
 import Cadastro from '../Cadastro';
 import Detalhes from '../Detalhes';
+import Login from '../Login';
 
 Icon.loadFont();
 
@@ -48,6 +49,16 @@ const TabNavigator = () => {
         component={Cadastro}
         options={{
           tabBarLabel: 'Cadastrar',
+          tabBarIcon: () => (
+            <Icon name="plus" size={25} color="#000000" />
+          ),
+        }}
+      />
+       <Tab.Screen
+        name="Login"
+        component={Login}
+        options={{
+          tabBarLabel: 'Logar',
           tabBarIcon: () => (
             <Icon name="plus" size={25} color="#000000" />
           ),
