@@ -65,6 +65,13 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         width: '100%'
       },
+      botaoLogin: {
+        backgroundColor: 'black',
+        marginTop: 12,
+        padding: 12,
+        borderRadius: 5,
+        width: '80%'
+      },
 });
 
 export default styles;

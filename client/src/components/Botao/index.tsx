@@ -99,3 +99,16 @@ export function BotaoCadastro({ handle }: { handle: (event: GestureResponderEven
   );
 }
 
+export function BotaoLogin() {
+  return(
+    <View>
+      <View style={styles.containerBotao}>
+        <TouchableOpacity style={styles.botaoLogin} >
+          <Text style={styles.textoBotao}>ENTRAR</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  )
+  
+}
+
