@@ -1,7 +1,8 @@
 import React from "react";
-import { View, Image, TextInput } from "react-native";
+import { View, Image, TextInput, Text } from "react-native";
 import styles from "./style";
 import { BotaoLogin } from "../Botao";
+
 
 export default function Login() {
   return (
@@ -26,6 +27,21 @@ export default function Login() {
         </View>
       </View>
       <BotaoLogin />
+      <Text style={styles.recuperarSenha} onPress={() => { /* Sua função aqui */ }}>
+        Recuperar a senha
+      </Text>
+      <View>
+      <Text style={styles.textoNovo}>
+        Você é novo por aqui?
+        <Text style={styles.recuperarSenha}>
+          Crie sua conta
+        </Text>
+      </Text>
+      
+        
+      </View>
+
+    
     </View>
   );
 }

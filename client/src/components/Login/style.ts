@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
       justifyContent: "center",
       alignItems: "center",
       marginTop: 10,
-      marginBottom: -30,
+      marginBottom: -50,
       
     },
     container : {
@@ -16,14 +16,13 @@ const styles = StyleSheet.create({
     },
     imageSize: {
       width: "60%",
-      height: "60%",
+      height: "50%",
     },
     inputWrapper: {
       alignItems: "center",
       justifyContent: "center",
       margin: 10,
      
-      
     },
     inputLogin: {
       paddingLeft: 15,
@@ -35,6 +34,22 @@ const styles = StyleSheet.create({
       width: "85%",
 
     },
+    recuperarSenha: {
+      textAlign: "center",
+      justifyContent: "center",
+      fontSize: 20,
+      marginTop: 30, 
+      fontFamily: 'Arial',
+      textDecorationLine: 'underline',
+    },
+    textoNovo: {
+      textAlign: "center",
+      justifyContent: "center",
+      fontSize: 20,
+      marginTop: 30, 
+      fontFamily: 'Arial',
+     
+    }
   });
   
   export default styles;

@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 16,
         textAlign: 'center',
+        justifyContent: 'center'
       },
       linhaPontilhada: {
         width: "90%",
@@ -69,8 +70,9 @@ const styles = StyleSheet.create({
         backgroundColor: 'black',
         marginTop: 12,
         padding: 12,
-        borderRadius: 5,
-        width: '80%'
+        borderRadius: 2,
+        width: '50%',
+        height: '85%'
       },
 });
 
