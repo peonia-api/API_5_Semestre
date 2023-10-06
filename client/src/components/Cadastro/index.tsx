@@ -40,11 +40,12 @@ export default function Cadastro({ navigation }: any) {
       let result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.All,
         allowsEditing: true,
+        allowsMultipleSelection: true,
         aspect: [4, 3],
         quality: 1,
       });
 
-      if (!result.canceled) {
+      if (!result.canceled) {-
         setImage(result.assets[0].uri);
       }
     } else {

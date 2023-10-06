@@ -74,6 +74,13 @@ const styles = StyleSheet.create({
         width: '50%',
         height: '85%'
       },
+      botaoCadastroUsuario: {
+        backgroundColor: 'black',
+        marginTop: 12,
+        padding: 12,
+        borderRadius: 5,
+        width: '55%'
+      },
 });
 
 export default styles;

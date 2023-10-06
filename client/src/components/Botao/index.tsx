@@ -112,3 +112,15 @@ export function BotaoLogin() {
   
 }
 
+export function BotaoCadastroUsuario() {
+  return (
+    <View>
+      <View style={styles.containerBotao}>
+        <TouchableOpacity style={styles.botaoCadastroUsuario}>
+          <Text style={styles.textoBotao}>Cadastrar</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+}
+
