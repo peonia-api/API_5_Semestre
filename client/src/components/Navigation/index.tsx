@@ -9,6 +9,7 @@ import Mapa from '../Mapa';
 import Cadastro from '../Cadastro';
 import Detalhes from '../Detalhes';
 import Login from '../Login';
+import CadastroUsuario from '../CadastroUsuario';
 
 Icon.loadFont();
 
@@ -64,6 +65,16 @@ const TabNavigator = () => {
           ),
         }}
       />
+       <Tab.Screen
+        name="CadastroUsuario"
+        component={CadastroUsuario}
+        options={{
+          tabBarLabel: 'CadastroUsuario',
+          tabBarIcon: () => (
+            <Icon name="plus" size={25} color="#000000" />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 };
@@ -76,6 +87,7 @@ export default function Navigation() {
         <Stack.Screen name="TabNavigator" component={TabNavigator} />
         {/* outras rotas */}
         <Stack.Screen name="Detalhes" component={Detalhes} options={{ headerBackVisible: true, headerShown: true}} />
+        {/* <Stack.Screen name="CadastroUsuario" component={CadastroUsuario} options={{ headerBackVisible: true, headerShown: true}} /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );
