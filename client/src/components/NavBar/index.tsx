@@ -8,7 +8,7 @@ import Login from "../Login";
 export default function NavBar() {
   return (
     <>
-   {Login() ? null : 
+   {/* {Login() ? null :  */}
    <View>
     <LinearGradient
       colors={['#3c8ef9', '#589dfb', '#71adf5', '#8abcf0', '#a4cdea', '#bdd9e5']}
@@ -25,7 +25,7 @@ export default function NavBar() {
       </View>
     </LinearGradient>
       <View style={styles.linhaPontilhada} />
-  </View>}
+  </View>
   </>
   );
 }

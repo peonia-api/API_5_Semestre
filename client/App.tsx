@@ -12,14 +12,14 @@ export default function App() {
   return (     
 
     <Provider>
-        {Login() ? <View style={styles.container}>
+        {/* {Login() ? <View style={styles.container}>
         <Login/>
-        </View> : 
+        </View> :  */}
         <View style={styles.container}>
           <NavBar/>
           <Navigation /> 
         </View>
-         } 
+         {/* }  */}
     </Provider>
 
   );
