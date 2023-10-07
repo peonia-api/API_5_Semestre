@@ -11,7 +11,7 @@ export default function NavBar() {
    {/* {Login() ? null :  */}
    <View>
     <LinearGradient
-      colors={['#3c8ef9', '#589dfb', '#71adf5', '#8abcf0', '#a4cdea', '#bdd9e5']}
+      colors={['#3B8FA8', '#4DB9DB', '#92CFE1']}
       style={styles.gradient}
     >
       <View style={styles.container}>
@@ -24,7 +24,7 @@ export default function NavBar() {
         </View>
       </View>
     </LinearGradient>
-      <View style={styles.linhaPontilhada} />
+      {/* <View style={styles.linhaPontilhada} /> */}
   </View>
   </>
   );

@@ -22,7 +22,7 @@ const TabNavigator = () => {
       initialRouteName="Equipamentos"
       activeColor="#000000"
       shifting={false}
-      barStyle={{ backgroundColor: '#a4cdea' }}
+      barStyle={{ backgroundColor: '#4DB9DB' }}
       sceneAnimationEnabled={false}
     >
       <Tab.Screen
