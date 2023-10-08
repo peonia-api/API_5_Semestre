@@ -27,14 +27,14 @@ export default function Login() {
         </View>
       </View>
       <BotaoLogin />
-      <Text style={styles.recuperarSenha} onPress={() => { /* Sua função aqui */ }}>
+      <Text style={[styles.recuperarSenha, { marginTop: 35 }, {marginBottom: 28}]}>
         Recuperar a senha
       </Text>
       <View>
       <Text style={styles.textoNovo}>
-        Você é novo por aqui?
-        <Text style={styles.recuperarSenha}>
-          Crie sua conta
+        Você é novo por aqui?{' '} 
+        <Text style={styles.recuperarSenha} onPress={() => { /* Sua função aqui */ }}>
+        Crie sua conta
         </Text>
       </Text>
       

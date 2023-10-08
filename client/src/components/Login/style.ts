@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     inputWrapper: {
       alignItems: "center",
       justifyContent: "center",
-      margin: 10,
+      margin: 12,
      
     },
     inputLogin: {
@@ -37,17 +37,17 @@ const styles = StyleSheet.create({
     recuperarSenha: {
       textAlign: "center",
       justifyContent: "center",
-      fontSize: 20,
-      marginTop: 30, 
-      fontFamily: 'Arial',
+      fontSize: 16, 
       textDecorationLine: 'underline',
+      fontFamily: 'interregular',
     },
     textoNovo: {
       textAlign: "center",
       justifyContent: "center",
-      fontSize: 20,
+      fontSize: 16,
       marginTop: 30, 
-      fontFamily: 'Arial',
+      fontFamily: 'interregular',
+      marginBottom: 40,
      
     }
   });
