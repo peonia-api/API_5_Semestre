@@ -55,7 +55,7 @@ const TabNavigator = () => {
           ),
         }}
       />
-       {/* <Tab.Screen
+       <Tab.Screen
         name="Login"
         component={Login}
         options={{
@@ -64,7 +64,7 @@ const TabNavigator = () => {
             <Icon name="plus" size={25} color="#000000" />
           ),
         }}
-      /> */}
+      />
        <Tab.Screen
         name="CadastroUsuario"
         component={CadastroUsuario}

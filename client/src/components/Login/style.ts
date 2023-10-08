@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
       justifyContent: "center",
       fontSize: 20,
       marginTop: 30, 
-      fontFamily: 'Arial',
+      // fontFamily: 'Arial',
       textDecorationLine: 'underline',
     },
     textoNovo: {
@@ -47,10 +47,9 @@ const styles = StyleSheet.create({
       justifyContent: "center",
       fontSize: 20,
       marginTop: 30, 
-      fontFamily: 'Arial',
+      // fontFamily: 'Arial',
      
     }
   });
   
   export default styles;
-  
