@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
+  
     containerBotao2: {
         flexDirection: "row",
         justifyContent: "center",
@@ -8,6 +9,7 @@ const styles = StyleSheet.create({
         width: '40%',
         marginBottom: 10,
       },
+
       botaoDesativar: {
         backgroundColor: 'red',
         marginTop: 12,
@@ -29,6 +31,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         textAlign: 'center',
       },
+
       linhaPontilhada: {
         width: "90%",
         borderStyle: "dashed",
@@ -50,6 +53,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         width: '100%'
       },
+
       botaoCadastro: {
         backgroundColor: 'green',
         marginTop: 12,
@@ -65,6 +69,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         width: '100%'
       },
+
       botaoLogin: {
         backgroundColor: 'black',
         marginTop: 12,
@@ -73,7 +78,16 @@ const styles = StyleSheet.create({
         width: '50%',
         height: '85%'
       },
+
       botaoCadastroUsuario: {
+        backgroundColor: 'black',
+        marginTop: 12,
+        padding: 12,
+        borderRadius: 5,
+        width: '55%'
+      },
+
+      botaoAtualizarUsuario: {
         backgroundColor: 'black',
         marginTop: 12,
         padding: 12,

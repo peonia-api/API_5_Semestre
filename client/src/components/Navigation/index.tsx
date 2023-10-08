@@ -10,6 +10,7 @@ import Cadastro from '../Cadastro';
 import Detalhes from '../Detalhes';
 import Login from '../Login';
 import CadastroUsuario from '../CadastroUsuario';
+import Perfil from '../Perfil';
 
 Icon.loadFont();
 
@@ -65,6 +66,16 @@ const TabNavigator = () => {
           ),
         }}
       />
+      <Tab.Screen
+        name="Perfil"
+        component={Perfil}
+        options={{
+          tabBarLabel: 'Perfil',
+          tabBarIcon: () => (
+            <Icon name="user" size={25} color="#000000" />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 };
@@ -77,6 +88,7 @@ export default function Navigation() {
         <Stack.Screen name="TabNavigator" component={TabNavigator} />
         {/* outras rotas */}
         <Stack.Screen name="Detalhes" component={Detalhes} options={{ headerBackVisible: true, headerShown: true}} />
+        <Stack.Screen name="Perfil" component={Perfil} options={{ headerBackVisible: true, headerShown: true}} />
         <Stack.Screen name="Cadastrar usuário" component={CadastroUsuario} options={{ headerBackVisible: true, headerShown: true}} />
       </Stack.Navigator>
     </NavigationContainer>

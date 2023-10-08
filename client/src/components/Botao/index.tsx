@@ -124,3 +124,14 @@ export function BotaoCadastroUsuario() {
   );
 }
 
+export function BotaoAtualizarUsuario() {
+  return (
+    <View>
+      <View style={styles.containerBotao}>
+        <TouchableOpacity style={styles.botaoAtualizarUsuario}>
+          <Text style={styles.textoBotao}>ATUALIZAR DADOS</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+}
