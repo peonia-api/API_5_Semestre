@@ -4,7 +4,7 @@ import styles from "./style";
 import { BotaoLogin } from "../Botao";
 
 
-export default function Login() {
+export default function Login({navigation}: any) {
   return (
     <View style={styles.container}>
       <View style={styles.imageCenter}>
@@ -33,7 +33,7 @@ export default function Login() {
       <View>
       <Text style={styles.textoNovo}>
         Você é novo por aqui?
-        <Text style={styles.recuperarSenha}>
+        <Text style={styles.recuperarSenha} onPress={() => navigation.navigate('Cadastrar usuário')}>
           Crie sua conta
         </Text>
       </Text>
