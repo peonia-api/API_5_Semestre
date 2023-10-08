@@ -5,7 +5,8 @@ const styles = StyleSheet.create({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-       marginTop: 10,
+        marginTop: 20,
+        marginBottom: 10
     },
     container: {
         backgroundColor: '#4DB9DB',
@@ -29,6 +30,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: "#ccc",
         width: "85%",
+        marginTop: 10
     },
 });
 

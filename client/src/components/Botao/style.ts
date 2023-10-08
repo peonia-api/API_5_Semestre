@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
 
       botaoAtualizarUsuario: {
         backgroundColor: 'black',
-        marginTop: 12,
+        marginTop: 20,
         padding: 12,
         borderRadius: 5,
         width: '55%'
