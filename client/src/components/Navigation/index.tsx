@@ -10,6 +10,7 @@ import Cadastro from '../Cadastro';
 import Detalhes from '../Detalhes';
 import Login from '../Login';
 import CadastroUsuario from '../CadastroUsuario';
+import Perfil from '../Perfil';
 
 Icon.loadFont();
 
@@ -22,7 +23,7 @@ const TabNavigator = () => {
       initialRouteName="Equipamentos"
       activeColor="#000000"
       shifting={false}
-      barStyle={{ backgroundColor: '#a4cdea' }}
+      barStyle={{ backgroundColor: '#4DB9DB' }}
       sceneAnimationEnabled={false}
     >
       <Tab.Screen
@@ -65,13 +66,13 @@ const TabNavigator = () => {
           ),
         }}
       />
-       <Tab.Screen
-        name="CadastroUsuario"
-        component={CadastroUsuario}
+      <Tab.Screen
+        name="Perfil"
+        component={Perfil}
         options={{
-          tabBarLabel: 'CadastroUsuario',
+          tabBarLabel: 'Perfil',
           tabBarIcon: () => (
-            <Icon name="plus" size={25} color="#000000" />
+            <Icon name="user" size={25} color="#000000" />
           ),
         }}
       />
@@ -87,7 +88,8 @@ export default function Navigation() {
         <Stack.Screen name="TabNavigator" component={TabNavigator} />
         {/* outras rotas */}
         <Stack.Screen name="Detalhes" component={Detalhes} options={{ headerBackVisible: true, headerShown: true}} />
-        {/* <Stack.Screen name="CadastroUsuario" component={CadastroUsuario} options={{ headerBackVisible: true, headerShown: true}} /> */}
+        <Stack.Screen name="Perfil" component={Perfil} options={{ headerBackVisible: true, headerShown: true}} />
+        <Stack.Screen name="Cadastrar usuário" component={CadastroUsuario} options={{ headerBackVisible: true, headerShown: true}} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,6 +1,6 @@
-import { View, Text, Image, TextInput, TouchableOpacity, ScrollView, Alert } from "react-native"
+import { View, Text, Image, TextInput, TouchableOpacity, ScrollView, Alert, Modal } from "react-native"
 import styles from "./style";
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { Picker } from "@react-native-picker/picker";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import * as ImagePicker from 'expo-image-picker';
@@ -8,9 +8,12 @@ import { BotaoAtualizar, BotoesDetalhes } from "../Botao";
 import { useContextoEquipmente } from "../../hooks";
 import LottieView from 'lottie-react-native';
 import { useFocusEffect } from "@react-navigation/native";
-import { Props } from "../../types";
 import { removeFileOne } from "../../supabase/delete";
 import upload from "../../supabase/upload"; 
+import { Camera, CameraType } from 'expo-camera';
+import { FontAwesome } from "@expo/vector-icons"
+
+
 
 Icon.loadFont();
 
@@ -19,11 +22,6 @@ export default function Detalhe({ route, navigation }: any) {
     const { equipmente, setLoaded, loaded, getEquipment, putEquipment } = useContextoEquipmente();
     const { itemId } = route.params
 
-    // const [ novoEquipamento, setNovoEquipamento ] = useState<any>()
-
-    // Encontre o equipamento com base no itemId
-
-    // Defina estados iniciais com base no equipamento selecionado
     const [selectedEquipa, setSelectedEquipa] = useState<string>();
     const [image, setImage] = useState<any>();
     const [numero, setNumero] = useState<string>();
@@ -35,7 +33,14 @@ export default function Detalhe({ route, navigation }: any) {
     const [verficaImage, setVerificaImagem] = useState<any>()
     const [isEnabled, setIsEnabled] = useState(false);
 
+    const [type, setType] = useState(CameraType.back);
+    const [hasPermission, setHasPermission] = useState<boolean | null>(null);
+    const camRef = useRef<any | null>(null);
+    const [capturedPhoto, setCapturedPhoto] = useState(null)
+    const [isCameraVisible, setCameraVisible] = useState(false);
+  
 
+    
     useFocusEffect(useCallback(() => {
     const { itemId } = route.params
 
@@ -66,6 +71,42 @@ export default function Detalhe({ route, navigation }: any) {
     }, [equipmente, route.params]))
 
     console.log(image);
+
+
+    useEffect(() => {
+        (async () => {
+          const { status } = await Camera.requestCameraPermissionsAsync();
+          setHasPermission(status === 'granted');
+        })();
+      }, []);
+    
+      if (hasPermission === null) {
+        return <Text>Verificando permissão de câmera...</Text>;
+      }
+    
+      if (!hasPermission) {
+        return <Text>Permissão de câmera não concedida</Text>;
+      }
+    
+      function toggleCameraType() {
+        setType(current => (current === CameraType.back ? CameraType.front : CameraType.back));
+      }
+      async function takePicture() {
+        if (camRef) {
+          const data = await camRef.current.takePictureAsync();
+          setCapturedPhoto(data.uri)
+          setImage(data.uri);
+          setCameraVisible(false);
+        }
+    
+      }
+      const showCamera = () => {
+        setCameraVisible(true);
+      };
+    
+      const hideCamera = () => {
+        setCameraVisible(false);
+      };
     
 
     const handleAtualizar = async () => {
@@ -177,15 +218,47 @@ export default function Detalhe({ route, navigation }: any) {
                     </View>
 
                     <View style={styles.containerIcons}>
-                        <TouchableOpacity style={styles.iconsPlusMinus} onPress={pickImage}>
+                        <TouchableOpacity style={styles.icons} onPress={pickImage}>
                             <Icon name="plus" size={25} color="#000000" />
                         </TouchableOpacity>
-                        {/* <TouchableOpacity style={styles.iconsPlusMinus} onPress={pickImage}>
-                            <Icon name="camera" size={25} color="#000000" />
-                        </TouchableOpacity> */}
-                        <TouchableOpacity style={styles.iconsPlusMinus} onPress={removeImage}>
+
+                        <TouchableOpacity style={styles.icons} onPress={removeImage}>
                             <Icon name="trash" size={25} color="#000000" />
                         </TouchableOpacity>
+
+                        <TouchableOpacity style={styles.icons} onPress={() => setCameraVisible(true)}>
+                            <Icon name="camera" size={25} color="#000000" />
+                        </TouchableOpacity>
+
+
+                        <Modal
+                            visible={isCameraVisible}
+                            transparent={true}
+                            animationType="slide"
+                            >
+                            <View style={{ width: "100%", height: " 100%" }}>
+                                <View style={styles.modalContainer}>
+                                <Camera type={type} style={styles.camera} ref={camRef}>
+                                    <View style={styles.containerButtonCamera}>
+                                        <TouchableOpacity onPress={hideCamera} style={styles.icons}>
+                                            <FontAwesome name="close" size={30} color="#fff" />
+                                        </TouchableOpacity>
+
+                                        <TouchableOpacity style={styles.icons}  onPress={toggleCameraType}>
+                                            <FontAwesome name="exchange" size={30} color="red" />
+                                        </TouchableOpacity>
+
+                                        <TouchableOpacity style={styles.buttonCamera} onPress={takePicture}>
+                                            <FontAwesome name="camera" size={30} color="#fff" />
+                                        </TouchableOpacity>
+
+                                    </View>
+
+                                </Camera>
+
+                                </View>
+                            </View>
+                            </Modal>
                     </View>
 
                 </View>

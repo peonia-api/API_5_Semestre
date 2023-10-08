@@ -6,9 +6,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
   },
 
-  // scrollView: {
-  //   marginHorizontal: 20,
-  // },
+
 
   container: {
     flexDirection: "column",
@@ -19,13 +17,12 @@ const styles = StyleSheet.create({
   containerImagem: {
     alignItems: "center",
     justifyContent: 'center',
-    width: 325,
-    height: 200,
+    width: '100%',
+    height: 225,
     borderWidth: 1,
     borderRadius: 5,
     backgroundColor: '#f2f2f2',
-    // gap: 30,
-    marginLeft: 30
+
   },
 
   image: {
@@ -42,7 +39,7 @@ const styles = StyleSheet.create({
     gap: 50,
   },
 
-  iconsPlusMinus: {
+  icons: {
     height: 50,
     width: 50,
     borderRadius: 10,
@@ -169,6 +166,43 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
+
+
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#d1d1d1',
+    width: '100%',
+    height: '100%',
+  },
+  
+  camera: {
+    width: '100%',
+    height: '80%',
+  },
+  
+  containerButtonCamera: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+    paddingHorizontal: 20,
+    marginBottom: 20,
+    marginTop: 'auto', 
+  },
+  
+  
+  buttonCamera: {
+    height: 50,
+    width: 50,
+    borderRadius: 10,
+    marginTop: 20,
+    backgroundColor: 'red',
+    alignItems: 'center', 
+    justifyContent: 'center', 
+  
+  },
+  
 });
 
 export default styles;
