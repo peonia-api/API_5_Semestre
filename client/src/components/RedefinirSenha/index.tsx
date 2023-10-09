@@ -22,8 +22,8 @@ export default function RedefinirSenha() {
         <BotaoEnvCodigo />
         <View style={styles.inputWrapper}>
           <TextInput
-            style={styles.inputCodigo}
-            keyboardType="numeric"
+            placeholder="Insira o código"
+            style={styles.inputEmail}
             maxLength={6}
           />
         </View>
