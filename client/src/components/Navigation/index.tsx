@@ -11,6 +11,8 @@ import LoginScreen from '../Login';
 import CadastroUsuario from '../CadastroUsuario';
 import Perfil from '../Perfil';
 import { AuthContext } from '../../contexts';
+import RedefinirSenha from '../RedefinirSenha';
+
 
 Icon.loadFont();
 
@@ -97,6 +99,7 @@ export default function Navigation() {
               component={CadastroUsuario}
               options={{ headerBackVisible: true, headerShown: true }}
             />
+            <Stack.Screen name="Redefinir senha" component={RedefinirSenha} options={{ headerBackVisible: true, headerShown: true}} />
           </>
         ) : (
           <Stack.Screen name="Login" component={LoginScreen} />
