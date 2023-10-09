@@ -1,10 +1,34 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { View, Image, TextInput, Text } from "react-native";
 import styles from "./style";
 import { BotaoLogin } from "../Botao";
+import { AuthContext } from "../../contexts/User";
 
 
-export default function Login({navigation}: any) {
+export default function LoginScreen({ navigation }: any) {
+  function Login() {
+    const { login } = useContext(AuthContext);
+   
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [EmailRecovery, setEmailRecovery] = useState("");
+   
+    const handleSubmit = (e: any) => {
+      e.preventDefault();
+      console.log("submit", { email, password });
+   
+      login(email, password);
+    };
+    const changeInput = (e: any) => {
+      e.style.backgroundColor = "#54C5CE";
+    };
+   
+   
+    let paramsEmail = {
+      email: EmailRecovery,
+    };
+
+
   return (
     <View style={styles.container}>
       <View style={styles.imageCenter}>
@@ -44,4 +68,5 @@ export default function Login({navigation}: any) {
     
     </View>
   );
+}
 }

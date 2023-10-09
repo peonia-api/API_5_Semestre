@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ListaEquipamento from '../ListagemEquipamento';
-import Detalhe from '../Detalhes';
 import Mapa from '../Mapa';
 import Cadastro from '../Cadastro';
 import Detalhes from '../Detalhes';
-import Login from '../Login';
+import LoginScreen from '../Login';
 import CadastroUsuario from '../CadastroUsuario';
 import Perfil from '../Perfil';
+import { AuthContext } from '../../contexts';
 
 Icon.loadFont();
 
@@ -56,16 +56,6 @@ const TabNavigator = () => {
           ),
         }}
       />
-       <Tab.Screen
-        name="Login"
-        component={Login}
-        options={{
-          tabBarLabel: 'Logar',
-          tabBarIcon: () => (
-            <Icon name="plus" size={25} color="#000000" />
-          ),
-        }}
-      />
       <Tab.Screen
         name="Perfil"
         component={Perfil}
@@ -80,16 +70,37 @@ const TabNavigator = () => {
   );
 };
 
+
+
 export default function Navigation() {
+  const { authenticated } = useContext(AuthContext);
+  
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
-        {/* navbar */}
-        <Stack.Screen name="TabNavigator" component={TabNavigator} />
-        {/* outras rotas */}
-        <Stack.Screen name="Detalhes" component={Detalhes} options={{ headerBackVisible: true, headerShown: true}} />
-        <Stack.Screen name="Perfil" component={Perfil} options={{ headerBackVisible: true, headerShown: true}} />
-        <Stack.Screen name="Cadastrar usuário" component={CadastroUsuario} options={{ headerBackVisible: true, headerShown: true}} />
+      {authenticated ? (
+          <>
+            <Stack.Screen name="TabNavigator" component={TabNavigator} />
+            {/* outras rotas */}
+            <Stack.Screen
+              name="Detalhes"
+              component={Detalhes}
+              options={{ headerBackVisible: true, headerShown: true }}
+            />
+            <Stack.Screen
+              name="Perfil"
+              component={Perfil}
+              options={{ headerBackVisible: true, headerShown: true }}
+            />
+            <Stack.Screen
+              name="Cadastrar usuário"
+              component={CadastroUsuario}
+              options={{ headerBackVisible: true, headerShown: true }}
+            />
+          </>
+        ) : (
+          <Stack.Screen name="Login" component={LoginScreen} />
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );
