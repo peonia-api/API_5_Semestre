@@ -27,7 +27,7 @@ export default function Login({navigation}: any) {
         </View>
       </View>
       <BotaoLogin />
-      <Text style={[styles.recuperarSenha, { marginTop: 35 }, {marginBottom: 28}]}>
+      <Text style={[styles.recuperarSenha, { marginTop: 35 }, {marginBottom: 28}]} onPress={() => navigation.navigate('Redefinir senha')}>
         Recuperar a senha
       </Text>
       <View>

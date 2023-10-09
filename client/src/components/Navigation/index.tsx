@@ -11,6 +11,7 @@ import Detalhes from '../Detalhes';
 import Login from '../Login';
 import CadastroUsuario from '../CadastroUsuario';
 import Perfil from '../Perfil';
+import RedefinirSenha from '../RedefinirSenha';
 
 Icon.loadFont();
 
@@ -90,6 +91,7 @@ export default function Navigation() {
         <Stack.Screen name="Detalhes" component={Detalhes} options={{ headerBackVisible: true, headerShown: true}} />
         <Stack.Screen name="Perfil" component={Perfil} options={{ headerBackVisible: true, headerShown: true}} />
         <Stack.Screen name="Cadastrar usuário" component={CadastroUsuario} options={{ headerBackVisible: true, headerShown: true}} />
+        <Stack.Screen name="Redefinir senha" component={RedefinirSenha} options={{ headerBackVisible: true, headerShown: true}} />
       </Stack.Navigator>
     </NavigationContainer>
   );
