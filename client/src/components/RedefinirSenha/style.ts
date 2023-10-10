@@ -33,7 +33,17 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: "#ccc",
         width: "85%",
-
+    },
+    inputCodigo: {
+        paddingLeft: 15,
+        backgroundColor: '#f2f2f2',
+        borderRadius: 5,
+        height: 45,
+        borderWidth: 1,
+        borderColor: "#ccc",
+        width: "85%",
+        fontSize: 30,
+        fontWeight: "bold"
     },
     containerRedefinir: {
         marginTop: 20,
@@ -46,19 +56,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         margin: 20,
-    },
-    inputCodigo: {
-        paddingLeft: 15,
-        backgroundColor: '#f2f2f2',
-        borderRadius: 5,
-        height: 45,
-        borderWidth: 1,
-        borderColor: "#ccc",
-        width: "85%",
-        fontSize: 30,
-        fontWeight: "bold",
-        marginTop: 10
-    },
+    }
 });
 
 export default styles;
