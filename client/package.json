@@ -17,6 +17,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@fortawesome/react-native-fontawesome": "^0.3.0",
+    "@react-native-async-storage/async-storage": "1.17.11",
     "@react-native-picker/picker": "^2.5.0",
     "@react-navigation/material-bottom-tabs": "^6.2.17",
     "@react-navigation/native": "^6.1.7",
@@ -33,6 +34,7 @@
     "expo-location": "~15.1.1",
     "expo-sensors": "^12.5.0",
     "expo-status-bar": "~1.0.4",
+    "expo-storage": "^48.1.0",
     "i": "^0.3.7",
     "lottie-react-native": "5.1.4",
     "npm": "^8.1.0",
@@ -59,7 +61,9 @@
     "typescript": "^4.5.4"
   },
   "rnpm": {
-    "assets": ["./src/assets/fonts"]
+    "assets": [
+      "./src/assets/fonts"
+    ]
   },
   "private": true
 }
