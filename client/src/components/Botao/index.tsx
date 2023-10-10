@@ -99,11 +99,11 @@ export function BotaoCadastro({ handle }: { handle: (event: GestureResponderEven
   );
 }
 
-export function BotaoLogin() {
+export function BotaoLogin(props: { handleSubmit: () => void }) {
   return(
     <View>
       <View style={styles.containerBotao}>
-        <TouchableOpacity style={styles.botaoLogin} >
+        <TouchableOpacity style={styles.botaoLogin} onPress={props.handleSubmit} >
           <Text style={styles.textoBotao}>ENTRAR</Text>
         </TouchableOpacity>
       </View>

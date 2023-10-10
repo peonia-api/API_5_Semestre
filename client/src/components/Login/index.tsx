@@ -5,23 +5,22 @@ import { BotaoLogin } from "../Botao";
 import { AuthContext } from "../../contexts/User";
 
 
-export default function LoginScreen({ navigation }: any) {
-  function Login() {
+function LoginScreen({ navigation }: any) {
+ 
     const { login } = useContext(AuthContext);
    
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [EmailRecovery, setEmailRecovery] = useState("");
    
-    const handleSubmit = (e: any) => {
-      e.preventDefault();
+    const handleSubmit = () => {
       console.log("submit", { email, password });
    
       login(email, password);
     };
-    const changeInput = (e: any) => {
-      e.style.backgroundColor = "#54C5CE";
-    };
+    // const changeInput = (e: any) => {
+    //   e.style.backgroundColor = "#54C5CE";
+    // };
    
    
     let paramsEmail = {
@@ -39,6 +38,7 @@ export default function LoginScreen({ navigation }: any) {
           <TextInput
             placeholder="USUÁRIO"
             style={styles.inputLogin}
+            onChangeText={(e) => setEmail(e)}
             placeholderTextColor="#000000" // Defina a cor do placeholder
           />
         </View>
@@ -46,11 +46,12 @@ export default function LoginScreen({ navigation }: any) {
           <TextInput
             placeholder="SENHA"
             style={styles.inputLogin}
+            onChangeText={(e) => setPassword(e)}
             placeholderTextColor="#000000" // Defina a cor do placeholder
           />
         </View>
       </View>
-      <BotaoLogin />
+      <BotaoLogin handleSubmit={handleSubmit}  />
       <Text style={[styles.recuperarSenha, { marginTop: 35 }, {marginBottom: 28}]} onPress={() => navigation.navigate('Redefinir senha')}>
         Recuperar a senha
       </Text>
@@ -68,5 +69,7 @@ export default function LoginScreen({ navigation }: any) {
     
     </View>
   );
-}
-}
+  }
+
+
+export default React.memo(LoginScreen)

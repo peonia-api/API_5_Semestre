@@ -13,7 +13,6 @@ import Perfil from '../Perfil';
 import { AuthContext } from '../../contexts';
 import RedefinirSenha from '../RedefinirSenha';
 
-
 Icon.loadFont();
 
 const Stack = createNativeStackNavigator();
@@ -94,15 +93,22 @@ export default function Navigation() {
               component={Perfil}
               options={{ headerBackVisible: true, headerShown: true }}
             />
-            <Stack.Screen
-              name="Cadastrar usuário"
-              component={CadastroUsuario}
-              options={{ headerBackVisible: true, headerShown: true }}
-            />
-            <Stack.Screen name="Redefinir senha" component={RedefinirSenha} options={{ headerBackVisible: true, headerShown: true}} />
-          </>
+           
+            </>
         ) : (
-          <Stack.Screen name="Login" component={LoginScreen} />
+          <>
+           <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen
+          name="Cadastrar usuário"
+          component={CadastroUsuario}
+          options={{ headerBackVisible: true, headerShown: true }}
+        />
+        <Stack.Screen 
+          name="Redefinir senha" 
+          component={RedefinirSenha} 
+          options={{ headerBackVisible: true, headerShown: true}} />
+          </>
+         
         )}
       </Stack.Navigator>
     </NavigationContainer>
