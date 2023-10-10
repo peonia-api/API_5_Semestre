@@ -11,7 +11,7 @@ import LoginScreen from '../Login';
 import CadastroUsuario from '../CadastroUsuario';
 import Perfil from '../Perfil';
 import { AuthContext } from '../../contexts';
-import RedefinirSenha from '../RedefinirSenha';
+import { RedefinirSenha, VerificacaoDoCodigo } from '../RedefinirSenha';
 
 Icon.loadFont();
 
@@ -79,6 +79,7 @@ export default function Navigation() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
+
       {authenticated ? (
           <>
             <Stack.Screen name="TabNavigator" component={TabNavigator} />
