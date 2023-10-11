@@ -27,6 +27,14 @@ export default function CadastroUsuario() {
                     </View>
                     <View style={styles.inputWrapper}>
                         <TextInput
+                            placeholder="CPF"
+                            keyboardType="numeric"
+                            style={styles.inputLogin}
+                            placeholderTextColor="#000000" // Defina a cor do placeholder
+                        />
+                    </View>
+                    <View style={styles.inputWrapper}>
+                        <TextInput
                             placeholder="E-MAIL"
                             style={styles.inputLogin}
                             placeholderTextColor="#000000" // Defina a cor do placeholder
@@ -35,6 +43,7 @@ export default function CadastroUsuario() {
                     <View style={styles.inputWrapper}>
                         <TextInput
                             placeholder="TELEFONE"
+                            keyboardType="numeric"
                             style={styles.inputLogin}
                             placeholderTextColor="#000000" // Defina a cor do placeholder
                         />

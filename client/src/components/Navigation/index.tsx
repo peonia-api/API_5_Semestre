@@ -11,8 +11,7 @@ import LoginScreen from '../Login';
 import CadastroUsuario from '../CadastroUsuario';
 import Perfil from '../Perfil';
 import { AuthContext } from '../../contexts';
-import { VerificacaoDoCodigo } from '../RedefinirSenha';
-
+import { RedefinirSenha, VerificacaoDoCodigo } from '../RedefinirSenha';
 
 Icon.loadFont();
 
@@ -80,13 +79,38 @@ export default function Navigation() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
-        {/* navbar */}
-        <Stack.Screen name="TabNavigator" component={TabNavigator} />
-        {/* outras rotas */}
-        <Stack.Screen name="Detalhes" component={Detalhes} options={{ headerBackVisible: true, headerShown: true}} />
-        <Stack.Screen name="Perfil" component={Perfil} options={{ headerBackVisible: true, headerShown: true}} />
-        <Stack.Screen name="Cadastrar usuário" component={CadastroUsuario} options={{ headerBackVisible: true, headerShown: true}} />
-        <Stack.Screen name="Redefinir senha" component={RedefinirSenha} options={{ headerBackVisible: true, headerShown: true}} />
+
+      {authenticated ? (
+          <>
+            <Stack.Screen name="TabNavigator" component={TabNavigator} />
+            {/* outras rotas */}
+            <Stack.Screen
+              name="Detalhes"
+              component={Detalhes}
+              options={{ headerBackVisible: true, headerShown: true }}
+            />
+            <Stack.Screen
+              name="Perfil"
+              component={Perfil}
+              options={{ headerBackVisible: true, headerShown: true }}
+            />
+           
+            </>
+        ) : (
+          <>
+           <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen
+          name="Cadastrar usuário"
+          component={CadastroUsuario}
+          options={{ headerBackVisible: true, headerShown: true }}
+        />
+        <Stack.Screen 
+          name="Redefinir senha" 
+          component={RedefinirSenha} 
+          options={{ headerBackVisible: true, headerShown: true}} />
+          </>
+         
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import styles from "./style";
 import Pesquisa from "../Pesquisa";
@@ -6,15 +6,16 @@ import { LinearGradient } from 'expo-linear-gradient';
 import Login from "../Login";
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { AuthContext } from "../../contexts";
 
 export default function NavBar({ navigation }: any) {
 
   const element = <FontAwesomeIcon icon={faUser} />;
+  const { authenticated } = useContext(AuthContext);
   
   return (
     <>
-   {/* {Login() ? null :  */}
-   <View>
+    {authenticated ?  <View>
     <LinearGradient
         colors={['#3B8FA8', '#4DB9DB', '#92CFE1']}
         style={styles.gradient}
@@ -35,8 +36,8 @@ export default function NavBar({ navigation }: any) {
       </View>
     </LinearGradient>
       {/* <View style={styles.linhaPontilhada} /> */}
-  </View>
-  {/* } */}
+  </View>:null}
+
   </>
   );
 }

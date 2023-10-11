@@ -14,6 +14,7 @@ export const AuthContext = createContext({} as any);
  
 export const AuthProvider = ({children}:any) => {
     // const navigate = useNavigation();
+    
     const [ user, setUser ] = useState(null)
     const [loading, setLoading] = useState(true)
  
@@ -60,6 +61,7 @@ export const AuthProvider = ({children}:any) => {
                 userApi.defaults.withCredentials = true
                 setUser(loggedUser)
                 navigation.navigate('ListaEquipamento');
+                console.log(token)
  
             })
             .catch((err) => {     
