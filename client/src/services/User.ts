@@ -58,7 +58,7 @@ class User {
     }
 
 
-    async postLogin(body: Login): Promise<Props> {
+    async postLogin(body: Login): Promise<Props| any> {
         try {
             const res = await userApi.post('/user/login', body)
             return res.data
