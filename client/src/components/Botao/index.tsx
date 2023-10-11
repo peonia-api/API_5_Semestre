@@ -139,8 +139,8 @@ export function BotaoEnvCodigo() {
   return (
     <View>
       <View style={styles.containerBotao}>
-        <TouchableOpacity style={styles.botaoAtualizarUsuario}>
-          <Text style={styles.textoBotao}>ENVIAR CÓDIGO</Text>
+        <TouchableOpacity style={styles.BotaoEnvCodigo}>
+          <Text style={styles.textoBotao}>ENVIAR CÓDIGO aaaaaaaaa</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -151,7 +151,7 @@ export function BotaoVerificaCodigo() {
   return (
     <View>
       <View style={styles.containerBotao}>
-        <TouchableOpacity style={styles.botaoAtualizarUsuario}>
+        <TouchableOpacity style={styles.BotaoVerificaCodigo}>
           <Text style={styles.textoBotao}>CONFIRMAR CÓDIGO</Text>
         </TouchableOpacity>
       </View>
@@ -163,7 +163,7 @@ export function BotaoRedefSenha() {
   return (
     <View>
       <View style={styles.containerBotao}>
-        <TouchableOpacity style={styles.botaoAtualizarUsuario}>
+        <TouchableOpacity style={styles.BotaoRedefSenha}>
           <Text style={styles.textoBotao}>ALTERAR SENHA</Text>
         </TouchableOpacity>
       </View>
