@@ -147,17 +147,6 @@ export function BotaoEnvCodigo() {
   );
 }
 
-export function BotaoVerificaCodigo() {
-  return (
-    <View>
-      <View style={styles.containerBotao}>
-        <TouchableOpacity style={styles.BotaoVerificaCodigo}>
-          <Text style={styles.textoBotao}>CONFIRMAR CÓDIGO</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
-  );
-}
 
 export function BotaoRedefSenha() {
   return (

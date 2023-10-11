@@ -106,7 +106,7 @@ export default function Navigation() {
         />
         <Stack.Screen 
           name="Redefinir senha" 
-          component={RedefinirSenha} 
+          component={VerificacaoDoCodigo} 
           options={{ headerBackVisible: true, headerShown: true}} />
           </>
          

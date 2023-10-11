@@ -5,8 +5,6 @@ const styles = StyleSheet.create({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        marginTop: 10,
-        marginBottom: -30,
 
     },
     container: {
@@ -15,15 +13,13 @@ const styles = StyleSheet.create({
         height: '100%',
     },
     imageSize: {
-        width: "60%",
-        height: "60%",
+        width: "45%",
+        height: "45%",
     },
     inputWrapper: {
         alignItems: "center",
         justifyContent: "center",
         margin: 10,
-
-
     },
     inputEmail: {
         paddingLeft: 15,
@@ -56,7 +52,32 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         margin: 20,
-    }
+
+    },
+
+    inputCodigoVerifica: {
+        alignItems: "center",
+        justifyContent: "center",
+        margin: 10,
+        marginTop: 30,
+    },
+    textoBotao: {
+        color: 'white',
+        fontSize: 16,
+        textAlign: 'center',
+      },
+      BotaoVerificaCodigo: {
+        backgroundColor: 'black',
+        marginTop: 20,
+        padding: 12,
+        borderRadius: 5,
+        width: '85%'
+      },
+      containerBotao: {
+        flexDirection: "row",
+        justifyContent: "center",
+      },
+    
 });
 
 export default styles;
