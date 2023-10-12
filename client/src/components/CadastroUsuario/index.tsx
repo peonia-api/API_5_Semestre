@@ -2,52 +2,69 @@ import React, { useState } from "react";
 import { View, Image, TextInput, ScrollView, Alert } from "react-native";
 import styles from "./style";
 import { BotaoCadastroUsuario } from "../Botao";
+import { useContextoUser } from "../../hooks";
 
 export default function CadastroUsuario({navigation}: any) {
     
-    const [nome, setNome] = useState<string | null>(null);
-    const [sobrenome, setSobrenome] = useState<string | null>(null);
-    const [cpf, setCpf] = useState<number | null>(null);
-    const [email, setEmail] = useState<string | null>(null);
-    const [telefone, setTelefone] = useState<number | null>(null);
-    const [matricula, setMatricula] = useState<string | null>(null);
+    const { createUser } = useContextoUser();
+
+    const [userName, setUserName] = useState<string | null>(null);
+    //const [sobrenome, setSobrenome] = useState<string | null>(null);
+    //const [cpf, setCpf] = useState<number | null>(null);
+    const [userEmail, setUserEmail] = useState<string | null>(null);
+    //const [telefone, setTelefone] = useState<number | null>(null);
+    //const [matricula, setMatricula] = useState<string | null>(null);
+    const [userPassword, setUserPassword] = useState<string | null>(null);
 
     const clearFields = () => {
-        setNome(null);
-        setSobrenome(null);
-        setCpf(null);
-        setEmail(null);
-        setTelefone(null);
-        setMatricula(null);
+        setUserName(null);
+        //setSobrenome(null);
+        //setCpf(null);
+        setUserEmail(null);
+        //setTelefone(null);
+        //setMatricula(null);
+        setUserPassword(null);
     }
 
     const register = async () => {
-        if(!nome) {
+        if(!userName) {
             Alert.alert("Campo obrigatório", "Nome é obrigatório.")
         }
 
-        if(!sobrenome) {
-            Alert.alert("Campo obrigatório", "Sobrenome é obrigatório.")
-        }
+        // if(!sobrenome) {
+        //     Alert.alert("Campo obrigatório", "Sobrenome é obrigatório.")
+        // }
 
-        if(!cpf) {
-            Alert.alert("Campo obrigatório", "CPF é obrigatório.")
-        }
+        // if(!cpf) {
+        //     Alert.alert("Campo obrigatório", "CPF é obrigatório.")
+        // }
 
-        if(!email) {
+        if(!userEmail) {
             Alert.alert("Campo obrigatório", "Email é obrigatório.")
         }
 
-        if(!telefone) {
-            Alert.alert("Campo obrigatório", "Telefone é obrigatório.")
-        }
+        // if(!telefone) {
+        //     Alert.alert("Campo obrigatório", "Telefone é obrigatório.")
+        // }
 
-        if(!matricula) {
-            Alert.alert("Campo obrigatório", "Matrícula é obrigatório.")
+        // if(!matricula) {
+        //     Alert.alert("Campo obrigatório", "Matrícula é obrigatório.")
+        // }
+
+        if(!userPassword) {
+            Alert.alert("Campo obrigatório", "Senha é obrigatório.")
         }
 
         try{
-
+            await createUser({
+                userName: userName,
+                // sobrenome: sobrenome,
+                // cpf: cpf,
+                userEmail: userEmail,
+                // telefone: telefone,
+                // matricula: matricula,
+                userPassword: userPassword
+            })
         } catch(error) {
             console.log(error);
             Alert.alert("Erro", "Ocorreu um erro ao enviar os dados para o banco.");
@@ -69,15 +86,15 @@ export default function CadastroUsuario({navigation}: any) {
                             placeholder="NOME"
                             style={styles.inputLogin}
                             placeholderTextColor="#000000" // Defina a cor do placeholder
-                            onChangeText={(e: any) => setNome(e)}
+                            onChangeText={(e: any) => setUserName(e)}
                         />
                     </View>
-                    <View style={styles.inputWrapper}>
+                    {/* <View style={styles.inputWrapper}>
                         <TextInput
                             placeholder="SOBRENOME"
                             style={styles.inputLogin}
                             placeholderTextColor="#000000" // Defina a cor do placeholder
-                            onChangeText={(e: any) => setSobrenome(e)}
+                            onChangeText={(e: any) => (e)}
                         />
                     </View>
                     <View style={styles.inputWrapper}>
@@ -88,16 +105,27 @@ export default function CadastroUsuario({navigation}: any) {
                             placeholderTextColor="#000000" // Defina a cor do placeholder
                             onChangeText={(e: any) => setCpf(e)}
                         />
-                    </View>
+                    </View> */}
                     <View style={styles.inputWrapper}>
                         <TextInput
                             placeholder="E-MAIL"
+                            autoCapitalize="none"
                             style={styles.inputLogin}
                             placeholderTextColor="#000000" // Defina a cor do placeholder
-                            onChangeText={(e: any) => setEmail(e)}
+                            onChangeText={(e: any) => setUserEmail(e)}
                         />
                     </View>
                     <View style={styles.inputWrapper}>
+                        <TextInput
+                            placeholder="SENHA"
+                            autoCapitalize="none"
+                            secureTextEntry={true}
+                            style={styles.inputLogin}
+                            placeholderTextColor="#000000" // Defina a cor do placeholder
+                            onChangeText={(e: any) => setUserPassword(e)}
+                        />
+                    </View>
+                    {/* <View style={styles.inputWrapper}>
                         <TextInput
                             placeholder="TELEFONE"
                             keyboardType="numeric"
@@ -113,7 +141,7 @@ export default function CadastroUsuario({navigation}: any) {
                             placeholderTextColor="#000000" // Defina a cor do placeholder
                             onChangeText={(e: any) => setMatricula(e)}
                         />
-                    </View>
+                    </View> */}
                 </View>
                 <BotaoCadastroUsuario handle={register} />
             </ScrollView>
