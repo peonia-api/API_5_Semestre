@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: "#ccc",
         width: "85%",
-        fontSize: 30,
+        fontSize: 25,
         fontWeight: "bold"
     },
     containerRedefinir: {
@@ -63,15 +63,17 @@ const styles = StyleSheet.create({
     },
     textoBotao: {
         color: 'white',
-        fontSize: 16,
+        fontSize: 15,
         textAlign: 'center',
+        fontWeight: "bold"
       },
       BotaoVerificaCodigo: {
         backgroundColor: 'black',
-        marginTop: 20,
+        marginTop: 15,
         padding: 12,
         borderRadius: 5,
         width: '85%'
+
       },
       containerBotao: {
         flexDirection: "row",

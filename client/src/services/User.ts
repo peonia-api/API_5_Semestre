@@ -21,6 +21,11 @@ export interface Props {
     icone: string,
 }
 
+export interface PropsPassword {
+    userEmail: string,
+    userPassword: string,
+}
+
 class User {
     async get(): Promise<Props[]> {
         try {
@@ -85,7 +90,7 @@ class User {
         }
     }
 
-    async putPassword(body: Props): Promise<Props> {
+    async patchPassword(body: PropsPassword): Promise<PropsPassword> {
         try {
             const res = await userApi.put(`/user/redefinirSenha`, body)
             return res.data
@@ -93,6 +98,7 @@ class User {
             throw err
         }
     }
+
     async putProfile(id: string, body: Props): Promise<Props> {
         try {
             const res = await userApi.put(`/user/perfil/${id}`, body)
@@ -111,6 +117,14 @@ class User {
         }
     }
 
+    async getVerificaCodigo(userEmail: string, codigo: string): Promise<Props> {
+        try {
+            const res = await auth.get(`/auth2fa/getEmail/${userEmail}/${codigo}`)
+            return res.data
+        } catch (err) {
+            throw err
+        }
+    }
 
 }
 
