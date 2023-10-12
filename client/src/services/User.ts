@@ -90,7 +90,7 @@ class User {
         }
     }
 
-    async patchPassword(body: PropsPassword): Promise<PropsPassword> {
+    async patchPassword(body: PropsPassword): Promise<Props> {
         try {
             const res = await userApi.put(`/user/redefinirSenha`, body)
             return res.data

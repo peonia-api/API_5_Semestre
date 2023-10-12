@@ -3,9 +3,9 @@ import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
 import styles from "./style";
 import { BotaoEnvCodigo, BotaoRedefSenha } from "../Botao";
 import User from "../../services/User";
+import  Storage from 'expo-storage'
 
-
-export function VerificacaoDoCodigo() {
+export function VerificacaoDoCodigo({ navigation }: any) {
   const [emailInserido, setEmailInserido] = useState("");
   const [codigoInserido, setCodigoInserido] = useState("");
   const [senhaInserida, setSenhaInserida] = useState("");
@@ -15,6 +15,7 @@ export function VerificacaoDoCodigo() {
   const handleEnviarCodigo = async () => {
     try {
     await User.getAuthEmail(emailInserido).then(() =>{
+        Storage.setItem({key: 'email', value: JSON.stringify(emailInserido)})
         alert("Email enviado")
       }).catch(() => {
         alert("email incorreto!")
@@ -28,7 +29,7 @@ export function VerificacaoDoCodigo() {
     try {
     await User.getVerificaCodigo(emailInserido, codigoInserido).then((res) =>{
           if(res != null){
-            alert("fooiiiii!")
+            navigation.navigate('Redefinir senha')
           }else{
             alert("email ou codigo incorreto!")
           }
@@ -37,19 +38,6 @@ export function VerificacaoDoCodigo() {
       alert("email ou codigo incorreto!")
     }
   }
-  // const handleAlterarSenha = async () => {
-  //   try {
-  //     if(senhaInserida === senhaInseridaVerifica){
-  //       await User.putPassword({ userPassword: senhaInserida });
-
-  //     }else{
-  //       alert("Senha incorreta!")
-  //     }
-
-  //   } catch (error) {
-  //     alert("email incorreto!")
-  //   }
-  // };
 
 
   return (
@@ -57,8 +45,7 @@ export function VerificacaoDoCodigo() {
       <View style={styles.imageCenter}>
         <Image source={require('../../assets/logoComFundo.jpg')} style={styles.imageSize} />
       </View>
-
-        <View style={styles.inputWrapper}>
+      <View style={styles.inputWrapper}>
           <TextInput
             placeholder="Insira o seu E-mail"
             style={styles.inputEmail}
@@ -71,7 +58,6 @@ export function VerificacaoDoCodigo() {
               <Text style={styles.textoBotao}>Enviar Email</Text>
             </TouchableOpacity>
         </View>
-
         <View style={styles.inputCodigoVerifica}>
           <TextInput
             placeholder="Insira o código"
@@ -80,65 +66,14 @@ export function VerificacaoDoCodigo() {
             onChangeText={(e) => setCodigoInserido(e)}
           />
         </View>
-
         <View style={styles.containerBotao}>
             <TouchableOpacity style={styles.BotaoVerificaCodigo} onPress={() => handleVerificaCodigo()}  >
               <Text style={styles.textoBotao}>Verificar Código</Text>
             </TouchableOpacity>
         </View>
         <View>
-
-        </View>
-
-
-      {/* <View style={styles.inputWrapper}>
-        <TextInput
-          placeholder="NOVA SENHA"
-          style={styles.inputEmail}
-          placeholderTextColor="#000000"
-          onChangeText={(e) => setSenhaInserida(e)}
-        />
       </View>
-      <View style={styles.inputWrapper}>
-        <TextInput
-          placeholder="CONFIRMAR SENHA"
-          style={styles.inputEmail}
-          placeholderTextColor="#000000"
-          onChangeText={(e) => setSenhaInseridaVerifica(e)}
-        />
-      </View>
-      <View style={styles.containerBotao}>
-        <TouchableOpacity style={styles.BotaoVerificaCodigo} onPress={() => handleAlterarSenha()} >
-          <Text style={styles.textoBotao}>Confirmar Email</Text>
-        </TouchableOpacity>
-      </View> */}
     </View>
 
   );
 }
-
-// export function RedefinirSenha() {
-//   return (
-//     <View>
-//       <View style={styles.inputWrapper}>
-//         <TextInput
-//           placeholder="NOVA SENHA"
-//           style={styles.inputEmail}
-//           placeholderTextColor="#000000"
-//         />
-//       </View>
-//       <View style={styles.inputWrapper}>
-//         <TextInput
-//           placeholder="CONFIRMAR SENHA"
-//           style={styles.inputEmail}
-//           placeholderTextColor="#000000"
-//         />
-//       </View>
-//       <View style={styles.containerBotao}>
-//         <TouchableOpacity style={styles.BotaoVerificaCodigo} onPress={() => handleEnviarCodigo()} >
-//           <Text style={styles.textoBotao}>Cnfirmar Email</Text>
-//         </TouchableOpacity>
-//       </View>
-//     </View>
-//   );
-// }

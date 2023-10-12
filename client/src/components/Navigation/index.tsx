@@ -11,7 +11,8 @@ import LoginScreen from '../Login';
 import CadastroUsuario from '../CadastroUsuario';
 import Perfil from '../Perfil';
 import { AuthContext } from '../../contexts/User';
-import { RedefinirSenha, VerificacaoDoCodigo } from '../RedefinirSenha';
+import { VerificacaoDoCodigo } from '../RedefinirSenha';
+import { RedifinirSenha } from '../RedefinirSenha/redefinirSenha';
 
 Icon.loadFont();
 
@@ -105,9 +106,14 @@ export default function Navigation() {
           options={{ headerBackVisible: true, headerShown: true }}
         />
         <Stack.Screen 
-          name="Redefinir senha" 
+          name="Verificar codigo" 
           component={VerificacaoDoCodigo} 
           options={{ headerBackVisible: true, headerShown: true}} />
+
+        <Stack.Screen 
+          name="Redefinir senha" 
+          component={RedifinirSenha} 
+          options={{ headerBackVisible: true, headerShown: true}} />  
           </>
          
         )}

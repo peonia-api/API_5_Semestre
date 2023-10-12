@@ -52,7 +52,7 @@ function LoginScreen({ navigation }: any) {
         </View>
       </View>
       <BotaoLogin handleSubmit={handleSubmit}  />
-      <Text style={[styles.recuperarSenha, { marginTop: 35 }, {marginBottom: 28}]} onPress={() => navigation.navigate('Redefinir senha')}>
+      <Text style={[styles.recuperarSenha, { marginTop: 35 }, {marginBottom: 28}]} onPress={() => navigation.navigate('Verificar codigo')}>
         Recuperar a senha
       </Text>
       <View>
