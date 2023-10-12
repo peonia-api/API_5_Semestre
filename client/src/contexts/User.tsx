@@ -38,11 +38,15 @@ export const AuthProvider = ({children}:any) => {
       }, []);
     
 
-    const login = async (email:string, password:string, { navigation }: any) => {
+    const login = async (email:string, password:string) => {
         try{
             //await axios.post(URIuser.LOGIN_USER, {userEmail: email, userPassword: password})
             User.postLogin({userEmail: email, userPassword: password})
             .then((res) => {
+              
+                if(res.error){
+                  return
+                }
                 const loggedUser:any = res.userEmail
                 const token = res.token
                 const userName = res.userName
@@ -60,7 +64,7 @@ export const AuthProvider = ({children}:any) => {
                 userApi.defaults.headers.common = { Authorization: `Bearer ${token}` }
                 userApi.defaults.withCredentials = true
                 setUser(loggedUser)
-                navigation.navigate('ListaEquipamento');
+                // navigation.navigate('ListaEquipamento');
                 console.log(token)
  
             })
@@ -73,6 +77,7 @@ export const AuthProvider = ({children}:any) => {
                 //avisoErroLogin()
             })
         }catch(err){
+
  
         }
 

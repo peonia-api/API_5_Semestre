@@ -10,7 +10,7 @@ import Detalhes from '../Detalhes';
 import LoginScreen from '../Login';
 import CadastroUsuario from '../CadastroUsuario';
 import Perfil from '../Perfil';
-import { AuthContext } from '../../contexts';
+import { AuthContext } from '../../contexts/User';
 import { RedefinirSenha, VerificacaoDoCodigo } from '../RedefinirSenha';
 
 Icon.loadFont();

@@ -10,9 +10,6 @@ import { Props } from "../../types/equipmente";
 
 function ListaEquipamento({ navigation }: any) {
   const { equipmente, loaded } = useContextoEquipmente();
-  
-  
-  
   const [filteredEquipments, setFilteredEquipments] = useState<Props[]>(equipmente);
   const [searchValue, setSearchValue] = useState(""); 
 
@@ -27,7 +24,7 @@ function ListaEquipamento({ navigation }: any) {
 
   const handleItemPress = (itemId: string) => {
     // Navegue para a tela de detalhes, passando o ID como parâmetro
-    navigation.navigate('Detalhes', { itemId });
+    // navigation.navigate('Detalhes', { itemId });
   };
 
   // const handleCadastro = () => {
