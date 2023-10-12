@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
     imageSize: {
         width: 100,
         height: 100,
+        marginTop: 20
     },
     inputWrapper: {
         alignItems: "center",
@@ -32,6 +33,12 @@ const styles = StyleSheet.create({
         width: "85%",
         marginTop: 10
     },
+    returnImage: {
+        width: 30,
+        height: 30,
+        marginLeft: 7, 
+        marginTop: 10 
+    }
 });
 
 export default styles;

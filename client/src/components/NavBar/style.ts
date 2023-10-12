@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
 
     containerPeople: {
       alignItems: 'flex-end',
-      marginRight:15
+      marginRight: 10
       },
       
     // linhaPontilhada: {

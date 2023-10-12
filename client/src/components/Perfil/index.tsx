@@ -1,18 +1,23 @@
 import React from "react";
-import { ScrollView, TextInput, View, Image } from "react-native";
+import { ScrollView, TextInput, View, Image, TouchableOpacity } from "react-native";
 import styles from "./style";
 import { BotaoAtualizarUsuario } from "../Botao";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { Text } from "react-native";
 
-export default function Perfil() {
+export default function Perfil({ navigation }: any) {
     return(
         <View style={styles.container}>
-            <Image source={require('../../assets/baseline_arrow_back_24.png')}
-            fadeDuration={0}
-            style={{ width: 25, height: 25, marginLeft: 10, marginTop: 10 }}
-            // onPress={() => navigation.navigate('ListaEquipamento')}
-            />
+            <TouchableOpacity
+                onPress={() => navigation.navigate('Equipamentos')}
+                style={styles.returnImage}
+            >
+                <Image
+                    source={require('../../assets/baseline_arrow_back_24.png')}
+                    fadeDuration={0}
+                    style={styles.returnImage}
+                />
+            </TouchableOpacity>
             <ScrollView>
                 <View style={styles.imageCenter}>
                     <Image source={require('../../assets/iconPeople.png')} style={styles.imageSize} />

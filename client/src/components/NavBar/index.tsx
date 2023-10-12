@@ -29,9 +29,13 @@ export default function NavBar({ navigation }: any) {
           </View>
         </View>
         <View style={styles.containerPeople}>
-          <Image source={require('../../assets/iconUser.png')} style={styles.icon} />
-          {/* <FontAwesomeIcon icon={ faUser } /> */}
-          <Text>Usuário</Text>
+        <TouchableOpacity
+                onPress={() => (navigation.navigate('Perfil'))} 
+                style={styles.containerPeople}
+            >
+              <Image source={require('../../assets/iconUser.png')} style={styles.icon} />
+              <Text>Usuário</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </LinearGradient>
