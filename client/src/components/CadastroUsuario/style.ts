@@ -1,13 +1,6 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-    imageCenter: {
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: 10,
-        marginBottom: 40,
-    },
     container: {
         backgroundColor: '#4DB9DB',
         width: '100%',
@@ -15,10 +8,6 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         alignContent: "center",
         paddingTop: 50
-    },
-    imageSize: {
-        width: 100,
-        height: 100,
     },
     inputWrapper: {
         alignItems: "center",
@@ -33,6 +22,24 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: "#ccc",
         width: "85%",
+    },
+    containerImagem: {
+        marginLeft: 160,
+        justifyContent: "center",
+        alignItems: "center",
+        height: 100,
+        width: 100,
+        borderRadius: 50,
+        backgroundColor: '#f2f2f2',
+    },
+    image: {
+        height: 100,
+        width: 100,
+        borderRadius: 50,
+    },
+    icon: {
+        marginTop: -15,
+        marginLeft: 250,
     },
 });
 
