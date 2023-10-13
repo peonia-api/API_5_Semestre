@@ -12,7 +12,10 @@ interface Login {
 }
 
 export interface Props {
-    id: number
+    id: number, 
+    userCpf: string,
+    userMatricula: string,
+    userTelefone: string,
     userName: string,
     userEmail: string,
     userType: UserType,
