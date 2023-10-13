@@ -18,6 +18,8 @@ routes.get('/especificoEmail/:email', UserController.getEmail);
 
 routes.get('/veficaType/', UserController.getVeficaType);
 
+routes.get('/verificaEmail/', UserController.getVerificaEmail)
+
 routes.post('/createUser', UserController.postUser);
 
 routes.put('/modifyUser/:uuid', UserController.putUser);

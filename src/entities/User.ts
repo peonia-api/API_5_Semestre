@@ -12,6 +12,15 @@ export class User {
     @PrimaryGeneratedColumn()
     id: number;
 
+    @Column({ nullable: false, length: 12 })
+    userCpf: string;
+
+    @Column({ nullable: false, length: 10 })
+    userMatricula: string;
+
+    @Column({ nullable: false, length: 15 })
+    userTelefone: string;
+
     @Column({ nullable: false, length: 100 })
     userName: string;
 

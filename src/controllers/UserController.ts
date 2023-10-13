@@ -31,6 +31,9 @@ class UserController {
         return res.json({
           id: usuario.id,
           userName: usuario.userName,
+          userCpf: usuario.userCpf,
+          userMatricula: usuario.userMatricula,
+          userTelefone: usuario.userTelefone,
           userType: usuario.userType,
           userEmail: usuario.userEmail,
           icone: usuario.icone,
@@ -190,6 +193,9 @@ class UserController {
       insertUser.userPassword = createUser.userPassword
       insertUser.userType = createUser.userType
       insertUser.icone = createUser.icone
+      insertUser.userCpf = createUser.userCpf,
+      insertUser.userMatricula = createUser.userMatricula,
+      insertUser.userTelefone = createUser.userTelefone
       const allUser = await userRepository.save(insertUser)
       return res.json(allUser)
     }catch(err){
@@ -207,6 +213,9 @@ class UserController {
       // findUser.userPosition = createUser.userPosition
       findUser.userEmail = createUser.userEmail
       findUser.userType = createUser.userType
+      findUser.userCpf = createUser.userCpf,
+      findUser.userMatricula = createUser.userMatricula,
+      findUser.userTelefone = createUser.userTelefone
   
       const allUser = await userRepository.save(findUser)
       return res.json(allUser)
@@ -223,6 +232,9 @@ class UserController {
       const findUser = await userRepository.findOneBy({ userEmail: idUser })
       findUser.userName = createUser.userName
       findUser.userEmail = createUser.userEmail
+      findUser.userCpf = createUser.userCpf,
+      findUser.userMatricula = createUser.userMatricula,
+      findUser.userTelefone = createUser.userTelefone
       findUser.icone = createUser.icone
       const allUser = await userRepository.save(findUser)
       return res.json(allUser)
@@ -277,6 +289,22 @@ class UserController {
       return res.json(userRepository)
     } catch (err) {
       return res.status(400).json({ menssagem: "Erro ao verificar" })
+    }
+  }
+
+  public async getVerificaEmail(req: Request, res: Response): Promise<Response>{
+    try{
+      const { userEmail } = req.body
+      const usuario: any = await AppDataSource.manager
+        .getRepository(User)
+        .createQueryBuilder("user")
+        .select()
+        .addSelect('user.userPassword')
+        .where("user.userEmail=:userEmail", { userEmail })
+        .getOne();
+      return res.status(200).json(usuario)
+    }catch(err){
+      return res.status(400).json({"erro": true, "message": "Erro ao verificar!", "err": err})
     }
   }
 }
