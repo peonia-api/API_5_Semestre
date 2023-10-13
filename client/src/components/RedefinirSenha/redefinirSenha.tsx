@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
 import styles from "./style";
-import { BotaoEnvCodigo, BotaoRedefSenha } from "../Botao";
 import User from "../../services/User";
 import  Storage from 'expo-storage'
+import { Button } from "../button";
 
-export function RedifinirSenha({ navigation }: any) {
+export function Redifinir({ navigation }: any) {
   const [senhaInserida, setSenhaInserida] = useState("");
   const [senhaInseridaVerifica, setSenhaInseridaVerifica] = useState("");
 
@@ -56,16 +56,13 @@ export function RedifinirSenha({ navigation }: any) {
         />
       </View>
       <View style={styles.containerBotao}>
-        <TouchableOpacity style={styles.BotaoVerificaCodigo} onPress={() => handleAlterarSenha()} >
-          <Text style={styles.textoBotao}>Redefinir Senha</Text>
-        </TouchableOpacity>a
+        <Button 
+            styles={styles.BotaoVerificaCodigo} 
+            stylesText={styles.textoBotao} 
+            onPress={handleAlterarSenha} 
+            texto={'Redefinir Senha'}
+        />
       </View> 
-        
-
     </View>
-
-
-
-
   );
 }

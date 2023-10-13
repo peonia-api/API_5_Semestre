@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, Image, Alert } from "react-native";
 import styles from "./style";
-import { BotaoEnvCodigo, BotaoRedefSenha } from "../Botao";
 import User from "../../services/User";
 import  Storage from 'expo-storage'
+import { Button } from "../button";
 
 export function VerificacaoDoCodigo({ navigation }: any) {
   const [emailInserido, setEmailInserido] = useState("");
   const [codigoInserido, setCodigoInserido] = useState("");
-  const [senhaInserida, setSenhaInserida] = useState("");
-  const [senhaInseridaVerifica, setSenhaInseridaVerifica] = useState("");
+
+
 
 
   const handleEnviarCodigo = async () => {
@@ -25,17 +25,19 @@ export function VerificacaoDoCodigo({ navigation }: any) {
     }
   }
   
-  const handleVerificaCodigo= async () => {
+  const handleVerificaCodigo = async () => {
     try {
-    await User.getVerificaCodigo(emailInserido, codigoInserido).then((res) =>{
-          if(res != null){
-            navigation.navigate('Redefinir senha')
-          }else{
-            alert("email ou codigo incorreto!")
-          }
-      })
+      await User.getVerificaCodigo(emailInserido, codigoInserido).then((res) =>{
+            if(res != null){
+              alert("Foiii")
+              navigation.navigate('Redefinir')
+            }else{
+              alert("email ou codigo incorreto!")
+
+            }
+        })
     }catch (error) {
-      alert("email ou codigo incorreto!")
+      Alert.alert("Erro","Email ou codigo incorreto!")
     }
   }
 
@@ -54,9 +56,12 @@ export function VerificacaoDoCodigo({ navigation }: any) {
           />
         </View>
         <View style={styles.containerBotao}>
-            <TouchableOpacity style={styles.BotaoVerificaCodigo} onPress={() => handleEnviarCodigo()} >
-              <Text style={styles.textoBotao}>Enviar Email</Text>
-            </TouchableOpacity>
+          <Button 
+            styles={styles.BotaoVerificaCodigo} 
+            stylesText={styles.textoBotao} 
+            onPress={handleEnviarCodigo} 
+            texto={'Enviar Email'}
+          />
         </View>
         <View style={styles.inputCodigoVerifica}>
           <TextInput
@@ -67,9 +72,12 @@ export function VerificacaoDoCodigo({ navigation }: any) {
           />
         </View>
         <View style={styles.containerBotao}>
-            <TouchableOpacity style={styles.BotaoVerificaCodigo} onPress={() => handleVerificaCodigo()}  >
-              <Text style={styles.textoBotao}>Verificar Código</Text>
-            </TouchableOpacity>
+          <Button 
+            styles={styles.BotaoVerificaCodigo} 
+            stylesText={styles.textoBotao} 
+            onPress={handleVerificaCodigo} 
+            texto={'Verificar Código'}
+          />
         </View>
         <View>
       </View>

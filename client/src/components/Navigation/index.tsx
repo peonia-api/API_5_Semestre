@@ -12,7 +12,7 @@ import CadastroUsuario from '../CadastroUsuario';
 import Perfil from '../Perfil';
 import { AuthContext } from '../../contexts/User';
 import { VerificacaoDoCodigo } from '../RedefinirSenha';
-import { RedifinirSenha } from '../RedefinirSenha/redefinirSenha';
+import { Redifinir } from '../RedefinirSenha/redefinirSenha';
 
 Icon.loadFont();
 
@@ -100,22 +100,22 @@ export default function Navigation() {
         ) : (
           <>
            <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen 
+            name="Redefinir" 
+            component={Redifinir} 
+            options={{ headerBackVisible: true, headerShown: true}} 
+          />  
           <Stack.Screen
-          name="Cadastrar usuário"
-          component={CadastroUsuario}
-          options={{ headerBackVisible: true, headerShown: true }}
-        />
-        <Stack.Screen 
-          name="Verificar codigo" 
-          component={VerificacaoDoCodigo} 
-          options={{ headerBackVisible: true, headerShown: true}} />
-
-        <Stack.Screen 
-          name="Redefinir senha" 
-          component={RedifinirSenha} 
-          options={{ headerBackVisible: true, headerShown: true}} />  
+            name="Cadastrar usuário"
+            component={CadastroUsuario}
+            options={{ headerBackVisible: true, headerShown: true }}
+          />
+          <Stack.Screen 
+            name="Verificar codigo" 
+            component={VerificacaoDoCodigo} 
+            options={{ headerBackVisible: true, headerShown: true}} 
+          />
           </>
-         
         )}
       </Stack.Navigator>
     </NavigationContainer>
