@@ -9,14 +9,13 @@ interface props {
   text: string;
   style: any;
   label: string;
-  message: string;
   id: string
   status: any
 }
 
 
 
-export function BotoesDetalhes({ text, style, label, message, id, status }: props) {
+export function BotoesDetalhes({ text, style, label, id, status }: props) {
   const [ confirm, setConfirm ] = useState(null as any)
   const { patchStatus } = useContextoEquipmente()
   //const { setConfirm, confirm } = useContextoEquipmente()
@@ -25,7 +24,7 @@ export function BotoesDetalhes({ text, style, label, message, id, status }: prop
   //   AlertEquipmentt(text, label, message);
   // };
 
-  function AlertEquipmentt(title:string, label:string, message:string) {
+  function AlertEquipmentt(title:string, label:string) {
   
       Alert.alert(`${title}`, `${label}`, [
         {
@@ -56,18 +55,18 @@ export function BotoesDetalhes({ text, style, label, message, id, status }: prop
 
   if(confirm === true){
     patch(id)
-    console.log(`Equipamento ${message} com sucesso`);
+    //console.log(`Equipamento ${message} com sucesso`);
     setConfirm(null)
   }
   else if(confirm === false && confirm != null){
-    console.log(`Equipamento não ${message}`);
+    //console.log(`Equipamento não ${message}`);
     setConfirm(null)
   }
   
 
   return (
     <View style={styles.containerBotao2}>
-      <TouchableOpacity style={style} onPress={() => AlertEquipmentt(text, label, message)}>
+      <TouchableOpacity style={style} onPress={() => AlertEquipmentt(text, label)}>
         <Text style={styles.textoBotao}>{text}</Text>
       </TouchableOpacity>
     </View>

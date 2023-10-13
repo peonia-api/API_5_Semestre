@@ -20,11 +20,13 @@ const styles = StyleSheet.create({
     flex: 1,
     marginRight: 5,
     alignItems: "center",
-    paddingTop: 15,
-    marginTop: 10,
+    paddingTop: 5,
+    paddingLeft: 0,
+    marginTop: 0,
     borderRadius: 5,
-    marginLeft: 5,
-    marginBottom: 5
+    marginLeft: 0,
+    marginBottom: 5,
+    width: "10%"
     
   },
   column2: {

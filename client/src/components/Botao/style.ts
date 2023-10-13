@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
   },
 
   botaoAtualizar: {
-    backgroundColor: 'blue',
+    backgroundColor: 'rgb(21, 75, 120)',
     marginTop: 12,
     padding: 12,
     borderRadius: 5,

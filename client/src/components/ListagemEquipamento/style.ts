@@ -4,17 +4,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
-    paddingHorizontal: 10,
-    backgroundColor: '#ffffff'
+    paddingHorizontal: 3,
+    backgroundColor: '#ffffff',
   },
   listaContainer: {
     flex: 1,
-    marginBottom: 20
+    marginBottom: 2,
   },
   row: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 10,
+    marginBottom: 1,
   },
   column: {
     flex: 1,

@@ -125,19 +125,19 @@ const styles = StyleSheet.create({
   // },
   
   botaoDesativar: {
-    backgroundColor: 'red',
+    backgroundColor: 'rgb(174, 59, 59)',
     marginTop: 12,
     padding: 12,
     borderRadius: 5,
-    width: 100
+    width: '100%'
   },
 
   botaoAtivar: {
-    backgroundColor: '#14A3F8',
+    backgroundColor: 'rgb(96, 145, 193)',
     marginTop: 12,
     padding: 12,
     borderRadius: 5,
-    width: 100
+    width: '100%'
   },
 
   botaoAtualizar: {

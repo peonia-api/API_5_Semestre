@@ -29,7 +29,7 @@ const CardEquipmet = ({filter, onPress}:any) => {
             <TouchableOpacity
               style={[
                 styles.column,
-                { backgroundColor: item.status ? 'transparent' : 'gray' },
+                { backgroundColor: item.status ? 'transparent' : 'rgb(248, 248, 259)', opacity: item.status ? 1 : 0.4 },
               ]}
               onPress={() => onPress(item._id)}
             >
@@ -37,11 +37,11 @@ const CardEquipmet = ({filter, onPress}:any) => {
                 source={{ uri: item.url[0] }}
                 style={[
                   styles.image,
-                  { opacity: item.status ? 1 : 0.5 }, 
+                  { opacity: item.status ? 1 : 0.3}, 
                 ]}
               />
-              <Text style={styles.textfont}>{item.type}</Text>
-              <Text>{item.serial}</Text>
+              <Text style={[styles.textfont, { opacity: item.status ? 1 : 0.3}]}>{item.type}</Text>
+              <Text style={{ opacity: item.status ? 1 : 0.3}}>{item.serial}</Text>
             </TouchableOpacity>
           )}
         />

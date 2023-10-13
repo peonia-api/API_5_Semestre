@@ -38,6 +38,7 @@ export default function Detalhe({ route, navigation }: any) {
     const camRef = useRef<any | null>(null);
     const [capturedPhoto, setCapturedPhoto] = useState(null)
     const [isCameraVisible, setCameraVisible] = useState(false);
+
   
 
     
@@ -61,7 +62,7 @@ export default function Detalhe({ route, navigation }: any) {
                 }
             }
             init()
-
+            
         } catch (err) {
             console.log("Assim não");
             //navigation.navigate('Cadastro')
@@ -162,36 +163,6 @@ export default function Detalhe({ route, navigation }: any) {
         setSelectedEquipa(equipamento);
     };
 
-    const handleStatusBotao = () => {
-        try {
-            if (status === true)
-                return (
-                    <BotoesDetalhes
-                        text="Desativar"
-                        style={styles.botaoDesativar}
-                        label="Desativar Equipamento"
-                        message="desativado"
-                        id= {itemId}
-                        status={status}
-                    />)
-
-            else {
-                return (
-                    <BotoesDetalhes
-                        text="Ativar"
-                        style={styles.botaoAtivar}
-                        label="Ativar Equipamento"
-                        message="ativado"
-                        id= {itemId}
-                        status={status}
-                    />
-                )
-            }
-        } catch (err) {
-            console.error('Erro ao atualizar a Imagem:', err);
-        }
-
-    };
 
 
     return (
@@ -329,7 +300,16 @@ export default function Detalhe({ route, navigation }: any) {
 
                 <View style={styles.containerBotao}>
 
-                    {handleStatusBotao()}
+                    <BotoesDetalhes
+                        text={status === true ? "Desativar" : "Ativar"}
+                        style={[
+                            styles.botaoAtivar, 
+                            {backgroundColor: status === true ? 'rgb(174, 59, 59)' : 'rgb(96, 145, 193)'}
+                        ]}
+                        label={(status === true ? "Desativar" : "Ativar") + " Equipamento"} 
+                        id= {itemId}
+                        status={status}
+                    />
 
                     <BotaoAtualizar handle={handleAtualizar} />
                 </View>
