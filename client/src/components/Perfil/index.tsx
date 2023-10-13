@@ -26,38 +26,35 @@ export default function Perfil({ navigation }: any) {
                     <View style={styles.inputWrapper}>
                         {/* <Text>{users.userName}</Text> */}
                         <TextInput
-                            placeholder="NOME"
+                            placeholder="Nome"
                             style={styles.inputLogin}
-                            placeholderTextColor="#000000"
                         />
                     </View>
-                    <View style={styles.inputWrapper}>
+                    {/* <View style={styles.inputWrapper}>
                         <TextInput
                             placeholder="SOBRENOME"
                             style={styles.inputLogin}
                             placeholderTextColor="#000000"
                         />
-                    </View>
+                    </View> */}
                     <View style={styles.inputWrapper}>
                         {/* <Text>{users.userEmail}</Text> */}
                         <TextInput
-                            placeholder="E-MAIL"
+                            placeholder="E-mail"
                             style={styles.inputLogin}
-                            placeholderTextColor="#000000"
                         />
                     </View>
-                    <View style={styles.inputWrapper}>
+                    {/* <View style={styles.inputWrapper}>
                         <TextInput
                             placeholder="TELEFONE"
                             style={styles.inputLogin}
                             placeholderTextColor="#000000"
                         />
-                    </View>
+                    </View> */}
                     <View style={styles.inputWrapper}>
                         <TextInput
-                            placeholder="MATRÍCULA"
+                            placeholder="Senha"
                             style={styles.inputLogin}
-                            placeholderTextColor="#000000"
                         />
                     </View>
                 </View>

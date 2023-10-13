@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { View, Image, TextInput, ScrollView, Alert } from "react-native";
 import styles from "./style";
 import { BotaoCadastroUsuario } from "../Botao";
-import { useContextoUser } from "../../hooks";
+import { useContextUser } from "../../hooks";
 
 export default function CadastroUsuario({navigation}: any) {
     
-    const { createUser } = useContextoUser();
+    const { createUser } = useContextUser();
 
     const [userName, setUserName] = useState<string | null>(null);
     //const [sobrenome, setSobrenome] = useState<string | null>(null);
@@ -40,7 +40,7 @@ export default function CadastroUsuario({navigation}: any) {
         // }
 
         if(!userEmail) {
-            Alert.alert("Campo obrigatório", "Email é obrigatório.")
+            Alert.alert("Campo obrigatório", "E-mail é obrigatório.")
         }
 
         // if(!telefone) {
@@ -83,9 +83,9 @@ export default function CadastroUsuario({navigation}: any) {
                 <View>
                     <View style={styles.inputWrapper}>
                         <TextInput
-                            placeholder="NOME"
+                            placeholder="Nome"
                             style={styles.inputLogin}
-                            placeholderTextColor="#000000" // Defina a cor do placeholder
+                            placeholderTextColor="#000000"
                             onChangeText={(e: any) => setUserName(e)}
                         />
                     </View>
@@ -108,20 +108,20 @@ export default function CadastroUsuario({navigation}: any) {
                     </View> */}
                     <View style={styles.inputWrapper}>
                         <TextInput
-                            placeholder="E-MAIL"
+                            placeholder="E-mail"
                             autoCapitalize="none"
                             style={styles.inputLogin}
-                            placeholderTextColor="#000000" // Defina a cor do placeholder
+                            placeholderTextColor="#000000"
                             onChangeText={(e: any) => setUserEmail(e)}
                         />
                     </View>
                     <View style={styles.inputWrapper}>
                         <TextInput
-                            placeholder="SENHA"
+                            placeholder="Senha"
                             autoCapitalize="none"
                             secureTextEntry={true}
                             style={styles.inputLogin}
-                            placeholderTextColor="#000000" // Defina a cor do placeholder
+                            placeholderTextColor="#000000" 
                             onChangeText={(e: any) => setUserPassword(e)}
                         />
                     </View>

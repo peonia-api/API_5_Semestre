@@ -24,7 +24,10 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "column",
     paddingTop: 10,
-    marginTop: 10
+    marginTop: 10,
+    marginBottom: 10,
+    marginLeft: 10,
+    marginRight: 10
   },
 
   containerImagem: {  
@@ -35,7 +38,7 @@ const styles = StyleSheet.create({
     height: 225,
     borderWidth: 1,
     borderRadius: 5,
-    backgroundColor: '#f2f2f2',
+    backgroundColor: '#f2f2f2'
   },
 
   image: {
@@ -56,10 +59,10 @@ const styles = StyleSheet.create({
     height: 50,
     width: 50,
     borderRadius: 10,
-    marginTop: 20,
-    backgroundColor: '#a4cdea',
+    marginTop: 30,
+    backgroundColor: '#4DB9DB',
     alignItems: 'center', 
-    justifyContent: 'center', 
+    justifyContent: 'center'
   },
 
   containerInput: {
@@ -122,14 +125,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     marginTop: 10,
-    marginBottom: 10,
+    marginBottom: 20,
+    color: "#4DB9DB"
   },
 
 
-
-
-
-//Modal Cameraaa
+//Modal Camera
 modalContainer: {
   flex: 1,
   justifyContent: 'center',
@@ -158,18 +159,11 @@ buttonCamera: {
   height: 50,
   width: 50,
   borderRadius: 10,
-  marginTop: 20,
-  backgroundColor: 'red',
+  marginTop: 30,
+  backgroundColor: '#4DB9DB',
   alignItems: 'center', 
-  justifyContent: 'center', 
-
+  justifyContent: 'center'
 },
-
-
-
-
-
-
 
 
 });
