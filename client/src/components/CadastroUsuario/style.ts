@@ -5,12 +5,16 @@ const styles = StyleSheet.create({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-       marginTop: 10,
+        marginTop: 10,
+        marginBottom: 40,
     },
     container: {
         backgroundColor: '#4DB9DB',
         width: '100%',
         height: '100%',
+        flexDirection: "column",
+        alignContent: "center",
+        paddingTop: 50
     },
     imageSize: {
         width: 100,

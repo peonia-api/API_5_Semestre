@@ -190,7 +190,6 @@ export default function Cadastro({ navigation }: any) {
             <TouchableOpacity style={styles.icons} onPress={removeImage}>
               <Icon name="trash" size={25} color="#000000" />
             </TouchableOpacity>
-
             <TouchableOpacity style={styles.icons} onPress={() => setCameraVisible(true)}>
               <Icon name="camera" size={25} color="#000000" />
             </TouchableOpacity>

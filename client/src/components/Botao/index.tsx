@@ -129,7 +129,7 @@ export function BotaoAtualizarUsuario() {
     <View>
       <View style={styles.containerBotao}>
         <TouchableOpacity style={styles.botaoAtualizarUsuario}>
-          <Text style={styles.textoBotao}>ATUALIZAR DADOS</Text>
+          <Text style={styles.textoBotao}>Atualizar dados</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -159,3 +159,16 @@ export function BotaoRedefSenha() {
     </View>
   );
 }
+
+// export function BotaoLogout(props: { handleSubmit: () => void }) {
+//   return(
+//     <View>
+//       <View style={styles.containerBotao}>
+//         <TouchableOpacity style={styles.botaoLogin} onPress={props.handleSubmit} >
+//           <Text style={styles.textoBotao}>Logout</Text>
+//         </TouchableOpacity>
+//       </View>
+//     </View>
+//   )
+  
+// }

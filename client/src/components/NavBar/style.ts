@@ -38,7 +38,12 @@ const styles = StyleSheet.create({
     containerPeople: {
       alignItems: 'flex-end',
       marginRight: 10
-      },
+    },
+
+    iconSignOut: {
+      width: 30,
+      height: 30
+    }
       
     // linhaPontilhada: {
     //     width: "100%",

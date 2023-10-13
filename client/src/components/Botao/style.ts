@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   },
 
   botaoCadastro: {
-    backgroundColor: 'green',
+    backgroundColor: '#4DB9DB',
     marginTop: 12,
     padding: 12,
     borderRadius: 5,
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
   },
 
   botaoAtualizarUsuario: {
-    backgroundColor: 'black',
+    backgroundColor: '#4DB9DB',
     marginTop: 20,
     padding: 12,
     borderRadius: 5,

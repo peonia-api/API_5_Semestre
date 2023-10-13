@@ -33,8 +33,8 @@ export default function NavBar({ navigation }: any) {
                 onPress={() => (navigation.navigate('Perfil'))} 
                 style={styles.containerPeople}
             >
-              <Image source={require('../../assets/iconUser.png')} style={styles.icon} />
-              <Text>Usuário</Text>
+              <Image source={require('../../assets/sign-out.png')} style={styles.iconSignOut} />
+              <Text>Sair</Text>
           </TouchableOpacity>
         </View>
       </View>
