@@ -17,6 +17,8 @@ export const AuthProvider = ({children}:any) => {
     
     const [ user, setUser ] = useState(null)
     const [loading, setLoading] = useState(true)
+
+    
  
     useEffect(() => {
         const loadData = async () => {
@@ -74,11 +76,11 @@ export const AuthProvider = ({children}:any) => {
                 Storage.removeItem({key:"userType"});
                 Storage.removeItem({key:"userName"});
                 Storage.removeItem({key:"icone"});
+                alert("Usuário ou senha incorreto!")
                 //avisoErroLogin()
             })
         }catch(err){
-
- 
+          throw err
         }
 
     }
@@ -98,10 +100,9 @@ export const AuthProvider = ({children}:any) => {
     }
  
     return (
-<AuthContext.Provider value={{authenticated: Boolean(user), user, loading , logout, login}}>
- 
-            {children}
-</AuthContext.Provider>
+      <AuthContext.Provider value={{authenticated: Boolean(user), user, loading , logout, login}}>
+        {children}
+      </AuthContext.Provider>
     )
 }
  

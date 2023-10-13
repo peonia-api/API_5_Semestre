@@ -2,7 +2,9 @@ import React, { useContext, useState } from "react";
 import { View, Image, TextInput, Text } from "react-native";
 import styles from "./style";
 import { BotaoLogin } from "../Botao";
-import { AuthContext } from "../../contexts/User";
+import { AuthContext } from "../../contexts/";
+import { InputPassword, Input } from "../Input";
+import LottieView from 'lottie-react-native';
 
 
 function LoginScreen({ navigation }: any) {
@@ -11,22 +13,12 @@ function LoginScreen({ navigation }: any) {
    
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [EmailRecovery, setEmailRecovery] = useState("");
    
     const handleSubmit = () => {
-      console.log("submit", { email, password });
-   
-      login(email, password);
-    };
-    // const changeInput = (e: any) => {
-    //   e.style.backgroundColor = "#54C5CE";
-    // };
-   
-   
-    let paramsEmail = {
-      email: EmailRecovery,
+      login(email, password)
     };
 
+    
 
   return (
     <View style={styles.container}>
@@ -35,20 +27,10 @@ function LoginScreen({ navigation }: any) {
       </View>
       <View>
         <View style={styles.inputWrapper}>
-          <TextInput
-            placeholder="USUÁRIO"
-            style={styles.inputLogin}
-            onChangeText={(e) => setEmail(e)}
-            placeholderTextColor="#000000" // Defina a cor do placeholder
-          />
+          <Input style={styles.inputLogin} set={setEmail} placeholder={"USUÁRIO"} />
         </View>
         <View style={styles.inputWrapper}>
-          <TextInput
-            placeholder="SENHA"
-            style={styles.inputLogin}
-            onChangeText={(e) => setPassword(e)}
-            placeholderTextColor="#000000" // Defina a cor do placeholder
-          />
+          <InputPassword style={styles.inputLogin} setPassword={setPassword}/>
         </View>
       </View>
       <BotaoLogin handleSubmit={handleSubmit}  />
@@ -56,20 +38,16 @@ function LoginScreen({ navigation }: any) {
         Recuperar a senha
       </Text>
       <View>
-      <Text style={styles.textoNovo}>
-      Você é novo por aqui?{' '} 
-        <Text style={styles.recuperarSenha} onPress={() => navigation.navigate('Cadastrar usuário')}>
-          Crie sua conta
+        <Text style={styles.textoNovo}>
+        Você é novo por aqui?{' '} 
+          <Text style={styles.recuperarSenha} onPress={() => navigation.navigate('Cadastrar usuário')}>
+            Crie sua conta
+          </Text>
         </Text>
-      </Text>
-      
-        
       </View>
-
-    
     </View>
   );
-  }
+}
 
 
 export default React.memo(LoginScreen)
