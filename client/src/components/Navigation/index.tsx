@@ -73,7 +73,6 @@ const TabNavigator = () => {
 };
 
 
-
 export default function Navigation() {
   const { authenticated } = useContext(AuthContext);
   
@@ -93,7 +92,7 @@ export default function Navigation() {
             <Stack.Screen
               name="Perfil"
               component={Perfil}
-              options={{ headerBackVisible: true, headerShown: true }}
+              options={{ headerBackVisible: true, headerShown: true}}
             />
            
             </>
