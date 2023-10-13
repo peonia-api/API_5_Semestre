@@ -16,12 +16,14 @@ enum UserType {
     Comum = 2
 }
 export interface Props{
-    id: number
+    id: number,
+    userCpf: string,
+    userMatricula: string,
+    userTelefone: string,
     userName: string,
     userEmail: string,
     userType: UserType,
     userPassword: string,
     token: string,
     icone: string,
-  
 }

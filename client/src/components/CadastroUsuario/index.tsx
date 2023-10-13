@@ -1,15 +1,19 @@
 import React, { useState } from "react";
-import { View, Image, TextInput, ScrollView, Alert } from "react-native";
+import { View, Image, TextInput, ScrollView, Alert, TouchableOpacity } from "react-native";
+import Icon from 'react-native-vector-icons/FontAwesome';
+import * as ImagePicker from 'expo-image-picker';
 import styles from "./style";
 import { BotaoCadastroUsuario } from "../Botao";
 import { useContextUser } from "../../hooks";
 
-export default function CadastroUsuario({navigation}: any) {
-    
+export default function CadastroUsuario({ navigation }: any) {
+
     const { createUser } = useContextUser();
 
+    const [image, setImage] = useState<any>(null);
+    const [uploading, setUploading] = useState(false); // Estado para controlar o envio
+
     const [userName, setUserName] = useState<string | null>(null);
-    //const [sobrenome, setSobrenome] = useState<string | null>(null);
     //const [cpf, setCpf] = useState<number | null>(null);
     const [userEmail, setUserEmail] = useState<string | null>(null);
     //const [telefone, setTelefone] = useState<number | null>(null);
@@ -26,8 +30,28 @@ export default function CadastroUsuario({navigation}: any) {
         setUserPassword(null);
     }
 
+    const pickImage = async () => {
+        const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+        if (status === 'granted') {
+            let result = await ImagePicker.launchImageLibraryAsync({
+                mediaTypes: ImagePicker.MediaTypeOptions.All,
+                allowsEditing: true,
+                aspect: [2, 2],
+                quality: 1,
+            });
+
+            if (!result.canceled) {
+                -
+                    setImage(result.assets[0].uri);
+            }
+        } else {
+            Alert.alert("Permissão negada", "Você precisa permitir o acesso à galeria de imagens para adicionar uma imagem.");
+        }
+    };
+
     const register = async () => {
-        if(!userName) {
+        if (!userName) {
             Alert.alert("Campo obrigatório", "Nome é obrigatório.")
         }
 
@@ -39,7 +63,7 @@ export default function CadastroUsuario({navigation}: any) {
         //     Alert.alert("Campo obrigatório", "CPF é obrigatório.")
         // }
 
-        if(!userEmail) {
+        if (!userEmail) {
             Alert.alert("Campo obrigatório", "E-mail é obrigatório.")
         }
 
@@ -51,11 +75,11 @@ export default function CadastroUsuario({navigation}: any) {
         //     Alert.alert("Campo obrigatório", "Matrícula é obrigatório.")
         // }
 
-        if(!userPassword) {
+        if (!userPassword) {
             Alert.alert("Campo obrigatório", "Senha é obrigatório.")
         }
 
-        try{
+        try {
             await createUser({
                 userName: userName,
                 // sobrenome: sobrenome,
@@ -65,7 +89,7 @@ export default function CadastroUsuario({navigation}: any) {
                 // matricula: matricula,
                 userPassword: userPassword
             })
-        } catch(error) {
+        } catch (error) {
             console.log(error);
             Alert.alert("Erro", "Ocorreu um erro ao enviar os dados para o banco.");
         } finally {
@@ -77,8 +101,13 @@ export default function CadastroUsuario({navigation}: any) {
     return (
         <View style={styles.container}>
             <ScrollView>
-                <View style={styles.imageCenter}>
-                    <Image source={require('../../assets/iconPeople.png')} style={styles.imageSize} />
+                <View style={styles.containerImagem}>
+                    {image && <Image source={{ uri: image }} style={styles.image} />}
+                </View>
+                <View>
+                    <TouchableOpacity style={styles.icon} onPress={pickImage}>
+                        <Icon name="plus" size={25} color="#000000" />
+                    </TouchableOpacity>
                 </View>
                 <View>
                     <View style={styles.inputWrapper}>
@@ -121,7 +150,7 @@ export default function CadastroUsuario({navigation}: any) {
                             autoCapitalize="none"
                             secureTextEntry={true}
                             style={styles.inputLogin}
-                            placeholderTextColor="#000000" 
+                            placeholderTextColor="#000000"
                             onChangeText={(e: any) => setUserPassword(e)}
                         />
                     </View>
