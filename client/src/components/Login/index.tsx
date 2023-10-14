@@ -1,24 +1,21 @@
 import React, { useContext, useState } from "react";
-import { View, Image, TextInput, Text } from "react-native";
+import { View, Image, TextInput, Text, TouchableOpacity } from "react-native";
 import styles from "./style";
 import { BotaoLogin } from "../Botao";
 import { AuthContext } from "../../contexts/";
-import { InputPassword, Input } from "../Input";
+import { Input } from "../Input"; // Remova o import do InputPassword
 import LottieView from 'lottie-react-native';
-
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 function LoginScreen({ navigation }: any) {
- 
+    const [showPassword, setShowPassword] = useState(false);
     const { login } = useContext(AuthContext);
-   
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
    
     const handleSubmit = () => {
-      login(email, password)
+      login(email, password);
     };
-
-    
 
   return (
     <View style={styles.container}>
@@ -29,8 +26,23 @@ function LoginScreen({ navigation }: any) {
         <View style={styles.inputWrapper}>
           <Input style={styles.inputLogin} set={setEmail} placeholder={"USUÁRIO"} />
         </View>
-        <View style={styles.inputWrapper}>
-          <InputPassword style={styles.inputLogin} setPassword={setPassword} placeholder={"SENHA"}/>
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.input}
+            secureTextEntry={!showPassword}
+            onChangeText={setPassword}
+            placeholder={"SENHA"}
+          />
+          <TouchableOpacity
+            style={styles.eyeIcon}
+            onPress={() => setShowPassword(!showPassword)}
+          >
+            <FontAwesome
+              name={showPassword ? 'eye' : 'eye-slash'} 
+              size={20}
+              color="#333" 
+            />
+          </TouchableOpacity>
         </View>
       </View>
       <BotaoLogin handleSubmit={handleSubmit}  />
@@ -48,6 +60,5 @@ function LoginScreen({ navigation }: any) {
     </View>
   );
 }
-
 
 export default React.memo(LoginScreen)
