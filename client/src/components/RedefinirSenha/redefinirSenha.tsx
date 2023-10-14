@@ -4,6 +4,7 @@ import styles from "./style";
 import User from "../../services/User";
 import  Storage from 'expo-storage'
 import { Button } from "../button";
+import { InputPassword } from "../Input";
 
 export function Redifinir({ navigation }: any) {
   const [senhaInserida, setSenhaInserida] = useState("");
@@ -23,7 +24,7 @@ export function Redifinir({ navigation }: any) {
           alert("Erro ao alterar senha");
         });
       } else {
-        alert("Senha incorreta!");
+        alert("A nova senha e confirmar senha devem ser iguais!");
       }
     } catch (error) {
       alert("Email ou código incorreto!");
@@ -40,20 +41,10 @@ export function Redifinir({ navigation }: any) {
       </View>
 
       <View style={styles.inputWrapper}>
-        <TextInput
-          placeholder="NOVA SENHA"
-          style={styles.inputEmail}
-          placeholderTextColor="#000000"
-          onChangeText={(e) => setSenhaInserida(e)}
-        />
+        <InputPassword style={styles.inputEmail} setPassword={setSenhaInserida} placeholder={"NOVA SENHA"}/>
       </View>
       <View style={styles.inputWrapper}>
-        <TextInput
-          placeholder="CONFIRMAR SENHA"
-          style={styles.inputEmail}
-          placeholderTextColor="#000000"
-          onChangeText={(e) => setSenhaInseridaVerifica(e)}
-        />
+        <InputPassword style={styles.inputEmail} setPassword={setSenhaInseridaVerifica} placeholder={"CONFIRMAR SENHA"}/>
       </View>
       <View style={styles.containerBotao}>
         <Button 

@@ -30,7 +30,7 @@ function LoginScreen({ navigation }: any) {
           <Input style={styles.inputLogin} set={setEmail} placeholder={"USUÁRIO"} />
         </View>
         <View style={styles.inputWrapper}>
-          <InputPassword style={styles.inputLogin} setPassword={setPassword}/>
+          <InputPassword style={styles.inputLogin} setPassword={setPassword} placeholder={"SENHA"}/>
         </View>
       </View>
       <BotaoLogin handleSubmit={handleSubmit}  />

@@ -8,20 +8,29 @@ import { Button } from "../button";
 export function VerificacaoDoCodigo({ navigation }: any) {
   const [emailInserido, setEmailInserido] = useState("");
   const [codigoInserido, setCodigoInserido] = useState("");
+  const [desc, setDesc] = useState('Enviar Código')
 
 
-
+  const exist = async () => {
+    const exite = await User.getOneEmail(emailInserido)
+    exite.Existe ? handleEnviarCodigo() : Alert.alert("Erro", "Digite um email existente no app.")
+  }
 
   const handleEnviarCodigo = async () => {
     try {
-    await User.getAuthEmail(emailInserido).then(() =>{
+      await User.getAuthEmail(emailInserido).then(() =>{
         Storage.setItem({key: 'email', value: JSON.stringify(emailInserido)})
         alert("Email enviado")
+        setDesc('Reenviar Código')
       }).catch(() => {
-        alert("email incorreto!")
+        console.log("oi");
+        
+        alert("Email incorreto!")
       })
-    }catch (error) {
-      alert("email incorreto!")
+    }catch (error) {   
+      console.log('error');
+      
+      alert("Email incorreto!")
     }
   }
   
@@ -29,15 +38,15 @@ export function VerificacaoDoCodigo({ navigation }: any) {
     try {
       await User.getVerificaCodigo(emailInserido, codigoInserido).then((res) =>{
             if(res != null){
-              alert("Foiii")
+              alert("Digite a nova senha!")
               navigation.navigate('Redefinir')
             }else{
-              alert("email ou codigo incorreto!")
+              alert("Email ou código incorreto!")
 
             }
         })
     }catch (error) {
-      Alert.alert("Erro","Email ou codigo incorreto!")
+      Alert.alert("Erro","Código incorreto!")
     }
   }
 
@@ -59,8 +68,8 @@ export function VerificacaoDoCodigo({ navigation }: any) {
           <Button 
             styles={styles.BotaoVerificaCodigo} 
             stylesText={styles.textoBotao} 
-            onPress={handleEnviarCodigo} 
-            texto={'Enviar Email'}
+            onPress={exist} 
+            texto={desc}
           />
         </View>
         <View style={styles.inputCodigoVerifica}>

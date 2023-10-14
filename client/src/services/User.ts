@@ -28,7 +28,6 @@ export interface PropsPassword {
     userEmail: string,
     userPassword: string,
 }
-
 class User {
     async get(): Promise<Props[]> {
         try {
@@ -48,7 +47,7 @@ class User {
             throw err
         }
     }
-    async getOneEmail(email: string): Promise<Props> {
+    async getOneEmail(email: string): Promise<Props | any> {
         try {
             const { data } = await userApi.get(`/user/especificoEmail/${email}`)
             return data
@@ -58,13 +57,12 @@ class User {
     }
     async getEspecificUser(id: string): Promise<Props> {
         try {
-            const { data } = await userApi.get(`/user/especificoUser/${id}`)
-            return data
+            const res = await userApi.get(`/user/especificoUser/${id}`)
+            return res.data
         } catch (err) {
             throw err
         }
     }
-
 
     async postLogin(body: Login): Promise<Props| any> {
         try {
