@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
   containerBotao: {
     flexDirection: "row",
     justifyContent: "center",
+    marginTop: 25,
   },
 
   botao: {

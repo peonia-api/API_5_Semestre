@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     margin: 12,
+    
   },
   inputLogin: {
     paddingLeft: 15,
@@ -29,22 +30,24 @@ const styles = StyleSheet.create({
     height: 45,
     borderWidth: 1, 
     borderColor: "#ccc",
-    width: "85%",
-  
+    width: "85%", 
+    
+    
   },
   recuperarSenha: {
     textAlign: "center",
     justifyContent: "center",
     fontSize: 16, 
     textDecorationLine: 'underline',
-    fontFamily: 'interregular',
+    
+    //fontFamily: 'Inter-Regular',
   },
   textoNovo: {
     textAlign: "center",
     justifyContent: "center",
     fontSize: 16,
     marginTop: 30, 
-    fontFamily: 'interregular',
+    //fontFamily: 'Inter-Regular',
     marginBottom: 40,
   },
   uploadingAnimation: {
