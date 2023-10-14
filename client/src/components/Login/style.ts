@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
     borderWidth: 1, 
     borderColor: "#ccc",
     width: "85%",
+  
   },
   recuperarSenha: {
     textAlign: "center",
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     fontSize: 16,
     marginTop: 30, 
-    //fontFamily: 'interregular',
+    fontFamily: 'interregular',
     marginBottom: 40,
   },
   uploadingAnimation: {

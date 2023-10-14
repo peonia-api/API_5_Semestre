@@ -25,11 +25,11 @@ function LoginScreen({ navigation }: any) {
       </View>
       <View>
         <View style={styles.inputWrapper}>
-          <Input style={styles.inputLogin} set={setEmail} placeholder={"USUÁRIO"} />
+          <Input style={[styles.inputLogin]} set={setEmail} placeholder={"USUÁRIO"} />
         </View>
         <View style={styles.inputWrapper}>
           <TextInput
-            style={styles.inputLogin}
+            style={[styles.inputLogin]}
             secureTextEntry={!showPassword}
             onChangeText={setPassword}
             placeholder={"SENHA"}

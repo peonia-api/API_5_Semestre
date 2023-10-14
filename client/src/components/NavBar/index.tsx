@@ -6,10 +6,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { AuthContext } from "../../contexts";
 
-export default function NavBar({ navigation }: any) {
+function NavBar({ navigation }: any) {
 
   const element = <FontAwesomeIcon icon={faUser} />;
-  const { authenticated } = useContext(AuthContext);
+  const { authenticated, logout } = useContext(AuthContext);
   
   return (
     <>
@@ -28,11 +28,11 @@ export default function NavBar({ navigation }: any) {
         </View>
         <View style={styles.containerPeople}>
         <TouchableOpacity
-                onPress={() => navigation.navigate('Login')} 
+                onPress={() => logout()}
                 style={styles.containerPeople}
             >
               <Image source={require('../../assets/sign-out.png')} style={styles.iconSignOut} />
-              <Text onPress={() => navigation.navigate('Login')}>Sair</Text>
+              <Text>Sair</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -43,3 +43,5 @@ export default function NavBar({ navigation }: any) {
   </>
   );
 }
+
+export default React.memo(NavBar);

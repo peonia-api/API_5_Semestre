@@ -12,7 +12,7 @@ import { Props } from "../types/user";
 export const AuthContext = createContext({} as UserProps | any);
  
 export const AuthProvider = ({children}:any) => {
-    
+    const [authenticated, setAuthenticated] = useState(false);
     const [ user, setUser ] = useState<Props[] | null>(null);
     const [loading, setLoading] = useState(true)
 
@@ -99,6 +99,7 @@ export const AuthProvider = ({children}:any) => {
         userApi.defaults.headers.common = { Authorization: `` }
         userApi.defaults.withCredentials = false
         setUser(null);
+        setAuthenticated(false);
         // navigation.navigate('Login');
     }
 
@@ -117,6 +118,7 @@ export const AuthProvider = ({children}:any) => {
     )
 }
  
+
 // export const Private = ({ children }:any) => {
 //     const { authenticated, loading } = useContext(AuthContext);
  
