@@ -58,9 +58,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   eyeIcon: {
-    padding: 5,
-    justifyContent: "center", 
-    alignItems: "center", 
+    marginLeft: 265,
+    marginTop: -33,
   },
   inputContainer: {
     flexDirection: 'row',

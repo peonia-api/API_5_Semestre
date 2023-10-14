@@ -5,7 +5,8 @@ import { BotaoLogin } from "../Botao";
 import { AuthContext } from "../../contexts/";
 import { Input } from "../Input"; // Remova o import do InputPassword
 import LottieView from 'lottie-react-native';
-import FontAwesome from "react-native-vector-icons/FontAwesome";
+
+import Icon from "react-native-vector-icons/FontAwesome";
 
 function LoginScreen({ navigation }: any) {
     const [showPassword, setShowPassword] = useState(false);
@@ -26,9 +27,9 @@ function LoginScreen({ navigation }: any) {
         <View style={styles.inputWrapper}>
           <Input style={styles.inputLogin} set={setEmail} placeholder={"USUÁRIO"} />
         </View>
-        <View style={styles.inputContainer}>
+        <View style={styles.inputWrapper}>
           <TextInput
-            style={styles.input}
+            style={styles.inputLogin}
             secureTextEntry={!showPassword}
             onChangeText={setPassword}
             placeholder={"SENHA"}
@@ -37,7 +38,7 @@ function LoginScreen({ navigation }: any) {
             style={styles.eyeIcon}
             onPress={() => setShowPassword(!showPassword)}
           >
-            <FontAwesome
+            <Icon
               name={showPassword ? 'eye' : 'eye-slash'} 
               size={20}
               color="#333" 
