@@ -94,8 +94,7 @@ export default function Navigation() {
               component={Perfil}
               options={{ headerBackVisible: true, headerShown: true}}
             />
-           
-            </>
+           </>
         ) : (
           <>
            <Stack.Screen name="Login" component={LoginScreen} />

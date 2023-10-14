@@ -1,9 +1,7 @@
 import React, { useContext } from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import styles from "./style";
-import Pesquisa from "../Pesquisa";
 import { LinearGradient } from 'expo-linear-gradient';
-import Login from "../Login";
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { AuthContext } from "../../contexts";
@@ -30,11 +28,11 @@ export default function NavBar({ navigation }: any) {
         </View>
         <View style={styles.containerPeople}>
         <TouchableOpacity
-                onPress={() => (navigation.navigate('Perfil'))} 
+                onPress={() => navigation.navigate('Login')} 
                 style={styles.containerPeople}
             >
               <Image source={require('../../assets/sign-out.png')} style={styles.iconSignOut} />
-              <Text>Sair</Text>
+              <Text onPress={() => navigation.navigate('Login')}>Sair</Text>
           </TouchableOpacity>
         </View>
       </View>
