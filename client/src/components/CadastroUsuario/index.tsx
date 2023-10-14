@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { View, Image, TextInput, ScrollView, Alert, TouchableOpacity } from "react-native";
+import { View, Image, TextInput, ScrollView, Alert, TouchableOpacity, Button } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import * as ImagePicker from 'expo-image-picker';
+import upload from '../../supabase/upload';
 import styles from "./style";
 import { BotaoCadastroUsuario } from "../Botao";
 import { useContextUser } from "../../hooks";
@@ -10,23 +11,24 @@ export default function CadastroUsuario({ navigation }: any) {
 
     const { createUser } = useContextUser();
 
+    const [showPassword, setShowPassword] = useState(false);
+
     const [image, setImage] = useState<any>(null);
     const [uploading, setUploading] = useState(false); // Estado para controlar o envio
 
     const [userName, setUserName] = useState<string | null>(null);
-    //const [cpf, setCpf] = useState<number | null>(null);
+    const [userCpf, setUserCpf] = useState<string | null>(null);
     const [userEmail, setUserEmail] = useState<string | null>(null);
-    //const [telefone, setTelefone] = useState<number | null>(null);
-    //const [matricula, setMatricula] = useState<string | null>(null);
+    const [userTelefone, setUserTelefone] = useState<string | null>(null);
+    const [userMatricula, setUserMatricula] = useState<string | null>(null);
     const [userPassword, setUserPassword] = useState<string | null>(null);
 
     const clearFields = () => {
         setUserName(null);
-        //setSobrenome(null);
-        //setCpf(null);
+        setUserCpf(null);
         setUserEmail(null);
-        //setTelefone(null);
-        //setMatricula(null);
+        setUserTelefone(null);
+        setUserMatricula(null);
         setUserPassword(null);
     }
 
@@ -42,8 +44,7 @@ export default function CadastroUsuario({ navigation }: any) {
             });
 
             if (!result.canceled) {
-                -
-                    setImage(result.assets[0].uri);
+                setImage(result.assets[0].uri);
             }
         } else {
             Alert.alert("Permissão negada", "Você precisa permitir o acesso à galeria de imagens para adicionar uma imagem.");
@@ -51,49 +52,58 @@ export default function CadastroUsuario({ navigation }: any) {
     };
 
     const register = async () => {
+        if (!image) {
+            Alert.alert("Campo obrigatório", "Selecione uma Imagem.");
+            return;
+        }
+
         if (!userName) {
             Alert.alert("Campo obrigatório", "Nome é obrigatório.")
         }
 
-        // if(!sobrenome) {
-        //     Alert.alert("Campo obrigatório", "Sobrenome é obrigatório.")
-        // }
-
-        // if(!cpf) {
-        //     Alert.alert("Campo obrigatório", "CPF é obrigatório.")
-        // }
+        if (!userCpf) {
+            Alert.alert("Campo obrigatório", "userCpf é obrigatório.")
+        }
 
         if (!userEmail) {
             Alert.alert("Campo obrigatório", "E-mail é obrigatório.")
         }
 
-        // if(!telefone) {
-        //     Alert.alert("Campo obrigatório", "Telefone é obrigatório.")
-        // }
+        if (!userTelefone) {
+            Alert.alert("Campo obrigatório", "userTelefone é obrigatório.")
+        }
 
-        // if(!matricula) {
-        //     Alert.alert("Campo obrigatório", "Matrícula é obrigatório.")
-        // }
+        if (!userMatricula) {
+            Alert.alert("Campo obrigatório", "Matrícula é obrigatório.")
+        }
 
         if (!userPassword) {
             Alert.alert("Campo obrigatório", "Senha é obrigatório.")
         }
 
+        if (uploading) {
+            return;
+        }
+
+        setUploading(true)
+
         try {
+            const response = await upload(image, { uri: image });
             await createUser({
                 userName: userName,
-                // sobrenome: sobrenome,
-                // cpf: cpf,
+                userCpf: userCpf,
                 userEmail: userEmail,
-                // telefone: telefone,
-                // matricula: matricula,
-                userPassword: userPassword
+                userTelefone: userTelefone,
+                userMatricula: userMatricula,
+                userPassword: userPassword,
+                url: response
             })
         } catch (error) {
             console.log(error);
             Alert.alert("Erro", "Ocorreu um erro ao enviar os dados para o banco.");
         } finally {
             clearFields();
+            setUploading(false);
             navigation.navigate('Login');
         }
     }
@@ -112,18 +122,11 @@ export default function CadastroUsuario({ navigation }: any) {
                 <View>
                     <View style={styles.inputWrapper}>
                         <TextInput
-                            placeholder="Nome"
+                            placeholder="NOME COMPLETO"
                             style={styles.inputLogin}
                             placeholderTextColor="#000000"
                             onChangeText={(e: any) => setUserName(e)}
-                        />
-                    </View>
-                    {/* <View style={styles.inputWrapper}>
-                        <TextInput
-                            placeholder="SOBRENOME"
-                            style={styles.inputLogin}
-                            placeholderTextColor="#000000" // Defina a cor do placeholder
-                            onChangeText={(e: any) => (e)}
+                            value={userName || ''}
                         />
                     </View>
                     <View style={styles.inputWrapper}>
@@ -132,35 +135,47 @@ export default function CadastroUsuario({ navigation }: any) {
                             keyboardType="numeric"
                             style={styles.inputLogin}
                             placeholderTextColor="#000000" // Defina a cor do placeholder
-                            onChangeText={(e: any) => setCpf(e)}
+                            onChangeText={(e: any) => setUserCpf(e)}
+                            value={userCpf || ''}
                         />
-                    </View> */}
+                    </View>
                     <View style={styles.inputWrapper}>
                         <TextInput
-                            placeholder="E-mail"
+                            placeholder="E-MAIL"
                             autoCapitalize="none"
                             style={styles.inputLogin}
                             placeholderTextColor="#000000"
                             onChangeText={(e: any) => setUserEmail(e)}
+                            value={userEmail || ''}
                         />
                     </View>
                     <View style={styles.inputWrapper}>
                         <TextInput
-                            placeholder="Senha"
+                            placeholder="SENHA"
                             autoCapitalize="none"
-                            secureTextEntry={true}
+                            secureTextEntry={!showPassword}
                             style={styles.inputLogin}
                             placeholderTextColor="#000000"
-                            onChangeText={(e: any) => setUserPassword(e)}
+                            onChangeText={(e) => setUserPassword(e)}
+                            value={userPassword || ''}
                         />
+                        <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+                            <Icon
+                                name={showPassword ? 'eye' : 'eye-slash'}
+                                size={20}
+                                color="#000"
+                                style={styles.iconPassword}
+                            />
+                        </TouchableOpacity>
                     </View>
-                    {/* <View style={styles.inputWrapper}>
+                    <View style={styles.inputWrapper}>
                         <TextInput
                             placeholder="TELEFONE"
                             keyboardType="numeric"
                             style={styles.inputLogin}
                             placeholderTextColor="#000000" // Defina a cor do placeholder
-                            onChangeText={(e: any) => setTelefone(e)}
+                            onChangeText={(e: any) => setUserTelefone(e)}
+                            value={userTelefone || ''}
                         />
                     </View>
                     <View style={styles.inputWrapper}>
@@ -168,9 +183,10 @@ export default function CadastroUsuario({ navigation }: any) {
                             placeholder="MATRÍCULA"
                             style={styles.inputLogin}
                             placeholderTextColor="#000000" // Defina a cor do placeholder
-                            onChangeText={(e: any) => setMatricula(e)}
+                            onChangeText={(e: any) => setUserMatricula(e)}
+                            value={userMatricula || ''}
                         />
-                    </View> */}
+                    </View>
                 </View>
                 <BotaoCadastroUsuario handle={register} />
             </ScrollView>

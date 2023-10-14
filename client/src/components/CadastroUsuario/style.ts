@@ -41,6 +41,10 @@ const styles = StyleSheet.create({
         marginTop: -15,
         marginLeft: 250,
     },
+    iconPassword: {
+        marginLeft: 265,
+        marginTop: -33,
+    }
 });
 
 export default styles;
