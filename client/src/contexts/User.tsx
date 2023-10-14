@@ -4,23 +4,26 @@ import React from 'react';
 import { useNavigation } from "@react-navigation/native";
 import userApi from "../services/userApi";
 import Navigation from "../components/Navigation";
-import User from "../services/User"
+import { User } from "../services"
 import  Storage from 'expo-storage'
-
-
+import UserProps from "../types/user";
+import { Props } from "../types/user";
  
- 
-export const AuthContext = createContext({} as any);
+export const AuthContext = createContext({} as UserProps | any);
  
 export const AuthProvider = ({children}:any) => {
-    // const navigate = useNavigation();
     
-    const [ user, setUser ] = useState(null)
+    const [ user, setUser ] = useState<Props[] | null>(null);
     const [loading, setLoading] = useState(true)
 
     
  
     useEffect(() => {
+      // (async function () {
+      //   const resp: any = await User.get()
+      //   setUser(resp)
+      //   setLoading(false)
+      // })
         const loadData = async () => {
           try {
             const recoveredUser = await Storage.getItem({key: 'userEmail'});	
@@ -86,7 +89,7 @@ export const AuthProvider = ({children}:any) => {
     }
  
     
-    const logout = ({ navigation }: any) => {
+    const logout = () => {
         Storage.removeItem({key: "userEmail"});
         Storage.removeItem({key:"token"});
         Storage.removeItem({key:"userType"});
@@ -96,11 +99,19 @@ export const AuthProvider = ({children}:any) => {
         userApi.defaults.headers.common = { Authorization: `` }
         userApi.defaults.withCredentials = false
         setUser(null);
-        navigation.navigate('Login');
+        // navigation.navigate('Login');
     }
+
+    const createUser = async (newUser: Props) => {
+      try {
+          await User.postUser(newUser);
+      } catch (error) {
+          console.log('Erro ao criar usuário:', error);
+      }
+  }  
  
     return (
-      <AuthContext.Provider value={{authenticated: Boolean(user), user, loading , logout, login}}>
+      <AuthContext.Provider value={{authenticated: Boolean(user), user, loading , logout, login, createUser}}>
         {children}
       </AuthContext.Provider>
     )

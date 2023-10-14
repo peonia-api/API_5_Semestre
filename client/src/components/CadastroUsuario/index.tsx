@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Image, TextInput, ScrollView, Alert, TouchableOpacity, Button } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import * as ImagePicker from 'expo-image-picker';
-import upload from '../../supabase/upload';
+import {uploadIcone} from '../../supabase/upload';
 import styles from "./style";
 import { BotaoCadastroUsuario } from "../Botao";
 import { useContextUser } from "../../hooks";
@@ -16,8 +16,8 @@ export default function CadastroUsuario({ navigation }: any) {
     const [image, setImage] = useState<any>(null);
     const [uploading, setUploading] = useState(false); // Estado para controlar o envio
 
-    const [userName, setUserName] = useState<string | null>(null);
-    const [userCpf, setUserCpf] = useState<string | null>(null);
+    const [userName, setUserName] = useState<string | null >(null);
+    const [userCpf, setUserCpf] = useState<string | null | any>(null);
     const [userEmail, setUserEmail] = useState<string | null>(null);
     const [userTelefone, setUserTelefone] = useState<string | null>(null);
     const [userMatricula, setUserMatricula] = useState<string | null>(null);
@@ -88,15 +88,21 @@ export default function CadastroUsuario({ navigation }: any) {
         setUploading(true)
 
         try {
-            const response = await upload(image, { uri: image });
+            const response = await uploadIcone(userCpf, { uri: image });
             await createUser({
                 userName: userName,
-                userCpf: userCpf,
+                userCpf:userCpf,
                 userEmail: userEmail,
                 userTelefone: userTelefone,
                 userMatricula: userMatricula,
                 userPassword: userPassword,
-                url: response
+                icone: response,
+                userType: 2
+            }).then(() => {
+                Alert.alert("Cadastro feito com sucesso");
+                navigation.navigate('Login');
+            }).catch(() => {
+                Alert.alert("Cadastro não realizado");
             })
         } catch (error) {
             console.log(error);
@@ -104,7 +110,6 @@ export default function CadastroUsuario({ navigation }: any) {
         } finally {
             clearFields();
             setUploading(false);
-            navigation.navigate('Login');
         }
     }
 
