@@ -47,12 +47,12 @@ export const AuthProvider = ({children}:any) => {
         try{
             //await axios.post(URIuser.LOGIN_USER, {userEmail: email, userPassword: password})
             User.postLogin({userEmail: email, userPassword: password})
-            .then((res) => {
+            .then(async (res) => {
               
                 if(res.error){
                   return
                 }
-                const loggedUser:any = res.userEmail
+                const loggedUser = res.userEmail
                 const token = res.token
                 const userName = res.userName
                 const icone = res.icone
@@ -61,7 +61,7 @@ export const AuthProvider = ({children}:any) => {
                 const userTelefone = res.userTelefone
                 const id = res.id
  
-                Storage.setItem({key: 'userEmail', value: JSON.stringify(loggedUser)})
+                Storage.setItem({key: 'userEmail', value: loggedUser})
                 Storage.setItem({key: 'token', value: token})
                 Storage.setItem({key: "userType", value:"2"})
                 Storage.setItem({key: "userName", value: userName})
@@ -69,8 +69,8 @@ export const AuthProvider = ({children}:any) => {
                 Storage.setItem({key: "userMatricula", value: userMatricula})
                 Storage.setItem({key: "userTelefone", value: userTelefone})
                 Storage.setItem({key: "icone", value: icone})
-                Storage.setItem({key: "id", value: id})
-                console.log(res);
+                Storage.setItem({key: "userid", value: JSON.stringify(id)})
+                console.log(await Storage.getItem({ key: 'userid' }) ?? "");
 
  
                 userApi.defaults.headers.common['Authorization'] = `Bearer ${token}`;

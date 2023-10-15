@@ -1,29 +1,33 @@
 import React, { useState, useEffect } from "react";
-import { ScrollView, TextInput, View, Image, TouchableOpacity } from "react-native";
+import { ScrollView, TextInput, View, Image, TouchableOpacity, Alert } from "react-native";
 import styles from "./style";
 import { Button } from "../button";
 import Storage from 'expo-storage';
+import * as ImagePicker from 'expo-image-picker';
 import { User } from "../../services";
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function Perfil({ navigation }: any) {
-    const [userName, setUserName] = useState("");
-    const [userEmail, setUserEmail] = useState("");
-    const [userCpf, setUserCpf] = useState("");
-    const [userMatricula, setUserMatricula] = useState("");
-    const [userTelefone, setUserTelefone] = useState("");
-    const [userId, setUserId] = useState("");
-
+    const [userName, setUserName] = useState <string> ("");
+    const [userEmail, setUserEmail] = useState <any>("");
+    const [userCpf, setUserCpf] = useState <string>("");
+    const [userMatricula, setUserMatricula] = useState <string>("");
+    const [userTelefone, setUserTelefone] = useState <string>("");
+    const [userId, setUserId] = useState <string>("");
+    const [image, setImage] = useState<any>(null);
 
     useEffect(() => {
         async function fetchData() {
             try {
+                const icone = await Storage.getItem({ key: 'icone' }) ?? "";
                 const userEmail = await Storage.getItem({ key: 'userEmail' }) ?? "";
                 const userName = await Storage.getItem({ key: 'userName' }) ?? "";
                 const userCpf = await Storage.getItem({ key: 'userCpf' }) ?? "";
                 const userMatricula = await Storage.getItem({ key: 'userMatricula' }) ?? "";
                 const userTelefone = await Storage.getItem({ key: 'userTelefone' }) ?? "";
-                const userId = await Storage.getItem({ key: 'id' }) ?? "";
-                console.log("reerrer" + userId);
+                const userId = await Storage.getItem({ key: 'userid' }) ?? "";
+                console.log(userId);
+                setImage(icone);
                 setUserName(userName);
                 setUserEmail(userEmail);
                 setUserCpf(userCpf);
@@ -39,22 +43,44 @@ export default function Perfil({ navigation }: any) {
         fetchData();
     }, []);
 
-    // const handleAtualiza = async () => {
-    //     try {
-    //         const updatedProfile = await User.putProfile(userId, {
-    //             userName: userName,
-    //             userEmail: userEmail,
-    //             userCpf: userCpf,
-    //             userMatricula: userMatricula,
-    //             userTelefone: userTelefone
-    //         });
+    console.log(image);
 
-    //         alert("Perfil atualizado com sucesso!");
-    //     } catch (error) {
-    //         console.error("Erro ao atualizar perfil:", error);
-    //         alert("Erro ao atualizar perfil. Tente novamente mais tarde.");
-    //     }
-    // };
+    const handleAtualiza = async () => {
+        try {
+            await User.putProfile(userId, {
+                userName: userName,
+                userEmail: userEmail,
+                userCpf: userCpf,
+                userMatricula: userMatricula,
+                userTelefone: userTelefone,
+                icone: image
+            });
+
+            alert("Perfil atualizado com sucesso!");
+        } catch (error) {
+            console.error("Erro ao atualizar perfil:", error);
+            alert("Erro ao atualizar perfil. Tente novamente mais tarde.");
+        }
+    };
+
+    const pickImage = async () => {
+        const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+        if (status === 'granted') {
+            let result = await ImagePicker.launchImageLibraryAsync({
+                mediaTypes: ImagePicker.MediaTypeOptions.All,
+                allowsEditing: true,
+                aspect: [2, 2],
+                quality: 1,
+            });
+
+            if (!result.canceled) {
+                setImage(result.assets[0].uri);
+            }
+        } else {
+            Alert.alert("Permissão negada", "Você precisa permitir o acesso à galeria de imagens para adicionar uma imagem.");
+        }
+    };
 
     return (
         <View style={styles.container}>
@@ -69,9 +95,14 @@ export default function Perfil({ navigation }: any) {
                 />
             </TouchableOpacity>
             <ScrollView>
-                <View style={styles.imageCenter}>
-                    <Image source={require('../../assets/iconPeople.png')} style={styles.imageSize} />
-                </View>
+                    <View style={styles.containerImagem}>
+                        {image && <Image source={{ uri: image }} style={styles.image} />}
+                    </View>
+                    <View>
+                        <TouchableOpacity style={styles.icon} onPress={pickImage}>
+                            <Icon name="plus" size={25} color="#000000" />
+                        </TouchableOpacity>
+                    </View>
                 <View>
                     <View style={styles.inputWrapper}>
                         <TextInput
@@ -97,12 +128,12 @@ export default function Perfil({ navigation }: any) {
                             onChangeText={(text) => setUserEmail(text)}
                         />
                     </View>
-                    <View style={styles.inputWrapper}>
+                    {/* <View style={styles.inputWrapper}>
                         <TextInput
                             placeholder="Senha"
                             style={styles.inputLogin}
                         />
-                    </View>
+                    </View> */}
                     <View style={styles.inputWrapper}>
                         <TextInput
                             placeholder="Telefone"
@@ -124,7 +155,7 @@ export default function Perfil({ navigation }: any) {
                 <Button
                     styles={styles.botaoAtualizarUsuario}
                     stylesText={styles.textoBotao}
-                    // onPress={handleAtualiza}
+                    onPress={handleAtualiza}
                     texto={'Atualizar dados'}
                 />
 

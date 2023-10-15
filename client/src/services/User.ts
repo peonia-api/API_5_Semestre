@@ -24,6 +24,15 @@ export interface Props {
     icone: string,
 }
 
+interface PropsProfile {
+    userCpf: string,
+    userMatricula: string,
+    userTelefone: string,
+    userName: string,
+    userEmail: string,
+    icone: string,
+}
+
 export interface PropsPassword {
     userEmail: string,
     userPassword: string,
@@ -100,11 +109,14 @@ class User {
         }
     }
 
-    async putProfile(id: string, body: Props): Promise<Props> {
+    async putProfile(id: string, body: PropsProfile): Promise<Props> {
         try {
+            console.log(id, body);
+            // body = body.userEmail.replace('/','')
             const res = await userApi.put(`/user/perfil/${id}`, body)
             return res.data
         } catch (err) {
+            console.log(err);
             throw err
         }
     }

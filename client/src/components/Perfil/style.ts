@@ -16,6 +16,27 @@ const styles = StyleSheet.create({
         height: '100%',
     },
 
+    containerImagem: {
+        marginLeft: 140,
+        justifyContent: "center",
+        alignItems: "center",
+        height: 100,
+        width: 100,
+        borderRadius: 50,
+        backgroundColor: '#f2f2f2',
+    },
+    image: {
+        height: 100,
+        width: 100,
+        borderRadius: 50
+    },
+
+    icon: {
+        marginTop: -15,
+        marginLeft: 240,
+        marginBottom: 30
+    },
+
     imageSize: {
         width: 100,
         height: 100,
@@ -71,7 +92,7 @@ const styles = StyleSheet.create({
         marginBottom: 30,
         marginLeft: 85
       },
-      
+
       textoBotao: {
         color: 'white',
         fontSize: 16,
