@@ -122,10 +122,10 @@ export default function Perfil({ navigation }: any) {
                 </View>
 
                 <Button
-                    styles={styles.BotaoVerificaCodigo}
+                    styles={styles.botaoAtualizarUsuario}
                     stylesText={styles.textoBotao}
                     // onPress={handleAtualiza}
-                    texto={'Atualizar Perfil'}
+                    texto={'Atualizar dados'}
                 />
 
             </ScrollView>
