@@ -65,7 +65,7 @@
 | userType | userType | **2** | Enumerador relativo ao tipo do usuário (1 para Admin / 2 para User comum) 
 | userPassword | String | --- | Senha do usuário criptografa em hash 
 | token | String | **AF8T4G** | Token gerado quando da solicitação de senha para verificação em dois fatores 
-| icone | String | **https://cbrqdjaeurmeftioqfaz.supabase.co/storage/v1/object/public/icone/012345678900.18060346807565758.jpeg** | Url relativa a foto do Usuário 
+| icone | String | **https://cbrqdjaeurmeftioqfaz.supabase.co/storage/v1/object/public/imagens/Linux.jpeg** | Url relativa a foto do Usuário 
 
 
 → [Voltar ao topo](#topo)
