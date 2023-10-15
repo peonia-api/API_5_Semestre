@@ -91,7 +91,7 @@ class User {
     }
 
 
-    async putUser(id: string, body: Props): Promise<Props> {
+    async putUser(id: string, body: PropsProfile): Promise<Props> {
         try {
             const res = await userApi.put(`/user/modifyUser/${id}`, body)
             return res.data

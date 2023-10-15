@@ -47,19 +47,17 @@ export default function Perfil({ navigation }: any) {
 
     const handleAtualiza = async () => {
         try {
-            await User.putProfile(userId, {
-                userName: userName,
-                userEmail: userEmail,
+            await User.putUser(userId, {
                 userCpf: userCpf,
                 userMatricula: userMatricula,
                 userTelefone: userTelefone,
+                userName: userName,
+                userEmail: userEmail,
                 icone: image
             });
-
             alert("Perfil atualizado com sucesso!");
-        } catch (error) {
-            console.error("Erro ao atualizar perfil:", error);
-            alert("Erro ao atualizar perfil. Tente novamente mais tarde.");
+        }catch (error) {
+            console.log("Erro ao atualizar");     
         }
     };
 
@@ -163,3 +161,7 @@ export default function Perfil({ navigation }: any) {
         </View>
     );
 }
+function then(arg0: () => void) {
+    throw new Error("Function not implemented.");
+}
+
