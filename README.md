@@ -30,10 +30,10 @@
 - [x] Visualização geográfica dos equipamentos cadastrados (tanto os ativos quanto os inativos);
 - [x] Visualização detalhada dos equipamentos disponíveis no raio de ação do App;
 - [x] Filtros de busca de equipamentos (baseado no seu tipo);
-- [ ] Cadastro de usuários, incluindo foto;
+- [x] Cadastro de usuários, incluindo foto;
 - [ ] Liberação de usuários mediante processo de autenticação;
-- [ ] Recuperação de senha por meio de código (6 dígitos);
-- [ ] Criptografia de senhas;
+- [x] Recuperação de senha por meio de código (6 dígitos);
+- [x] Criptografia de senhas;
 - [ ] Busca de equipamentos cadastrados (raio de 10km) de acordo com posição geográfica do App;
 - [ ] Sincronização de dados online em até 30 segundos após uso offline da aplicação;
 
@@ -43,7 +43,7 @@
 - [x] Implementação de persistência poliglota;
 - [ ] Condições de iluminação de tela adaptáveis à necessidade do usuário;
 - [ ] Segurança das informações em caso de perda do dispositivo móvel;
-- [ ] Validação dos dados inseridos na aplicação (equipamentos e usuários);
+- [x] Validação dos dados inseridos na aplicação (equipamentos e usuários);
 - [ ] Banco de dados mobile para armazenamento dos dados atualizados dos equipamentos durante estado offline do App;
  
 
@@ -57,6 +57,8 @@
 - A apresentação relativa à entrega da 1ª Sprint pode ser acessada por este [link](https://www.youtube.com/watch?v=yIUAITkMCFo).
 
 </p>
+
+<h4> Entrega da Sprint 2 </h4>
   
 <br>
 
@@ -94,7 +96,7 @@ Na tabela abaixo é possível visualizar os resultados de cada Sprint clicando e
 <div align="center">
     <p> 
     
-![image](https://github.com/peonia-api/API_5_Semestre/blob/main/images/Backlog%20Priorizado.png).
+![image](https://github.com/peonia-api/API_5_Semestre/blob/main/images/Backlog%20priorizado%20-%202ª%20Sprint.png).
     
 </p>
 </div>
@@ -109,6 +111,8 @@ Foram usadas as seguintes ferramentas, linguagens e tecnologias para a execuçã
 
 - [HTML5 & CSS3](https://www.w3schools.com/): Linguagens de marcação
 - [TypeScript](https://www.typescriptlang.org/): Linguagem de programação
+- [Python](https://www.python.org/doc/): Linguagem de programação
+- [Flask](https://flask.palletsprojects.com/en/3.0.x/): Roteamento de URL e renderização de página
 - [Git](https://git-scm.com): Versionamento
 - [GitHub](https://github.com/): Armazenamento de código
 - [Teams](https://teams.microsoft.com): Comunicação interna do grupo
