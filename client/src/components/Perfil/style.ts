@@ -45,8 +45,36 @@ const styles = StyleSheet.create({
         height: 30,
         marginLeft: 7, 
         marginTop: 10 
-    }
+    },
     
+    BotaoVerificaCodigo: {
+        backgroundColor: 'black',
+        marginTop: 15,
+        padding: 12,
+        borderRadius: 5,
+        width: '85%'
+
+      },
+
+    containerBotao: {
+        flexDirection: "row",
+        justifyContent: "center",
+        marginTop: 25,
+      },
+
+      botaoAtualizarUsuario: {
+        backgroundColor: '#4DB9DB',
+        padding: 12,
+        borderRadius: 5,
+        width: '55%',
+        marginBottom: 30
+      },
+      textoBotao: {
+        color: 'white',
+        fontSize: 16,
+        textAlign: 'center',
+      },
+        
 });
 
 export default styles;

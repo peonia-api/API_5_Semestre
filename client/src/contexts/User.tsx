@@ -56,12 +56,20 @@ export const AuthProvider = ({children}:any) => {
                 const token = res.token
                 const userName = res.userName
                 const icone = res.icone
+                const userCpf = res.userCpf
+                const userMatricula = res.userMatricula
+                const userTelefone = res.userTelefone
+                const id = res.id
  
                 Storage.setItem({key: 'userEmail', value: JSON.stringify(loggedUser)})
                 Storage.setItem({key: 'token', value: token})
                 Storage.setItem({key: "userType", value:"2"})
                 Storage.setItem({key: "userName", value: userName})
-                Storage.setItem({key:"icone", value: icone})
+                Storage.setItem({key: "userCpf", value: userCpf})
+                Storage.setItem({key: "userMatricula", value: userMatricula})
+                Storage.setItem({key: "userTelefone", value: userTelefone})
+                Storage.setItem({key: "icone", value: icone})
+                Storage.setItem({key: "id", value: id})
                 console.log(res);
 
  

@@ -24,7 +24,6 @@ export function VerificacaoDoCodigo({ navigation }: any) {
         setDesc('Reenviar Código')
       }).catch(() => {
         console.log("oi");
-        
         alert("Email incorreto!")
       })
     }catch (error) {   
