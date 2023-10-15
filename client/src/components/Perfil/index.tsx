@@ -4,6 +4,7 @@ import styles from "./style";
 import { BotaoAtualizarUsuario } from "../Botao";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { Text } from "react-native";
+import User from "../../services/User";
 
 export default function Perfil({ navigation }: any) {
     return(
@@ -24,9 +25,9 @@ export default function Perfil({ navigation }: any) {
                 </View>
                 <View>
                     <View style={styles.inputWrapper}>
-                        {/* <Text>{users.userName}</Text> */}
+                        {/* <Text>{User.name}</Text> */}
                         <TextInput
-                            placeholder="Nome"
+                            placeholder="Nome completo"
                             style={styles.inputLogin}
                         />
                     </View>
@@ -40,20 +41,32 @@ export default function Perfil({ navigation }: any) {
                     <View style={styles.inputWrapper}>
                         {/* <Text>{users.userEmail}</Text> */}
                         <TextInput
+                            placeholder="CPF"
+                            style={styles.inputLogin}
+                        />
+                    </View>
+                    <View style={styles.inputWrapper}>
+                        {/* <Text>{users.userEmail}</Text> */}
+                        <TextInput
                             placeholder="E-mail"
                             style={styles.inputLogin}
                         />
                     </View>
-                    {/* <View style={styles.inputWrapper}>
-                        <TextInput
-                            placeholder="TELEFONE"
-                            style={styles.inputLogin}
-                            placeholderTextColor="#000000"
-                        />
-                    </View> */}
                     <View style={styles.inputWrapper}>
                         <TextInput
                             placeholder="Senha"
+                            style={styles.inputLogin}
+                        />
+                    </View>
+                    <View style={styles.inputWrapper}>
+                        <TextInput
+                            placeholder="Telefone"
+                            style={styles.inputLogin}
+                        />
+                    </View>
+                    <View style={styles.inputWrapper}>
+                        <TextInput
+                            placeholder="Matrícula"
                             style={styles.inputLogin}
                         />
                     </View>

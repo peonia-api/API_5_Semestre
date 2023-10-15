@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         width: "85%",
     },
     containerImagem: {
-        marginLeft: 160,
+        marginLeft: 140,
         justifyContent: "center",
         alignItems: "center",
         height: 100,
@@ -35,11 +35,12 @@ const styles = StyleSheet.create({
     image: {
         height: 100,
         width: 100,
-        borderRadius: 50,
+        borderRadius: 50
     },
     icon: {
         marginTop: -15,
-        marginLeft: 250,
+        marginLeft: 240,
+        marginBottom: 30
     },
     iconPassword: {
         marginLeft: 265,

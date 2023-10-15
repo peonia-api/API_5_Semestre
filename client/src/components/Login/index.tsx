@@ -27,7 +27,7 @@ function LoginScreen({ navigation }: any) {
         <View style={styles.inputWrapper}>
           <Input style={[styles.inputLogin]} 
           set={setEmail}
-           placeholder={"USUÁRIO"}
+           placeholder={"Usuário"}
            placeholderTextColor="black"
           />
         </View>
@@ -36,7 +36,7 @@ function LoginScreen({ navigation }: any) {
             style={[styles.inputLogin]}
             secureTextEntry={!showPassword}
             onChangeText={setPassword}
-            placeholder={"SENHA"}
+            placeholder={"Senha"}
             placeholderTextColor="black"
           />
           <TouchableOpacity

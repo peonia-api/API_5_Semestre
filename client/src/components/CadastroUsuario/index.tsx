@@ -145,7 +145,7 @@ export default function CadastroUsuario({ navigation }: any) {
                     <View>
                         <View style={styles.inputWrapper}>
                             <TextInput
-                                placeholder="NOME COMPLETO"
+                                placeholder="Nome completo"
                                 style={styles.inputLogin}
                                 placeholderTextColor="#000000"
                                 onChangeText={(e: any) => setUserName(e)}
@@ -164,7 +164,7 @@ export default function CadastroUsuario({ navigation }: any) {
                         </View>
                         <View style={styles.inputWrapper}>
                             <TextInput
-                                placeholder="E-MAIL"
+                                placeholder="E-mail"
                                 autoCapitalize="none"
                                 style={styles.inputLogin}
                                 placeholderTextColor="#000000"
@@ -175,7 +175,7 @@ export default function CadastroUsuario({ navigation }: any) {
                         <View style={styles.inputWrapper}>
                             <TextInput
                                 ref={passwordInputRef}
-                                placeholder="SENHA"
+                                placeholder="Senha"
                                 autoCapitalize="none"
                                 secureTextEntry={!showPassword}
                                 style={styles.inputLogin}
@@ -204,7 +204,7 @@ export default function CadastroUsuario({ navigation }: any) {
                         )}
                         <View style={styles.inputWrapper}>
                             <TextInput
-                                placeholder="TELEFONE"
+                                placeholder="Telefone"
                                 keyboardType="numeric"
                                 style={styles.inputLogin}
                                 placeholderTextColor="#000000" // Defina a cor do placeholder
@@ -214,7 +214,7 @@ export default function CadastroUsuario({ navigation }: any) {
                         </View>
                         <View style={styles.inputWrapper}>
                             <TextInput
-                                placeholder="MATRÍCULA"
+                                placeholder="Matrícula"
                                 style={styles.inputLogin}
                                 placeholderTextColor="#000000" // Defina a cor do placeholder
                                 onChangeText={(e: any) => setUserMatricula(e)}

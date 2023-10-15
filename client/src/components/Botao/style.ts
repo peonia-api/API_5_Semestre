@@ -90,10 +90,10 @@ const styles = StyleSheet.create({
 
   botaoAtualizarUsuario: {
     backgroundColor: '#4DB9DB',
-    marginTop: 20,
     padding: 12,
     borderRadius: 5,
-    width: '55%'
+    width: '55%',
+    marginBottom: 30
   },
 
   BotaoEnvCodigo: {
