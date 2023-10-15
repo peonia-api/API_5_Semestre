@@ -22,6 +22,7 @@ export function Input({style, set, placeholder}:any) {
             style={style}
             onChangeText={(e) => set(e)}
             placeholderTextColor="#000000" 
+            autoCapitalize="none"
           />
     )
 }

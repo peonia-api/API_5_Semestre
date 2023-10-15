@@ -9,14 +9,14 @@ import LottieView from 'lottie-react-native';
 import Icon from "react-native-vector-icons/FontAwesome";
 
 function LoginScreen({ navigation }: any) {
-    const [showPassword, setShowPassword] = useState(false);
-    const { login } = useContext(AuthContext);
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-   
-    const handleSubmit = () => {
-      login(email, password);
-    };
+  const [showPassword, setShowPassword] = useState(false);
+  const { login } = useContext(AuthContext);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = () => {
+    login(email, password);
+  };
 
   return (
     <View style={styles.container}>
@@ -25,14 +25,15 @@ function LoginScreen({ navigation }: any) {
       </View>
       <View>
         <View style={styles.inputWrapper}>
-          <Input style={[styles.inputLogin]} 
-          set={setEmail}
-           placeholder={"Usuário"}
-           placeholderTextColor="black"
+          <Input style={[styles.inputLogin]}
+            set={setEmail}
+            placeholder={"Usuário"}
+            placeholderTextColor="black"
           />
         </View>
         <View style={styles.inputWrapper}>
           <TextInput
+            autoCapitalize="none"
             style={[styles.inputLogin]}
             secureTextEntry={!showPassword}
             onChangeText={setPassword}
@@ -44,20 +45,20 @@ function LoginScreen({ navigation }: any) {
             onPress={() => setShowPassword(!showPassword)}
           >
             <Icon
-              name={showPassword ? 'eye' : 'eye-slash'} 
+              name={showPassword ? 'eye' : 'eye-slash'}
               size={20}
-              color="#333" 
+              color="#333"
             />
           </TouchableOpacity>
         </View>
       </View>
-      <BotaoLogin handleSubmit={handleSubmit}  />
-      <Text style={[styles.recuperarSenha, { marginTop: 35 }, {marginBottom: 28}]} onPress={() => navigation.navigate('Verificar codigo')}>
+      <BotaoLogin handleSubmit={handleSubmit} />
+      <Text style={[styles.recuperarSenha, { marginTop: 35 }, { marginBottom: 28 }]} onPress={() => navigation.navigate('Verificar codigo')}>
         Recuperar a senha
       </Text>
       <View>
         <Text style={styles.textoNovo}>
-        Você é novo por aqui?{' '} 
+          Você é novo por aqui?{' '}
           <Text style={styles.recuperarSenha} onPress={() => navigation.navigate('Cadastrar usuário')}>
             Crie sua conta
           </Text>

@@ -78,7 +78,7 @@ export default function CadastroUsuario({ navigation }: any) {
         }
 
         if (!userCpf) {
-            Alert.alert("Campo obrigatório", "userCpf é obrigatório.")
+            Alert.alert("Campo obrigatório", "CPF é obrigatório.")
         }
 
         if (!userEmail) {
@@ -86,7 +86,7 @@ export default function CadastroUsuario({ navigation }: any) {
         }
 
         if (!userTelefone) {
-            Alert.alert("Campo obrigatório", "userTelefone é obrigatório.")
+            Alert.alert("Campo obrigatório", "Telefone é obrigatório.")
         }
 
         if (!userMatricula) {
@@ -94,7 +94,7 @@ export default function CadastroUsuario({ navigation }: any) {
         }
 
         if (!isPasswordValid(userPassword)) {
-            Alert.alert("Senha inválida", "A senha deve conter pelo menos uma letra maiúscula, um número, um caracter especial e ter no minímo 10 e máximo 20 dígitos.");
+            Alert.alert("Senha inválida", "A senha deve conter pelo menos uma letra maiúscula, um número, um caractere especial e ter no minímo 10 e máximo 20 dígitos.");
             return;
         }
 
