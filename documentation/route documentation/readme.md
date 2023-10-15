@@ -21,7 +21,7 @@
 
 <span id="post">
 
-<h2> 📔 MÉTODO: POST</h2>
+<h2> 📔 MÉTODO: POST (EQUIPMENT)</h2>
 
 <p align="justify"> Requisição, via JSON, para a criação de um registro de um Equipamento no Banco de Dados.</p>
 
@@ -61,7 +61,7 @@
 
 <span id="get">
 
-<h2> 📔 MÉTODO: GET</h2>
+<h2> 📔 MÉTODO: GET (EQUIPMENT)</h2>
 
 <p align="justify"> Requisição para a listagem de todos os Equipamentos cadastrados no aplicativo, retornando os resultados no formado JSON.</p>
 
@@ -121,7 +121,7 @@
 
 <span id="getespecifico">
 
-<h2> 📔 MÉTODO: GET pelo ID</h2>
+<h2> 📔 MÉTODO: GET pelo ID (EQUIPMENT)</h2>
 
 <p align="justify"> Requisição para busca e exibição de um Equipamento identificado pelo seu ID no Banco de Dados, retornando o resultado no formado JSON.</p>
 
@@ -157,7 +157,7 @@
 
 <span id="update">
 
-<h2> 📔 MÉTODO: PUT pelo ID</h2>
+<h2> 📔 MÉTODO: PUT pelo ID (EQUIPMENT)</h2>
 
 <p align="justify"> Requisição para alterar os dados de um Equipamento específico, identificado pelo seu ID no Banco de Dados.</p>
 
@@ -201,7 +201,7 @@
 
 <span id="status">
 
-<h2> 📔 MÉTODO: PATCH pelo ID</h2>
+<h2> 📔 MÉTODO: PATCH pelo ID (EQUIPMENT)</h2>
 
 <p align="justify"> Requisição exclusiva para a alteração do Status de um Equipamento quando da Ativação e Desativação dele para manobra.</p>
 
