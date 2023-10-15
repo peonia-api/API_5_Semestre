@@ -13,7 +13,7 @@ export default function CadastroUsuario({ navigation }: any) {
 
     const [showPassword, setShowPassword] = useState(false);
 
-    const [image, setImage] = useState<any>(null);
+    const [image, setImage] = useState<any>("https://cbrqdjaeurmeftioqfaz.supabase.co/storage/v1/object/public/icone/avatar.png");
     const [uploading, setUploading] = useState(false); // Estado para controlar o envio
 
     const [userName, setUserName] = useState<string | null>(null);
@@ -134,9 +134,11 @@ export default function CadastroUsuario({ navigation }: any) {
         <TouchableWithoutFeedback onPress={hidePasswordRequirements}>
             <View style={styles.container}>
                 <ScrollView>
-                    <View style={styles.containerImagem}>
-                        {image && <Image source={{ uri: image }} style={styles.image} />}
-                    </View>
+                    <TouchableOpacity onPress={pickImage}>
+                        <View style={styles.containerImagem}>
+                            {image && <Image source={{ uri: image }} style={styles.image} />}
+                        </View>
+                    </TouchableOpacity>
                     <View>
                         <TouchableOpacity style={styles.icon} onPress={pickImage}>
                             <Icon name="plus" size={25} color="#000000" />

@@ -124,14 +124,11 @@ export default function Perfil({ navigation }: any) {
                 />
             </TouchableOpacity>
             <ScrollView>
+                <TouchableOpacity  onPress={pickImage}>
                     <View style={styles.containerImagem}>
                         {image && <Image source={{ uri: image }} style={styles.image} />}
                     </View>
-                    <View>
-                        <TouchableOpacity style={styles.icon} onPress={pickImage}>
-                            <Icon name="plus" size={25} color="#000000" />
-                        </TouchableOpacity>
-                    </View>
+                    </TouchableOpacity>
                 <View>
                     <View style={styles.inputWrapper}>
                         <TextInput
@@ -192,7 +189,3 @@ export default function Perfil({ navigation }: any) {
         </View>
     );
 }
-function then(arg0: () => void) {
-    throw new Error("Function not implemented.");
-}
-

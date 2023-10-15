@@ -15,7 +15,7 @@ function LoginScreen({ navigation }: any) {
   const [password, setPassword] = useState("");
 
   const handleSubmit = () => {
-    login(email, password);
+    login(email.replace(/ /g, ''), password);
   };
 
   return (
