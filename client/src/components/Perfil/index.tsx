@@ -6,6 +6,7 @@ import Storage from 'expo-storage';
 import * as ImagePicker from 'expo-image-picker';
 import { User } from "../../services";
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { uploadIcone } from "../../supabase/upload";
 
 export default function Perfil({ navigation }: any) {
     const [userName, setUserName] = useState <string> ("");
@@ -15,6 +16,7 @@ export default function Perfil({ navigation }: any) {
     const [userTelefone, setUserTelefone] = useState <string>("");
     const [userId, setUserId] = useState <string>("");
     const [image, setImage] = useState<any>(null);
+    const [verficaImage, setVerificaImagem] = useState<any>()
 
     useEffect(() => {
         async function fetchData() {
@@ -34,6 +36,7 @@ export default function Perfil({ navigation }: any) {
                 setUserMatricula(userMatricula);
                 setUserTelefone(userTelefone);
                 setUserId(userId);
+                setVerificaImagem(icone)
      
             } catch (error) {
                 alert("Erro ao obter dados do armazenamento!");
@@ -43,19 +46,47 @@ export default function Perfil({ navigation }: any) {
         fetchData();
     }, []);
 
-    console.log(image);
-
     const handleAtualiza = async () => {
         try {
-            await User.putUser(userId, {
-                userCpf: userCpf,
-                userMatricula: userMatricula,
-                userTelefone: userTelefone,
-                userName: userName,
-                userEmail: userEmail,
-                icone: image
-            });
-            alert("Perfil atualizado com sucesso!");
+            if(image === verficaImage){
+                await User.putProfile(userEmail, {
+                    userCpf: userCpf,
+                    userMatricula: userMatricula,
+                    userTelefone: userTelefone,
+                    userName: userName,
+                    userEmail: userEmail,
+                    icone: image
+                }).then((res) => {
+                    console.log(alert("Perfil atualizado com sucesso!"))
+                    Storage.setItem({key: 'userEmail', value: userEmail})
+                    Storage.setItem({key: "userName", value: userName})
+                    Storage.setItem({key: "userCpf", value: userCpf})
+                    Storage.setItem({key: "userMatricula", value: userMatricula})
+                    Storage.setItem({key: "userTelefone", value: userTelefone})
+                })
+                .catch((err) => Alert.alert("Erro", "Erro ao atualizar!"))
+            }else{                
+                const response:any = await uploadIcone(userCpf, { uri: image })
+                console.log(response);
+                
+                await User.putProfile(userEmail, {
+                    userCpf: userCpf,
+                    userMatricula: userMatricula,
+                    userTelefone: userTelefone,
+                    userName: userName,
+                    userEmail: userEmail,
+                    icone: (response)
+                }).then((res) => {
+                    console.log(alert("Perfil atualizado com sucesso!"))
+                    Storage.setItem({key: 'userEmail', value: userEmail})
+                    Storage.setItem({key: "userName", value: userName})
+                    Storage.setItem({key: "userCpf", value: userCpf})
+                    Storage.setItem({key: "userMatricula", value: userMatricula})
+                    Storage.setItem({key: "userTelefone", value: userTelefone})
+                    Storage.setItem({key: "icone", value: response})
+                })
+                .catch((err) => Alert.alert("Erro", "Erro ao atualizar!"))
+            }
         }catch (error) {
             console.log("Erro ao atualizar");     
         }

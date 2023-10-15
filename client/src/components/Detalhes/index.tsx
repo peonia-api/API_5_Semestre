@@ -9,7 +9,7 @@ import { useContextoEquipmente } from "../../hooks";
 import LottieView from 'lottie-react-native';
 import { useFocusEffect } from "@react-navigation/native";
 import { removeFileOne } from "../../supabase/delete";
-import upload from "../../supabase/upload"; 
+import {upload} from "../../supabase/upload"; 
 import { Camera, CameraType } from 'expo-camera';
 import { FontAwesome } from "@expo/vector-icons"
 

@@ -87,6 +87,11 @@ export const AuthProvider = ({children}:any) => {
                 Storage.removeItem({key:"userType"});
                 Storage.removeItem({key:"userName"});
                 Storage.removeItem({key:"icone"});
+                Storage.removeItem({key: "userCpf"})
+                Storage.removeItem({key: "userMatricula"})
+                Storage.removeItem({key: "userTelefone"})
+                Storage.removeItem({key: "userid"})
+            
                 alert("Usuário ou senha incorreto!")
                 //avisoErroLogin()
             })

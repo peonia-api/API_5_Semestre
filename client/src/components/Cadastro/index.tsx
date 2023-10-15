@@ -5,7 +5,7 @@ import { Picker } from "@react-native-picker/picker";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import * as ImagePicker from 'expo-image-picker';
 import { BotaoCadastro } from "../Botao";
-import upload from '../../supabase/upload';
+import { upload } from '../../supabase/upload';
 import { useContextoEquipmente } from '../../hooks';
 import LottieView from 'lottie-react-native';
 import { Camera, CameraType } from 'expo-camera';

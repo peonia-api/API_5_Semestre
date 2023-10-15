@@ -111,12 +111,9 @@ class User {
 
     async putProfile(id: string, body: PropsProfile): Promise<Props> {
         try {
-            console.log(id, body);
-            // body = body.userEmail.replace('/','')
             const res = await userApi.put(`/user/perfil/${id}`, body)
             return res.data
         } catch (err) {
-            console.log(err);
             throw err
         }
     }
