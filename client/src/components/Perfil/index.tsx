@@ -7,6 +7,8 @@ import * as ImagePicker from 'expo-image-picker';
 import { User } from "../../services";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { uploadIcone } from "../../supabase/upload";
+import { useContextoEquipmente } from "../../hooks";
+import LottieView from 'lottie-react-native';
 
 export default function Perfil({ navigation }: any) {
     const [userName, setUserName] = useState <string> ("");
@@ -18,8 +20,11 @@ export default function Perfil({ navigation }: any) {
     const [image, setImage] = useState<any>(null);
     const [verficaImage, setVerificaImagem] = useState<any>()
 
+    const { setLoaded, loaded} = useContextoEquipmente();
+
     useEffect(() => {
         async function fetchData() {
+            setLoaded(true)
             try {
                 const icone = await Storage.getItem({ key: 'icone' }) ?? "";
                 const userEmail = await Storage.getItem({ key: 'userEmail' }) ?? "";
@@ -40,6 +45,8 @@ export default function Perfil({ navigation }: any) {
      
             } catch (error) {
                 alert("Erro ao obter dados do armazenamento!");
+            }finally{
+                setLoaded(false)
             }
         }
 
@@ -48,6 +55,7 @@ export default function Perfil({ navigation }: any) {
 
     const handleAtualiza = async () => {
         try {
+            setLoaded(true)
             if(image === verficaImage){
                 await User.putProfile(userEmail, {
                     userCpf: userCpf,
@@ -89,6 +97,8 @@ export default function Perfil({ navigation }: any) {
             }
         }catch (error) {
             console.log("Erro ao atualizar");     
+        }finally{
+            setLoaded(false)
         }
     };
 
@@ -113,6 +123,20 @@ export default function Perfil({ navigation }: any) {
 
     return (
         <View style={styles.container}>
+            {loaded && (
+                <View style={styles.uploadingAnimation}>
+                <LottieView
+                    autoPlay={true}
+                    loop={true}
+                    style={{
+                        width: '100%',
+                        height: '100%',
+                        backgroundColor: 'white',
+                    }}
+                    source={require('../../assets/carregando.json')}
+                />
+                </View>
+            )}
             <TouchableOpacity
                 onPress={() => navigation.navigate('Equipamentos')}
                 style={styles.returnImage}
