@@ -54,7 +54,7 @@
 <h4> Entrega da Sprint 1 </h4>
 <p align="center"> 
     
-- A apresentação relativa à entrega da 1ª Sprint pode ser acessada por este [link](https://www.youtube.com/watch?v=yIUAITkMCFo).
+- A apresentação relativa à entrega da 1ª Sprint, feita via YouTube, pode ser acessada por este [link](https://www.youtube.com/watch?v=yIUAITkMCFo).
 
 </p>
 
