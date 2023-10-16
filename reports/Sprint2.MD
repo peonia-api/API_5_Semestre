@@ -55,7 +55,14 @@
 ## 👩‍💻 Entrega
 <p align="center">
 
-[Inserir os vídeos da aplicação]
+- Cadastro de usuário:
+![](https://github.com/peonia-api/API_5_Semestre/blob/main/videos/Cadastro_Usu%C3%A1rio.gif)
+
+- Login e operação:
+![](https://github.com/peonia-api/API_5_Semestre/blob/main/videos/Login_Opera%C3%A7%C3%A3o.gif)
+
+- Redefinição de senha (neste caso já havia sido feito o disparo do e-mail para gerar o token):
+![](https://github.com/peonia-api/API_5_Semestre/blob/main/videos/Redefinir_Senha.gif)
 
 </p>
 <br>
