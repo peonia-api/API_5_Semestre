@@ -14,6 +14,8 @@
     <a href="#getAUTHUS">Método: GET pelo ID (AUTENTICA E-MAIL - USER)</a> |
     <a href="#getTK">Método: GET (VERIFICA TOKEN)</a> |
     <a href="#updateEQ">Método: PUT pelo ID (EQUIPMENT)</a> |
+    <a href="#updateUS">Método: PUT pelo ID (USER)</a> |
+    <a href="#updatePF">Método: PUT pelo ID (MEU PERFIL)</a> |
     <a href="#statusEQ">Método: PATCH pelo ID (EQUIPMENT)</a> |
     <a href="#statusPW">Método: PATCH pelo BODY (PASSWORD)</a>
 </p>
