@@ -20,9 +20,9 @@
   
 <h3 align="center" id="wireframe"> WIREFRAME </h3>
 <p align="center">
-<img src="https://github.com/peonia-api/API_5_Semestre/blob/main/images/Wireframes%20-%20Login%20-%20Rec%20de%20Senha%20-%20Cad%20de%20Usuário.png" width="49%"/>
+<img src="https://github.com/peonia-api/API_5_Semestre/blob/main/images/Wireframes%20-%20Login%20-%20Rec%20de%20Senha%20-%20Cad%20de%20Usuário.png"/>
 <br>
-<img src="https://github.com/peonia-api/API_5_Semestre/blob/main/images/Wireframes%20-%20Equipamentos%20-%20Perfil%20-%20Detalhes.png" width="49%"/>
+<img src="https://github.com/peonia-api/API_5_Semestre/blob/main/images/Wireframes%20-%20Equipamentos%20-%20Perfil%20-%20Detalhes.png"/>
 </p>
 </br>
   
