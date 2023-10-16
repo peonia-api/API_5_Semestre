@@ -41,7 +41,7 @@
 
 <p align="justify"> - A codificação do algoritmo, em Python, de toda a estrutura de geração de código de verificação para a autenticação em 2 fatores;</p>
 
-<p align="justify"> - A codificação e estruturação do sistema de disparo de e-mail, em Python, contendo o código de autenticação, em 6 dígitos, do usuário;</p>
+<p align="justify"> - A codificação e estruturação, do sistema de disparo de e-mail, em Python, contendo o código de autenticação, em 6 dígitos, do usuário;</p>
 
 <p align="justify"> - A codificação e estruturação dos scripts de veriicação direta do e-mail fornecido no banco de dados;</p>
 
