@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { View, Text, Image, TextInput, TouchableOpacity, ScrollView, Alert } from "react-native";
+import React, { useState, useEffect, useRef } from "react";
+import { View, Text, Image, TextInput, TouchableOpacity, ScrollView, Alert, Modal } from "react-native";
 import styles from "./style";
 import { Picker } from "@react-native-picker/picker";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import * as ImagePicker from 'expo-image-picker';
 import { BotaoCadastro } from "../Botao";
-import upload from '../../supabase/upload';
+import { upload } from '../../supabase/upload';
 import { useContextoEquipmente } from '../../hooks';
 import LottieView from 'lottie-react-native';
+import { Camera, CameraType } from 'expo-camera';
+import { FontAwesome } from "@expo/vector-icons"
 
 Icon.loadFont();
 
@@ -22,6 +24,48 @@ export default function Cadastro({ navigation }: any) {
   const [latitude, setLatitude] = useState<number | null>(null);
   const [longitude, setLongitude] = useState<number | null>(null);
   const [observacao, setObservacao] = useState<string | null>(null);
+
+  const [type, setType] = useState(CameraType.back);
+  const [hasPermission, setHasPermission] = useState<boolean | null>(null);
+  const camRef = useRef<any | null>(null);
+  const [capturedPhoto, setCapturedPhoto] = useState(null)
+  const [isCameraVisible, setCameraVisible] = useState(false);
+
+  useEffect(() => {
+    (async () => {
+      const { status } = await Camera.requestCameraPermissionsAsync();
+      setHasPermission(status === 'granted');
+    })();
+  }, []);
+
+  if (hasPermission === null) {
+    return <Text>Verificando permissão de câmera...</Text>;
+  }
+
+  if (!hasPermission) {
+    return <Text>Permissão de câmera não concedida</Text>;
+  }
+
+  function toggleCameraType() {
+    setType(current => (current === CameraType.back ? CameraType.front : CameraType.back));
+  }
+
+  async function takePicture() {
+    if (camRef) {
+      const data = await camRef.current.takePictureAsync();
+      setCapturedPhoto(data.uri)
+      setImage(data.uri);
+      setCameraVisible(false);
+    }
+
+  }
+  const showCamera = () => {
+    setCameraVisible(true);
+  };
+
+  const hideCamera = () => {
+    setCameraVisible(false);
+  };
 
   const clearFields = () => {
     setSelectedEquipa('');
@@ -40,12 +84,14 @@ export default function Cadastro({ navigation }: any) {
       let result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.All,
         allowsEditing: true,
+        allowsMultipleSelection: true,
         aspect: [4, 3],
         quality: 1,
       });
 
       if (!result.canceled) {
-        setImage(result.assets[0].uri);
+        -
+          setImage(result.assets[0].uri);
       }
     } else {
       Alert.alert("Permissão negada", "Você precisa permitir o acesso à galeria de imagens para adicionar uma imagem.");
@@ -129,6 +175,7 @@ export default function Cadastro({ navigation }: any) {
 
   return (
     <View style={styles.containerPrincipal}>
+
       <ScrollView>
         <View style={styles.container}>
           <View style={styles.containerImagem} >
@@ -136,14 +183,49 @@ export default function Cadastro({ navigation }: any) {
           </View>
 
           <View style={styles.containerIcons}>
-            <TouchableOpacity style={styles.iconsPlusMinus} onPress={pickImage}>
+
+            <TouchableOpacity style={styles.icons} onPress={pickImage}>
               <Icon name="plus" size={25} color="#000000" />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.iconsPlusMinus} onPress={removeImage}>
+            <TouchableOpacity style={styles.icons} onPress={removeImage}>
               <Icon name="trash" size={25} color="#000000" />
             </TouchableOpacity>
+            <TouchableOpacity style={styles.icons} onPress={() => setCameraVisible(true)}>
+              <Icon name="camera" size={25} color="#000000" />
+            </TouchableOpacity>
+
+
+            <Modal
+              visible={isCameraVisible}
+              transparent={true}
+              animationType="slide"
+            >
+              <View style={{ width: "100%", height: " 100%" }}>
+                <View style={styles.modalContainer}>
+                  <Camera type={type} style={styles.camera} ref={camRef}>
+                    <View style={styles.containerButtonCamera}>
+                          <TouchableOpacity onPress={hideCamera} style={styles.icons}>
+                            <FontAwesome name="close" size={30} color="#fff" />
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style={styles.icons}  onPress={toggleCameraType}>
+                            <FontAwesome name="exchange" size={30} color="red" />
+                          </TouchableOpacity>
+
+                          <TouchableOpacity style={styles.buttonCamera} onPress={takePicture}>
+                            <FontAwesome name="camera" size={30} color="#fff" />
+                          </TouchableOpacity>
+
+                    </View>
+
+                  </Camera>
+
+                </View>
+              </View>
+            </Modal>
           </View>
         </View>
+
 
         <View style={styles.containerInput}>
           <View style={styles.containerTrans}>
@@ -205,7 +287,7 @@ export default function Cadastro({ navigation }: any) {
           <BotaoCadastro handle={uploadImage} />
         </View>
 
-        {/* Exibir animação de envio enquanto estiver enviando */}
+
         {uploading && (
           <View style={styles.uploadingAnimation}>
             <LottieView

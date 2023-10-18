@@ -4,27 +4,29 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
-    paddingHorizontal: 3,
-    backgroundColor: '#ffffff',
+    paddingHorizontal: 10,
+    backgroundColor: '#ffffff'
   },
   listaContainer: {
     flex: 1,
-    marginBottom: 2,
+    marginBottom: 20
   },
   row: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 1,
+    marginBottom: 10,
   },
   column: {
     flex: 1,
     marginRight: 5,
     alignItems: "center",
-    paddingTop: 15,
-    marginTop: 10,
+    paddingTop: 5,
+    paddingLeft: 0,
+    marginTop: 0,
     borderRadius: 5,
-    marginLeft: 5,
-    marginBottom: 5
+    marginLeft: 0,
+    marginBottom: 5,
+    width: "10%"
     
   },
   column2: {

@@ -1,10 +1,17 @@
 {
+
   "expo": {
     "plugins": [
       [
         "expo-image-picker",
         {
           "photosPermission": "The app accesses your photos to let you share them with your friends."
+        }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow $(cadastro_equipamentos) to access your camera."
         }
       ]
     ],

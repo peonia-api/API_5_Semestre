@@ -6,26 +6,22 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
   },
 
-  // scrollView: {
-  //   marginHorizontal: 20,
-  // },
-
   container: {
     flexDirection: "column",
     paddingTop: 10,
-    marginTop: 10
+    marginTop: 10,
+    marginLeft: 10,
+    marginRight: 10
   },
 
   containerImagem: {
     alignItems: "center",
     justifyContent: 'center',
-    width: 325,
-    height: 200,
+    width: '100%',
+    height: 225,
     borderWidth: 1,
     borderRadius: 5,
     backgroundColor: '#f2f2f2',
-    // gap: 30,
-    marginLeft: 30
   },
 
   image: {
@@ -42,12 +38,12 @@ const styles = StyleSheet.create({
     gap: 50,
   },
 
-  iconsPlusMinus: {
+  icons: {
     height: 50,
     width: 50,
     borderRadius: 10,
     marginTop: 20,
-    backgroundColor: '#a4cdea',
+    backgroundColor: '#4DB9DB',
     alignItems: 'center', 
     justifyContent: 'center', 
   },
@@ -88,7 +84,6 @@ const styles = StyleSheet.create({
     borderRadius: 5
   },
 
-
   textFont: {
     fontWeight: "600",
     marginTop: 14,
@@ -128,19 +123,19 @@ const styles = StyleSheet.create({
   // },
   
   botaoDesativar: {
-    backgroundColor: 'red',
+    backgroundColor: 'rgb(174, 59, 59)',
     marginTop: 12,
     padding: 12,
     borderRadius: 5,
-    width: 100
+    width: '100%'
   },
 
   botaoAtivar: {
-    backgroundColor: '#14A3F8',
+    backgroundColor: 'rgb(96, 145, 193)',
     marginTop: 12,
     padding: 12,
     borderRadius: 5,
-    width: 100
+    width: '100%'
   },
 
   botaoAtualizar: {
@@ -169,6 +164,40 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#d1d1d1',
+    width: '100%',
+    height: '100%',
+  },
+  
+  camera: {
+    width: '100%',
+    height: '80%',
+  },
+  
+  containerButtonCamera: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+    paddingHorizontal: 20,
+    marginBottom: 20,
+    marginTop: 'auto', 
+  },
+  
+  buttonCamera: {
+    height: 50,
+    width: 50,
+    borderRadius: 10,
+    marginTop: 20,
+    backgroundColor: '#4DB9DB',
+    alignItems: 'center', 
+    justifyContent: 'center', 
+  
+  },
+  
 });
 
 export default styles;

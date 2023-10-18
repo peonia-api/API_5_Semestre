@@ -24,19 +24,21 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "column",
     paddingTop: 10,
-    marginTop: 10
+    marginTop: 10,
+    marginBottom: 10,
+    marginLeft: 10,
+    marginRight: 10
   },
 
-  containerImagem: {
+  containerImagem: {  
+    flex: 1,
     alignItems: "center",
     justifyContent: 'center',
-    width: 325,
-    height: 200,
+    width: '100%',
+    height: 225,
     borderWidth: 1,
     borderRadius: 5,
-    backgroundColor: '#f2f2f2',
-    // gap: 30,
-    marginLeft: 30
+    backgroundColor: '#f2f2f2'
   },
 
   image: {
@@ -53,14 +55,14 @@ const styles = StyleSheet.create({
     gap: 50,
   },
 
-  iconsPlusMinus: {
+  icons: {
     height: 50,
     width: 50,
     borderRadius: 10,
-    marginTop: 20,
-    backgroundColor: '#a4cdea',
+    marginTop: 30,
+    backgroundColor: '#4DB9DB',
     alignItems: 'center', 
-    justifyContent: 'center', 
+    justifyContent: 'center'
   },
 
   containerInput: {
@@ -123,18 +125,46 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     marginTop: 10,
-    marginBottom: 10,
+    marginBottom: 20,
+    color: "#4DB9DB"
   },
 
-  // linhaPontilhada: {
-  //   width: "100%",
-  //   borderStyle: "dashed",
-  //   borderColor: "#dfe6f7",
-  //   borderWidth: 1,
-  //   marginTop: 10,
-  //   marginBottom: 10,
-  //   alignSelf: "center",
-  // },
+
+//Modal Camera
+modalContainer: {
+  flex: 1,
+  justifyContent: 'center',
+  alignItems: 'center',
+  backgroundColor: '#d1d1d1',
+  width: '100%',
+  height: '100%',
+},
+
+camera: {
+  width: '100%',
+  height: '80%',
+},
+
+containerButtonCamera: {
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  width: '100%',
+  paddingHorizontal: 20,
+  marginBottom: 20,
+  marginTop: 'auto', 
+},
+
+
+buttonCamera: {
+  height: 50,
+  width: 50,
+  borderRadius: 10,
+  marginTop: 30,
+  backgroundColor: '#4DB9DB',
+  alignItems: 'center', 
+  justifyContent: 'center'
+},
+
 
 });
 
