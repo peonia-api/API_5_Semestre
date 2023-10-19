@@ -96,6 +96,14 @@ def statusUserEmail(userEmail, status):
         email = os.getenv("email")
         ddd = os.getenv("senha")
         status = status[0].upper() + status[1::]
+        menssage = ""
+        if status == "Ativo":
+            menssage = "Seu usuário foi ativado com sucesso. Agora você pode acessar o aplicativo!"
+        elif status == "Pendente":
+            menssage = "Por favor, aguarde alguns dias enquanto nosso administrador analisa e aprova seu acesso! "
+        elif status == "Desativado":
+            menssage = "Seu usuário foi desativado. Lamentamos informar que você não possui mais permissão para usar o aplicativo."
+
         corpo = f"""
             <p>Olá,</p>
 
@@ -103,7 +111,7 @@ def statusUserEmail(userEmail, status):
             <br/>
             <h1>{status}</h1>
             <br/>
-
+            <p>{menssage}</p>
             <p>Atenciosamente,</p>
             <p>APP</p>
         """
