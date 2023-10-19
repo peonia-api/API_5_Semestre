@@ -17,7 +17,7 @@ def enviarEmail(emailUser):
 def getCod2FA(email, cod):
     return jsonify(getAuth(email, 'email', cod)) # Vai retornar null se não encontrar
 
-@app.route('/auth2fa_email/<emailUser>/<status>', methods=["GET", "POST"])
+@app.route('/status/<emailUser>/<status>', methods=["GET", "POST"])
 def enviarStatusUserEmail(emailUser, status):
     e = statusUserEmail(emailUser, status)
     if e == True:
