@@ -10,8 +10,9 @@ ENV TWILIO_ACCOUNT_SID=''
 ENV TWILIO_AUTH_TOKEN=''
 ENV NUMBER=''
 
-RUN pip install Flask pymongo twilio
+RUN pip install Flask pymongo 
 RUN pip install python-dotenv
+RUN pip install twilio
 
 EXPOSE 5000
 
