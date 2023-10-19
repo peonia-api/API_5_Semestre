@@ -89,4 +89,31 @@ def email(userEmail):
 
     else:
         return False
+
+
+def statusUserEmail(userEmail, status):
+    try:
+        email = os.getenv("email")
+        ddd = os.getenv("senha")
+        status = status[0].upper() + status[1::]
+        corpo = f"""
+            <p>Olá,</p>
+
+            <p>O seu usuário está: </p>
+            <br/>
+            <h1>{status}</h1>
+            <br/>
+
+            <p>Atenciosamente,</p>
+            <p>APP</p>
+        """
+
+        
+        email_host_outlook(email, ddd, userEmail, 'Status Usuário', corpo)
+        return True
+    except AttributeError:
+        return False
+    
+    else:
+        return False
     

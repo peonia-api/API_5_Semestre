@@ -2,7 +2,7 @@ from __main__ import app
 
 from flask import jsonify
 from models import connection
-from blueprint.email import email
+from blueprint.email import email, statusUserEmail
 from models import getAuth
 
 @app.route('/auth2fa_email/<emailUser>', methods=["GET", "POST"])
@@ -15,7 +15,15 @@ def enviarEmail(emailUser):
 
 @app.route('/auth2fa/getEmail/<email>/<cod>')
 def getCod2FA(email, cod):
-    return jsonify(getAuth(email, 'email', cod)) # Vai retornar null se não encontrar 
+    return jsonify(getAuth(email, 'email', cod)) # Vai retornar null se não encontrar
+
+@app.route('/auth2fa_email/<emailUser>/<status>', methods=["GET", "POST"])
+def enviarStatusUserEmail(emailUser, status):
+    e = statusUserEmail(emailUser, status)
+    if e == True:
+        return jsonify({"menssage":'Email enviado!', "status": 200})
+    elif e == False:
+        return jsonify({"menssage":'ERRO! Verfique se os campos foram colocados com informações corretas!', "status": 400})
 
 
 @app.route('/auth2fa_sms/<number>', methods=["GET", "POST"])
