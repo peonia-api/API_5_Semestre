@@ -1,0 +1,25 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "users" ]
+  pull_request:
+    branches: [ "users" ]
+
+jobs:
+
+  push:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: docker login
+      env:
+        DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+        DOCKERHUB_PASS: ${{ secrets.DOCKERHUB_PASS }}
+      run:
+        docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
+    - name: Build the Docker image
+      run: docker build . -t ${{ secrets.DOCKERHUB_USERNAME }}/users:3.0
+    - name: docker push
+      run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/users:3.0
