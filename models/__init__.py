@@ -1,10 +1,12 @@
 from pymongo import MongoClient
 import json
 import datetime
+import os
+
 
 def connection():
     try:
-        URI = 'mongodb://db:27017'
+        URI = os.getenv("MONGO_URL")
         client = MongoClient(URI)
         db = client['auth']  
         print("Conexão bem-sucedida ao MongoDB")

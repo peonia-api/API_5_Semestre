@@ -9,6 +9,7 @@ ENV senha=''
 ENV TWILIO_ACCOUNT_SID=''
 ENV TWILIO_AUTH_TOKEN=''
 ENV NUMBER=''
+ENV MONGO_URL=''
 
 RUN pip install Flask pymongo 
 RUN pip install python-dotenv
