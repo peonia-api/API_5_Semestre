@@ -83,7 +83,7 @@ Na tabela abaixo é possível visualizar os resultados de cada Sprint clicando e
 |:-----:|:----------:|:---------:|:---------:|
 | 01 | 24/09/2023 |	:heavy_check_mark: | [Ver relatório](https://github.com/peonia-api/API_5_Semestre/blob/main/reports/Sprint1.MD) |
 | 02 | 15/10/2023 |	:heavy_check_mark: | [Ver relatório](https://github.com/peonia-api/API_5_Semestre/blob/main/reports/Sprint2.MD) |
-| 03 | 05/11/2023 |	- | - |
+| 03 | 05/11/2023 |	Em Desenvolvimento | Em Breve |
 | 04 | 26/11/2023 |	- | - |
 
 
