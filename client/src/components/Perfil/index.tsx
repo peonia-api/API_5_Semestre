@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ScrollView, TextInput, View, Image, TouchableOpacity, Alert } from "react-native";
+import { ScrollView, TextInput, View, Image, TouchableOpacity, Alert, Modal, Text} from "react-native";
 import styles from "./style";
 import { Button } from "../button";
 import Storage from 'expo-storage';
@@ -9,6 +9,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { uploadIcone } from "../../supabase/upload";
 import { useContextoEquipmente } from "../../hooks";
 import LottieView from 'lottie-react-native';
+import { InputPassword } from "../Input";
 
 export default function Perfil({ navigation }: any) {
     const [userName, setUserName] = useState <string> ("");
@@ -19,9 +20,34 @@ export default function Perfil({ navigation }: any) {
     const [userId, setUserId] = useState <string>("");
     const [image, setImage] = useState<any>(null);
     const [verficaImage, setVerificaImagem] = useState<any>()
+    const [ isVisible, setIsVisible ] = useState<boolean>(false)
 
     const { setLoaded, loaded} = useContextoEquipmente();
 
+
+    const [senhaInserida, setSenhaInserida] = useState("");
+    const [senhaInseridaVerifica, setSenhaInseridaVerifica] = useState("");
+  
+  
+    
+    const handleAlterarSenha = async () => {
+     try {
+      let userEmail = await Storage.getItem({ key: 'email' }) ?? "";
+      userEmail = userEmail.replace(/[" ]/g, "");
+      if (senhaInserida === senhaInseridaVerifica) {
+        await User.patchPassword({ userEmail, userPassword: senhaInserida }).then(() => {
+            alert("Senha Alterada!");
+            navigation.navigate('Login')
+        }).catch((error) => {
+          alert("Erro ao alterar senha");
+        });
+      } else {
+        alert("A nova senha e confirmar senha devem ser iguais!");
+      }
+    } catch (error) {
+      alert("Email ou código incorreto!");
+    }
+    };
     useEffect(() => {
         async function fetchData() {
             setLoaded(true)
@@ -121,6 +147,10 @@ export default function Perfil({ navigation }: any) {
         }
     };
 
+    const toggleModal = () =>{
+        setIsVisible(!isVisible)
+    }
+
     return (
         <View style={styles.container}>
             {loaded && (
@@ -137,6 +167,46 @@ export default function Perfil({ navigation }: any) {
                 />
                 </View>
             )}
+
+            {/* 
+            
+                    Começa aqui!!!
+            */}
+
+            <Modal
+              visible={isVisible}
+              transparent={true}
+              animationType="slide"
+            >
+              
+                <View style={styles.container}>
+                    <TouchableOpacity>
+                    <Text  style={styles.fechaModal}onPress={toggleModal}>X</Text>
+                    </TouchableOpacity>
+                    <View style={styles.inputWrapper}>
+                        <InputPassword style={styles.inputEmail} setPassword={setSenhaInserida} placeholder={"NOVA SENHA"}/>
+                    </View>
+                    <View style={styles.inputWrapper}>
+                        <InputPassword style={styles.inputEmail} setPassword={setSenhaInseridaVerifica} placeholder={"CONFIRMAR SENHA"}/>
+                    </View>
+                    <View style={styles.containerBotao}>
+                        <Button 
+                            styles={styles.BotaoVerificaCodigo} 
+                            stylesText={styles.textoBotao} 
+                            onPress={handleAlterarSenha} 
+                            texto={'Redefinir Senha'}
+                        />
+                        
+
+                    </View>
+              </View>
+            </Modal>
+
+            {/* 
+            
+                Termina aqui!!!
+            */}
+
             <TouchableOpacity
                 onPress={() => navigation.navigate('Equipamentos')}
                 style={styles.returnImage}
@@ -178,12 +248,7 @@ export default function Perfil({ navigation }: any) {
                             onChangeText={(text) => setUserEmail(text)}
                         />
                     </View>
-                    {/* <View style={styles.inputWrapper}>
-                        <TextInput
-                            placeholder="Senha"
-                            style={styles.inputLogin}
-                        />
-                    </View> */}
+        
                     <View style={styles.inputWrapper}>
                         <TextInput
                             placeholder="Telefone"
@@ -202,12 +267,20 @@ export default function Perfil({ navigation }: any) {
                     </View>
                 </View>
 
-                <Button
-                    styles={styles.botaoAtualizarUsuario}
-                    stylesText={styles.textoBotao}
-                    onPress={handleAtualiza}
-                    texto={'Atualizar dados'}
-                />
+                <View style={styles.containerBotao}>
+                    <Button
+                        styles={styles.botaoAtualizarUsuario}
+                        stylesText={styles.textoBotao}
+                        onPress={handleAtualiza}
+                        texto={'Atualizar dados'}
+                    />
+                    <Button
+                        styles={styles.botaoAtualizarSenha}
+                        stylesText={styles.textoBotao}
+                        onPress={toggleModal}
+                        texto={'Alterar Senha'}
+                    />
+                </View>
 
             </ScrollView>
         </View>
