@@ -6,7 +6,7 @@ enum UserType {
     Comum = 2
 }
 
-enum Status {
+export enum Status {
     Ativo = 1,
     Pendente = 2,
     Desativado = 3,
