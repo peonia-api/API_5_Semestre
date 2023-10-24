@@ -1,7 +1,9 @@
 import AppDataSource from "../data-source";
 import { Request, Response } from 'express';
-import { User } from '../entities/User';
+import { User, Status } from '../entities/User';
 import { generateToken } from '../middlewares';
+import user from "../routes/user";
+
 
 class UserController {
   public async login(req: Request, res: Response): Promise<Response> {
@@ -196,6 +198,7 @@ class UserController {
       insertUser.userCpf = createUser.userCpf,
       insertUser.userMatricula = createUser.userMatricula,
       insertUser.userTelefone = createUser.userTelefone
+      insertUser.status = createUser.status
       const allUser = await userRepository.save(insertUser)
       return res.json(allUser)
     }catch(err){
@@ -223,6 +226,30 @@ class UserController {
       return res.status(400).json({'message': 'Erro ao alterar o usuario!', 'erro': true})
     }
   }
+  public async patchStatus(req: Request, res: Response): Promise<Response> {
+    try {
+      const { id, status } = req.body;
+      const userRepository = AppDataSource.getRepository(User);
+      const find = await userRepository.findOne(id);
+  
+      if (!find) {
+        return res.status(404).json({ error: 'Usuário não encontrado' });
+      }
+  
+      // Certifique-se de validar o status, se ele é um valor válido da enum Status
+      if (!(status in Status)) {
+        return res.status(400).json({ error: 'Status inválido' });
+      }
+  
+      find.status = status;
+      const updatedUser = await userRepository.save(find);
+  
+      return res.json(updatedUser);                                                    
+    } catch (err) {
+      return res.status(400).json({ error: 'Erro ao atualizar o status do usuário' });
+    }
+  }
+  
 
   public async putUserPerfil(req: Request, res: Response): Promise<Response> {
     try {

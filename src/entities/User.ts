@@ -6,6 +6,12 @@ enum UserType {
     Comum = 2
 }
 
+enum Status {
+    Ativo = 1,
+    Pendente = 2,
+    Desativado = 3,
+}
+
 @Entity({ name: "users" })
 export class User {
     // define a chave primária como auto incremento
@@ -33,8 +39,11 @@ export class User {
     @Column({ nullable: false, select: false, length: 100 })
     userPassword: string;
 
-    @Column({ nullable: false, enum: UserType }) // Usando o enum UserType aqui
+    @Column({ nullable: false, enum: UserType }) 
     userType: UserType;
+
+    @Column({ nullable: false, enum: Status }) 
+    status: Status;
 
     @Column()
     icone: string;
