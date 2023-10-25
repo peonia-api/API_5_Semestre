@@ -1,4 +1,4 @@
-import { Entity, ObjectIdColumn, ObjectId, Column } from "typeorm";
+import { Entity, ObjectIdColumn, ObjectId, Column, Point } from "typeorm";
 
 // enum EquipmentType {
 //     PosteDeMadeira = 1,
@@ -26,6 +26,9 @@ export class Equipment {
 
     @Column({ type: "double precision" })
     longitude: number;
+
+    @Column("geometry")
+    point: Point
 
     @Column({ type: "varchar", length: 200 })
     observations: string;

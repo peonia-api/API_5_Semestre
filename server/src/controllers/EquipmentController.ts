@@ -2,7 +2,9 @@ import { Request, Response } from "express";
 import { AppDataSource } from "../data-source";
 import { Equipment } from "../entities/Equipment";
 import { ObjectId } from 'mongodb';
-
+import { MongoClient } from "mongodb";
+import * as dotenv from "dotenv";
+dotenv.config();
 
 
 class EquipmentController {
@@ -33,6 +35,35 @@ class EquipmentController {
         }
     }
 
+    public async get10km(req: Request, res: Response): Promise<Response>{
+        try{
+            const { latitude, longitude } = req.body
+
+            const client = new MongoClient(`${process.env.DB}`);
+            await client.connect();
+
+            const collection = client.db('clientes').collection('equipment');
+
+            const radius = 10000;
+
+            const equipmentWithinRadius = await collection.find({ 
+                point: { 
+                    $nearSphere: { 
+                        $geometry: {
+                            type: "Point", coordinates: [ latitude, longitude ] 
+                        }, 
+                        $maxDistance: radius 
+                    } 
+                } 
+            }).toArray()
+            
+            await client.close();
+            
+            return res.json(equipmentWithinRadius)
+        }catch(err){
+            return res.status(400).json({"message": "Erro ao pegar os equipementos!", "erro": true, "err": err})
+        }
+    }
 
     public async postEquipment(req: Request, res: Response): Promise<Response> {
     try{
@@ -40,10 +71,14 @@ class EquipmentController {
         const equipRepository = AppDataSource.getRepository(Equipment)
         const insertEquip = new Equipment();
         insertEquip.type = createEquip.type
-        insertEquip.numero = createEquip.numero
+        insertEquip.numero = Number(createEquip.numero)
         insertEquip.serial = createEquip.serial
-        insertEquip.latitude = createEquip.latitude
-        insertEquip.longitude = createEquip.longitude
+        insertEquip.point = {
+            type: "Point",
+            coordinates: [Number(createEquip.latitude), Number(createEquip.longitude)],
+        }
+        insertEquip.latitude = Number(createEquip.latitude)
+        insertEquip.longitude = Number(createEquip.longitude)
         insertEquip.observations = createEquip.observations
         insertEquip.url = createEquip.url
         insertEquip.status = createEquip.status
@@ -66,10 +101,14 @@ class EquipmentController {
                 
             }) 
             findEquip.type = createEquip.type;
-            findEquip.numero = createEquip.numero;
+            findEquip.numero = Number(createEquip.numero)
             findEquip.serial = createEquip.serial;
-            findEquip.latitude = createEquip.latitude;
-            findEquip.longitude = createEquip.longitude;
+            findEquip.point = {
+                type: "Point",
+                coordinates: [Number(createEquip.latitude), Number(createEquip.longitude)],
+            }
+            findEquip.latitude = Number(createEquip.latitude)
+            findEquip.longitude = Number(createEquip.longitude)
             findEquip.observations = createEquip.observations;
             findEquip.url = createEquip.url
 
