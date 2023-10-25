@@ -30,4 +30,6 @@ routes.put("/perfil/:uuid", UserController.putUserPerfil)
 
 routes.delete('/delete/:uuid', UserController.deleteUser);
 
+routes.patch('/alterStatus/:email', UserController.patchStatus)
+
 export default routes;

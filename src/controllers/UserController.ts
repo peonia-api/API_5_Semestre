@@ -228,9 +228,10 @@ class UserController {
   }
   public async patchStatus(req: Request, res: Response): Promise<Response> {
     try {
-      const { id, status } = req.body;
-      const userRepository = AppDataSource.getRepository(User);
-      const find = await userRepository.findOne(id);
+      const { status } = req.body;
+      const email: any = req.params.email
+      const userRepository = AppDataSource.getRepository(User)
+      const find = await userRepository.findOneBy({ userEmail: email })
   
       if (!find) {
         return res.status(404).json({ error: 'Usuário não encontrado' });
