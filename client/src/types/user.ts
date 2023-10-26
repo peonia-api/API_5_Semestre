@@ -33,4 +33,5 @@ export interface Props{
     userStatus: Status,
     token: string,
     icone: string,
+    status: number,
 }

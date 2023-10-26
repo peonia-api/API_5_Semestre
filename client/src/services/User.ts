@@ -22,6 +22,7 @@ export interface Props {
     userPassword: string,
     token: string,
     icone: string,
+    status: number,
 }
 
 interface PropsProfile {
