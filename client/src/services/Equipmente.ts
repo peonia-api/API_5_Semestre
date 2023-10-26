@@ -13,6 +13,11 @@ export interface Props{
     status: boolean
 }
 
+interface km{
+    latitude: number,
+    longitude: number,
+}
+
 class Equipmente{
     async get(): Promise<EquipmenteProps> {
         try{
@@ -27,6 +32,15 @@ class Equipmente{
     async getOne(id: string): Promise<Props>{
         try{
             const { data } = await api.get(`/equipment/listOne/${id}`)
+            return data
+        }catch(err){
+            throw err
+        }
+    }
+
+    async get10km(body: km | any): Promise<Props>{
+        try{
+            const { data } = await api.get(`/equipment/list10km`, body)
             return data
         }catch(err){
             throw err
