@@ -20,7 +20,9 @@ const styles = StyleSheet.create({
         fontSize: 30,
         fontWeight: "bold",
         color: "red",
-        textAlign:"center"
+        marginRight: 40,
+        marginBottom: 40,
+        textAlign:"right"
     },
     inputEmail: {
         paddingLeft: 15,
@@ -117,7 +119,14 @@ const styles = StyleSheet.create({
         marginBottom: 30,
         marginLeft:15
       },
-
+      textPassword: {
+        marginLeft: 50,
+        justifyContent: "center",
+      },
+      iconPassword: {
+        marginLeft: 265,
+        marginTop: -33,
+      },
       textoBotao: {
         color: 'white',
         fontSize: 17,

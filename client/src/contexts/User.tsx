@@ -108,6 +108,10 @@ export const AuthProvider = ({children}:any) => {
         Storage.removeItem({key:"userType"});
         Storage.removeItem({key:"userName"});
         Storage.removeItem({key:"icone"});
+        Storage.removeItem({key: "userCpf"})
+        Storage.removeItem({key: "userMatricula"})
+        Storage.removeItem({key: "userTelefone"})
+        Storage.removeItem({key: "userid"})
         userApi.defaults.headers.common['Authorization'] = '';
         userApi.defaults.headers.common = { Authorization: `` }
         userApi.defaults.withCredentials = false
