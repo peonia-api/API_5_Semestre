@@ -121,8 +121,9 @@ export default function Cadastro({ route, navigation }: any) {
     }
   };
 
-  const removeImage = () => {
-    setImage(null);
+  const removeImage = (indexToRemove: number) => {
+    const updatedImages = selectedImages.filter((_:any, index:any) => index !== indexToRemove);
+    setSelectedImages(updatedImages);
   };
 
   const handleEquipamentoChange = (equipamento: string) => {
@@ -200,27 +201,32 @@ export default function Cadastro({ route, navigation }: any) {
     <View style={styles.containerPrincipal}>
       <ScrollView>
         <View style={styles.container}>
-          <View style={styles.containerImagem}>
-            {selectedImages.length > 0 && (
-              <Carousel
-                data={selectedImages}
-                renderItem={({ item }) => (
-                  <View style={styles.image}>
-                    <Image source={{ uri: item as string }} style={styles.image} />
-                  </View>
-                )}
-                sliderWidth={400}
-                itemWidth={380}
-              />
-            )}
-          </View>
+        <View style={styles.containerImagem}>
+              {selectedImages.length > 0 && (
+                <Carousel
+                  data={selectedImages}
+                  renderItem={({ item, index }) => (
+                    <View style={styles.image}>
+                      <Image source={{ uri: item as string }} style={styles.image} />
+                      <TouchableOpacity
+                        style={styles.iconDeletar}
+                        onPress={() => removeImage(index)}
+                      >
+                        <Icon name="trash" size={25} color="#fff" />
+                      </TouchableOpacity>
+                    </View>
+                  )}
+                  sliderWidth={400}
+                  itemWidth={380}
+                  keyExtractor={(item, index) => index.toString()}
+                />
+              )}
+            </View>
           <View style={styles.containerIcons}>
             <TouchableOpacity style={styles.icons} onPress={pickImage}>
               <Icon name="plus" size={25} color="#000000" />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.icons} onPress={removeImage}>
-              <Icon name="trash" size={25} color="#000000" />
-            </TouchableOpacity>
+
             <TouchableOpacity style={styles.icons} onPress={() => setCameraVisible(true)}>
               <Icon name="camera" size={25} color="#000000" />
             </TouchableOpacity>
