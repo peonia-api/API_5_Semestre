@@ -22,7 +22,7 @@ export default function Cadastro({ route, navigation }: any) {
   const [uploading, setUploading] = useState(false); // Estado para controlar o envio
   const { createEquipment } = useContextoEquipmente();
 
-  const [selectedImages, setSelectedImages] = useState<string[]>([]);
+  const [selectedImages, setSelectedImages] = useState<String[] | any>([]);
 
   const [numero, setNumero] = useState<number | null>(null);
   const [serial, setSerial] = useState<string | null>(null);
@@ -110,7 +110,6 @@ export default function Cadastro({ route, navigation }: any) {
       });
 
       if (!result.canceled) {
-        // Adicione todas as imagens selecionadas ao estado selectedImages
         const uris = result.assets.map((asset) => asset.uri);
         setSelectedImages([...selectedImages, ...uris]);
       }
@@ -171,9 +170,10 @@ export default function Cadastro({ route, navigation }: any) {
     }
 
     setUploading(true);
+    console.log(selectedImages);
 
     try {
-      const response = await upload(serial, { uri: selectedImages });
+      const response = await upload(serial, selectedImages);
       await createEquipment({
         type: selectedEquipa,
         numero: numero,
@@ -206,7 +206,7 @@ export default function Cadastro({ route, navigation }: any) {
                 data={selectedImages}
                 renderItem={({ item }) => (
                   <View style={styles.image}>
-                    <Image source={{ uri: item }} style={styles.image} />
+                    <Image source={{ uri: item as string }} style={styles.image} />
                   </View>
                 )}
                 sliderWidth={400}
