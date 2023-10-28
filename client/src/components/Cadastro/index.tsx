@@ -11,6 +11,8 @@ import LottieView from 'lottie-react-native';
 import { Camera, CameraType } from 'expo-camera';
 import { FontAwesome } from "@expo/vector-icons"
 import { useFocusEffect } from "@react-navigation/native";
+import Carousel from 'react-native-snap-carousel';
+
 
 Icon.loadFont();
 
@@ -19,6 +21,8 @@ export default function Cadastro({ route, navigation }: any) {
   const [image, setImage] = useState<any>(null);
   const [uploading, setUploading] = useState(false); // Estado para controlar o envio
   const { createEquipment } = useContextoEquipmente();
+
+  const [selectedImages, setSelectedImages] = useState<string[]>([]);
 
   const [numero, setNumero] = useState<number | null>(null);
   const [serial, setSerial] = useState<string | null>(null);
@@ -31,28 +35,28 @@ export default function Cadastro({ route, navigation }: any) {
   const camRef = useRef<any | null>(null);
   const [capturedPhoto, setCapturedPhoto] = useState(null)
   const [isCameraVisible, setCameraVisible] = useState(false);
-  
-  
+
+
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestCameraPermissionsAsync();
       setHasPermission(status === 'granted');
-      
+
     })();
   }, []);
 
   useFocusEffect(useCallback(() => {
-  
-      
+
+
     try {
       let { newEquipment } = route.params
       setLatitude(newEquipment.latitude)
       setLongitude(newEquipment.longitude)
       newEquipment = null
     } catch (err) {
-        console.log("Assim não");
+      console.log("Assim não");
     }
-    }, [route.params]))
+  }, [route.params]))
 
   if (hasPermission === null) {
     return <Text>Verificando permissão de câmera...</Text>;
@@ -70,7 +74,7 @@ export default function Cadastro({ route, navigation }: any) {
     if (camRef) {
       const data = await camRef.current.takePictureAsync();
       setCapturedPhoto(data.uri)
-      setImage(data.uri);
+      selectedImages[selectedImages.length] = data.uri
       setCameraVisible(false);
     }
 
@@ -99,18 +103,22 @@ export default function Cadastro({ route, navigation }: any) {
     if (status === 'granted') {
       let result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.All,
-        allowsEditing: true,
-        allowsMultipleSelection: true,
+        // allowsEditing: true,
+        allowsMultipleSelection: true, // Para permitir a seleção de várias imagens
         aspect: [4, 3],
         quality: 1,
       });
 
       if (!result.canceled) {
-        -
-          setImage(result.assets[0].uri);
+        // Adicione todas as imagens selecionadas ao estado selectedImages
+        const uris = result.assets.map((asset) => asset.uri);
+        setSelectedImages([...selectedImages, ...uris]);
       }
     } else {
-      Alert.alert("Permissão negada", "Você precisa permitir o acesso à galeria de imagens para adicionar uma imagem.");
+      Alert.alert(
+        'Permissão negada',
+        'Você precisa permitir o acesso à galeria de imagens para adicionar uma imagem.'
+      );
     }
   };
 
@@ -123,7 +131,7 @@ export default function Cadastro({ route, navigation }: any) {
   };
 
   const uploadImage = async () => {
-    if (!image) {
+    if (!selectedImages) {
       Alert.alert("Campo obrigatório", "Selecione uma Imagem.");
       return;
     }
@@ -165,7 +173,7 @@ export default function Cadastro({ route, navigation }: any) {
     setUploading(true);
 
     try {
-      const response = await upload(serial, { uri: image });
+      const response = await upload(serial, { uri: selectedImages });
       await createEquipment({
         type: selectedEquipa,
         numero: numero,
@@ -186,20 +194,27 @@ export default function Cadastro({ route, navigation }: any) {
     }
   }
 
-  console.log(numero);
-
+  console.log(selectedImages);
 
   return (
     <View style={styles.containerPrincipal}>
-
       <ScrollView>
         <View style={styles.container}>
-          <View style={styles.containerImagem} >
-            {image && <Image source={{ uri: image }} style={styles.image} />}
+          <View style={styles.containerImagem}>
+            {selectedImages.length > 0 && (
+              <Carousel
+                data={selectedImages}
+                renderItem={({ item }) => (
+                  <View style={styles.image}>
+                    <Image source={{ uri: item }} style={styles.image} />
+                  </View>
+                )}
+                sliderWidth={400}
+                itemWidth={380}
+              />
+            )}
           </View>
-
           <View style={styles.containerIcons}>
-
             <TouchableOpacity style={styles.icons} onPress={pickImage}>
               <Icon name="plus" size={25} color="#000000" />
             </TouchableOpacity>
@@ -220,17 +235,17 @@ export default function Cadastro({ route, navigation }: any) {
                 <View style={styles.modalContainer}>
                   <Camera type={type} style={styles.camera} ref={camRef}>
                     <View style={styles.containerButtonCamera}>
-                          <TouchableOpacity onPress={hideCamera} style={styles.icons}>
-                            <FontAwesome name="close" size={30} color="#fff" />
-                        </TouchableOpacity>
+                      <TouchableOpacity onPress={hideCamera} style={styles.icons}>
+                        <FontAwesome name="close" size={30} color="#fff" />
+                      </TouchableOpacity>
 
-                        <TouchableOpacity style={styles.icons}  onPress={toggleCameraType}>
-                            <FontAwesome name="exchange" size={30} color="red" />
-                          </TouchableOpacity>
+                      <TouchableOpacity style={styles.icons} onPress={toggleCameraType}>
+                        <FontAwesome name="exchange" size={30} color="red" />
+                      </TouchableOpacity>
 
-                          <TouchableOpacity style={styles.buttonCamera} onPress={takePicture}>
-                            <FontAwesome name="camera" size={30} color="#fff" />
-                          </TouchableOpacity>
+                      <TouchableOpacity style={styles.buttonCamera} onPress={takePicture}>
+                        <FontAwesome name="camera" size={30} color="#fff" />
+                      </TouchableOpacity>
 
                     </View>
 
