@@ -29,22 +29,23 @@ export default function Mapa({ navigation }: any) {
 
   const alertar = (e:any) => {
     const newEquipment = e
-    
-    Alert.alert("Criar", "Você deseja criar um equipamento aqui?", [
-      {
-        text: 'NÃO',
-        onPress: () => {
-          setConfirm(false)
+    setTimeout(function() {
+      Alert.alert("Criar", "Você deseja criar um equipamento aqui?", [
+        {
+          text: 'NÃO',
+          onPress: () => {
+            setConfirm(false)
+          },
         },
-      },
-      {
-        text: 'SIM',
-        onPress: () => {
-          setConfirm(true)
-          navigation.navigate('Novo Equipamento', {newEquipment})
+        {
+          text: 'SIM',
+          onPress: () => {
+            setConfirm(true)
+            navigation.navigate('Novo Equipamento', {newEquipment})
+          },
         },
-      },
-    ]) 
+      ])
+    }, 1000)
   }
 
 
@@ -65,7 +66,7 @@ export default function Mapa({ navigation }: any) {
           },
         },
       ])
-  }, 1000); 
+    }, 1000); 
   }
   
   
@@ -97,7 +98,7 @@ export default function Mapa({ navigation }: any) {
             }}
             onPress={(e) => {
               setNewEquipment(e.nativeEvent.coordinate)
-              
+              alertar(e.nativeEvent.coordinate)
             }}
           >
             {equipmente.map((coordenada, index) => (
@@ -130,7 +131,7 @@ export default function Mapa({ navigation }: any) {
                 longitude: Number(newEquipmento.longitude)
               }}
               pinColor="orange"
-              onPress={(e) => alertar(e.nativeEvent.coordinate)}
+              // onPress={(e) => alertar(e.nativeEvent.coordinate)}
             />)}
           </MapView>
         )
