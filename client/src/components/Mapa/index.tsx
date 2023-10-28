@@ -47,6 +47,26 @@ export default function Mapa({ navigation }: any) {
     ]) 
   }
 
+
+  const detalhes = (itemId:any) => {
+    setTimeout(function() {
+      Alert.alert("Detalhes", "Você deseja ver os detalhes do equipamento?", [
+        {
+          text: 'NÃO',
+          onPress: () => {
+            setConfirm(false)
+          },
+        },
+        {
+          text: 'SIM',
+          onPress: () => {
+            setConfirm(true)
+            navigation.navigate('Detalhes', {itemId})
+          },
+        },
+      ])
+  }, 1000); 
+  }
   
   
   return (
@@ -89,6 +109,7 @@ export default function Mapa({ navigation }: any) {
                 }}
                 title={`${coordenada.type} (Serial: ${coordenada.serial})`}
                 description={`Latitude: ${coordenada.latitude}, Longitude: ${coordenada.longitude}`}
+                onPress={() => detalhes(coordenada._id)}
               />
             ))}
 
