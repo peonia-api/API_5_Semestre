@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { View, Text, Image, TextInput, TouchableOpacity, ScrollView, Alert, Modal } from "react-native";
 import styles from "./style";
 import { Picker } from "@react-native-picker/picker";
@@ -10,10 +10,11 @@ import { useContextoEquipmente } from '../../hooks';
 import LottieView from 'lottie-react-native';
 import { Camera, CameraType } from 'expo-camera';
 import { FontAwesome } from "@expo/vector-icons"
+import { useFocusEffect } from "@react-navigation/native";
 
 Icon.loadFont();
 
-export default function Cadastro({ navigation }: any) {
+export default function Cadastro({ route, navigation }: any) {
   const [selectedEquipa, setSelectedEquipa] = useState<string>('');
   const [image, setImage] = useState<any>(null);
   const [uploading, setUploading] = useState(false); // Estado para controlar o envio
@@ -30,13 +31,28 @@ export default function Cadastro({ navigation }: any) {
   const camRef = useRef<any | null>(null);
   const [capturedPhoto, setCapturedPhoto] = useState(null)
   const [isCameraVisible, setCameraVisible] = useState(false);
-
+  
+  
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestCameraPermissionsAsync();
       setHasPermission(status === 'granted');
+      
     })();
   }, []);
+
+  useFocusEffect(useCallback(() => {
+  
+      
+    try {
+      let { newEquipment } = route.params
+      setLatitude(newEquipment.latitude)
+      setLongitude(newEquipment.longitude)
+      newEquipment = null
+    } catch (err) {
+        console.log("Assim não");
+    }
+    }, [route.params]))
 
   if (hasPermission === null) {
     return <Text>Verificando permissão de câmera...</Text>;

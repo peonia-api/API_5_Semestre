@@ -94,6 +94,11 @@ export default function Navigation() {
               component={Perfil}
               options={{ headerBackVisible: true, headerShown: true}}
             />
+            <Stack.Screen
+              name="Novo Equipamento"
+              component={Cadastro}
+              options={{ headerBackVisible: true, headerShown: true}}
+            />
            </>
         ) : (
           <>
