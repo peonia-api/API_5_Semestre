@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useFocusEffect } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ListaEquipamento from '../ListagemEquipamento';
@@ -13,13 +13,30 @@ import Perfil from '../Perfil';
 import { AuthContext } from '../../contexts/User';
 import { VerificacaoDoCodigo } from '../RedefinirSenha';
 import { Redifinir } from '../RedefinirSenha/redefinirSenha';
+import { Image } from 'react-native';
+import Storage from 'expo-storage';
 
 Icon.loadFont();
+
 
 const Stack = createNativeStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
 
 const TabNavigator = () => {
+  const [ icone, setIcone ] = useState(String as any)
+
+  useFocusEffect(useCallback(() => {
+  
+      
+    try {
+      async function init() {
+        setIcone(await Storage.getItem({ key: 'icone' }) ?? "")
+      }
+      init()
+    } catch (err) {
+        console.log("Assim não");
+    }
+  }, []))
   return (
     <Tab.Navigator
       initialRouteName="Equipamentos"
@@ -64,7 +81,11 @@ const TabNavigator = () => {
         options={{
           tabBarLabel: 'Perfil',
           tabBarIcon: () => (
-            <Icon name="user" size={25} color="#000000" />
+            //<Icon name="user" size={25} color="#000000" />
+            <Image
+              source={{ uri: icone }}
+              style={{ width: 35, height: 35, borderRadius: 50 }}
+            />
           ),
         }}
       />
