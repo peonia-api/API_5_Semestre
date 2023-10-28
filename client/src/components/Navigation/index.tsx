@@ -14,7 +14,7 @@ import { AuthContext } from '../../contexts/User';
 import { VerificacaoDoCodigo } from '../RedefinirSenha';
 import { Redifinir } from '../RedefinirSenha/redefinirSenha';
 import { Image } from 'react-native';
-import Storage from 'expo-storage';
+import { useContextUser } from '../../hooks';
 
 Icon.loadFont();
 
@@ -23,20 +23,9 @@ const Stack = createNativeStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
 
 const TabNavigator = () => {
-  const [ icone, setIcone ] = useState(String as any)
 
-  useFocusEffect(useCallback(() => {
-  
-      
-    try {
-      async function init() {
-        setIcone(await Storage.getItem({ key: 'icone' }) ?? "")
-      }
-      init()
-    } catch (err) {
-        console.log("Assim não");
-    }
-  }, []))
+  const { iconePerfil } = useContextUser()
+
   return (
     <Tab.Navigator
       initialRouteName="Equipamentos"
@@ -83,7 +72,7 @@ const TabNavigator = () => {
           tabBarIcon: () => (
             //<Icon name="user" size={25} color="#000000" />
             <Image
-              source={{ uri: icone }}
+              source={{ uri: iconePerfil }}
               style={{ width: 35, height: 35, borderRadius: 50 }}
             />
           ),

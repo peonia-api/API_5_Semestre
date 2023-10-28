@@ -15,7 +15,7 @@ export const AuthProvider = ({children}:any) => {
     const [authenticated, setAuthenticated] = useState(false);
     const [ user, setUser ] = useState<Props[] | null>(null);
     const [loading, setLoading] = useState(true)
-
+    const [ iconePerfil, setIconePerfil ] = useState(true)
     
  
     useEffect(() => {
@@ -60,7 +60,8 @@ export const AuthProvider = ({children}:any) => {
                 const userMatricula = res.userMatricula
                 const userTelefone = res.userTelefone
                 const id = res.id
- 
+                
+                setIconePerfil(icone)
                 Storage.setItem({key: 'userEmail', value: loggedUser})
                 Storage.setItem({key: 'token', value: token})
                 Storage.setItem({key: "userType", value:"2"})
@@ -129,7 +130,7 @@ export const AuthProvider = ({children}:any) => {
   }  
  
     return (
-      <AuthContext.Provider value={{authenticated: Boolean(user), user, loading , logout, login, createUser}}>
+      <AuthContext.Provider value={{authenticated: Boolean(user), user, loading , logout, login, createUser, iconePerfil}}>
         {children}
       </AuthContext.Provider>
     )
