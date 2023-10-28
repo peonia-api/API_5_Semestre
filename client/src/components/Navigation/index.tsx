@@ -70,10 +70,9 @@ const TabNavigator = () => {
         options={{
           tabBarLabel: 'Perfil',
           tabBarIcon: () => (
-            //<Icon name="user" size={25} color="#000000" />
             <Image
               source={{ uri: iconePerfil }}
-              style={{ width: 35, height: 35, borderRadius: 50 }}
+              style={{ width: 40, height: 30, borderRadius: 50 }}
             />
           ),
         }}
