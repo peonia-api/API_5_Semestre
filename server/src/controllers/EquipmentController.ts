@@ -37,7 +37,10 @@ class EquipmentController {
 
     public async get10km(req: Request, res: Response): Promise<Response>{
         try{
-            const { latitude, longitude } = req.body
+            //const { latitude, longitude } = req.body
+            const latitude = Number(req.params.latitude)
+            const longitude = Number(req.params.longitude)
+
 
             const client = new MongoClient(`${process.env.DB}`);
             await client.connect();
@@ -61,6 +64,7 @@ class EquipmentController {
             
             return res.json(equipmentWithinRadius)
         }catch(err){
+            console.log(err)
             return res.status(400).json({"message": "Erro ao pegar os equipementos!", "erro": true, "err": err})
         }
     }
