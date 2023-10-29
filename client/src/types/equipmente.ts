@@ -9,6 +9,8 @@ export default interface EquipmenteProps{
     setLoaded: Function
     putEquipment: Function
     patchStatus: Function
+    get10: Function 
+    list10km: Props[]
 }
 
 export interface Props{

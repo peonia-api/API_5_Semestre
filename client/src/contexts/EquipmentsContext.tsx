@@ -3,12 +3,14 @@ import { EquipmenteProps } from "../types"
 import { Props } from '../types/equipmente'
 import { Equipmente } from "../services";
 import React from 'react';
+import { LocationObject, getCurrentPositionAsync, requestForegroundPermissionsAsync } from "expo-location";
 
 export const ContextoEquipmente = createContext({} as EquipmenteProps)
 
 export function Provider({ children }: any) {
   const [equipmente, setEquipmente] = useState<Props[]>([]);
   const [loaded, setLoaded] = useState<boolean>(true);
+  const [ list10km, setList10km ] = useState<Props[]>([])
 
 
   useEffect(() => {
@@ -93,9 +95,26 @@ export function Provider({ children }: any) {
     }
   }
 
+  const get10 = async() => {
+    try{
+      const { granted } = await requestForegroundPermissionsAsync();
+
+      if (granted) {
+        const currentPosition = await getCurrentPositionAsync();
+        setLoaded(true);      
+        const data:any = await Equipmente.get10km({"latitude": Number(currentPosition.coords.latitude), "longitude": Number(currentPosition.coords.longitude)})
+        setList10km(data)
+      }
+    }catch(err){
+      console.error("Erro", err)
+    }finally{
+      setLoaded(false);
+    }
+  }
+
 
   return (
-    <ContextoEquipmente.Provider value={{ equipmente, setEquipmente, createEquipment, getEquipment, putEquipment, loaded, setLoaded, patchStatus }}>
+    <ContextoEquipmente.Provider value={{ equipmente, setEquipmente, createEquipment, getEquipment, putEquipment, loaded, setLoaded, patchStatus, get10, list10km }}>
       {children}
     </ContextoEquipmente.Provider>
   )

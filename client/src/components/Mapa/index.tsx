@@ -8,7 +8,7 @@ import { useContextoEquipmente } from '../../hooks'
 export default function Mapa({ navigation }: any) {
   const [location, setLocation] = useState<LocationObject | null>(null);
   const [mapLoaded, setMapLoaded] = useState(false);
-  const { equipmente } = useContextoEquipmente()
+  const { equipmente, get10, list10km } = useContextoEquipmente()
 
   const [confirm, setConfirm ] = useState<boolean>(false)
   const [ newEquipmento, setNewEquipment ] = useState({ latitude: 0, longitude: 0} as any)
@@ -23,10 +23,15 @@ export default function Mapa({ navigation }: any) {
     }
   }
 
-  useEffect(() => {
+  useEffect( () => {
+    (async function () {
+      await get10()
+    })()
     requestLocationsPermissions();
   }, []);
 
+  console.log(list10km);
+  
   const alertar = (e:any) => {
     const newEquipment = e
     setTimeout(function() {

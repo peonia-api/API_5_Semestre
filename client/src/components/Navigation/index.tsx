@@ -13,12 +13,9 @@ import Perfil from '../Perfil';
 import { AuthContext } from '../../contexts/User';
 import { VerificacaoDoCodigo } from '../RedefinirSenha';
 import { Redifinir } from '../RedefinirSenha/redefinirSenha';
-<<<<<<< HEAD
 import AprovacaCadastro from '../AprovacaCadastro';
-=======
 import { Image } from 'react-native';
 import { useContextUser } from '../../hooks';
->>>>>>> 41c3a37ff4210dfd3696498fd39991e1a6c92744
 
 Icon.loadFont();
 
@@ -72,9 +69,9 @@ const TabNavigator = () => {
         name="AprovacaoCadastro"
         component={AprovacaCadastro}
         options={{
-          tabBarLabel: 'Cadastrar',
+          tabBarLabel: 'Aprovação',
           tabBarIcon: () => (
-            <Icon name="plus" size={25} color="#000000" />
+            <Icon name="check-square" size={25} color="#000000" />
           ),
         }}
       />

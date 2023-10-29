@@ -38,11 +38,14 @@ class Equipmente{
         }
     }
 
-    async get10km(body: km | any): Promise<Props>{
+    async get10km(body: km | any ): Promise<Props[]>{
         try{
-            const { data } = await api.get(`/equipment/list10km`, body)
+            console.log(body);
+            
+            const data:any  = await api.get('/equipment/list10km/', body)        
             return data
         }catch(err){
+            console.log(err);
             throw err
         }
     }
