@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { View, Text, Image, TextInput, TouchableOpacity, ScrollView, Alert, Modal } from "react-native";
 import styles from "./style";
 import { Picker } from "@react-native-picker/picker";
@@ -10,14 +10,19 @@ import { useContextoEquipmente } from '../../hooks';
 import LottieView from 'lottie-react-native';
 import { Camera, CameraType } from 'expo-camera';
 import { FontAwesome } from "@expo/vector-icons"
+import { useFocusEffect } from "@react-navigation/native";
+import Carousel from 'react-native-snap-carousel';
+
 
 Icon.loadFont();
 
-export default function Cadastro({ navigation }: any) {
+export default function Cadastro({ route, navigation }: any) {
   const [selectedEquipa, setSelectedEquipa] = useState<string>('');
   const [image, setImage] = useState<any>(null);
   const [uploading, setUploading] = useState(false); // Estado para controlar o envio
   const { createEquipment } = useContextoEquipmente();
+
+  const [selectedImages, setSelectedImages] = useState<String[] | any>([]);
 
   const [numero, setNumero] = useState<number | null>(null);
   const [serial, setSerial] = useState<string | null>(null);
@@ -31,12 +36,27 @@ export default function Cadastro({ navigation }: any) {
   const [capturedPhoto, setCapturedPhoto] = useState(null)
   const [isCameraVisible, setCameraVisible] = useState(false);
 
+
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestCameraPermissionsAsync();
       setHasPermission(status === 'granted');
+
     })();
   }, []);
+
+  useFocusEffect(useCallback(() => {
+
+
+    try {
+      let { newEquipment } = route.params
+      setLatitude(newEquipment.latitude)
+      setLongitude(newEquipment.longitude)
+      newEquipment = null
+    } catch (err) {
+      console.log("Assim não");
+    }
+  }, [route.params]))
 
   if (hasPermission === null) {
     return <Text>Verificando permissão de câmera...</Text>;
@@ -54,7 +74,7 @@ export default function Cadastro({ navigation }: any) {
     if (camRef) {
       const data = await camRef.current.takePictureAsync();
       setCapturedPhoto(data.uri)
-      setImage(data.uri);
+      selectedImages[selectedImages.length] = data.uri
       setCameraVisible(false);
     }
 
@@ -83,23 +103,27 @@ export default function Cadastro({ navigation }: any) {
     if (status === 'granted') {
       let result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.All,
-        allowsEditing: true,
-        allowsMultipleSelection: true,
+        // allowsEditing: true,
+        allowsMultipleSelection: true, // Para permitir a seleção de várias imagens
         aspect: [4, 3],
         quality: 1,
       });
 
       if (!result.canceled) {
-        -
-          setImage(result.assets[0].uri);
+        const uris = result.assets.map((asset) => asset.uri);
+        setSelectedImages([...selectedImages, ...uris]);
       }
     } else {
-      Alert.alert("Permissão negada", "Você precisa permitir o acesso à galeria de imagens para adicionar uma imagem.");
+      Alert.alert(
+        'Permissão negada',
+        'Você precisa permitir o acesso à galeria de imagens para adicionar uma imagem.'
+      );
     }
   };
 
-  const removeImage = () => {
-    setImage(null);
+  const removeImage = (indexToRemove: number) => {
+    const updatedImages = selectedImages.filter((_:any, index:any) => index !== indexToRemove);
+    setSelectedImages(updatedImages);
   };
 
   const handleEquipamentoChange = (equipamento: string) => {
@@ -107,7 +131,7 @@ export default function Cadastro({ navigation }: any) {
   };
 
   const uploadImage = async () => {
-    if (!image) {
+    if (!selectedImages) {
       Alert.alert("Campo obrigatório", "Selecione uma Imagem.");
       return;
     }
@@ -147,9 +171,10 @@ export default function Cadastro({ navigation }: any) {
     }
 
     setUploading(true);
+    console.log(selectedImages);
 
     try {
-      const response = await upload(serial, { uri: image });
+      const response = await upload(serial, selectedImages);
       await createEquipment({
         type: selectedEquipa,
         numero: numero,
@@ -170,26 +195,38 @@ export default function Cadastro({ navigation }: any) {
     }
   }
 
-  console.log(numero);
-
+  console.log(selectedImages);
 
   return (
     <View style={styles.containerPrincipal}>
-
       <ScrollView>
         <View style={styles.container}>
-          <View style={styles.containerImagem} >
-            {image && <Image source={{ uri: image }} style={styles.image} />}
-          </View>
-
+        <View style={styles.containerImagem}>
+              {selectedImages.length > 0 && (
+                <Carousel
+                  data={selectedImages}
+                  renderItem={({ item, index }) => (
+                    <View style={styles.image}>
+                      <Image source={{ uri: item as string }} style={styles.image} />
+                      <TouchableOpacity
+                        style={styles.iconDeletar}
+                        onPress={() => removeImage(index)}
+                      >
+                        <Icon name="trash" size={25} color="#fff" />
+                      </TouchableOpacity>
+                    </View>
+                  )}
+                  sliderWidth={400}
+                  itemWidth={380}
+                  keyExtractor={(item, index) => index.toString()}
+                />
+              )}
+            </View>
           <View style={styles.containerIcons}>
-
             <TouchableOpacity style={styles.icons} onPress={pickImage}>
               <Icon name="plus" size={25} color="#000000" />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.icons} onPress={removeImage}>
-              <Icon name="trash" size={25} color="#000000" />
-            </TouchableOpacity>
+
             <TouchableOpacity style={styles.icons} onPress={() => setCameraVisible(true)}>
               <Icon name="camera" size={25} color="#000000" />
             </TouchableOpacity>
@@ -204,17 +241,17 @@ export default function Cadastro({ navigation }: any) {
                 <View style={styles.modalContainer}>
                   <Camera type={type} style={styles.camera} ref={camRef}>
                     <View style={styles.containerButtonCamera}>
-                          <TouchableOpacity onPress={hideCamera} style={styles.icons}>
-                            <FontAwesome name="close" size={30} color="#fff" />
-                        </TouchableOpacity>
+                      <TouchableOpacity onPress={hideCamera} style={styles.icons}>
+                        <FontAwesome name="close" size={30} color="#fff" />
+                      </TouchableOpacity>
 
-                        <TouchableOpacity style={styles.icons}  onPress={toggleCameraType}>
-                            <FontAwesome name="exchange" size={30} color="red" />
-                          </TouchableOpacity>
+                      <TouchableOpacity style={styles.icons} onPress={toggleCameraType}>
+                        <FontAwesome name="exchange" size={30} color="red" />
+                      </TouchableOpacity>
 
-                          <TouchableOpacity style={styles.buttonCamera} onPress={takePicture}>
-                            <FontAwesome name="camera" size={30} color="#fff" />
-                          </TouchableOpacity>
+                      <TouchableOpacity style={styles.buttonCamera} onPress={takePicture}>
+                        <FontAwesome name="camera" size={30} color="#fff" />
+                      </TouchableOpacity>
 
                     </View>
 

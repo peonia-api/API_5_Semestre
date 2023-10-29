@@ -36,8 +36,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: '100%',
     height: 225,
-    borderWidth: 1,
-    borderRadius: 5,
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
     backgroundColor: '#f2f2f2'
   },
 
@@ -45,7 +45,10 @@ const styles = StyleSheet.create({
     width: '100%', 
     height: '100%',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    borderLeftWidth: 1,
+    borderRightWidth: 1,
+    position: 'relative',
   },
 
   containerIcons: {
@@ -63,6 +66,18 @@ const styles = StyleSheet.create({
     backgroundColor: '#4DB9DB',
     alignItems: 'center', 
     justifyContent: 'center'
+  },
+
+  iconDeletar: {
+    position: 'absolute',
+    height: 50,
+    width: 50,
+    borderRadius: 10,
+    backgroundColor: 'rgb(174, 59, 59)',
+    alignItems: 'center', 
+    justifyContent: 'center',
+    right: 10, 
+    bottom: 10,
   },
 
   containerInput: {
