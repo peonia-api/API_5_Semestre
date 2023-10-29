@@ -5,7 +5,7 @@ const routes = Router()
 
 routes.get("/listEquipment", EquipmentController.getEquipment)
 routes.get("/listOne/:uuid", EquipmentController.getOne)
-routes.get("/list10km", EquipmentController.get10km)
+routes.get("/list10km/:latitude/:longitude", EquipmentController.get10km)
 routes.post("/createEquipment",  EquipmentController.postEquipment)
 routes.put("/updateEquipment/:uuid", EquipmentController.putEquipment)
 routes.patch("/alterStatusEquipment/:uuid", EquipmentController.patchStatusEquipmant)
