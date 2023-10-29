@@ -38,14 +38,12 @@ class Equipmente{
         }
     }
 
-    async get10km(body: km | any ): Promise<Props[]>{
+    async get10km(latitude:number, longitude:number): Promise<Props[]>{
         try{
-            console.log(body);
             
-            const data:any  = await api.get('/equipment/list10km/', body)        
+            const { data }  = await api.get(`/equipment/list10km/${latitude}/${longitude}`)        
             return data
         }catch(err){
-            console.log(err);
             throw err
         }
     }

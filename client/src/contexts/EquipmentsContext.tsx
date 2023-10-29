@@ -102,7 +102,7 @@ export function Provider({ children }: any) {
       if (granted) {
         const currentPosition = await getCurrentPositionAsync();
         setLoaded(true);      
-        const data:any = await Equipmente.get10km({"latitude": Number(currentPosition.coords.latitude), "longitude": Number(currentPosition.coords.longitude)})
+        const data:any = await Equipmente.get10km(Number(currentPosition.coords.latitude), Number(currentPosition.coords.longitude))
         setList10km(data)
       }
     }catch(err){

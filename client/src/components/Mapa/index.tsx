@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-import { View, Image, Alert } from "react-native";
-import MapView, { Marker } from "react-native-maps";
+import { View, Image, Alert, TouchableOpacity, Text, FlatList } from "react-native";
+import MapView, { Marker, Circle }  from "react-native-maps";
 import { requestForegroundPermissionsAsync, getCurrentPositionAsync, LocationObject } from "expo-location";
 import LottieView from 'lottie-react-native';
 import { useContextoEquipmente } from '../../hooks'
+import styles from "./style";
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function Mapa({ navigation }: any) {
   const [location, setLocation] = useState<LocationObject | null>(null);
@@ -12,12 +14,26 @@ export default function Mapa({ navigation }: any) {
 
   const [confirm, setConfirm ] = useState<boolean>(false)
   const [ newEquipmento, setNewEquipment ] = useState({ latitude: 0, longitude: 0} as any)
+  const [flatListVisible, setFlatListVisible] = useState(false);
+  const [mapRegion, setMapRegion] = useState({
+    latitude: 0,
+    longitude: 0,
+    latitudeDelta: 0.010,
+    longitudeDelta: 0.010,
+  });
+  
   
   async function requestLocationsPermissions() {
     const { granted } = await requestForegroundPermissionsAsync();
 
     if (granted) {
       const currentPosition = await getCurrentPositionAsync();
+      setMapRegion({
+        latitude: currentPosition.coords.latitude,
+        longitude: currentPosition.coords.longitude,
+        latitudeDelta: 0.010,
+        longitudeDelta: 0.010,
+      })
       setLocation(currentPosition);
       setMapLoaded(true); // Define mapLoaded como true após obter a localização.
     }
@@ -29,7 +45,6 @@ export default function Mapa({ navigation }: any) {
     })()
     requestLocationsPermissions();
   }, []);
-
   console.log(list10km);
   
   const alertar = (e:any) => {
@@ -74,6 +89,15 @@ export default function Mapa({ navigation }: any) {
     }, 1000); 
   }
   
+  const centerMapOnItem = (item:any) => {
+    setMapRegion({
+      latitude: item.latitude,
+      longitude: item.longitude,
+      latitudeDelta: 0.0001,
+      longitudeDelta: 0.0001,
+    });
+  };
+  
   
   return (
     <View style={{ flex: 1 }}>
@@ -95,12 +119,7 @@ export default function Mapa({ navigation }: any) {
         location && (
           <MapView
             style={{ flex: 1 }}
-            initialRegion={{
-              latitude: location.coords.latitude,
-              longitude: location.coords.longitude,
-              latitudeDelta: 0.010,
-              longitudeDelta: 0.010,
-            }}
+            region={mapRegion}
             onPress={(e) => {
               setNewEquipment(e.nativeEvent.coordinate)
               alertar(e.nativeEvent.coordinate)
@@ -119,6 +138,17 @@ export default function Mapa({ navigation }: any) {
               />
             ))}
 
+            {/* <Circle center={{
+                latitude: location.coords.latitude,
+                longitude: location.coords.longitude
+              }} 
+              radius={10000}
+              fillColor="#9EC0D9"
+              // strokeWidth={1}
+              >
+              
+            </Circle> */}
+            
             {location.coords.latitude && location.coords.longitude && (
               <Marker
                 coordinate={{
@@ -138,9 +168,48 @@ export default function Mapa({ navigation }: any) {
               pinColor="orange"
               // onPress={(e) => alertar(e.nativeEvent.coordinate)}
             />)}
+
+            
           </MapView>
+          
         )
+        
       )}
+      <View style={{
+      position: 'absolute',
+      top: flatListVisible ? '45%': '90%',
+      left: '50%',
+      transform: [{ translateX: -35 }, { translateY: -35 }]
+    }}
+    >
+        <TouchableOpacity
+            onPress={() => setFlatListVisible(!flatListVisible)}
+            style={[styles.showFlatListButton, { backgroundColor: 'rgba(0, 0, 0, 0)' }]}
+          >
+          <Icon name={flatListVisible ?  "angle-double-down" :"angle-double-up"} size={70} color="#000000" />
+        </TouchableOpacity>
+      </View>
+      {flatListVisible && (
+        <View style={{ height: '50%' }}>
+          <FlatList
+            data={list10km}
+            keyExtractor={(item) => item._id}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                style={[styles.card, { backgroundColor: item.status == false ? '#b3b1b1' : '#f0fafc' }]}
+                onPress={() => centerMapOnItem(item)}
+              >
+                <Image source={{ uri: item.url[0] }} style={styles.image} />
+                <View style={styles.textContainer}>
+                  <Text style={styles.textfont}>{item.type}</Text>
+                  <Text style={styles.textSub}>{item.serial}</Text>
+                </View>
+              </TouchableOpacity>
+            )}
+          />
+        </View>
+      )}
+      
     </View>
   );
 }
