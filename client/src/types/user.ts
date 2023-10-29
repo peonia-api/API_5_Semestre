@@ -9,7 +9,9 @@ export default interface UserProps{
     setLoaded: Function
     putEquipment: Function
     patchStatus: Function
+    listUsers: Props[]
 }
+
 
 enum UserType {
     Admin = 1,

@@ -17,6 +17,7 @@ interface Equipamentos{
     onPress: Function
 }
 
+
 const CardEquipmet = ({filter, onPress}:any) => {
 
     
@@ -42,4 +43,6 @@ const CardEquipmet = ({filter, onPress}:any) => {
     )
 }
 
+
 export default React.memo(CardEquipmet)
+

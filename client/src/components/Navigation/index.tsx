@@ -13,6 +13,7 @@ import Perfil from '../Perfil';
 import { AuthContext } from '../../contexts/User';
 import { VerificacaoDoCodigo } from '../RedefinirSenha';
 import { Redifinir } from '../RedefinirSenha/redefinirSenha';
+import AprovacaCadastro from '../AprovacaCadastro';
 
 Icon.loadFont();
 
@@ -58,6 +59,17 @@ const TabNavigator = () => {
           ),
         }}
       />
+       <Tab.Screen
+        name="AprovacaoCadastro"
+        component={AprovacaCadastro}
+        options={{
+          tabBarLabel: 'Cadastrar',
+          tabBarIcon: () => (
+            <Icon name="plus" size={25} color="#000000" />
+          ),
+        }}
+      />
+      
       <Tab.Screen
         name="Perfil"
         component={Perfil}
