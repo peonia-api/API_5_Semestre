@@ -12,15 +12,10 @@ export default function App() {
 
     <AuthProvider>
       <Provider>
-        {/*Tirar os commits para ver a tela de login*/}
-        {/* {Login() ? <View style={styles.container}>
-          <Login />
-        </View> :  */}
         <View style={styles.container}>
           <NavBar />
           <Navigation />
         </View>
-        {/* }  */}
       </Provider>
     </AuthProvider>
     

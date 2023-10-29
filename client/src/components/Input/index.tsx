@@ -1,12 +1,12 @@
 import { TextInput } from "react-native";
 import React from "react"
 
-export function InputPassword({style ,setPassword, placeholder}:any){
+export function InputPassword({style ,setPassword, placeholder, show}:any){
 
     return(
         <TextInput
             maxLength={20}
-            secureTextEntry={true}
+            secureTextEntry={!show}
             placeholder={placeholder}
             style={style}
             onChangeText={(e) => setPassword(e)}

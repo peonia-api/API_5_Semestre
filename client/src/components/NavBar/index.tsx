@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import React, { useContext, useState } from "react";
+import { View, Text, Image, TouchableOpacity, Alert } from "react-native";
 import styles from "./style";
 import { LinearGradient } from 'expo-linear-gradient';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
@@ -10,6 +10,28 @@ function NavBar({ navigation }: any) {
 
   const element = <FontAwesomeIcon icon={faUser} />;
   const { authenticated, logout } = useContext(AuthContext);
+  const [ confirm, setConfirm ] = useState(false)
+
+  function alertSair() {
+  
+    Alert.alert("Sair", `Você deseja sair?`, [
+      {
+        text: 'NÃO',
+        onPress: (e) => {
+          setConfirm(false)
+        },
+      },
+      {
+        text: 'SIM',
+        onPress: (e) => {
+          setConfirm(true)
+          logout()
+        },
+      },
+    ])
+}
+
+ 
   
   return (
     <>
@@ -28,7 +50,7 @@ function NavBar({ navigation }: any) {
         </View>
         <View style={styles.containerPeople}>
         <TouchableOpacity
-                onPress={() => logout()}
+                onPress={() => alertSair()}
                 style={styles.containerPeople}
             >
               <Image source={require('../../assets/sign-out.png')} style={styles.iconSignOut} />

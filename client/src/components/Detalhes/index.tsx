@@ -40,6 +40,7 @@ export default function Detalhe({ route, navigation }: any) {
     const [isCameraVisible, setCameraVisible] = useState(false);
 
   
+ 
 
     
     useFocusEffect(useCallback(() => {

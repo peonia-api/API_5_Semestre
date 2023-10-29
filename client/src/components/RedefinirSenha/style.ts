@@ -79,6 +79,14 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "center",
       },
+      iconPassword: {
+        marginLeft: 265,
+        marginTop: -33,
+      },
+      textPassword: {
+        marginLeft: 50,
+        justifyContent: "center",
+      },
     
 });
 

@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useFocusEffect } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ListaEquipamento from '../ListagemEquipamento';
@@ -13,13 +13,23 @@ import Perfil from '../Perfil';
 import { AuthContext } from '../../contexts/User';
 import { VerificacaoDoCodigo } from '../RedefinirSenha';
 import { Redifinir } from '../RedefinirSenha/redefinirSenha';
+<<<<<<< HEAD
+import AprovacaCadastro from '../AprovacaCadastro';
+=======
+import { Image } from 'react-native';
+import { useContextUser } from '../../hooks';
+>>>>>>> 41c3a37ff4210dfd3696498fd39991e1a6c92744
 
 Icon.loadFont();
+
 
 const Stack = createNativeStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
 
 const TabNavigator = () => {
+
+  const { iconePerfil } = useContextUser()
+
   return (
     <Tab.Navigator
       initialRouteName="Equipamentos"
@@ -58,13 +68,27 @@ const TabNavigator = () => {
           ),
         }}
       />
+       <Tab.Screen
+        name="AprovacaoCadastro"
+        component={AprovacaCadastro}
+        options={{
+          tabBarLabel: 'Cadastrar',
+          tabBarIcon: () => (
+            <Icon name="plus" size={25} color="#000000" />
+          ),
+        }}
+      />
+      
       <Tab.Screen
         name="Perfil"
         component={Perfil}
         options={{
           tabBarLabel: 'Perfil',
           tabBarIcon: () => (
-            <Icon name="user" size={25} color="#000000" />
+            <Image
+              source={{ uri: iconePerfil }}
+              style={{ width: 40, height: 30, borderRadius: 50 }}
+            />
           ),
         }}
       />
@@ -92,6 +116,11 @@ export default function Navigation() {
             <Stack.Screen
               name="Perfil"
               component={Perfil}
+              options={{ headerBackVisible: true, headerShown: true}}
+            />
+            <Stack.Screen
+              name="Novo Equipamento"
+              component={Cadastro}
               options={{ headerBackVisible: true, headerShown: true}}
             />
            </>

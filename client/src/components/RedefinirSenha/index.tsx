@@ -35,7 +35,7 @@ export function VerificacaoDoCodigo({ navigation }: any) {
   
   const handleVerificaCodigo = async () => {
     try {
-      await User.getVerificaCodigo(emailInserido, codigoInserido).then((res) =>{
+      await User.getVerificaCodigo(emailInserido.replace(/ /g, ''), codigoInserido).then((res) =>{
             if(res != null){
               alert("Digite a nova senha!")
               navigation.navigate('Redefinir')

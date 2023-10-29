@@ -4,7 +4,7 @@ import React from 'react';
 import { useNavigation } from "@react-navigation/native";
 import userApi from "../services/userApi";
 import Navigation from "../components/Navigation";
-import { User } from "../services"
+import User from "../services/User"
 import  Storage from 'expo-storage'
 import UserProps from "../types/user";
 import { Props } from "../types/user";
@@ -14,16 +14,19 @@ export const AuthContext = createContext({} as UserProps | any);
 export const AuthProvider = ({children}:any) => {
     const [authenticated, setAuthenticated] = useState(false);
     const [ user, setUser ] = useState<Props[] | null>(null);
+    const [listUser, setListUser] = useState<Props[] | null>(null);
     const [loading, setLoading] = useState(true)
+    console.log("foda-se" + listUser)
+    const [ iconePerfil, setIconePerfil ] = useState(true)
 
     
  
     useEffect(() => {
-      // (async function () {
-      //   const resp: any = await User.get()
-      //   setUser(resp)
-      //   setLoading(false)
-      // })
+      (async function () {
+        const resp: any = await User.get()
+        setListUser(resp)
+        setLoading(false)
+      })()
         const loadData = async () => {
           try {
             const recoveredUser = await Storage.getItem({key: 'userEmail'});	
@@ -60,7 +63,8 @@ export const AuthProvider = ({children}:any) => {
                 const userMatricula = res.userMatricula
                 const userTelefone = res.userTelefone
                 const id = res.id
- 
+                
+                setIconePerfil(icone)
                 Storage.setItem({key: 'userEmail', value: loggedUser})
                 Storage.setItem({key: 'token', value: token})
                 Storage.setItem({key: "userType", value:"2"})
@@ -108,6 +112,10 @@ export const AuthProvider = ({children}:any) => {
         Storage.removeItem({key:"userType"});
         Storage.removeItem({key:"userName"});
         Storage.removeItem({key:"icone"});
+        Storage.removeItem({key: "userCpf"})
+        Storage.removeItem({key: "userMatricula"})
+        Storage.removeItem({key: "userTelefone"})
+        Storage.removeItem({key: "userid"})
         userApi.defaults.headers.common['Authorization'] = '';
         userApi.defaults.headers.common = { Authorization: `` }
         userApi.defaults.withCredentials = false
@@ -125,7 +133,8 @@ export const AuthProvider = ({children}:any) => {
   }  
  
     return (
-      <AuthContext.Provider value={{authenticated: Boolean(user), user, loading , logout, login, createUser}}>
+
+      <AuthContext.Provider value={{authenticated: Boolean(user), user, loading , logout, login, createUser, listUser, iconePerfil}}>
         {children}
       </AuthContext.Provider>
     )

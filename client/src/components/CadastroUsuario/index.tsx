@@ -114,7 +114,8 @@ export default function CadastroUsuario({ navigation }: any) {
                 userMatricula: userMatricula,
                 userPassword: userPassword,
                 icone: response,
-                userType: 2
+                userType: 2,
+                status: 2
             }).then(() => {
                 Alert.alert("Cadastro feito com sucesso");
                 navigation.navigate('Login');

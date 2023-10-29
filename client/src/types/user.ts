@@ -9,11 +9,19 @@ export default interface UserProps{
     setLoaded: Function
     putEquipment: Function
     patchStatus: Function
+    listUsers: Props[]
 }
+
 
 enum UserType {
     Admin = 1,
     Comum = 2
+}
+
+enum Status {
+    Ativo = 1,
+    Pendente = 2,
+    Desativado = 3,
 }
 export interface Props{
     id: number,
@@ -24,6 +32,8 @@ export interface Props{
     userEmail: string,
     userType: UserType,
     userPassword: string,
+    userStatus: Status,
     token: string,
     icone: string,
+    status: number,
 }

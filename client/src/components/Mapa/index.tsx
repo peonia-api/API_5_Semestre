@@ -1,16 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
-import { View, Image } from "react-native";
+import { View, Image, Alert } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import { requestForegroundPermissionsAsync, getCurrentPositionAsync, LocationObject } from "expo-location";
 import LottieView from 'lottie-react-native';
 import { useContextoEquipmente } from '../../hooks'
 
-export default function Mapa() {
+export default function Mapa({ navigation }: any) {
   const [location, setLocation] = useState<LocationObject | null>(null);
   const [mapLoaded, setMapLoaded] = useState(false);
   const { equipmente } = useContextoEquipmente()
 
-
+  const [confirm, setConfirm ] = useState<boolean>(false)
+  const [ newEquipmento, setNewEquipment ] = useState({ latitude: 0, longitude: 0} as any)
   
   async function requestLocationsPermissions() {
     const { granted } = await requestForegroundPermissionsAsync();
@@ -26,6 +27,49 @@ export default function Mapa() {
     requestLocationsPermissions();
   }, []);
 
+  const alertar = (e:any) => {
+    const newEquipment = e
+    setTimeout(function() {
+      Alert.alert("Criar", "Você deseja criar um equipamento aqui?", [
+        {
+          text: 'NÃO',
+          onPress: () => {
+            setConfirm(false)
+          },
+        },
+        {
+          text: 'SIM',
+          onPress: () => {
+            setConfirm(true)
+            navigation.navigate('Novo Equipamento', {newEquipment})
+          },
+        },
+      ])
+    }, 1000)
+  }
+
+
+  const detalhes = (itemId:any) => {
+    setTimeout(function() {
+      Alert.alert("Detalhes", "Você deseja ver os detalhes do equipamento?", [
+        {
+          text: 'NÃO',
+          onPress: () => {
+            setConfirm(false)
+          },
+        },
+        {
+          text: 'SIM',
+          onPress: () => {
+            setConfirm(true)
+            navigation.navigate('Detalhes', {itemId})
+          },
+        },
+      ])
+    }, 1000); 
+  }
+  
+  
   return (
     <View style={{ flex: 1 }}>
       {!mapLoaded ? (
@@ -52,6 +96,10 @@ export default function Mapa() {
               latitudeDelta: 0.010,
               longitudeDelta: 0.010,
             }}
+            onPress={(e) => {
+              setNewEquipment(e.nativeEvent.coordinate)
+              alertar(e.nativeEvent.coordinate)
+            }}
           >
             {equipmente.map((coordenada, index) => (
               <Marker
@@ -62,6 +110,7 @@ export default function Mapa() {
                 }}
                 title={`${coordenada.type} (Serial: ${coordenada.serial})`}
                 description={`Latitude: ${coordenada.latitude}, Longitude: ${coordenada.longitude}`}
+                onPress={() => detalhes(coordenada._id)}
               />
             ))}
 
@@ -75,6 +124,15 @@ export default function Mapa() {
                 pinColor="blue"
               />
             )}
+
+            {newEquipmento.latitude !== 0 && (<Marker
+              coordinate={{
+                latitude: Number(newEquipmento.latitude),
+                longitude: Number(newEquipmento.longitude)
+              }}
+              pinColor="orange"
+              // onPress={(e) => alertar(e.nativeEvent.coordinate)}
+            />)}
           </MapView>
         )
       )}

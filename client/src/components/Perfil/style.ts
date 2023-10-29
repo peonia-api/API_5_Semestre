@@ -14,6 +14,24 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFFFFF',
         width: '100%',
         height: '100%',
+        justifyContent: "center"
+    },
+    fechaModal: {
+        fontSize: 30,
+        fontWeight: "bold",
+        color: "red",
+        marginRight: 40,
+        marginBottom: 40,
+        textAlign:"right"
+    },
+    inputEmail: {
+        paddingLeft: 15,
+        backgroundColor: '#f2f2f2',
+        borderRadius: 5,
+        height: 45,
+        borderWidth: 1,
+        borderColor: "#ccc",
+        width: "85%",
     },
 
     containerImagem: {
@@ -87,15 +105,31 @@ const styles = StyleSheet.create({
         backgroundColor: '#4DB9DB',
         padding: 12,
         borderRadius: 5,
-        width: '55%',
-        marginTop: 20,
+        width: '40%',
+        marginTop: 25,
         marginBottom: 30,
-        marginLeft: 85
+        marginRight: 15
       },
-
+      botaoAtualizarSenha: {
+        backgroundColor: '#273d63',
+        padding: 12,
+        borderRadius: 5,
+        width: '40%',
+        marginTop: 25,
+        marginBottom: 30,
+        marginLeft:15
+      },
+      textPassword: {
+        marginLeft: 50,
+        justifyContent: "center",
+      },
+      iconPassword: {
+        marginLeft: 265,
+        marginTop: -33,
+      },
       textoBotao: {
         color: 'white',
-        fontSize: 16,
+        fontSize: 17,
         textAlign: 'center',
       },
       uploadingAnimation: {

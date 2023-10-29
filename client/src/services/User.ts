@@ -22,6 +22,7 @@ export interface Props {
     userPassword: string,
     token: string,
     icone: string,
+    status: number,
 }
 
 interface PropsProfile {
@@ -118,6 +119,15 @@ class User {
         }
     }
 
+    async patchStatus(email: string): Promise<Props | any>{
+        try{
+            const res = await userApi.patch(`/user/alterStatus/${email}`)
+            return res.data
+        }catch(err){
+            throw err
+        }
+    }
+
     async getAuthEmail(userEmail: string): Promise<Props> {
         try {
             const res = await auth.get(`/auth2fa_email/${userEmail}`)
@@ -132,6 +142,15 @@ class User {
             const res = await auth.get(`/auth2fa/getEmail/${userEmail}/${codigo}`)
             return res.data
         } catch (err) {
+            throw err
+        }
+    }
+
+    async getEmailStatus(email: string, status: string){
+        try{
+            const res = await auth.get(`/status/${email}/${status}`)
+            return res.data
+        }catch(err){
             throw err
         }
     }
