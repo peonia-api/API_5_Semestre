@@ -6,6 +6,8 @@ import LottieView from 'lottie-react-native';
 import { useContextoEquipmente } from '../../hooks'
 import styles from "./style";
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { PanResponder, Animated } from 'react-native';
+
 
 export default function Mapa({ navigation }: any) {
   const [location, setLocation] = useState<LocationObject | null>(null);
@@ -21,7 +23,25 @@ export default function Mapa({ navigation }: any) {
     latitudeDelta: 0.010,
     longitudeDelta: 0.010,
   });
-  
+  const [gestureY, setGestureY] = useState(0);
+
+  const handlePanResponderMove = (_:any, gestureState:any) => {
+    if (gestureState.dy > 0) {
+      // Deslizamento para baixo: feche a FlatList
+      setFlatListVisible(false);
+    } else if (gestureState.dy < 0) {
+      // Deslizamento para cima: abra a FlatList
+      setFlatListVisible(true);
+    }
+
+    // Atualize o estado com a posição vertical do gesto
+    setGestureY(gestureState.dy);
+  };
+
+  const panResponder = PanResponder.create({
+    onMoveShouldSetPanResponder: () => true,
+    onPanResponderMove: handlePanResponderMove,
+  });
   
   async function requestLocationsPermissions() {
     const { granted } = await requestForegroundPermissionsAsync();
@@ -35,6 +55,7 @@ export default function Mapa({ navigation }: any) {
         longitudeDelta: 0.010,
       })
       setLocation(currentPosition);
+      
       setMapLoaded(true); // Define mapLoaded como true após obter a localização.
     }
   }
@@ -45,8 +66,7 @@ export default function Mapa({ navigation }: any) {
     })()
     requestLocationsPermissions();
   }, []);
-  console.log(list10km);
-  
+
   const alertar = (e:any) => {
     const newEquipment = e
     setTimeout(function() {
@@ -175,20 +195,21 @@ export default function Mapa({ navigation }: any) {
         )
         
       )}
-      <View style={{
-      position: 'absolute',
-      top: flatListVisible ? '45%': '90%',
-      left: '50%',
-      transform: [{ translateX: -35 }, { translateY: -35 }]
-    }}
-    >
+      <Animated.View style={{
+          position: 'absolute',
+          top: flatListVisible ? '45%': '90%',
+          left: '50%',
+          transform: [{ translateX: -35 }, { translateY: -35 }]
+        }}
+        {...panResponder.panHandlers}
+      >
         <TouchableOpacity
             onPress={() => setFlatListVisible(!flatListVisible)}
             style={[styles.showFlatListButton, { backgroundColor: 'rgba(0, 0, 0, 0)' }]}
           >
           <Icon name={flatListVisible ?  "angle-double-down" :"angle-double-up"} size={70} color="#000000" />
         </TouchableOpacity>
-      </View>
+      </Animated.View>
       {flatListVisible && (
         <View style={{ height: '50%' }}>
           <FlatList
