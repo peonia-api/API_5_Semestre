@@ -1,50 +1,25 @@
-import React, { useEffect, useRef, useState } from "react";
-import { View, Image, Alert, TouchableOpacity, Text, FlatList } from "react-native";
-import MapView, { Marker, Circle }  from "react-native-maps";
+import React, { useEffect, useState } from "react";
+import { View, Alert, TouchableOpacity } from "react-native";
 import { requestForegroundPermissionsAsync, getCurrentPositionAsync, LocationObject } from "expo-location";
 import LottieView from 'lottie-react-native';
 import { useContextUser, useContextoEquipmente } from '../../hooks'
-import styles from "./style";
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { PanResponder, Animated } from 'react-native';
-import { CustomMarker } from "./CustomMarker";
-
+import Equipamento10km from './List10km'
+import MapaView from "./Mapa";
+import SubList from "./Animated";
 
 export default function Mapa({ navigation }: any) {
   const [location, setLocation] = useState<LocationObject | null>(null);
   const [mapLoaded, setMapLoaded] = useState(false);
-  const { equipmente, get10, list10km } = useContextoEquipmente()
-  const { iconePerfil } = useContextUser()
+  const { list10km } = useContextoEquipmente()
 
   const [confirm, setConfirm ] = useState<boolean>(false)
   const [ newEquipmento, setNewEquipment ] = useState({ latitude: 0, longitude: 0} as any)
   const [flatListVisible, setFlatListVisible] = useState(false);
-  const [mapRegion, setMapRegion] = useState({
-    latitude: 0,
-    longitude: 0,
-    latitudeDelta: 0.010,
-    longitudeDelta: 0.010,
-  });
-  const [gestureY, setGestureY] = useState(0);
+  const [mapRegion, setMapRegion] = useState({} as any);
 
-  const handlePanResponderMove = (_:any, gestureState:any) => {
-    if (gestureState.dy > 0) {
-      // Deslizamento para baixo: feche a FlatList
-      setFlatListVisible(false);
-    } else if (gestureState.dy < 0) {
-      // Deslizamento para cima: abra a FlatList
-      setFlatListVisible(true);
-    }
 
-    // Atualize o estado com a posição vertical do gesto
-    setGestureY(gestureState.dy);
-  };
-
-  const panResponder = PanResponder.create({
-    onMoveShouldSetPanResponder: () => true,
-    onPanResponderMove: handlePanResponderMove,
-  });
   
+
   async function requestLocationsPermissions() {
     const { granted } = await requestForegroundPermissionsAsync();
 
@@ -57,17 +32,15 @@ export default function Mapa({ navigation }: any) {
         longitudeDelta: 0.010,
       })
       setLocation(currentPosition);
-      
+      setMapLoaded(true); // Define mapLoaded como true após obter a localização.
+
     }
   }
-
-  useEffect( () => {
-    (async function () {
-      await get10()
-      requestLocationsPermissions();
-      setMapLoaded(true); // Define mapLoaded como true após obter a localização.
-    })()
+  useEffect( () => { 
+    requestLocationsPermissions();
   }, []);
+
+ 
 
   const alertar = (e:any) => {
     const newEquipment = e
@@ -145,126 +118,22 @@ export default function Mapa({ navigation }: any) {
         />
       ) : (
         location && (
-          <MapView
-            style={{ flex: 1 }}
-            region={mapRegion}
-            onPress={(e) => {
-              setNewEquipment(e.nativeEvent.coordinate)
-              alertar(e.nativeEvent.coordinate)
-            }}
-          >
-            {equipmente.map((coordenada, index) => (
-              <Marker
-                key={index}
-                coordinate={{
-                  latitude: Number(coordenada.latitude),
-                  longitude: Number(coordenada.longitude)
-                }}
-                title={`${coordenada.type} (Serial: ${coordenada.serial})`}
-                description={`Latitude: ${coordenada.latitude}, Longitude: ${coordenada.longitude}`}
-                onPress={() => {
-                  setMapRegion({
-                    latitude: coordenada.latitude,
-                    longitude: coordenada.longitude,
-                    latitudeDelta: 0.001,
-                    longitudeDelta: 0.0001})
-                  detalhes(coordenada._id)
-                }}
-                pinColor={coordenada.latitude === mapRegion.latitude ? "gold": coordenada.status === true ? "red": "rgb(136, 40, 57)" }
-              >
-                <CustomMarker 
-                  url={coordenada.url[0]}  
-                  pinColor={
-                    coordenada.latitude === mapRegion.latitude
-                      ? "gold"
-                      : coordenada.status === true
-                      ? "red"
-                      : "silver"
-                  }
-                  imageStyle={{width: 40, height: 40, borderRadius: 100, opacity: coordenada.status === true ? 1: 0.4}}
-                />
-                </Marker>
-            ))}
-
-            {/* <Circle center={{
-                latitude: location.coords.latitude,
-                longitude: location.coords.longitude
-              }} 
-              radius={10000}
-              fillColor="#9EC0D9"
-              // strokeWidth={1}
-              >
-              
-            </Circle> */}
-            
-            {location.coords.latitude && location.coords.longitude && (
-              <Marker
-                coordinate={{
-                  latitude: location.coords.latitude,
-                  longitude: location.coords.longitude,
-                }}
-                title="Minha Localização"
-              >
-                <CustomMarker  
-                  url={iconePerfil}  
-                  pinColor={"blue"}
-                  imageStyle={{width: 40, height: 40, borderRadius: 100}} 
-                />
-                </Marker>
-            )}
-
-            {newEquipmento.latitude !== 0 && (<Marker
-              coordinate={{
-                latitude: Number(newEquipmento.latitude),
-                longitude: Number(newEquipmento.longitude)
-              }}
-              pinColor="orange"
-              // onPress={(e) => alertar(e.nativeEvent.coordinate)}
-            />)}
-
-            
-          </MapView>
+          <MapaView 
+            alertar={alertar} 
+            detalhes={detalhes} 
+            location={location}
+            mapRegion={mapRegion}
+            newEquipmento={newEquipmento}
+            setMapRegion={setMapRegion}
+            setNewEquipment={setNewEquipment}
+          />
           
         )
         
       )}
-      <Animated.View style={{
-          position: 'absolute',
-          top: flatListVisible ? '45%': '90%',
-          left: '50%',
-          transform: [{ translateX: -35 }, { translateY: Animated.add(
-            gestureY > 0 ? -35: -35,
-            new Animated.Value(flatListVisible ? 0 : 1) // Adicione este valor
-          ), }]
-        }}
-        {...panResponder.panHandlers}
-      >
-        <TouchableOpacity
-            onPress={() => setFlatListVisible(!flatListVisible)}
-            style={[styles.showFlatListButton, { backgroundColor: 'rgba(0, 0, 0, 0)' }]}
-          >
-          <Icon name={flatListVisible ?  "angle-double-down" :"angle-double-up"} size={70} color="#000000" />
-        </TouchableOpacity>
-      </Animated.View>
+      <SubList flatListVisible={flatListVisible} setFlatListVisible={setFlatListVisible}/>
       {flatListVisible && (
-        <View style={{ height: '50%' }}>
-          <FlatList
-            data={list10km}
-            keyExtractor={(item) => item._id}
-            renderItem={({ item }) => (
-              <TouchableOpacity
-                style={[styles.card, { backgroundColor: item.status == false ? '#b3b1b1' : '#f0fafc' }]}
-                onPress={() => centerMapOnItem(item)}
-              >
-                <Image source={{ uri: item.url[0] }} style={styles.image} />
-                <View style={styles.textContainer}>
-                  <Text style={styles.textfont}>{item.type}</Text>
-                  <Text style={styles.textSub}>{item.serial}</Text>
-                </View>
-              </TouchableOpacity>
-            )}
-          />
-        </View>
+        <Equipamento10km list10km={list10km} centerMapOnItem={centerMapOnItem}/>
       )}
       
     </View>

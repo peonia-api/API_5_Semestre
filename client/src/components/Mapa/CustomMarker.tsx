@@ -1,10 +1,10 @@
-import { GestureResponderEvent, Image, TouchableOpacity, View } from "react-native";
+import { Image, TouchableOpacity, View } from "react-native";
 import styles from "./style";
 import React from "react";
 
 interface Props{
     pinColor: string
-    url: string
+    url: any
     imageStyle: {}
 }
 
@@ -14,7 +14,7 @@ const CustomMarker = ({ pinColor, url, imageStyle }:Props) => {
       <TouchableOpacity style={{justifyContent: "center", alignItems: "center"}} >
         <View style={[styles.pin, { borderColor: pinColor, backgroundColor: pinColor, marginBottom: 1 }]}>
           <Image 
-            source={{ uri: url }} 
+            source={url} 
             style={imageStyle} 
           />
         </View>
@@ -23,4 +23,4 @@ const CustomMarker = ({ pinColor, url, imageStyle }:Props) => {
     );
 }
 
-export { CustomMarker }
+export default React.memo(CustomMarker) 

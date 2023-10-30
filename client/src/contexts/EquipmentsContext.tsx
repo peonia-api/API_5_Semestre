@@ -17,6 +17,7 @@ export function Provider({ children }: any) {
     (async function () {
       const resp: any = await Equipmente.get()
       setEquipmente(resp)
+      await get10()
       setLoaded(false)
     })()
   }, [])
@@ -100,15 +101,12 @@ export function Provider({ children }: any) {
       const { granted } = await requestForegroundPermissionsAsync();
 
       if (granted) {
-        const currentPosition = await getCurrentPositionAsync();
-        setLoaded(true);      
+        const currentPosition = await getCurrentPositionAsync();    
         const data:any = await Equipmente.get10km(Number(currentPosition.coords.latitude), Number(currentPosition.coords.longitude))
         setList10km(data)
       }
     }catch(err){
       console.error("Erro", err)
-    }finally{
-      setLoaded(false);
     }
   }
 

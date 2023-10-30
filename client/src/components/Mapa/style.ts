@@ -23,8 +23,8 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     alignItems: 'center',
     justifyContent: "center",
-    width: 42, 
-    height: 42
+    width: 37, 
+    height: 37
   },
   triangle: {
     width: 0,
