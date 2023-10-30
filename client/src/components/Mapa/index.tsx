@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { View, Alert, TouchableOpacity } from "react-native";
+import { View, Alert } from "react-native";
 import { requestForegroundPermissionsAsync, getCurrentPositionAsync, LocationObject } from "expo-location";
 import LottieView from 'lottie-react-native';
-import { useContextUser, useContextoEquipmente } from '../../hooks'
+import { useContextoEquipmente } from '../../hooks'
 import Equipamento10km from './List10km'
 import MapaView from "./Mapa";
 import SubList from "./Animated";
@@ -17,8 +17,6 @@ export default function Mapa({ navigation }: any) {
   const [flatListVisible, setFlatListVisible] = useState(false);
   const [mapRegion, setMapRegion] = useState({} as any);
 
-
-  
 
   async function requestLocationsPermissions() {
     const { granted } = await requestForegroundPermissionsAsync();
@@ -83,23 +81,7 @@ export default function Mapa({ navigation }: any) {
       ])
     }, 1000); 
   }
-  
-  const centerMapOnItem = (item:any) => {  
-    mapRegion.latitude === item.latitude ? setMapRegion({
-      latitude: item.latitude,
-      longitude: item.longitude,
-      latitudeDelta: 0.001,
-      longitudeDelta: 0.0001,})
-    :
-    setMapRegion({
-      latitude: item.latitude,
-      longitude: item.longitude,
-      latitudeDelta: 0.0001,
-      longitudeDelta: 0.0001,
-    });
-  };
-  
-  
+
   return (
     <View style={{ flex: 1 }}>
       {!mapLoaded ? (
@@ -126,16 +108,13 @@ export default function Mapa({ navigation }: any) {
             newEquipmento={newEquipmento}
             setMapRegion={setMapRegion}
             setNewEquipment={setNewEquipment}
-          />
-          
+          /> 
         )
-        
       )}
       <SubList flatListVisible={flatListVisible} setFlatListVisible={setFlatListVisible}/>
       {flatListVisible && (
-        <Equipamento10km list10km={list10km} centerMapOnItem={centerMapOnItem}/>
-      )}
-      
+        <Equipamento10km list10km={list10km} mapRegion={mapRegion} setMapRegion={setMapRegion}/>
+      )}  
     </View>
   );
 }

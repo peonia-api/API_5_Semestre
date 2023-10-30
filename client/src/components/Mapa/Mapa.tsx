@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import MapView, { Marker, Circle }  from "react-native-maps";
 import { useContextUser, useContextoEquipmente } from '../../hooks'
 import CustomMarker  from "./CustomMarker";

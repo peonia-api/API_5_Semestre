@@ -4,14 +4,31 @@ import React from "react";
 
 interface Props{
     list10km: any[] 
-    centerMapOnItem: Function
+    mapRegion: any
+    setMapRegion: any
 }
 
-const Equipamento10km = ({list10km, centerMapOnItem}:Props) => {
+const Equipamento10km = (props:Props) => {
+
+    const centerMapOnItem = (item:any) => {  
+        props.mapRegion.latitude === item.latitude ? props.setMapRegion({
+          latitude: item.latitude,
+          longitude: item.longitude,
+          latitudeDelta: 0.001,
+          longitudeDelta: 0.0001,})
+        :
+        props.setMapRegion({
+          latitude: item.latitude,
+          longitude: item.longitude,
+          latitudeDelta: 0.0001,
+          longitudeDelta: 0.0001,
+        });
+      };
+
     return(
         <View style={{ height: '50%' }}>
                 <FlatList
-                data={list10km}
+                data={props.list10km}
                 keyExtractor={(item) => item._id}
                 renderItem={({ item }) => (
                     <TouchableOpacity
