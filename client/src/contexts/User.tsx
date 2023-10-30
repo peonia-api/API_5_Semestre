@@ -1,9 +1,6 @@
-import axios from "axios";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import React from 'react';
-import { useNavigation } from "@react-navigation/native";
 import userApi from "../services/userApi";
-import Navigation from "../components/Navigation";
 import User from "../services/User"
 import  Storage from 'expo-storage'
 import UserProps from "../types/user";
@@ -16,7 +13,6 @@ export const AuthProvider = ({children}:any) => {
     const [ user, setUser ] = useState<Props[] | null>(null);
     const [listUser, setListUser] = useState<Props[] | null>(null);
     const [loading, setLoading] = useState(true)
-    console.log("foda-se" + listUser)
     const [ iconePerfil, setIconePerfil ] = useState(true)
 
     
@@ -51,10 +47,6 @@ export const AuthProvider = ({children}:any) => {
             //await axios.post(URIuser.LOGIN_USER, {userEmail: email, userPassword: password})
             User.postLogin({userEmail: email, userPassword: password})
             .then(async (res) => {
-              
-                if(res.error){
-                  return
-                }
                 const loggedUser = res.userEmail
                 const token = res.token
                 const userName = res.userName
