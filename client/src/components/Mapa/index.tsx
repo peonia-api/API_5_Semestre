@@ -110,6 +110,10 @@ export default function Mapa({ navigation }: any) {
   }
   
   const centerMapOnItem = (item:any) => {
+    mapRegion.latitude === item.latitude ? setMapRegion({latitude: item.latitude,
+      longitude: item.longitude,
+      latitudeDelta: 0.001,
+      longitudeDelta: 0.0001,}):
     setMapRegion({
       latitude: item.latitude,
       longitude: item.longitude,
