@@ -199,7 +199,10 @@ export default function Mapa({ navigation }: any) {
           position: 'absolute',
           top: flatListVisible ? '45%': '90%',
           left: '50%',
-          transform: [{ translateX: -35 }, { translateY: -35 }]
+          transform: [{ translateX: -35 }, { translateY: Animated.add(
+            gestureY > 0 ? -35: -35,
+            new Animated.Value(flatListVisible ? 0 : 1) // Adicione este valor
+          ), }]
         }}
         {...panResponder.panHandlers}
       >
