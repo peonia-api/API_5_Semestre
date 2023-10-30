@@ -3,16 +3,18 @@ import { View, Image, Alert, TouchableOpacity, Text, FlatList } from "react-nati
 import MapView, { Marker, Circle }  from "react-native-maps";
 import { requestForegroundPermissionsAsync, getCurrentPositionAsync, LocationObject } from "expo-location";
 import LottieView from 'lottie-react-native';
-import { useContextoEquipmente } from '../../hooks'
+import { useContextUser, useContextoEquipmente } from '../../hooks'
 import styles from "./style";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { PanResponder, Animated } from 'react-native';
+import { CustomMarker } from "./CustomMarker";
 
 
 export default function Mapa({ navigation }: any) {
   const [location, setLocation] = useState<LocationObject | null>(null);
   const [mapLoaded, setMapLoaded] = useState(false);
   const { equipmente, get10, list10km } = useContextoEquipmente()
+  const { iconePerfil } = useContextUser()
 
   const [confirm, setConfirm ] = useState<boolean>(false)
   const [ newEquipmento, setNewEquipment ] = useState({ latitude: 0, longitude: 0} as any)
@@ -56,15 +58,15 @@ export default function Mapa({ navigation }: any) {
       })
       setLocation(currentPosition);
       
-      setMapLoaded(true); // Define mapLoaded como true após obter a localização.
     }
   }
 
   useEffect( () => {
     (async function () {
       await get10()
+      requestLocationsPermissions();
+      setMapLoaded(true); // Define mapLoaded como true após obter a localização.
     })()
-    requestLocationsPermissions();
   }, []);
 
   const alertar = (e:any) => {
@@ -109,11 +111,13 @@ export default function Mapa({ navigation }: any) {
     }, 1000); 
   }
   
-  const centerMapOnItem = (item:any) => {
-    mapRegion.latitude === item.latitude ? setMapRegion({latitude: item.latitude,
+  const centerMapOnItem = (item:any) => {  
+    mapRegion.latitude === item.latitude ? setMapRegion({
+      latitude: item.latitude,
       longitude: item.longitude,
       latitudeDelta: 0.001,
-      longitudeDelta: 0.0001,}):
+      longitudeDelta: 0.0001,})
+    :
     setMapRegion({
       latitude: item.latitude,
       longitude: item.longitude,
@@ -158,8 +162,28 @@ export default function Mapa({ navigation }: any) {
                 }}
                 title={`${coordenada.type} (Serial: ${coordenada.serial})`}
                 description={`Latitude: ${coordenada.latitude}, Longitude: ${coordenada.longitude}`}
-                onPress={() => detalhes(coordenada._id)}
-              />
+                onPress={() => {
+                  setMapRegion({
+                    latitude: coordenada.latitude,
+                    longitude: coordenada.longitude,
+                    latitudeDelta: 0.001,
+                    longitudeDelta: 0.0001})
+                  detalhes(coordenada._id)
+                }}
+                pinColor={coordenada.latitude === mapRegion.latitude ? "gold": coordenada.status === true ? "red": "rgb(136, 40, 57)" }
+              >
+                <CustomMarker 
+                  url={coordenada.url[0]}  
+                  pinColor={
+                    coordenada.latitude === mapRegion.latitude
+                      ? "gold"
+                      : coordenada.status === true
+                      ? "red"
+                      : "silver"
+                  }
+                  imageStyle={{width: 40, height: 40, borderRadius: 100, opacity: coordenada.status === true ? 1: 0.4}}
+                />
+                </Marker>
             ))}
 
             {/* <Circle center={{
@@ -180,8 +204,13 @@ export default function Mapa({ navigation }: any) {
                   longitude: location.coords.longitude,
                 }}
                 title="Minha Localização"
-                pinColor="blue"
-              />
+              >
+                <CustomMarker  
+                  url={iconePerfil}  
+                  pinColor={"blue"}
+                  imageStyle={{width: 40, height: 40, borderRadius: 100}} 
+                />
+                </Marker>
             )}
 
             {newEquipmento.latitude !== 0 && (<Marker

@@ -18,6 +18,25 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#d6d6d6"
   },
+
+  pin: {
+    borderRadius: 100,
+    alignItems: 'center',
+    justifyContent: "center",
+    width: 42, 
+    height: 42
+  },
+  triangle: {
+    width: 0,
+    height: 0,
+    backgroundColor: 'transparent',
+    borderStyle: 'solid',
+    borderTopWidth: 10, // Largura da base do triângulo
+    borderLeftWidth: 10,
+    borderRightWidth: 10,
+    borderLeftColor: 'transparent',
+    borderRightColor: 'transparent',
+  },
   image: {
     width: 150,
     height: 100,

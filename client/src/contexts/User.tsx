@@ -65,6 +65,10 @@ export const AuthProvider = ({children}:any) => {
                 const id = res.id
                 
                 setIconePerfil(icone)
+                userApi.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+                userApi.defaults.headers.common = { Authorization: `Bearer ${token}` }
+                userApi.defaults.withCredentials = true
+                setUser(loggedUser)
                 Storage.setItem({key: 'userEmail', value: loggedUser})
                 Storage.setItem({key: 'token', value: token})
                 Storage.setItem({key: "userType", value:"2"})
@@ -74,14 +78,7 @@ export const AuthProvider = ({children}:any) => {
                 Storage.setItem({key: "userTelefone", value: userTelefone})
                 Storage.setItem({key: "icone", value: icone})
                 Storage.setItem({key: "userid", value: JSON.stringify(id)})
-                console.log(await Storage.getItem({ key: 'userid' }) ?? "");
 
- 
-                userApi.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-                userApi.defaults.headers.common = { Authorization: `Bearer ${token}` }
-                userApi.defaults.withCredentials = true
-                setUser(loggedUser)
-                // navigation.navigate('ListaEquipamento');
                 console.log(token)
  
             })
