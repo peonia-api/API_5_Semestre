@@ -118,28 +118,42 @@ export default function Detalhe({ route, navigation }: any) {
                 await putEquipment(itemId, { type: selectedEquipa, numero: numero, serial: imei, latitude: latitude, longitude: longitude, observations: observacoes, url: selectedImages })
                 console.log('Equipamento atualizado com sucesso');
             } else {
-                let listImagens:any = []
-                const imagensList:any = []
-               
-
-                verficaImage.forEach((item:string) => {
-                    if (!selectedImages.includes(item)) {
-                        const nameArquivo = item.split('/')[8];
-                        removeFileOne(nameArquivo);    
-                    }else{
-                        imagensList.push(item)
-                    }
-                });
+                let imagens:any = []
+                // const imagensList:any = []
                 const novosImagem = selectedImages.filter((image:string) => image.startsWith('file:'))
 
+                
+
+                const listImagens = verficaImage.filter((item:any) => {
+                    if (!selectedImages.includes(item)) {
+                        const nameArquivo = item.split('/')[8];
+                        removeFileOne(nameArquivo).catch((error) => {
+                            console.error('Erro ao remover arquivo:', error);
+                        });
+                        return false; // O item será removido da lista
+                    }
+                    return true; // O item será mantido na lista
+                });
+                
+                console.log(listImagens);
+                
                 if(novosImagem.length > 0){
-                   listImagens = upload(imei, novosImagem) 
+                    upload(imei, novosImagem).then((res) => {
+                        imagens = listImagens.concat(res);
+                    })
                 }
+                // const list:string[] = listImagens.concat(imagensList)
 
-                const list:string[] = listImagens.concat(imagensList)
-
-                console.log(list);
-                await putEquipment(itemId, { type: selectedEquipa, numero: numero, serial: imei, latitude: latitude, longitude: longitude, observations: observacoes, url: list })
+                // console.log(list);
+                await putEquipment(itemId, { 
+                    type: selectedEquipa, 
+                    numero: numero, 
+                    serial: imei, 
+                    latitude: latitude, 
+                    longitude: longitude, 
+                    observations: observacoes, 
+                    url: imagens 
+                })
 
                 // console.log("entrou aqquiiiiii");
                 // const nameArquivo = verficaImage.split('/')[8]
