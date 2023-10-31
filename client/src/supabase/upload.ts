@@ -12,7 +12,7 @@ export async function upload(name: string, files: any[]) {
           const numeroAle = Math.random();
           console.log( arq.split('.')[1]);
           const arquivo:any = {uri:arq}
-          const nameNew = name + numeroAle + "." + arq.split('.')[1];
+          const nameNew = name + numeroAle + "." + arq.split('.')[3];
           const { data, error } = await supabase
             .storage
             .from('imagens')
@@ -21,7 +21,6 @@ export async function upload(name: string, files: any[]) {
           list.push(urlupload + nameNew);
         }
       }));
-      console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' + list);
       return list;
     } catch (err) {
       return err;

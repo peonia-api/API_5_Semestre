@@ -31,7 +31,7 @@ export default function Detalhe({ route, navigation }: any) {
     const [longitude, setLongitude] = useState<string>();
     const [observacoes, setObservacoes] = useState<string>();
     const [status, setStatus] = useState<boolean>();
-    const [verficaImage, setVerificaImagem] = useState<any>()
+    const [verficaImage, setVerificaImagem] = useState<string[] | any>([])
     const [isEnabled, setIsEnabled] = useState(false);
 
     const [type, setType] = useState(CameraType.back);
@@ -53,14 +53,14 @@ export default function Detalhe({ route, navigation }: any) {
                 if (novoEquipamento) {
                     setSelectedEquipa(novoEquipamento?.type || '');
                     setImage(novoEquipamento?.url[0] || null);
-                    //setSelectedImages(novoEquipamento?.url[0] || null);
+                    setSelectedImages(novoEquipamento?.url || null);
                     setNumero(novoEquipamento?.numero.toString() || '');
                     setImei(novoEquipamento?.serial || '');
                     setLatitude(novoEquipamento?.latitude.toString() || '');
                     setLongitude(novoEquipamento?.longitude.toString() || '');
                     setObservacoes(novoEquipamento?.observations || '');
                     setStatus(novoEquipamento?.status || '')
-                    setVerificaImagem(novoEquipamento?.url[0] || null)
+                    setVerificaImagem(novoEquipamento?.url || null)
                 }
             }
             init()
@@ -72,8 +72,6 @@ export default function Detalhe({ route, navigation }: any) {
 
 
     }, [equipmente, route.params]))
-
-    console.log(image);
 
 
     useEffect(() => {
@@ -115,16 +113,40 @@ export default function Detalhe({ route, navigation }: any) {
     const handleAtualizar = async () => {
         try {
             setLoaded(true)
+            
             if (verficaImage === selectedImages) {
                 await putEquipment(itemId, { type: selectedEquipa, numero: numero, serial: imei, latitude: latitude, longitude: longitude, observations: observacoes, url: selectedImages })
                 console.log('Equipamento atualizado com sucesso');
             } else {
-                console.log("entrou aqquiiiiii");
-                const nameArquivo = verficaImage.split('/')[8]
-                removeFileOne(nameArquivo).then(async (res) => {
-                    const response = upload(imei, { uri: selectedImages })
-                    await putEquipment(itemId, { type: selectedEquipa, numero: numero, serial: imei, latitude: latitude, longitude: longitude, observations: observacoes, url: response })
-                })
+                let listImagens:any = []
+                const imagensList:any = []
+               
+
+                verficaImage.forEach((item:string) => {
+                    if (!selectedImages.includes(item)) {
+                        const nameArquivo = item.split('/')[8];
+                        removeFileOne(nameArquivo);    
+                    }else{
+                        imagensList.push(item)
+                    }
+                });
+                const novosImagem = selectedImages.filter((image:string) => image.startsWith('file:'))
+
+                if(novosImagem.length > 0){
+                   listImagens = upload(imei, novosImagem) 
+                }
+
+                const list:string[] = listImagens.concat(imagensList)
+
+                console.log(list);
+                await putEquipment(itemId, { type: selectedEquipa, numero: numero, serial: imei, latitude: latitude, longitude: longitude, observations: observacoes, url: list })
+
+                // console.log("entrou aqquiiiiii");
+                // const nameArquivo = verficaImage.split('/')[8]
+                // removeFileOne(nameArquivo).then(async (res) => {
+                //     const response = upload(imei, { uri: selectedImages })
+                //     await putEquipment(itemId, { type: selectedEquipa, numero: numero, serial: imei, latitude: latitude, longitude: longitude, observations: observacoes, url: response })
+                // })
             }
         }
         catch (err) {
@@ -135,8 +157,15 @@ export default function Detalhe({ route, navigation }: any) {
             navigation.navigate('Equipamentos')
         }
     };
-
-
+    
+    const novosImagem = selectedImages.filter((image:string) => image.startsWith('file:'))
+    if(novosImagem.length > 0){
+        //listImagens = upload(imei, novosImagem) 
+        console.log("oiii");
+        
+     }
+    
+  
     const pickImage = async () => {
         const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
@@ -159,7 +188,7 @@ export default function Detalhe({ route, navigation }: any) {
     };
 
     const removeImage = (indexToRemove: number) => {
-        const updatedImages = selectedImages.filter((_: any, index: any) => index !== indexToRemove);
+        const updatedImages = selectedImages.filter((_:any, index:any) => index !== indexToRemove);
         setSelectedImages(updatedImages);
     };
 
@@ -186,25 +215,25 @@ export default function Detalhe({ route, navigation }: any) {
             <ScrollView>
                 <View style={styles.container}>
                     <View style={styles.containerImagem}>
-                        {selectedImages.length > 0 || image ? (
-                            <Carousel
-                                data={image ? [image, ...selectedImages] : selectedImages}
-                                renderItem={({ item, index }) => (
-                                    <View style={styles.image}>
-                                        <Image source={{ uri: item as string }} style={styles.image} />
-                                        <TouchableOpacity
-                                            style={styles.iconDeletar}
-                                            onPress={() => removeImage(index)}
-                                        >
-                                            <Icon name="trash" size={25} color="#fff" />
-                                        </TouchableOpacity>
-                                    </View>
-                                )}
-                                sliderWidth={400}
-                                itemWidth={380}
-                                keyExtractor={(item, index) => index.toString()}
-                            />
-                        ) : null}
+                    {selectedImages.length > 0 && (
+                        <Carousel
+                        data={selectedImages}
+                        renderItem={({ item, index }) => (
+                            <View style={styles.image}>
+                            <Image source={{ uri: item as string }} style={styles.image} />
+                            <TouchableOpacity
+                                style={styles.iconDeletar}
+                                onPress={() => removeImage(index)}
+                            >
+                                <Icon name="trash" size={25} color="#fff" />
+                            </TouchableOpacity>
+                            </View>
+                        )}
+                        sliderWidth={400}
+                        itemWidth={380}
+                        keyExtractor={(item, index) => index.toString()}
+                        />
+                    )}
                     </View>
 
                     <View style={styles.containerIcons}>
