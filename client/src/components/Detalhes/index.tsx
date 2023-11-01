@@ -130,30 +130,60 @@ export default function Detalhe({ route, navigation }: any) {
                         removeFileOne(nameArquivo).catch((error) => {
                             console.error('Erro ao remover arquivo:', error);
                         });
+                        console.log("Entrou nisso");
+                        
                         return false; // O item será removido da lista
                     }
+                    console.log("Foii aquiiii" + item);
+                    
                     return true; // O item será mantido na lista
                 });
                 
-                console.log(listImagens);
+                console.log("List imagens:  " +  listImagens);
                 
                 if(novosImagem.length > 0){
-                    upload(imei, novosImagem).then((res) => {
-                        imagens = listImagens.concat(res);
+                    upload(imei, novosImagem).then(async (res) => {
+                        console.log(res);
+                        
+                        imagens = listImagens.concat(res) 
+                        console.log("Arrozzzzzzzzzzzzzzzz: " + imagens);
+                        
+
+                        await putEquipment(itemId, { 
+                            type: selectedEquipa, 
+                            numero: numero, 
+                            serial: imei, 
+                            latitude: latitude, 
+                            longitude: longitude, 
+                            observations: observacoes, 
+                            url: imagens
+                        })
+                    })
+                }else{
+                    await putEquipment(itemId, {  
+                        type: selectedEquipa, 
+                        numero: numero, 
+                        serial: imei, 
+                        latitude: latitude, 
+                        longitude: longitude, 
+                        observations: observacoes, 
+                        url: listImagens 
                     })
                 }
+
+                imagens = imagens.concat(listImagens)
                 // const list:string[] = listImagens.concat(imagensList)
 
-                // console.log(list);
-                await putEquipment(itemId, { 
-                    type: selectedEquipa, 
-                    numero: numero, 
-                    serial: imei, 
-                    latitude: latitude, 
-                    longitude: longitude, 
-                    observations: observacoes, 
-                    url: imagens 
-                })
+                console.log("Imagens: " + imagens);
+                // await putEquipment(itemId, { 
+                //     type: selectedEquipa, 
+                //     numero: numero, 
+                //     serial: imei, 
+                //     latitude: latitude, 
+                //     longitude: longitude, 
+                //     observations: observacoes, 
+                //     url: imagens 
+                // })
 
                 // console.log("entrou aqquiiiiii");
                 // const nameArquivo = verficaImage.split('/')[8]
@@ -172,12 +202,7 @@ export default function Detalhe({ route, navigation }: any) {
         }
     };
     
-    const novosImagem = selectedImages.filter((image:string) => image.startsWith('file:'))
-    if(novosImagem.length > 0){
-        //listImagens = upload(imei, novosImagem) 
-        console.log("oiii");
-        
-     }
+   
     
   
     const pickImage = async () => {
