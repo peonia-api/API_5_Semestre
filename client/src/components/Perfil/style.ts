@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
 
     containerImagem: {
         marginLeft: 140,
+        marginTop: 40,
         justifyContent: "center",
         alignItems: "center",
         height: 100,
@@ -98,7 +99,6 @@ const styles = StyleSheet.create({
     containerBotao: {
         flexDirection: "row",
         justifyContent: "center",
-        marginTop: 25,
       },
 
       botaoAtualizarUsuario: {
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
         width: '40%',
         marginTop: 25,
         marginBottom: 30,
-        marginLeft:15
+        marginLeft:15,
       },
       textPassword: {
         marginLeft: 50,
