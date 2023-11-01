@@ -1,6 +1,7 @@
-import React from "react"
+import React, { useRef, useState } from "react"
 import { TouchableOpacity, Image, Text, ListRenderItem, FlatList, View } from "react-native"
 import styles from "./style";
+import { FooterList } from "./FooterList";
 
 
 enum UserType {
@@ -42,10 +43,25 @@ const status = (valor:any) => {
 }
 
 const CardUser = ({filter, onPress}:any) => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  const flatListRef = useRef<FlatList | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  const loadMoreData = () => {
+    if (filter.length > currentPage * itemsPerPage) {
+      setLoading(true)
+      setTimeout(() => {
+        setCurrentPage(currentPage + 1); // Carrega mais itens
+        setLoading(false); // Encerra a animação
+      }, 1000);
+    }
+  };
 
   return(
       <FlatList
-      data={filter}
+      ref={(ref) => (flatListRef.current = ref)}
+      data={filter.slice(0, currentPage * itemsPerPage)}
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => (
         <TouchableOpacity style={[styles.card,{ backgroundColor: item.status == 0 ? '#b3b1b1' : '#f0fafc' }]} onPress={() => onPress(item.id)}>
@@ -53,14 +69,12 @@ const CardUser = ({filter, onPress}:any) => {
           <View style={styles.textContainer}>
             <Text style={styles.textfont}>{item.userName}</Text>
             <Text style={styles.textSub}>{status(item.status)}</Text>
-            {/* {item.status == 0 && (
-            <View style={[styles.containerStatus, { backgroundColor: '#fc3f3f' }]}>
-              <Text style={styles.textStatus}>DESATIVADO</Text>
-            </View>
-          )} */}
           </View>
         </TouchableOpacity>
       )}
+      onEndReached={() => loadMoreData()}
+      onEndReachedThreshold={0.3}
+      ListFooterComponent={<FooterList lood={loading} />}
     />
   )
 }

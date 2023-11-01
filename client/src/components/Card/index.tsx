@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react"
 import { TouchableOpacity, Image, Text, ListRenderItem, FlatList, View } from "react-native"
 import styles from "./style";
-import LottieView from 'lottie-react-native';
+import { FooterList } from "./FooterList";
 
 interface Equipamentos{
     _id: string
@@ -26,35 +26,16 @@ const CardEquipmet = ({filter, onPress}:any) => {
   const [loading, setLoading] = useState(false);
 
   const loadMoreData = () => {
-    setLoading(true)
     if (filter.length > currentPage * itemsPerPage) {
-      // setCurrentPage(currentPage + 1);
-
+      setLoading(true)
       setTimeout(() => {
         setCurrentPage(currentPage + 1); // Carrega mais itens
         setLoading(false); // Encerra a animação
       }, 1000);
     }
-    //setLoading(false)
   };
 
-  const FooterList = ({lood}:any) => {
-    if(!lood) return null;
-    return(
-      <View style={styles.animation}>
-          <LottieView
-            autoPlay={true}
-            loop={true}
-            style={{
-              width: '100%',
-              height: '100%',
-              backgroundColor: 'transparent',
-            }}
-            source={require('../../assets/Animation.json')}
-          />
-      </View>
-    )
-  }
+  
 
     return(
       <View style={styles.container}>
@@ -72,9 +53,7 @@ const CardEquipmet = ({filter, onPress}:any) => {
           </TouchableOpacity>
           
         )}
-        onEndReached={() => {
-          loadMoreData()
-        }}
+        onEndReached={() => loadMoreData()}
         onEndReachedThreshold={0.3}
         ListFooterComponent={<FooterList lood={loading} />}
       />
