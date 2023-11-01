@@ -119,36 +119,26 @@ export default function Detalhe({ route, navigation }: any) {
                 console.log('Equipamento atualizado com sucesso');
             } else {
                 let imagens:any = []
-                // const imagensList:any = []
                 const novosImagem = selectedImages.filter((image:string) => image.startsWith('file:'))
-
-                
 
                 const listImagens = verficaImage.filter((item:any) => {
                     if (!selectedImages.includes(item)) {
                         const nameArquivo = item.split('/')[8];
                         removeFileOne(nameArquivo).catch((error) => {
                             console.error('Erro ao remover arquivo:', error);
-                        });
-                        console.log("Entrou nisso");
-                        
+                        });                        
                         return false; // O item será removido da lista
                     }
-                    console.log("Foii aquiiii" + item);
                     
                     return true; // O item será mantido na lista
                 });
                 
-                console.log("List imagens:  " +  listImagens);
                 
                 if(novosImagem.length > 0){
                     upload(imei, novosImagem).then(async (res) => {
-                        console.log(res);
                         
                         imagens = listImagens.concat(res) 
-                        console.log("Arrozzzzzzzzzzzzzzzz: " + imagens);
                         
-
                         await putEquipment(itemId, { 
                             type: selectedEquipa, 
                             numero: numero, 
@@ -160,6 +150,7 @@ export default function Detalhe({ route, navigation }: any) {
                         })
                     })
                 }else{
+                    
                     await putEquipment(itemId, {  
                         type: selectedEquipa, 
                         numero: numero, 
@@ -170,27 +161,6 @@ export default function Detalhe({ route, navigation }: any) {
                         url: listImagens 
                     })
                 }
-
-                imagens = imagens.concat(listImagens)
-                // const list:string[] = listImagens.concat(imagensList)
-
-                console.log("Imagens: " + imagens);
-                // await putEquipment(itemId, { 
-                //     type: selectedEquipa, 
-                //     numero: numero, 
-                //     serial: imei, 
-                //     latitude: latitude, 
-                //     longitude: longitude, 
-                //     observations: observacoes, 
-                //     url: imagens 
-                // })
-
-                // console.log("entrou aqquiiiiii");
-                // const nameArquivo = verficaImage.split('/')[8]
-                // removeFileOne(nameArquivo).then(async (res) => {
-                //     const response = upload(imei, { uri: selectedImages })
-                //     await putEquipment(itemId, { type: selectedEquipa, numero: numero, serial: imei, latitude: latitude, longitude: longitude, observations: observacoes, url: response })
-                // })
             }
         }
         catch (err) {
