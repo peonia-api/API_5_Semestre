@@ -31,11 +31,6 @@ const CardEquipmet = ({filter, onPress}:any) => {
             <View style={styles.textContainer}>
               <Text style={styles.textfont}>{item.type}</Text>
               <Text style={styles.textSub}>{item.serial}</Text>
-              {/* {item.status == 0 && (
-              <View style={[styles.containerStatus, { backgroundColor: '#fc3f3f' }]}>
-                <Text style={styles.textStatus}>DESATIVADO</Text>
-              </View>
-            )} */}
             </View>
           </TouchableOpacity>
         )}

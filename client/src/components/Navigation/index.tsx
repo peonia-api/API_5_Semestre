@@ -16,7 +16,6 @@ import { Redifinir } from '../RedefinirSenha/redefinirSenha';
 import AprovacaCadastro from '../AprovacaCadastro';
 import { Image } from 'react-native';
 import { useContextUser } from '../../hooks';
-import Storage from 'expo-storage';
 
 Icon.loadFont();
 
@@ -25,23 +24,7 @@ const Stack = createNativeStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
 const TabNavigator = () => {
 
-  const { iconePerfil } = useContextUser()
-
-  const [userType, setUserType] = useState <string> ("");
-  const { login } = useContextUser()
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-          const userType = await Storage.getItem({ key: 'userType' }) ?? "";
-          setUserType(userType);
-
-      } catch (error) {
-          alert("Erro ao obter dados do armazenamento!");
-      }
-    }
-  fetchData();
-  }, []);
+  const { iconePerfil, userType } = useContextUser()
 
   return (
     <Tab.Navigator
@@ -82,6 +65,18 @@ const TabNavigator = () => {
         }}
       />
       
+      {userType === 1 ? (
+          <Tab.Screen
+          name="Usuários"
+          component={AprovacaCadastro}
+          options={{
+            tabBarLabel: 'Usuários',
+            tabBarIcon: () => (
+              <Icon name="users" size={25} color="#000000" />
+            ),
+          }}
+        />
+        ) : null}
       
       <Tab.Screen
         name="Perfil"
@@ -96,19 +91,6 @@ const TabNavigator = () => {
           ),
         }}
       />
-
-        {userType === '2' ? (
-          <Tab.Screen
-          name="Usuários"
-          component={AprovacaCadastro}
-          options={{
-            tabBarLabel: 'Usuários',
-            tabBarIcon: () => (
-              <Icon name="users" size={25} color="#000000" />
-            ),
-          }}
-        />
-        ) : null}
 
     </Tab.Navigator>
   );
