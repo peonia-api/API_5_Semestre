@@ -47,6 +47,7 @@ function ListaEquipamento({ navigation }: any) {
           />
           </View>
         )}
+        
         <CardEquipmet filter={filteredEquipments} onPress={handleItemPress}/>
        
       </View>

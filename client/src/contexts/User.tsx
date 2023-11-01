@@ -14,7 +14,7 @@ export const AuthProvider = ({children}:any) => {
     const [listUser, setListUser] = useState<Props[] | null>(null);
     const [loading, setLoading] = useState(true)
     const [ iconePerfil, setIconePerfil ] = useState(true)
-    const [ userType, setUserType ] = useState()
+    const [ userType, setUserType ] = useState<string>()
 
     
  
@@ -56,8 +56,8 @@ export const AuthProvider = ({children}:any) => {
                 const userMatricula = res.userMatricula
                 const userTelefone = res.userTelefone
                 const id = res.id
-                const userType:any = res.userType
-                setUserType(userType);
+                const userType = res.userType
+                setUserType(userType.toString());
                 
                 
                 setIconePerfil(icone)
@@ -67,7 +67,7 @@ export const AuthProvider = ({children}:any) => {
                 setUser(loggedUser)
                 Storage.setItem({key: 'userEmail', value: loggedUser})
                 Storage.setItem({key: 'token', value: token})
-                Storage.setItem({key: "userType", value: userType})
+                Storage.setItem({key: "userType", value: userType.toString()})
                 Storage.setItem({key: "userName", value: userName})
                 Storage.setItem({key: "userCpf", value: userCpf})
                 Storage.setItem({key: "userMatricula", value: userMatricula})

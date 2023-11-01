@@ -26,6 +26,7 @@ const TabNavigator = () => {
 
   const { iconePerfil, userType } = useContextUser()
 
+
   return (
     <Tab.Navigator
       initialRouteName="Equipamentos"
@@ -65,7 +66,7 @@ const TabNavigator = () => {
         }}
       />
       
-      {userType === 1 ? (
+      {userType === '1'? (
           <Tab.Screen
           name="Usuários"
           component={AprovacaCadastro}
