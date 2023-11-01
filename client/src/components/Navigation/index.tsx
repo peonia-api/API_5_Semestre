@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { NavigationContainer, useFocusEffect } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -16,16 +16,32 @@ import { Redifinir } from '../RedefinirSenha/redefinirSenha';
 import AprovacaCadastro from '../AprovacaCadastro';
 import { Image } from 'react-native';
 import { useContextUser } from '../../hooks';
+import Storage from 'expo-storage';
 
 Icon.loadFont();
 
 
 const Stack = createNativeStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
-
 const TabNavigator = () => {
 
   const { iconePerfil } = useContextUser()
+
+  const [userType, setUserType] = useState <string> ("");
+  const { login } = useContextUser()
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+          const userType = await Storage.getItem({ key: 'userType' }) ?? "";
+          setUserType(userType);
+
+      } catch (error) {
+          alert("Erro ao obter dados do armazenamento!");
+      }
+    }
+  fetchData();
+  }, []);
 
   return (
     <Tab.Navigator
@@ -65,16 +81,7 @@ const TabNavigator = () => {
           ),
         }}
       />
-       <Tab.Screen
-        name="AprovacaoCadastro"
-        component={AprovacaCadastro}
-        options={{
-          tabBarLabel: 'Aprovação',
-          tabBarIcon: () => (
-            <Icon name="check-square" size={25} color="#000000" />
-          ),
-        }}
-      />
+      
       
       <Tab.Screen
         name="Perfil"
@@ -89,6 +96,20 @@ const TabNavigator = () => {
           ),
         }}
       />
+
+        {userType === '1' ? (
+          <Tab.Screen
+          name="AprovacaoCadastro"
+          component={AprovacaCadastro}
+          options={{
+            tabBarLabel: 'Aprovação',
+            tabBarIcon: () => (
+              <Icon name="check-square" size={25} color="#000000" />
+            ),
+          }}
+        />
+        ) : null}
+
     </Tab.Navigator>
   );
 };
