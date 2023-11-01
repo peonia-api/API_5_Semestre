@@ -97,14 +97,14 @@ const TabNavigator = () => {
         }}
       />
 
-        {userType === '1' ? (
+        {userType === '2' ? (
           <Tab.Screen
-          name="AprovacaoCadastro"
+          name="Usuários"
           component={AprovacaCadastro}
           options={{
-            tabBarLabel: 'Aprovação',
+            tabBarLabel: 'Usuários',
             tabBarIcon: () => (
-              <Icon name="check-square" size={25} color="#000000" />
+              <Icon name="users" size={25} color="#000000" />
             ),
           }}
         />
