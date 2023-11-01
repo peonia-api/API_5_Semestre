@@ -109,14 +109,21 @@ export default function Detalhe({ route, navigation }: any) {
         setCameraVisible(false);
     };
 
+    const mudarPagi = () => {
+        setLoaded(false)
+        console.log("oii");
+        
+        navigation.navigate('Equipamentos')
+    }
 
     const handleAtualizar = async () => {
-        try {
+        try {            
             setLoaded(true)
-            
+
             if (verficaImage === selectedImages) {
                 await putEquipment(itemId, { type: selectedEquipa, numero: numero, serial: imei, latitude: latitude, longitude: longitude, observations: observacoes, url: selectedImages })
                 console.log('Equipamento atualizado com sucesso');
+                mudarPagi()
             } else {
                 let imagens:any = []
                 const novosImagem = selectedImages.filter((image:string) => image.startsWith('file:'))
@@ -148,6 +155,7 @@ export default function Detalhe({ route, navigation }: any) {
                             observations: observacoes, 
                             url: imagens
                         })
+                        mudarPagi()
                     })
                 }else{
                     
@@ -160,15 +168,13 @@ export default function Detalhe({ route, navigation }: any) {
                         observations: observacoes, 
                         url: listImagens 
                     })
+                    mudarPagi()
                 }
             }
         }
         catch (err) {
             console.error('Erro ao atualizar equipamento:', err);
-        }
-        finally {
-            setLoaded(false)
-            navigation.navigate('Equipamentos')
+            mudarPagi()
         }
     };
     
