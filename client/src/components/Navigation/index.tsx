@@ -95,6 +95,32 @@ const TabNavigator = () => {
           ),
         }}
       />
+      <Tab.Screen
+        name="Perfil Desativado"
+        component={PerfilDesativado}
+        options={{
+          tabBarLabel: 'PerfilDesativado',
+          tabBarIcon: () => (
+            <Image
+              source={{ uri: iconePerfil }}
+              style={{ width: 40, height: 30, borderRadius: 50 }}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Perfil Usuário"
+        component={PerfilUsuario}
+        options={{
+          tabBarLabel: 'perfilUsuario',
+          tabBarIcon: () => (
+            <Image
+              source={{ uri: iconePerfil }}
+              style={{ width: 40, height: 30, borderRadius: 50 }}
+            />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 };

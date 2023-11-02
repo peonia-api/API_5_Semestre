@@ -23,8 +23,8 @@ function AprovacaoCadastro({ navigation }: any) {
   }, [searchValue, listUser]);
   
 
-  const handleItemPress = (itemId: string) => {
-    navigation.navigate('Perfil de Aprovação', { itemId });
+  const handleItemPress = (userId: string) => {
+    navigation.navigate('Perfil de Aprovação', { userId });
   };
 
 
