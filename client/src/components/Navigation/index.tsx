@@ -69,7 +69,7 @@ const TabNavigator = () => {
         }}
       />
       
-      {userType === '1'? (
+      {userType === '2'? (
           <Tab.Screen
           name="Usuários"
           component={AprovacaCadastro}

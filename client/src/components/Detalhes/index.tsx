@@ -25,10 +25,10 @@ export default function Detalhe({ route, navigation }: any) {
 
     const [selectedEquipa, setSelectedEquipa] = useState<string>();
     const [image, setImage] = useState<any>();
-    const [numero, setNumero] = useState<string>();
+    const [numero, setNumero] = useState<number | null>(null);
     const [imei, setImei] = useState<any>();
-    const [latitude, setLatitude] = useState<string>();
-    const [longitude, setLongitude] = useState<string>();
+    const [latitude, setLatitude] = useState<number| any>();
+    const [longitude, setLongitude] = useState<number | any>();
     const [observacoes, setObservacoes] = useState<string>();
     const [status, setStatus] = useState<boolean>();
     const [verficaImage, setVerificaImagem] = useState<string[] | any>([])
@@ -116,7 +116,67 @@ export default function Detalhe({ route, navigation }: any) {
         navigation.navigate('Equipamentos')
     }
 
+    const validateLatitude = (value: string | null) => {
+        const regex = /^-?\d{2,3}\.\d{3,}$/; // Padrão xx.xxxx ou xxx.xxxxx
+        if (!value) {
+          Alert.alert("Campo obrigatório", "Digite uma latitude" );
+          return false;
+        }
+        const latiValue = value.replace(',', '.');
+        if (!regex.test(latiValue)) {
+          Alert.alert("Formato inválido", "Digite uma latitude válida no formato xx.xxxx ou xxx.xxxxx.");
+          return false;
+        }
+        return true;
+      };
+      
+      const validateLongitude = (value: string | null) => {
+        const regex = /^-?\d{2,3}\.\d{3,}$/; // Padrão xx.xxxx ou xxx.xxxxx
+        if (!value) {
+          Alert.alert("Campo obrigatório", "Digite uma logitude");
+          return false;
+        }
+        const longiValue = value.replace(',', '.');
+        if (!regex.test(longiValue)) {
+          Alert.alert("Formato inválido", "Digite uma longitude válida no formato xx.xxxx ou xxx.xxxxx.");
+          return false;
+        }
+        return true;
+      };
+    
+
     const handleAtualizar = async () => {
+        if (selectedImages.length === 0) {
+            Alert.alert("Campo obrigatório", "Selecione uma Imagem.");
+            return;
+          }
+          if (!validateLatitude(latitude !== null ? latitude.toString() : null)) {
+            return;
+          }
+        
+          if (!validateLongitude(longitude !== null ? longitude.toString() : null)) {
+            return;
+          }
+          if (!selectedEquipa) {
+            Alert.alert("Campo obrigatório", "Selecione um tipo de equipamento.");
+            return;
+          }
+      
+          if (!numero || isNaN(numero)) {
+            Alert.alert("Campo obrigatório", "Número deve ser um número válido.");
+            return;
+          }
+      
+          if (!imei) {
+            Alert.alert("Campo obrigatório", "IMEI é obrigatório.");
+            return;
+          }
+      
+          if (!observacoes) {
+            Alert.alert("Campo obrigatório", "Observação deve ser válido.");
+            return;
+          }
+      
         try {            
             setLoaded(true)
 
@@ -311,8 +371,8 @@ export default function Detalhe({ route, navigation }: any) {
                             placeholder="Número"
                             keyboardType="numeric"
                             style={styles.input}
-                            defaultValue={numero}
-                            onChangeText={(text) => setNumero(text)}
+                            defaultValue={numero !== null ? numero.toString() : ''}
+                            onChangeText={(text:any) => setNumero(text)}
                         />
 
                     </View>

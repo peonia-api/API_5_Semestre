@@ -15,7 +15,7 @@ function AprovacaoCadastro({ navigation }: any) {
   const [searchValue, setSearchValue] = useState(""); 
 
   useEffect(() => {
-    const filtered = listUser.filter((item: { userName: string; status: string; }) =>
+    const filtered = listUser.filter((item: {userName: string; status: string; icon: string; id: string}) =>
       item.userName.toLowerCase().includes(searchValue.toLowerCase()) ||
       item.status.toLowerCase().includes(searchValue.toLowerCase())
     );
@@ -25,6 +25,9 @@ function AprovacaoCadastro({ navigation }: any) {
 
   const handleItemPress = (userId: string) => {
     navigation.navigate('Perfil de Aprovação', { userId });
+    navigation.navigate('Pendente', { userId});
+    navigation.navigate('Arquivado', { userId });
+
   };
 
 

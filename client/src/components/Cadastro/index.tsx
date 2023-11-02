@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import * as ImagePicker from 'expo-image-picker';
 import { BotaoCadastro } from "../Botao";
 import { upload } from '../../supabase/upload';
-import { useContextoEquipmente } from '../../hooks';
+import { useContextoEquipmente, useTheme } from '../../hooks';
 import LottieView from 'lottie-react-native';
 import { Camera, CameraType } from 'expo-camera';
 import { FontAwesome } from "@expo/vector-icons"
@@ -35,7 +35,7 @@ export default function Cadastro({ route, navigation }: any) {
   const camRef = useRef<any | null>(null);
   const [capturedPhoto, setCapturedPhoto] = useState(null)
   const [isCameraVisible, setCameraVisible] = useState(false);
-
+  const theme = useTheme()
 
   useEffect(() => {
     (async () => {
@@ -129,6 +129,37 @@ export default function Cadastro({ route, navigation }: any) {
     setSelectedEquipa(equipamento);
   };
 
+
+  const validateLatitude = (value: string | null) => {
+    const regex = /^-?\d{2,3}.\d{3,}$/; // Padrão xx.xxxx ou xxx.xxxxx
+    if (!value) {
+      Alert.alert("Campo obrigatório", "Digite uma latitude" );
+      return false;
+    }
+    const latiValue = value.replace(',', '.');
+    if (!regex.test(latiValue)) {
+      Alert.alert("Formato inválido", "Digite uma latitude válida no formato xx.xxxx ou xxx.xxxxx.");
+      return false;
+    }
+    return true;
+  };
+
+  const validateLongitude = (value: string | null) => {
+    const regex = /^-?\d{2,3}.\d{3,}$/; // Padrão xx.xxxx ou xxx.xxxxx
+    if (!value) {
+      Alert.alert("Campo obrigatório", "Digite uma logitude");
+      return false;
+    }
+    const longiValue = value.replace(',', '.');
+    if (!regex.test(longiValue)) {
+      Alert.alert("Formato inválido", "Digite uma longitude válida no formato xx.xxxx ou xxx.xxxxx.");
+      return false;
+    }
+    return true;
+  };
+
+
+
   const uploadImage = async () => {
     if (selectedImages.length === 0) {
       Alert.alert("Campo obrigatório", "Selecione uma Imagem.");
@@ -150,13 +181,11 @@ export default function Cadastro({ route, navigation }: any) {
       return;
     }
 
-    if (!latitude || isNaN(latitude)) {
-      Alert.alert("Campo obrigatório", "Latitude deve ser um número válido.");
+    if (!validateLatitude(latitude !== null ? latitude.toString() : null)) {
       return;
     }
 
-    if (!longitude || isNaN(longitude)) {
-      Alert.alert("Campo obrigatório", "Longitude deve ser um número válido.");
+    if (!validateLongitude(longitude !== null ? longitude.toString() : null)) {
       return;
     }
 
@@ -198,7 +227,7 @@ export default function Cadastro({ route, navigation }: any) {
   console.log(selectedImages);
 
   return (
-    <View style={styles.containerPrincipal}>
+    <View style={[styles.containerPrincipal]}>
       <ScrollView>
         <View style={styles.container}>
         <View style={styles.containerImagem}>

@@ -4,17 +4,22 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 10,
     marginBottom: 10,
+    justifyContent: "center",
+    alignContent: "center",
+    alignItems: "center",
   },
+
   inputContainer: {
     flexDirection: "row",
+    justifyContent: "flex-start",
     alignItems: "center",
-    paddingHorizontal: 15,
+    paddingHorizontal: 10,
     borderWidth: 2,
     borderRadius: 6,
-    width: "420%",
+    width: "100%",
     marginTop: 10,
     marginBottom: 10,
-    marginRight: 10,
+    // marginRight: 10,
 
   },
   icon: {

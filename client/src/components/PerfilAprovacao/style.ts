@@ -15,7 +15,6 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         justifyContent: "center",
-    
     },
     fechaModal: {
         fontSize: 30,
@@ -43,7 +42,8 @@ const styles = StyleSheet.create({
         width: 100,
         borderRadius: 50,
         backgroundColor: '#f2f2f2',
-        marginTop: 20
+        marginTop: 20,
+        marginBottom: 10
     },
     image: {
         height: 100,
@@ -84,11 +84,11 @@ const styles = StyleSheet.create({
       paddingLeft: 15,
       backgroundColor: '#f2f2f2',
       borderRadius: 5,
-      height: 45,
+      height: 40,
       borderWidth: 1, 
       borderColor: "#ccc",
       width: "85%",
-       
+      marginTop: 8,
     },
 
     returnImage: {
@@ -109,9 +109,11 @@ const styles = StyleSheet.create({
 
     containerBotao: {
         flexDirection: "row",
-        justifyContent: "center",
-        marginHorizontal: 12,
-        //marginTop: 10,
+        justifyContent: "space-between",
+        alignItems: "center",
+        alignContent: "center",
+        marginHorizontal: 40,
+        marginTop: 20,
       },
 
       textPassword: {
@@ -142,11 +144,11 @@ const styles = StyleSheet.create({
         backgroundColor: '#000000',
         padding: 12,
         borderRadius: 5,
-        width: '40%',
+        width: '45%',
         height: 50,
         marginTop: 5,
         marginBottom: 20,
-        marginLeft: 15,
+        // marginLeft: 15,
         alignItems: 'center',
         justifyContent: 'center',
       },
