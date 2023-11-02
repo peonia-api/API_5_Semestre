@@ -11,10 +11,11 @@ const styles = StyleSheet.create({
     },
 
     container: {
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#4DB9DB',
         width: '100%',
         height: '100%',
-        justifyContent: "center"
+        justifyContent: "center",
+       
     },
     fechaModal: {
         fontSize: 30,
@@ -35,23 +36,19 @@ const styles = StyleSheet.create({
     },
 
     containerImagem: {
+        marginTop: 25,
         marginLeft: 140,
-        marginTop: 40,
         justifyContent: "center",
         alignItems: "center",
         height: 100,
         width: 100,
         borderRadius: 50,
         backgroundColor: '#f2f2f2',
-       
-
     },
     image: {
         height: 100,
         width: 100,
-        borderRadius: 50,
-  
-
+        borderRadius: 50
     },
 
     icon: {
@@ -69,19 +66,18 @@ const styles = StyleSheet.create({
     inputWrapper: {
         alignItems: "center",
         justifyContent: "center",
-        margin: 10,
-        backgroundColor: '#FFFFFF'
+        margin: 12,
+      
     },
 
     inputLogin: {
-        paddingLeft: 15,
-        backgroundColor: '#f2f2f2',
-        borderColor: "#4DB9DB",
-        borderWidth: 1,
-        borderRadius: 5,
-        height: 45,
-        width: "85%",
-        marginTop: 10
+      paddingLeft: 15,
+      backgroundColor: '#f2f2f2',
+      borderRadius: 5,
+      height: 45,
+      borderWidth: 1, 
+      borderColor: "#ccc",
+      width: "85%", 
     },
 
     returnImage: {
@@ -103,26 +99,9 @@ const styles = StyleSheet.create({
     containerBotao: {
         flexDirection: "row",
         justifyContent: "center",
+        //marginTop: 10,
       },
 
-      botaoAtualizarUsuario: {
-        backgroundColor: '#4DB9DB',
-        padding: 12,
-        borderRadius: 5,
-        width: '40%',
-        marginTop: 25,
-        marginBottom: 30,
-        marginRight: 15
-      },
-      botaoAtualizarSenha: {
-        backgroundColor: '#273d63',
-        padding: 12,
-        borderRadius: 5,
-        width: '40%',
-        marginTop: 25,
-        marginBottom: 30,
-        marginLeft:15,
-      },
       textPassword: {
         marginLeft: 50,
         justifyContent: "center",
@@ -147,6 +126,25 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
       },
+      botaoAcao: {
+        backgroundColor: '#000000',
+        padding: 12,
+        borderRadius: 5,
+        width: '40%',
+        marginTop: 30,
+        marginBottom: 20,
+      
+
+      },
+      icons: {
+        height: 50,
+        width: 50,
+        borderRadius: 10,
+        marginTop: 30,
+        //backgroundColor: '#4DB9DB',
+        alignItems: 'center', 
+        justifyContent: 'center'
+      }
         
 });
 

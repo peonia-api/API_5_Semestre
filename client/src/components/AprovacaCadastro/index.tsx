@@ -24,7 +24,7 @@ function AprovacaoCadastro({ navigation }: any) {
   
 
   const handleItemPress = (itemId: string) => {
-    navigation.navigate('Detalhes', { itemId });
+    navigation.navigate('Perfil de Aprovação', { itemId });
   };
 
 

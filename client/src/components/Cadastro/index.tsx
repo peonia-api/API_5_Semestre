@@ -20,7 +20,7 @@ export default function Cadastro({ route, navigation }: any) {
   const [selectedEquipa, setSelectedEquipa] = useState<string>('');
   const [image, setImage] = useState<any>(null);
   const [uploading, setUploading] = useState(false); // Estado para controlar o envio
-  const { createEquipment } = useContextoEquipmente();
+  const { createEquipment, get10 } = useContextoEquipmente();
 
   const [selectedImages, setSelectedImages] = useState<String[] | any>([]);
 
@@ -41,7 +41,6 @@ export default function Cadastro({ route, navigation }: any) {
     (async () => {
       const { status } = await Camera.requestCameraPermissionsAsync();
       setHasPermission(status === 'granted');
-
     })();
   }, []);
 
@@ -131,7 +130,7 @@ export default function Cadastro({ route, navigation }: any) {
   };
 
   const uploadImage = async () => {
-    if (!selectedImages) {
+    if (selectedImages.length === 0) {
       Alert.alert("Campo obrigatório", "Selecione uma Imagem.");
       return;
     }
@@ -189,6 +188,7 @@ export default function Cadastro({ route, navigation }: any) {
       console.error(error);
       Alert.alert("Erro", "Ocorreu um erro ao enviar os dados para o banco.");
     } finally {
+      await get10()
       clearFields();
       setUploading(false);
       navigation.navigate('Equipamentos');

@@ -1,9 +1,6 @@
-import axios from "axios";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import React from 'react';
-import { useNavigation } from "@react-navigation/native";
 import userApi from "../services/userApi";
-import Navigation from "../components/Navigation";
 import User from "../services/User"
 import  Storage from 'expo-storage'
 import UserProps from "../types/user";
@@ -16,8 +13,8 @@ export const AuthProvider = ({children}:any) => {
     const [ user, setUser ] = useState<Props[] | null>(null);
     const [listUser, setListUser] = useState<Props[] | null>(null);
     const [loading, setLoading] = useState(true)
-    console.log("foda-se" + listUser)
     const [ iconePerfil, setIconePerfil ] = useState(true)
+    const [ userType, setUserType ] = useState<string>()
 
     
  
@@ -45,16 +42,24 @@ export const AuthProvider = ({children}:any) => {
         loadData();
       }, []);
     
+    const getUser = async (id: string) => {
+        try {
+          setLoading(true)
+          const getOne = await User.getEspecificUser(id)
+          console.log(getOne);
+          return getOne
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setLoading(false)
+        }
+    }
 
     const login = async (email:string, password:string) => {
         try{
             //await axios.post(URIuser.LOGIN_USER, {userEmail: email, userPassword: password})
             User.postLogin({userEmail: email, userPassword: password})
             .then(async (res) => {
-              
-                if(res.error){
-                  return
-                }
                 const loggedUser = res.userEmail
                 const token = res.token
                 const userName = res.userName
@@ -63,25 +68,25 @@ export const AuthProvider = ({children}:any) => {
                 const userMatricula = res.userMatricula
                 const userTelefone = res.userTelefone
                 const id = res.id
+                const userType = res.userType
+                setUserType(userType.toString());
+                
                 
                 setIconePerfil(icone)
+                userApi.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+                userApi.defaults.headers.common = { Authorization: `Bearer ${token}` }
+                userApi.defaults.withCredentials = true
+                setUser(loggedUser)
                 Storage.setItem({key: 'userEmail', value: loggedUser})
                 Storage.setItem({key: 'token', value: token})
-                Storage.setItem({key: "userType", value:"2"})
+                Storage.setItem({key: "userType", value: userType.toString()})
                 Storage.setItem({key: "userName", value: userName})
                 Storage.setItem({key: "userCpf", value: userCpf})
                 Storage.setItem({key: "userMatricula", value: userMatricula})
                 Storage.setItem({key: "userTelefone", value: userTelefone})
                 Storage.setItem({key: "icone", value: icone})
                 Storage.setItem({key: "userid", value: JSON.stringify(id)})
-                console.log(await Storage.getItem({ key: 'userid' }) ?? "");
 
- 
-                userApi.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-                userApi.defaults.headers.common = { Authorization: `Bearer ${token}` }
-                userApi.defaults.withCredentials = true
-                setUser(loggedUser)
-                // navigation.navigate('ListaEquipamento');
                 console.log(token)
  
             })
@@ -134,7 +139,7 @@ export const AuthProvider = ({children}:any) => {
  
     return (
 
-      <AuthContext.Provider value={{authenticated: Boolean(user), user, loading , logout, login, createUser, listUser, iconePerfil}}>
+      <AuthContext.Provider value={{authenticated: Boolean(user), user, loading, setLoading, logout, login, createUser, listUser, iconePerfil, userType, getUser}}>
         {children}
       </AuthContext.Provider>
     )

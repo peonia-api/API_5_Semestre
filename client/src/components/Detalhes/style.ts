@@ -195,7 +195,18 @@ const styles = StyleSheet.create({
     backgroundColor: '#4DB9DB',
     alignItems: 'center', 
     justifyContent: 'center', 
-  
+  },
+
+  iconDeletar: {
+    position: 'absolute',
+    height: 50,
+    width: 50,
+    borderRadius: 10,
+    backgroundColor: 'rgb(174, 59, 59)',
+    alignItems: 'center', 
+    justifyContent: 'center',
+    right: 10, 
+    bottom: 10,
   },
   
 });

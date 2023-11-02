@@ -139,7 +139,6 @@ const styles = StyleSheet.create({
   containerBotao: {
     flexDirection: "row",
     justifyContent: "center",
-    marginTop: 10,
     marginBottom: 20,
     color: "#4DB9DB"
   },

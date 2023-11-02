@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { NavigationContainer, useFocusEffect } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -13,22 +13,22 @@ import Perfil from '../Perfil';
 import { AuthContext } from '../../contexts/User';
 import { VerificacaoDoCodigo } from '../RedefinirSenha';
 import { Redifinir } from '../RedefinirSenha/redefinirSenha';
-<<<<<<< HEAD
 import AprovacaCadastro from '../AprovacaCadastro';
-=======
 import { Image } from 'react-native';
 import { useContextUser } from '../../hooks';
->>>>>>> 41c3a37ff4210dfd3696498fd39991e1a6c92744
+import PerfilAprovacao from '../PerfilAprovacao';
+import PerfilDesativado from '../PerfilDesativado';
+import PerfilUsuario from '../PerfilUsuario';
 
 Icon.loadFont();
 
 
 const Stack = createNativeStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
-
 const TabNavigator = () => {
 
-  const { iconePerfil } = useContextUser()
+  const { iconePerfil, userType } = useContextUser()
+
 
   return (
     <Tab.Navigator
@@ -68,16 +68,19 @@ const TabNavigator = () => {
           ),
         }}
       />
-       <Tab.Screen
-        name="AprovacaoCadastro"
-        component={AprovacaCadastro}
-        options={{
-          tabBarLabel: 'Cadastrar',
-          tabBarIcon: () => (
-            <Icon name="plus" size={25} color="#000000" />
-          ),
-        }}
-      />
+      
+      {userType === '1'? (
+          <Tab.Screen
+          name="Usuários"
+          component={AprovacaCadastro}
+          options={{
+            tabBarLabel: 'Usuários',
+            tabBarIcon: () => (
+              <Icon name="users" size={25} color="#000000" />
+            ),
+          }}
+        />
+        ) : null}
       
       <Tab.Screen
         name="Perfil"
@@ -119,6 +122,11 @@ export default function Navigation() {
               options={{ headerBackVisible: true, headerShown: true}}
             />
             <Stack.Screen
+              name="Perfil de Aprovação"
+              component={PerfilAprovacao}
+              options={{ headerBackVisible: true, headerShown: true}}
+            />
+            <Stack.Screen
               name="Novo Equipamento"
               component={Cadastro}
               options={{ headerBackVisible: true, headerShown: true}}
@@ -140,6 +148,18 @@ export default function Navigation() {
           <Stack.Screen 
             name="Verificar codigo" 
             component={VerificacaoDoCodigo} 
+            options={{ headerBackVisible: true, headerShown: true}} 
+          />
+
+          <Stack.Screen 
+            name="Perfil Desativado" 
+            component={PerfilDesativado} 
+            options={{ headerBackVisible: true, headerShown: true}} 
+          />
+
+          <Stack.Screen 
+            name="Perfil Usuario" 
+            component={PerfilUsuario} 
             options={{ headerBackVisible: true, headerShown: true}} 
           />
           </>

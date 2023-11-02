@@ -244,22 +244,17 @@ export default function Perfil({ navigation }: any) {
                 Termina aqui!!!
             */}
 
-            <TouchableOpacity
-                onPress={() => navigation.navigate('Equipamentos')}
-                style={styles.returnImage}
-            >
-                <Image
-                    source={require('../../assets/baseline_arrow_back_24.png')}
-                    fadeDuration={0}
-                    style={styles.returnImage}
-                />
-            </TouchableOpacity>
             <ScrollView>
                 <TouchableOpacity  onPress={pickImage}>
                     <View style={styles.containerImagem}>
-                        {image && <Image source={{ uri: image }} style={styles.image} />}
+                        {image && <Image source={{ uri: image }} style={[styles.image, {borderColor: '#4DB9DB'}]} />}
                     </View>
                     </TouchableOpacity>
+                    <View>
+                        <TouchableOpacity style={styles.icon} onPress={pickImage}>
+                            <Icon name="plus" size={25} color="#000000" />
+                        </TouchableOpacity>
+                    </View>
                 <View>
                     <View style={styles.inputWrapper}>
                         <TextInput

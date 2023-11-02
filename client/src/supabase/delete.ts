@@ -7,6 +7,7 @@ export async function removeFileOne(name: any) {
         .storage
         .from('imagens')
         .remove(name)
+        
     }catch(err){
         return err
     }
