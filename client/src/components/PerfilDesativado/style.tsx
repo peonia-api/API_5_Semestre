@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         justifyContent: "center",
-        //marginTop: 25
+       
     },
     fechaModal: {
         fontSize: 30,
@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
     },
 
     containerImagem: {
+        marginTop: 25,
         marginLeft: 140,
         justifyContent: "center",
         alignItems: "center",
@@ -130,10 +131,9 @@ const styles = StyleSheet.create({
         padding: 12,
         borderRadius: 5,
         width: '40%',
-        marginTop: -2,
+        marginTop: 30,
         marginBottom: 20,
-        marginLeft:15,
-        
+      
 
       },
       icons: {

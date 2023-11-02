@@ -42,6 +42,18 @@ export const AuthProvider = ({children}:any) => {
         loadData();
       }, []);
     
+    const getUser = async (id: string) => {
+        try {
+          setLoading(true)
+          const getOne = await User.getEspecificUser(id)
+          console.log(getOne);
+          return getOne
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setLoading(false)
+        }
+    }
 
     const login = async (email:string, password:string) => {
         try{
@@ -127,7 +139,7 @@ export const AuthProvider = ({children}:any) => {
  
     return (
 
-      <AuthContext.Provider value={{authenticated: Boolean(user), user, loading , logout, login, createUser, listUser, iconePerfil, userType}}>
+      <AuthContext.Provider value={{authenticated: Boolean(user), user, loading, setLoading, logout, login, createUser, listUser, iconePerfil, userType, getUser}}>
         {children}
       </AuthContext.Provider>
     )

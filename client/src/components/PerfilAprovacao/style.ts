@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         justifyContent: "center",
-        //marginTop: 25
+    
     },
     fechaModal: {
         fontSize: 30,
@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
         width: 100,
         borderRadius: 50,
         backgroundColor: '#f2f2f2',
+        marginTop: 20
     },
     image: {
         height: 100,
@@ -79,6 +80,17 @@ const styles = StyleSheet.create({
       width: "85%", 
     },
 
+    dropDown: {
+      paddingLeft: 15,
+      backgroundColor: '#f2f2f2',
+      borderRadius: 5,
+      height: 45,
+      borderWidth: 1, 
+      borderColor: "#ccc",
+      width: "85%",
+       
+    },
+
     returnImage: {
         width: 30,
         height: 30,
@@ -98,6 +110,7 @@ const styles = StyleSheet.create({
     containerBotao: {
         flexDirection: "row",
         justifyContent: "center",
+        marginHorizontal: 12,
         //marginTop: 10,
       },
 
@@ -130,12 +143,18 @@ const styles = StyleSheet.create({
         padding: 12,
         borderRadius: 5,
         width: '40%',
-        marginTop: -2,
+        height: 50,
+        marginTop: 5,
         marginBottom: 20,
-        marginLeft:15,
-        
-
+        marginLeft: 15,
+        alignItems: 'center',
+        justifyContent: 'center',
       },
+      botaoConteudo: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }, 
       icons: {
         height: 50,
         width: 50,
