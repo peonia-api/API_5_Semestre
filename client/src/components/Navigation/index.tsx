@@ -95,33 +95,6 @@ const TabNavigator = () => {
           ),
         }}
       />
-       <Tab.Screen
-        name="Perfil Desativado"
-        component={PerfilDesativado}
-        options={{
-          tabBarLabel: 'PerfilDesativado',
-          tabBarIcon: () => (
-            <Image
-              source={{ uri: iconePerfil }}
-              style={{ width: 40, height: 30, borderRadius: 50 }}
-            />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Perfil Usuário"
-        component={PerfilUsuario}
-        options={{
-          tabBarLabel: 'perfilUsuario',
-          tabBarIcon: () => (
-            <Image
-              source={{ uri: iconePerfil }}
-              style={{ width: 40, height: 30, borderRadius: 50 }}
-            />
-          ),
-        }}
-      />
-
     </Tab.Navigator>
   );
 };
@@ -175,6 +148,18 @@ export default function Navigation() {
           <Stack.Screen 
             name="Verificar codigo" 
             component={VerificacaoDoCodigo} 
+            options={{ headerBackVisible: true, headerShown: true}} 
+          />
+
+          <Stack.Screen 
+            name="Perfil Desativado" 
+            component={PerfilDesativado} 
+            options={{ headerBackVisible: true, headerShown: true}} 
+          />
+
+          <Stack.Screen 
+            name="Perfil Usuario" 
+            component={PerfilUsuario} 
             options={{ headerBackVisible: true, headerShown: true}} 
           />
           </>

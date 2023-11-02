@@ -7,6 +7,7 @@ import LottieView from 'lottie-react-native';
 import { Props } from "../../types/equipmente";
 import CardEquipmet from "../Card";
 import Filtro from "../Filtro";
+import { useTheme } from '../../hooks'
 
 function ListaEquipamento({ navigation }: any) {
   const { equipmente, loaded } = useContextoEquipmente();
@@ -14,6 +15,7 @@ function ListaEquipamento({ navigation }: any) {
   const [searchValue, setSearchValue] = useState("");
 
   const [showActive, setShowActive] = useState<boolean | null>(true);
+  const theme = useTheme()
 
   useEffect(() => {
     const filtered = equipmente.filter((item) => {
@@ -40,7 +42,7 @@ function ListaEquipamento({ navigation }: any) {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container]}>
       <SafeAreaView>
         <View style={styles.searchFilterContainer}>
           <Pesquisa onSearch={(text) => setSearchValue(text)} />

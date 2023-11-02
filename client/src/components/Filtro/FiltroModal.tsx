@@ -12,15 +12,18 @@ export default function FiltroModal({ isVisible, onToggle }: FiltroModalProps) {
         <Modal transparent={true} animationType="slide" visible={isVisible}>
             <View style={styles.containerModal}>
                 <View style={styles.modalContent}>
-                    <Text>Selecione o filtro:</Text>
-                    <TouchableOpacity onPress={() => onToggle(true)}>
-                        <Text>Ativo</Text>
+                    <Text style={styles.textModal}>Selecione o filtro</Text>
+                    
+                    <TouchableOpacity onPress={() => onToggle(true)} style={styles.option}>
+                        <Text style={styles.textModal}>Ativo</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => onToggle(false)}>
-                        <Text>Desativado</Text>
+
+                    <TouchableOpacity onPress={() => onToggle(false)} style={styles.option}>
+                        <Text style={styles.textModal}>Desativado</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => onToggle(null)}>
-                        <Text>Limpar Filtro</Text>
+
+                    <TouchableOpacity onPress={() => onToggle(null)} style={styles.option}>
+                        <Text style={styles.textModal}>Limpar Filtro</Text>
                     </TouchableOpacity>
                 </View>
             </View>

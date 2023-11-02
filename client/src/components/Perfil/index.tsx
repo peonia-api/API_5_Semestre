@@ -247,7 +247,7 @@ export default function Perfil({ navigation }: any) {
             <ScrollView>
                 <TouchableOpacity  onPress={pickImage}>
                     <View style={styles.containerImagem}>
-                        {image && <Image source={{ uri: image }} style={styles.image} />}
+                        {image && <Image source={{ uri: image }} style={[styles.image, {borderColor: '#4DB9DB'}]} />}
                     </View>
                     </TouchableOpacity>
                     <View>
