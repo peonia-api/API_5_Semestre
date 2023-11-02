@@ -44,6 +44,8 @@
     "react-dom": "^18.0.2",
     "react-native": "0.71.8",
     "react-native-dashed-line": "^1.1.0",
+    "react-native-dropdown-select-list": "^2.0.5",
+    "react-native-element-dropdown": "^2.10.0",
     "react-native-fs": "^2.20.0",
     "react-native-maps": "1.3.2",
     "react-native-paper": "^5.1.4",

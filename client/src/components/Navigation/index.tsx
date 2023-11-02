@@ -16,6 +16,7 @@ import { Redifinir } from '../RedefinirSenha/redefinirSenha';
 import AprovacaCadastro from '../AprovacaCadastro';
 import { Image } from 'react-native';
 import { useContextUser } from '../../hooks';
+import PerfilAprovacao from '../PerfilAprovacao';
 
 Icon.loadFont();
 
@@ -117,6 +118,11 @@ export default function Navigation() {
             <Stack.Screen
               name="Perfil"
               component={Perfil}
+              options={{ headerBackVisible: true, headerShown: true}}
+            />
+            <Stack.Screen
+              name="Perfil de Aprovação"
+              component={PerfilAprovacao}
               options={{ headerBackVisible: true, headerShown: true}}
             />
             <Stack.Screen
