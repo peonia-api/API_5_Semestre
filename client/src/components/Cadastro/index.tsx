@@ -131,7 +131,7 @@ export default function Cadastro({ route, navigation }: any) {
 
 
   const validateLatitude = (value: string | null) => {
-    const regex = /^-?\d{2,3}.\d{4,}$/; // Padrão xx.xxxx ou xxx.xxxxx
+    const regex = /^-?\d{2,3}.\d{3,}$/; // Padrão xx.xxxx ou xxx.xxxxx
     if (!value) {
       Alert.alert("Campo obrigatório", "Digite uma latitude" );
       return false;
@@ -145,7 +145,7 @@ export default function Cadastro({ route, navigation }: any) {
   };
 
   const validateLongitude = (value: string | null) => {
-    const regex = /^-?\d{2,3}.\d{4,}$/; // Padrão xx.xxxx ou xxx.xxxxx
+    const regex = /^-?\d{2,3}.\d{3,}$/; // Padrão xx.xxxx ou xxx.xxxxx
     if (!value) {
       Alert.alert("Campo obrigatório", "Digite uma logitude");
       return false;

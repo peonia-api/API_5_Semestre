@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, Image, FlatList, SafeAreaView, TouchableOpacity } from "react-native";
+import { View, Pressable } from "react-native";
 import styles from "./style";
 import { useContextoEquipmente } from '../../hooks';
 import Pesquisa from "../Pesquisa";
@@ -43,12 +43,12 @@ function ListaEquipamento({ navigation }: any) {
 
   return (
     <View style={[styles.container]}>
-      <SafeAreaView>
+     
         <View style={styles.searchFilterContainer}>
           <Pesquisa onSearch={(text) => setSearchValue(text)} />
           <Filtro onFilter={(isActive) => handleFilterToggle(isActive)} />
         </View>
-      </SafeAreaView>
+     
       <View style={styles.listaContainer}>
         {loaded && (
           <View style={styles.uploadingAnimation}>
