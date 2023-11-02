@@ -2,19 +2,22 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     container: {
-
+        display: "flex",
+        flexDirection: "row",
+        alignContent: "center",
+        alignItems: "center",
     },
     filterContainer: {
         alignItems: "center",
-        paddingHorizontal: 15,
+        // paddingHorizontal: 15,
         marginTop: 10,
         marginBottom: 10,
-        marginLeft: 20,
+        // marginLeft: 20,
     },
     icon: {
         width: 25,
         height: 25,
-        marginRight: 5,
+        marginRight: 15,
     },
     input: {
         flex: 1,
