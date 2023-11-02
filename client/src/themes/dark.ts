@@ -1,5 +1,5 @@
 
-const background = '#000'
+const background = '#202224'
 
 
 export default {

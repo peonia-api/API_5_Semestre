@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
     marginRight: 10,
+
   },
   icon: {
     width: 25,

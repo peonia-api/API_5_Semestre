@@ -43,11 +43,15 @@ const styles = StyleSheet.create({
         width: 100,
         borderRadius: 50,
         backgroundColor: '#f2f2f2',
+       
+
     },
     image: {
         height: 100,
         width: 100,
-        borderRadius: 50
+        borderRadius: 50,
+  
+
     },
 
     icon: {
