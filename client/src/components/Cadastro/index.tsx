@@ -130,7 +130,7 @@ export default function Cadastro({ route, navigation }: any) {
   };
 
   const uploadImage = async () => {
-    if (!selectedImages) {
+    if (selectedImages.length === 0) {
       Alert.alert("Campo obrigatório", "Selecione uma Imagem.");
       return;
     }

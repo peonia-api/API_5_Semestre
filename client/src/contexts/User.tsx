@@ -14,6 +14,7 @@ export const AuthProvider = ({children}:any) => {
     const [listUser, setListUser] = useState<Props[] | null>(null);
     const [loading, setLoading] = useState(true)
     const [ iconePerfil, setIconePerfil ] = useState(true)
+    const [ userType, setUserType ] = useState<string>()
 
     
  
@@ -55,6 +56,9 @@ export const AuthProvider = ({children}:any) => {
                 const userMatricula = res.userMatricula
                 const userTelefone = res.userTelefone
                 const id = res.id
+                const userType = res.userType
+                setUserType(userType.toString());
+                
                 
                 setIconePerfil(icone)
                 userApi.defaults.headers.common['Authorization'] = `Bearer ${token}`;
@@ -63,7 +67,7 @@ export const AuthProvider = ({children}:any) => {
                 setUser(loggedUser)
                 Storage.setItem({key: 'userEmail', value: loggedUser})
                 Storage.setItem({key: 'token', value: token})
-                Storage.setItem({key: "userType", value:"2"})
+                Storage.setItem({key: "userType", value: userType.toString()})
                 Storage.setItem({key: "userName", value: userName})
                 Storage.setItem({key: "userCpf", value: userCpf})
                 Storage.setItem({key: "userMatricula", value: userMatricula})
@@ -123,7 +127,7 @@ export const AuthProvider = ({children}:any) => {
  
     return (
 
-      <AuthContext.Provider value={{authenticated: Boolean(user), user, loading , logout, login, createUser, listUser, iconePerfil}}>
+      <AuthContext.Provider value={{authenticated: Boolean(user), user, loading , logout, login, createUser, listUser, iconePerfil, userType}}>
         {children}
       </AuthContext.Provider>
     )

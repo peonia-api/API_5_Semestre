@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { NavigationContainer, useFocusEffect } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -23,10 +23,10 @@ Icon.loadFont();
 
 const Stack = createNativeStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
-
 const TabNavigator = () => {
 
-  const { iconePerfil } = useContextUser()
+  const { iconePerfil, userType } = useContextUser()
+
 
   return (
     <Tab.Navigator
@@ -66,16 +66,19 @@ const TabNavigator = () => {
           ),
         }}
       />
-       <Tab.Screen
-        name="AprovacaoCadastro"
-        component={AprovacaCadastro}
-        options={{
-          tabBarLabel: 'Aprovação',
-          tabBarIcon: () => (
-            <Icon name="check-square" size={25} color="#000000" />
-          ),
-        }}
-      />
+      
+      {userType === '1'? (
+          <Tab.Screen
+          name="Usuários"
+          component={AprovacaCadastro}
+          options={{
+            tabBarLabel: 'Usuários',
+            tabBarIcon: () => (
+              <Icon name="users" size={25} color="#000000" />
+            ),
+          }}
+        />
+        ) : null}
       
       <Tab.Screen
         name="Perfil"
@@ -90,6 +93,7 @@ const TabNavigator = () => {
           ),
         }}
       />
+
     </Tab.Navigator>
   );
 };

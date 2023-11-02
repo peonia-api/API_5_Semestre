@@ -69,6 +69,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  container: {
+    flex: 1,
+
+  },
+  animation: {
+    justifyContent: 'center', // Centraliza horizontalmente.
+    alignItems: 'center', // Centraliza verticalmente.
+    backgroundColor: 'white',
+    height: 100, // Altura desejada para a animação.
+  },
 });
 
 export default styles;
