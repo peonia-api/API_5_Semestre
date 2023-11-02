@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         height: 45,
         borderWidth: 1,
-        borderColor: "#ccc",
+        borderColor: "#4DB9DB",
         width: "85%",
     },
 
@@ -49,9 +49,9 @@ const styles = StyleSheet.create({
     image: {
         height: 100,
         width: 100,
-        borderRadius: 50,
-  
-
+       borderRadius: 50,
+        borderColor: '#4DB9DB',
+        borderWidth: 1,
     },
 
     icon: {
