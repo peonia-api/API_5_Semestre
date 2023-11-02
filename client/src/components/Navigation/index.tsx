@@ -17,6 +17,8 @@ import AprovacaCadastro from '../AprovacaCadastro';
 import { Image } from 'react-native';
 import { useContextUser } from '../../hooks';
 import PerfilAprovacao from '../PerfilAprovacao';
+import PerfilDesativado from '../PerfilDesativado';
+import PerfilUsuario from '../PerfilUsuario';
 
 Icon.loadFont();
 
@@ -85,6 +87,32 @@ const TabNavigator = () => {
         component={Perfil}
         options={{
           tabBarLabel: 'Perfil',
+          tabBarIcon: () => (
+            <Image
+              source={{ uri: iconePerfil }}
+              style={{ width: 40, height: 30, borderRadius: 50 }}
+            />
+          ),
+        }}
+      />
+       <Tab.Screen
+        name="Perfil Desativado"
+        component={PerfilDesativado}
+        options={{
+          tabBarLabel: 'PerfilDesativado',
+          tabBarIcon: () => (
+            <Image
+              source={{ uri: iconePerfil }}
+              style={{ width: 40, height: 30, borderRadius: 50 }}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Perfil Usuário"
+        component={PerfilUsuario}
+        options={{
+          tabBarLabel: 'perfilUsuario',
           tabBarIcon: () => (
             <Image
               source={{ uri: iconePerfil }}
