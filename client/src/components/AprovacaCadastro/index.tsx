@@ -25,8 +25,8 @@ function AprovacaoCadastro({ navigation }: any) {
 
   const handleItemPress = (userId: string) => {
     navigation.navigate('Perfil de Aprovação', { userId });
-    navigation.navigate('Pendente', { userId});
-    navigation.navigate('Arquivado', { userId });
+    // navigation.navigate('Pendente', { userId});
+    // navigation.navigate('Arquivado', { userId });
 
   };
 

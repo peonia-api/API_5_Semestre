@@ -116,6 +116,11 @@ const styles = StyleSheet.create({
         marginTop: 20,
       },
 
+      containerB: {
+        flexDirection: "row",
+        justifyContent: "center",
+      },
+
       textPassword: {
         marginLeft: 50,
         justifyContent: "center",
@@ -157,6 +162,24 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
       }, 
+      botaoAction: {
+        backgroundColor: '#000000',
+        padding: 12,
+        borderRadius: 5,
+        width: '40%',
+        marginTop: 20,
+        marginBottom: 20,
+
+      },
+      botaoA: {
+        backgroundColor: '#000000',
+        padding: 12,
+        borderRadius: 5,
+        width: '70%',
+        marginTop: 20,
+        marginBottom: 20,     
+        marginLeft: 5,
+      },
       icons: {
         height: 50,
         width: 50,
