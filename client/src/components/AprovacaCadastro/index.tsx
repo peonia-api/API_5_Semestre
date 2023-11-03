@@ -14,10 +14,27 @@ function AprovacaoCadastro({ navigation }: any) {
   const [filteredUser, setFilteredUser] = useState<Props[]>(listUser);
   const [searchValue, setSearchValue] = useState(""); 
 
+  const status = (valor:any) => {
+    console.log(valor);
+    
+    if(valor == 1){
+      return "aprovado"
+    }
+    else if(valor == 2){
+      return "pendente"
+    }
+    else if(valor == 3){
+      return "arquivado"
+    }
+    else{
+      return ""
+    }
+  }
+  
   useEffect(() => {
-    const filtered = listUser.filter((item: {userName: string; status: string; icon: string; id: string}) =>
+    const filtered = listUser.filter((item: {userName: string; status: number; icon: string; id: string}) =>
       item.userName.toLowerCase().includes(searchValue.toLowerCase()) ||
-      item.status.toLowerCase().includes(searchValue.toLowerCase())
+      status(item.status).toString().includes(searchValue.toLowerCase())
     );
     setFilteredUser(filtered);
   }, [searchValue, listUser]);
@@ -25,9 +42,6 @@ function AprovacaoCadastro({ navigation }: any) {
 
   const handleItemPress = (userId: string) => {
     navigation.navigate('Perfil de Aprovação', { userId });
-    navigation.navigate('Pendente', { userId});
-    navigation.navigate('Arquivado', { userId });
-
   };
 
 

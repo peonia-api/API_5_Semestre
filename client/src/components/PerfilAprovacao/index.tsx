@@ -22,7 +22,6 @@ function ApprovalProfile({ route, navigation }: any) {
     const [image, setImage] = useState<any>(null);
     const [isVisible, setIsVisible] = useState<boolean>(false)
     const [hasPermission, setHasPermission] = useState<boolean | null>(null);
-    const { itemId } = route.params
     const camRef = useRef<any | null>(null);
     const [capturedPhoto, setCapturedPhoto] = useState(null)
     const [isCameraVisible, setCameraVisible] = useState(false);
