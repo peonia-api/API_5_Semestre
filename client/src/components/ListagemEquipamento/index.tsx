@@ -45,7 +45,7 @@ function ListaEquipamento({ navigation }: any) {
     <View style={[styles.container]}>
      
         <View style={styles.searchFilterContainer}>
-          <Pesquisa onSearch={(text) => setSearchValue(text)} />
+          <Pesquisa onSearch={(text) => setSearchValue(text)} customStyle={styles.searchInFilter} />
           <Filtro onFilter={(isActive) => handleFilterToggle(isActive)} />
         </View>
      

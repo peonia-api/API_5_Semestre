@@ -28,6 +28,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 5,
     width: '100%',
+  },
+  searchInFilter: {
+    width: "160%",
+    marginLeft: 150,
+    paddingHorizontal: 15,
+    marginRight: 10
   }
 });
 
