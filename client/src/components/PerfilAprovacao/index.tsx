@@ -73,7 +73,9 @@ function ApprovalProfile({ route, navigation }: any) {
 
         try {
             setLoading(true);
-            const list = await User.patchStatus(userEmail, {status: change})
+            const list = await User.patchStatus(userEmail, {status: change}).catch(() => {
+                alert("Erro ao alterar status")
+            })
             if (list) {
                 setListUser((prevListUser: any) => {
                   const updatedIndex = prevListUser.findIndex((item: any) => item.id === list.id);
@@ -100,12 +102,12 @@ function ApprovalProfile({ route, navigation }: any) {
                 }
 
                 const changed:any = status(change)
-
              
                 await User.getEmailStatus(userEmail, changed)
             }
         } catch (err) {
-            alert("Erro ao alterar status")
+            console.log("erro")
+            
         }
         finally{
             setLoading(false)
