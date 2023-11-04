@@ -10,30 +10,37 @@ import Filtro from "../Filtro";
 import { useTheme } from '../../hooks'
 
 function ListaEquipamento({ navigation }: any) {
-  const { equipmente, loaded } = useContextoEquipmente();
+  const { equipmente, loaded, list10km } = useContextoEquipmente();
   const [filteredEquipments, setFilteredEquipments] = useState<Props[]>(equipmente);
   const [searchValue, setSearchValue] = useState("");
 
-  const [showActive, setShowActive] = useState<boolean | null>(null); // Inicialize com null
+  const [showActive, setShowActive] = useState<number | null>(null); // Inicialize com null
   const theme = useTheme();
 
   useEffect(() => {
     const filtered = equipmente.filter((item) => {
-      const isActiveFilter = showActive === null ? true : (showActive ? item.status : !item.status);
+      const isActiveFilter = showActive === null ? true : (showActive === 1 ? item.status : showActive === 2 ? !item.status : false);
       return (
         isActiveFilter &&
         (item.type.toLowerCase().includes(searchValue.toLowerCase()) ||
           item.serial.toLowerCase().includes(searchValue.toLowerCase()))
       );
     });
-    setFilteredEquipments(filtered);
+    if (showActive === 3) {
+      setFilteredEquipments(list10km.filter((item) => {return (
+        (item.type.toLowerCase().includes(searchValue.toLowerCase()) ||
+          item.serial.toLowerCase().includes(searchValue.toLowerCase()))
+      );}));
+    } else {
+      setFilteredEquipments(filtered);
+    }
   }, [searchValue, showActive, equipmente]);
 
   const handleItemPress = (itemId: string) => {
     navigation.navigate('Detalhes', { itemId });
   };
 
-  const handleFilterToggle = (isActive: boolean | null) => {
+  const handleFilterToggle = (isActive: number | null) => {
     setShowActive(isActive);
   };
 
