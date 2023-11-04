@@ -10,7 +10,7 @@ interface FiltroProps {
 
 export default function Filtro({ onFilter }: FiltroProps) {
     const [modalVisible, setModalVisible] = useState(false);
-    const [selectedOption, setSelectedOption] = useState<boolean | null>(null); // Defina o tipo do estado
+    const [selectedOption, setSelectedOption] = useState<boolean | null>(null);
 
     const handleFilterToggle = (isActive: boolean | null) => {
         setSelectedOption(isActive);

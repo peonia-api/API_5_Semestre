@@ -20,7 +20,12 @@ function ApprovalProfile({ route, navigation }: any) {
     const [userCpf, setUserCpf] = useState<string>("");
     const [userMatricula, setUserMatricula] = useState<string>("");
     const [userTelefone, setUserTelefone] = useState<string>("");
-    const { userId } = route.params
+    const { itemId } = route.params
+    const [userId, setUserId] = useState<string>("");
+    const [image, setImage] = useState<any>(null);
+    const [isVisible, setIsVisible] = useState<boolean>(false)
+    const [hasPermission, setHasPermission] = useState<boolean | null>(null);
+
     const camRef = useRef<any | null>(null);
     const [capturedPhoto, setCapturedPhoto] = useState(null)
     const [isCameraVisible, setCameraVisible] = useState(false);

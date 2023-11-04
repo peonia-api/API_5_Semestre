@@ -44,13 +44,13 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         backgroundColor: '#f2f2f2',
 
-
     },
     image: {
         height: 100,
         width: 100,
         borderRadius: 50,
-
+        borderColor: '#4DB9DB',
+        borderWidth: 1,
 
     },
 
