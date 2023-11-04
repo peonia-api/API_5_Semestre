@@ -46,6 +46,7 @@ export const AuthProvider = ({children}:any) => {
         try {
           setLoading(true)
           const getOne = await User.getEspecificUser(id)
+          console.log("porraaaaaaa" + getOne)
           console.log(getOne);
           return getOne
         } catch (err) {

@@ -36,7 +36,8 @@ const styles = StyleSheet.create({
     },
 
     containerImagem: {
-        marginTop: 25,
+        marginTop: 40,
+        marginBottom: 20,
         marginLeft: 140,
         justifyContent: "center",
         alignItems: "center",
@@ -131,9 +132,8 @@ const styles = StyleSheet.create({
         padding: 12,
         borderRadius: 5,
         width: '40%',
-        marginTop: 30,
+        marginTop: 20,
         marginBottom: 20,
-      
 
       },
       icons: {

@@ -1,7 +1,7 @@
 import { Double } from "react-native/Libraries/Types/CodegenTypes";
 
 export default interface UserProps{
-    equipmente: Props[]
+    user: Props[]
     setEquipmente: Function
     createEquipment: Function
     getEquipment: Function
@@ -10,6 +10,7 @@ export default interface UserProps{
     putEquipment: Function
     patchStatus: Function
     listUsers: Props[]
+    getUser: Function
 }
 
 
@@ -18,7 +19,7 @@ enum UserType {
     Comum = 2
 }
 
-enum Status {
+export enum Status {
     Ativo = 1,
     Pendente = 2,
     Desativado = 3,

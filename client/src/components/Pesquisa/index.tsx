@@ -4,9 +4,10 @@ import styles from "./style";
 
 interface PesquisaProps {
   onSearch: (text: string) => void;
+  customStyle?: object;
 }
 
-export default function Pesquisa({ onSearch }: PesquisaProps) {
+export default function Pesquisa({ onSearch, customStyle }: PesquisaProps) {
   const [searchValue, setSearchValue] = useState("");
 
   const handleSearch = (text: string) => {
@@ -17,7 +18,7 @@ export default function Pesquisa({ onSearch }: PesquisaProps) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.inputContainer}>
+      <View style={{ ...styles.inputContainer, ...customStyle }}>
         <Image
           source={require("../../assets/search.png")}
           style={styles.icon}

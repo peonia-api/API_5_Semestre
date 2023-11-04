@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, Image, FlatList, SafeAreaView, TouchableOpacity } from "react-native";
+import { View, Pressable } from "react-native";
 import styles from "./style";
 import { useContextoEquipmente } from '../../hooks';
 import Pesquisa from "../Pesquisa";
@@ -14,22 +14,18 @@ function ListaEquipamento({ navigation }: any) {
   const [filteredEquipments, setFilteredEquipments] = useState<Props[]>(equipmente);
   const [searchValue, setSearchValue] = useState("");
 
-  const [showActive, setShowActive] = useState<boolean | null>(true);
-  const theme = useTheme()
+  const [showActive, setShowActive] = useState<boolean | null>(null); // Inicialize com null
+  const theme = useTheme();
 
   useEffect(() => {
     const filtered = equipmente.filter((item) => {
-      if (showActive === null) {
-        return true; // Não aplicar filtro
-      }
-      const isActiveFilter = showActive ? item.status : !item.status;
+      const isActiveFilter = showActive === null ? true : (showActive ? item.status : !item.status);
       return (
         isActiveFilter &&
         (item.type.toLowerCase().includes(searchValue.toLowerCase()) ||
           item.serial.toLowerCase().includes(searchValue.toLowerCase()))
       );
     });
-  
     setFilteredEquipments(filtered);
   }, [searchValue, showActive, equipmente]);
 
@@ -43,12 +39,10 @@ function ListaEquipamento({ navigation }: any) {
 
   return (
     <View style={[styles.container]}>
-      <SafeAreaView>
-        <View style={styles.searchFilterContainer}>
-          <Pesquisa onSearch={(text) => setSearchValue(text)} />
-          <Filtro onFilter={(isActive) => handleFilterToggle(isActive)} />
-        </View>
-      </SafeAreaView>
+      <View style={styles.searchFilterContainer}>
+        <Pesquisa onSearch={(text) => setSearchValue(text)} customStyle={styles.searchInFilter} />
+        <Filtro onFilter={(isActive) => handleFilterToggle(isActive)} />
+      </View>
       <View style={styles.listaContainer}>
         {loaded && (
           <View style={styles.uploadingAnimation}>

@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
-    paddingHorizontal: 3,
+    paddingHorizontal: 15,
     backgroundColor: '#ffffff',
   },
   listaContainer: {

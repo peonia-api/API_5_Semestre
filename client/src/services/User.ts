@@ -52,10 +52,12 @@ class User {
     async getOneId(): Promise<Props> {
         try {
             const { data } = await userApi.get(`/user/especificId/`)
+            console.log("aaaaaaah" + data)
             return data
         } catch (err) {
             throw err
         }
+        
     }
     async getOneEmail(email: string): Promise<Props | any> {
         try {
@@ -64,6 +66,7 @@ class User {
         } catch (err) {
             throw err
         }
+        
     }
     async getEspecificUser(id: string): Promise<Props> {
         try {

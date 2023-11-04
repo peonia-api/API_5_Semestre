@@ -43,7 +43,10 @@ const styles = StyleSheet.create({
         width: 100,
         borderRadius: 50,
         backgroundColor: '#f2f2f2',
+        marginTop: 40,
+        marginBottom: 20
     },
+    
     image: {
         height: 100,
         width: 100,
@@ -98,7 +101,6 @@ const styles = StyleSheet.create({
     containerBotao: {
         flexDirection: "row",
         justifyContent: "center",
-        //marginTop: 10,
       },
 
       textPassword: {
@@ -131,10 +133,8 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         width: '70%',
         marginTop: 20,
-        marginBottom: 20,
-        marginLeft:15,
-        
-
+        marginBottom: 20,     
+        marginLeft: 5,
       },
       icons: {
         height: 50,
