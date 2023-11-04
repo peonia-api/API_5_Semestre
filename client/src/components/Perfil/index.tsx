@@ -21,7 +21,6 @@ export default function Perfil({ navigation }: any) {
     const [image, setImage] = useState<any>(null);
     const [verficaImage, setVerificaImagem] = useState<any>()
     const [ isVisible, setIsVisible ] = useState<boolean>(false)
-
     const { setLoaded, loaded} = useContextoEquipmente();
     const { logout } = useContextUser()
 
@@ -163,6 +162,9 @@ export default function Perfil({ navigation }: any) {
         setIsVisible(!isVisible)
     }
 
+
+
+
     return (
         <View style={styles.container}>
             {loaded && (
@@ -297,6 +299,17 @@ export default function Perfil({ navigation }: any) {
                             onChangeText={(text) => setUserMatricula(text)}
                         />
                     </View>
+
+                    <View style={styles.containerCor}>
+                        <View style={styles.telaCor}>
+                            <Button styles={[styles.botaoCor, { backgroundColor: '#4DB9DB' }]} onPress={handleAtualiza} />
+                            <Button styles={[styles.botaoCor, { backgroundColor: '#ad6134' }]} onPress={handleAtualiza} />
+                            <Button styles={[styles.botaoCor, { backgroundColor: '#5480ba' }]} onPress={handleAtualiza} />
+                            <Button styles={[styles.botaoCor, { backgroundColor: '#32CD32' }]}  onPress={handleAtualiza} />
+                            <Button styles={[styles.botaoCor, { backgroundColor: '#cc2b81' }]}  onPress={handleAtualiza} />
+                            <Button styles={[styles.botaoCor, { backgroundColor: '#bd2d2d' }]} onPress={handleAtualiza} />
+                        </View>
+                    </View>
                 </View>
 
                 <View style={styles.containerBotao}>
@@ -313,7 +326,6 @@ export default function Perfil({ navigation }: any) {
                         texto={'Alterar senha'}
                     />
                 </View>
-
             </ScrollView>
         </View>
     );
