@@ -171,8 +171,8 @@ const styles = StyleSheet.create({
         marginBottom: 20,
 
       },
-      botaoA: {
-        backgroundColor: '#000000',
+      botaoArroz: {
+        backgroundColor: 'black',
         padding: 12,
         borderRadius: 5,
         width: '70%',

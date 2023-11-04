@@ -122,9 +122,9 @@ class User {
         }
     }
 
-    async patchStatus(email: string): Promise<Props | any>{
+    async patchStatus(email: string, body: {status: number}): Promise<Props | any>{
         try{
-            const res = await userApi.patch(`/user/alterStatus/${email}`)
+            const res = await userApi.patch(`/user/alterStatus/${email}`, body)
             return res.data
         }catch(err){
             throw err

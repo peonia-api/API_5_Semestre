@@ -34,7 +34,7 @@ function ApprovalProfile({ route, navigation }: any) {
     const [userType, setUserType] = useState<string>();
     const [status, setStatus] = useState<Status | null>(null);
 
-    const {user, loading , getUser } = useContextUser();
+    const {user, loading , getUser, listUser, setListUser } = useContextUser();
    
 
     useFocusEffect(useCallback(() => {
@@ -69,11 +69,31 @@ function ApprovalProfile({ route, navigation }: any) {
 
     }, [user, route.params]))
 
-   
-    console.log("perereca")
-    console.log('userType:', userType);
-    console.log('Status.Pendente:', Status.Pendente);
+    const handleAction = async (change: number) => {
 
+        try {
+            const list = await User.patchStatus(userEmail, {status: change})
+            if (list) {
+                setListUser((prevListUser: any) => {
+                  const updatedIndex = prevListUser.findIndex((item: any) => item.id === list.id);
+                  if (updatedIndex !== -1) {
+                    const updatedList = [...prevListUser];
+                    updatedList[updatedIndex] = list;
+                    return updatedList;
+                  }
+                  return prevListUser;
+                });
+            }
+            
+        } catch (err) {
+            alert("Erro ao alterar status")
+            
+        }
+        finally{
+            navigation.navigate('Usuários')
+        }
+    }
+   
 
 
     return (
@@ -102,43 +122,48 @@ function ApprovalProfile({ route, navigation }: any) {
                     <View style={styles.inputWrapper}>
                         <TextInput
                             placeholder="NOME COMPLETO"
-                            style={styles.inputLogin}
+                            style={[styles.inputLogin, { color: "black" }]}
                             defaultValue={userName}
                             placeholderTextColor="black"
+                            editable={false}
                            
                         />
                     </View>
                     <View style={styles.inputWrapper}>
                         <TextInput
                             placeholder="CPF"
-                            style={styles.inputLogin}
+                            style={[styles.inputLogin, { color: "black" }]}
                             defaultValue={userCpf}
                             placeholderTextColor="black"
+                            editable={false}
                         />
                     </View>
                     <View style={styles.inputWrapper}>
                         <TextInput
                             placeholder="E-MAIL"
-                            style={styles.inputLogin}
+                            style={[styles.inputLogin, { color: "black" }]}
                             defaultValue={userEmail}
                             placeholderTextColor="black"
+                            editable={false}
                         />
                     </View>
                     <View style={styles.inputWrapper}>
                         <TextInput
                             placeholder="TELEFONE"
-                            style={styles.inputLogin}
+                            style={[styles.inputLogin, { color: "black" }]}
                             defaultValue={userName}
                             placeholderTextColor="black"
+                            editable={false}
                         />
                     </View>
 
                     <View style={styles.inputWrapper}>
                         <TextInput
                             placeholder="MATRÍCULA"
-                            style={styles.inputLogin}
+                            style={[styles.inputLogin, { color: "black" }]}
                             defaultValue={userMatricula}
                             placeholderTextColor="black"
+
                         />
                     </View>
         
@@ -162,13 +187,13 @@ function ApprovalProfile({ route, navigation }: any) {
                 <View>
                     {status === Status.Pendente && (
                         <View style={styles.containerBotao}>
-                        <TouchableOpacity style={styles.botaoAcao}>
+                        <TouchableOpacity style={styles.botaoAcao} onPress={() => handleAction(1)}>
                             <View style={styles.botaoConteudo}>
                             <Icon name="check" size={25} color="#4DB9DB" />
                             <Text style={{ color: 'white', marginLeft: 10 }}>APROVAR</Text>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.botaoAcao}>
+                        <TouchableOpacity style={styles.botaoAcao} onPress={() => handleAction(3)}>
                             <View style={styles.botaoConteudo}>
                             <Icon name="trash" size={25} color="#4DB9DB" />
                             <Text style={{ color: 'white', marginLeft: 10 }}>EXCLUIR</Text>
@@ -182,8 +207,8 @@ function ApprovalProfile({ route, navigation }: any) {
                         <Button
                             styles={styles.botaoAction}
                             stylesText={styles.textoBotao}
-                            // onPress={handleAtivar}
                             texto={'ATIVAR'}
+                            onPress={() => handleAction(1)}
                         />
                         </View>
                     )}
@@ -191,10 +216,10 @@ function ApprovalProfile({ route, navigation }: any) {
                     {status === Status.Ativo && (
                         <View style={styles.containerB}>
                         <Button
-                            style={styles.botaoA}
+                            styles={styles.botaoArroz}
                             stylesText={styles.textoBotao}
-                            // onPress={handleAtualizarDados}
-                            texto={'ATUALIZAR DADOS'}
+                            onPress={() => handleAction(3)}
+                            texto={'DESATIVAR USUÁRIO'}
                         />
                         </View>
                     )}
