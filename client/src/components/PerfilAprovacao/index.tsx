@@ -34,7 +34,7 @@ function ApprovalProfile({ route, navigation }: any) {
     const [userType, setUserType] = useState<string>();
     const [status, setStatus] = useState<Status | null>(null);
 
-    const {user, loading , getUser, listUser, setListUser } = useContextUser();
+    const {user, loading , getUser, listUser, setListUser, setLoading } = useContextUser();
    
 
     useFocusEffect(useCallback(() => {
@@ -72,6 +72,7 @@ function ApprovalProfile({ route, navigation }: any) {
     const handleAction = async (change: number) => {
 
         try {
+            setLoading(true);
             const list = await User.patchStatus(userEmail, {status: change})
             if (list) {
                 setListUser((prevListUser: any) => {
@@ -83,14 +84,33 @@ function ApprovalProfile({ route, navigation }: any) {
                   }
                   return prevListUser;
                 });
+                const status = (valor:any) => {
+                    console.log(valor);
+
+                    if(valor == 1){
+                        return "Aprovado"
+                      }
+                      else if(valor == 2){
+                        return "Pendente"
+                      }
+                      else if(valor == 3){
+                        return "Arquivado"
+                      }
+                
+                }
+
+                const changed:any = status(change)
+
+             
+                await User.getEmailStatus(userEmail, changed)
             }
-            
         } catch (err) {
             alert("Erro ao alterar status")
-            
         }
         finally{
+            setLoading(false)
             navigation.navigate('Usuários')
+            
         }
     }
    
@@ -163,6 +183,7 @@ function ApprovalProfile({ route, navigation }: any) {
                             style={[styles.inputLogin, { color: "black" }]}
                             defaultValue={userMatricula}
                             placeholderTextColor="black"
+                            editable={false}
 
                         />
                     </View>
