@@ -103,7 +103,7 @@ function ApprovalProfile({ navigation }: any) {
                         styles={styles.botaoAcao}
                         stylesText={styles.textoBotao}
                         //onPress={handleAtualiza}
-                        texto={'ATUALIZAR DADOS'}
+                        texto={'Atualizar dados'}
                     />
                 
                 </View>    

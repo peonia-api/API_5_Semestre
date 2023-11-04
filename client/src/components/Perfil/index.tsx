@@ -310,7 +310,7 @@ export default function Perfil({ navigation }: any) {
                         styles={styles.botaoAtualizarSenha}
                         stylesText={styles.textoBotao}
                         onPress={toggleModal}
-                        texto={'Alterar Senha'}
+                        texto={'Alterar senha'}
                     />
                 </View>
 
