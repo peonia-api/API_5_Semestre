@@ -151,7 +151,7 @@ function ApprovalProfile({ route, navigation }: any) {
                         // onValueChange={handleEquipamentoChange}
                         // style={styles.picker}
                         >
-                        <Picker.Item label="TIPO DE USUÁRIO" value="" enabled={false} />
+                        <Picker.Item label="Tipo de usuário" value="" enabled={false} />
                         <Picker.Item label="Administrador" value="1"  />
                         <Picker.Item label="Padrão" value="2" />
                         </Picker>
@@ -165,13 +165,13 @@ function ApprovalProfile({ route, navigation }: any) {
                         <TouchableOpacity style={styles.botaoAcao}>
                             <View style={styles.botaoConteudo}>
                             <Icon name="check" size={25} color="#4DB9DB" />
-                            <Text style={{ color: 'white', marginLeft: 10 }}>APROVAR</Text>
+                            <Text style={{ color: 'white', marginLeft: 10 }}>Aprovar</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.botaoAcao}>
                             <View style={styles.botaoConteudo}>
                             <Icon name="trash" size={25} color="#4DB9DB" />
-                            <Text style={{ color: 'white', marginLeft: 10 }}>EXCLUIR</Text>
+                            <Text style={{ color: 'white', marginLeft: 10 }}>Excluir</Text>
                             </View>
                         </TouchableOpacity>
                         </View>
@@ -183,7 +183,7 @@ function ApprovalProfile({ route, navigation }: any) {
                             styles={styles.botaoAction}
                             stylesText={styles.textoBotao}
                             // onPress={handleAtivar}
-                            texto={'ATIVAR'}
+                            texto={'Ativar'}
                         />
                         </View>
                     )}
@@ -194,7 +194,7 @@ function ApprovalProfile({ route, navigation }: any) {
                             style={styles.botaoA}
                             stylesText={styles.textoBotao}
                             // onPress={handleAtualizarDados}
-                            texto={'ATUALIZAR DADOS'}
+                            texto={'Atualizar dados'}
                         />
                         </View>
                     )}
