@@ -22,6 +22,9 @@ class UserController {
       .where("user.userEmail=:userEmail", { userEmail })
       .getOne();
 
+    if(usuario.status != 1){
+      return res.status(400).json({ error: "Usuário sem  Permissão de logar" });
+    }  
     if (usuario && usuario.id) {
       console.log(usuario)
       const r = await usuario.compare(userPassword);
