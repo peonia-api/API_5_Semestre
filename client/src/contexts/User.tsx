@@ -101,9 +101,12 @@ export const AuthProvider = ({children}:any) => {
                 Storage.removeItem({key: "userMatricula"})
                 Storage.removeItem({key: "userTelefone"})
                 Storage.removeItem({key: "userid"})
-            
-                alert("Usuário ou senha incorreto!")
-                //avisoErroLogin()
+                
+                if(err.response.status == 401){
+                  alert("Usuário sem permissão!")
+                }else{
+                  alert("Usuário ou senha incorreto!")
+                }
             })
         }catch(err){
           throw err

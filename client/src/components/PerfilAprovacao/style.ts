@@ -113,12 +113,18 @@ const styles = StyleSheet.create({
         alignItems: "center",
         alignContent: "center",
         marginHorizontal: 40,
-        marginTop: 20,
+        marginTop: 15,
       },
 
       containerB: {
         flexDirection: "row",
         justifyContent: "center",
+        backgroundColor: 'black',
+        marginTop: 15,
+        marginLeft: 75,
+        padding: 12,
+        borderRadius: 5,
+        width: '60%',
       },
 
       textPassword: {
