@@ -34,7 +34,7 @@ function ApprovalProfile({ route, navigation }: any) {
     const [userType, setUserType] = useState<string>();
     const [status, setStatus] = useState<Status | null>(null);
 
-    const {user, loading , getUser, listUser, setListUser, setLoading } = useContextUser();
+    const {user, loading , getUser, listUser, setListUser, setLoading, typeCor } = useContextUser();
    
 
     useFocusEffect(useCallback(() => {
@@ -119,7 +119,7 @@ function ApprovalProfile({ route, navigation }: any) {
 
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, {backgroundColor: typeCor[1]}]}>
             {loading && (
                 <View style={styles.uploadingAnimation}>
                     <LottieView

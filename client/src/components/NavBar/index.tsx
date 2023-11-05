@@ -37,7 +37,7 @@ function NavBar({ navigation }: any) {
     <>
     {authenticated ?  <View>
     <LinearGradient
-        colors={typeCor}
+        colors={[typeCor[0], typeCor[1]]}
         // colors={['#3B8FA8', '#4DB9DB', '#92CFE1']}
         style={styles.gradient}
       >

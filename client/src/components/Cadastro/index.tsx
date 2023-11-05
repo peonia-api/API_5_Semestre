@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import * as ImagePicker from 'expo-image-picker';
 import { BotaoCadastro } from "../Botao";
 import { upload } from '../../supabase/upload';
-import { useContextoEquipmente, useTheme } from '../../hooks';
+import { useContextUser, useContextoEquipmente, useTheme } from '../../hooks';
 import LottieView from 'lottie-react-native';
 import { Camera, CameraType } from 'expo-camera';
 import { FontAwesome } from "@expo/vector-icons"
@@ -36,6 +36,7 @@ export default function Cadastro({ route, navigation }: any) {
   const [capturedPhoto, setCapturedPhoto] = useState(null)
   const [isCameraVisible, setCameraVisible] = useState(false);
   const theme = useTheme()
+  const { typeCor } = useContextUser()
 
   useEffect(() => {
     (async () => {
@@ -252,11 +253,11 @@ export default function Cadastro({ route, navigation }: any) {
               )}
             </View>
           <View style={styles.containerIcons}>
-            <TouchableOpacity style={styles.icons} onPress={pickImage}>
+            <TouchableOpacity style={[styles.icons, {backgroundColor: typeCor[1]}]} onPress={pickImage}>
               <Icon name="plus" size={25} color="#000000" />
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.icons} onPress={() => setCameraVisible(true)}>
+            <TouchableOpacity style={[styles.icons, {backgroundColor: typeCor[1]}]} onPress={() => setCameraVisible(true)}>
               <Icon name="camera" size={25} color="#000000" />
             </TouchableOpacity>
 

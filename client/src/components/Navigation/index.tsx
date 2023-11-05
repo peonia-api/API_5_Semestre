@@ -26,7 +26,7 @@ const Stack = createNativeStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
 const TabNavigator = () => {
 
-  const { iconePerfil, userType } = useContextUser()
+  const { iconePerfil, userType, typeCor } = useContextUser()
 
 
   return (
@@ -34,14 +34,14 @@ const TabNavigator = () => {
       initialRouteName="Equipamentos"
       activeColor="#000000"
       shifting={false}
-      barStyle={{ backgroundColor: '#4DB9DB' }}
+      barStyle={{ backgroundColor: typeCor[1] }}
       sceneAnimationEnabled={false}
     >
       <Tab.Screen
         name="Equipamentos"
         component={ListaEquipamento}
         options={{
-          tabBarLabel: 'Equipamentos',
+          tabBarLabel: 'Ativos',
           tabBarIcon: () => (
             <Icon name="list" size={25} color="#000000" />
           ),

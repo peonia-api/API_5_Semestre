@@ -15,7 +15,7 @@ export const AuthProvider = ({children}:any) => {
     const [loading, setLoading] = useState(true)
     const [iconePerfil, setIconePerfil ] = useState(true)
     const [userType, setUserType ] = useState<string>()
-    const [ typeCor, setTypeCor] = useState<string>()
+    const [ typeCor, setTypeCor] = useState<string[]>(['#92CFE1', '#4DB9DB'])
     
  
     useEffect(() => {

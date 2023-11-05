@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
 
       containerCor: {
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'space-around',
         alignItems: 'center',
       },
       telaCor: {
@@ -169,10 +169,10 @@ const styles = StyleSheet.create({
       },
       botaoCor: {
         backgroundColor: '#4DB9DB',
-        width: 30,
-        height :30,
+        width: 35,
+        height :35,
         borderRadius: 50,
-        margin:15,
+        margin: 16, 
         marginBottom: 20
       },
 
