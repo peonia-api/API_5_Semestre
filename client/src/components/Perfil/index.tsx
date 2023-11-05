@@ -22,7 +22,7 @@ export default function Perfil({ navigation }: any) {
     const [verficaImage, setVerificaImagem] = useState<any>()
     const [ isVisible, setIsVisible ] = useState<boolean>(false)
     const { setLoaded, loaded} = useContextoEquipmente();
-    const { logout } = useContextUser()
+    const { logout, setTypeCor, typeCor } = useContextUser()
 
 
     const [senhaInserida, setSenhaInserida] = useState("");
@@ -302,12 +302,12 @@ export default function Perfil({ navigation }: any) {
 
                     <View style={styles.containerCor}>
                         <View style={styles.telaCor}>
-                            <Button styles={[styles.botaoCor, { backgroundColor: '#4DB9DB' }]} onPress={handleAtualiza} />
-                            <Button styles={[styles.botaoCor, { backgroundColor: '#ad6134' }]} onPress={handleAtualiza} />
-                            <Button styles={[styles.botaoCor, { backgroundColor: '#5480ba' }]} onPress={handleAtualiza} />
-                            <Button styles={[styles.botaoCor, { backgroundColor: '#32CD32' }]}  onPress={handleAtualiza} />
-                            <Button styles={[styles.botaoCor, { backgroundColor: '#cc2b81' }]}  onPress={handleAtualiza} />
-                            <Button styles={[styles.botaoCor, { backgroundColor: '#bd2d2d' }]} onPress={handleAtualiza} />
+                            <Button styles={[styles.botaoCor, { backgroundColor: '#4DB9DB' }]} onPress={setTypeCor('#4DB9DB')} />
+                            <Button styles={[styles.botaoCor, { backgroundColor: '#ad6134' }]} onPress={setTypeCor('#ad6134')} />
+                            <Button styles={[styles.botaoCor, { backgroundColor: '#5480ba' }]} onPress={setTypeCor('#5480ba')} />
+                            <Button styles={[styles.botaoCor, { backgroundColor: '#32CD32' }]} onPress={setTypeCor('#32CD32')} />
+                            <Button styles={[styles.botaoCor, { backgroundColor: '#cc2b81' }]} onPress={setTypeCor('#cc2b81')}/>
+                            <Button styles={[styles.botaoCor, { backgroundColor: '#bd2d2d' }]} onPress={setTypeCor('#bd2d2d')}/>
                         </View>
                     </View>
                 </View>

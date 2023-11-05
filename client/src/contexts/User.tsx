@@ -13,9 +13,9 @@ export const AuthProvider = ({children}:any) => {
     const [ user, setUser ] = useState<Props[] | null>(null);
     const [listUser, setListUser] = useState<Props[] | null>(null);
     const [loading, setLoading] = useState(true)
-    const [ iconePerfil, setIconePerfil ] = useState(true)
-    const [ userType, setUserType ] = useState<string>()
-
+    const [iconePerfil, setIconePerfil ] = useState(true)
+    const [userType, setUserType ] = useState<string>()
+    const [ typeCor, setTypeCor] = useState<string>()
     
  
     useEffect(() => {
@@ -143,7 +143,7 @@ export const AuthProvider = ({children}:any) => {
  
     return (
 
-      <AuthContext.Provider value={{authenticated: Boolean(user), user, loading, setLoading, logout, login, createUser, listUser, setListUser, iconePerfil, userType, getUser}}>
+      <AuthContext.Provider value={{authenticated: Boolean(user), user, loading, setLoading, logout, login, createUser, listUser, setListUser, iconePerfil, userType, getUser, setTypeCor, typeCor}}>
         {children}
       </AuthContext.Provider>
     )
