@@ -66,7 +66,7 @@
 | userPassword | String | --- | Senha do usuário criptografa em hash 
 | token | String | **AF8T4G** | Token gerado quando da solicitação de senha para verificação em dois fatores 
 | icone | String | **https://cbrqdjaeurmeftioqfaz.supabase.co/storage/v1/object/public/imagens/Linux.jpeg** | Url relativa a foto do Usuário 
-| status | Number | **3** | Indica o status do cadastro em relação à aplicação (1 - Pendente / 2 - Ativado / 3 - Desativado)
+| status | Number | **3** | Indica o status do cadastro em relação à aplicação (1 - Aprovado / 2 - Pendente / 3 - Arquivado)
 
 
 → [Voltar ao topo](#topo)
