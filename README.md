@@ -31,10 +31,10 @@
 - [x] Visualização detalhada dos equipamentos disponíveis no raio de ação do App;
 - [x] Filtros de busca de equipamentos (baseado no seu tipo);
 - [x] Cadastro de usuários, incluindo foto;
-- [ ] Liberação de usuários mediante processo de autenticação;
+- [x] Liberação de usuários mediante processo de autenticação;
 - [x] Recuperação de senha por meio de código (6 dígitos);
 - [x] Criptografia de senhas;
-- [ ] Busca de equipamentos cadastrados (raio de 10km) de acordo com posição geográfica do App;
+- [x] Busca de equipamentos cadastrados (raio de 10km) de acordo com posição geográfica do App;
 - [ ] Sincronização de dados online em até 30 segundos após uso offline da aplicação;
 
 <h2> 📋 Requisitos Não Funcionais </h2>
@@ -68,6 +68,10 @@
 
 - Redefinição de senha (neste caso já havia sido feito o disparo do e-mail para gerar o token):
 ![](https://github.com/peonia-api/API_5_Semestre/blob/main/videos/Redefinir_Senha.gif)
+
+<h4> Entrega da Sprint 2 </h4>
+
+...
   
 <br>
 
@@ -107,7 +111,7 @@ Na tabela abaixo é possível visualizar os resultados de cada Sprint clicando e
     
 ![image](https://github.com/peonia-api/API_5_Semestre/blob/main/images/Backlog%20Priorizado%201ª%20Sprint.png).
 ![image](https://github.com/peonia-api/API_5_Semestre/blob/main/images/Backlog%20priorizado%202ª%20Sprint.png).
-![image](https://github.com/peonia-api/API_5_Semestre/blob/main/images/Backlog%20Priorizado%203ª%20Sprint.png).
+![image]().
     
 </p>
 </div>
