@@ -11,9 +11,11 @@
 <span id="mvp">
  
 ## :rocket: MVP 
-<p align="justify">Nesta sprint ...</p>
+<p align="justify">Como ponto focal, prosseguindo com a evolução deste projeto, nesta sprint houve a implementação funcional da aprovação de novos usuários a ser feita pelo usuário administrador.</p>
 
-<p>Dessa forma,...</p>
+<p align="justify">Dessa forma, quando um novo usuário se cadastra para fazer o uso da aplicação, esse formulário fica suspenso até que algum usuário admin faça a verificação dos dados preenchidos e decida por aprovar ou não este cadastro. Uma vez aprovado, este fica habilitado de poder acessar e proceder com a utilização. O usuário admin também consegue fazer a gestão dos usuários, não apenas aprovando novos cadastros, mas também podendo desativar perfis de usuários.</p>
+
+<p align="justify">Focou-se também na implementação do carrossel de imagens dos equipamentos, melhorias visuais e ajustes de layout a fim de tornar mais agradável a navegação por parte do usuário, implementação do raio de 10km para exibição em tela (baseado na posição geográfica do usuário) e realização dos ajustes pendentes da sprint anterior.</p>
   
 <h3 align="center" id="wireframe"> WIREFRAME </h3>
 <p align="center">
@@ -28,7 +30,11 @@
 ## 🖥️ Destaques da Sprint
 <p align="justify">Destacamos nessa sprint algumas implementações que trouxeram facilidade e atendimento a alguns dos requisitos estipulados no escopo de apresentação do projeto:</p>
 
-<p align="justify"> - ...</p>
+<p align="justify"> - Implementação funcional do nível de acesso do usuário Admin que permite a análise dos novos cadastros pendentes de aprovação, a gestão de usuários (ativando e desativando perfis) e visualização exclusiva em tela de seu próprio nível de perfil;</p>
+
+<p align="justify"> - Realização de ajustes visuais e de layout da aplicação, tornando mais agradável e intuitiva a utilização por parte do usuário;</p>
+
+<p align="justify"> - Implementação do carrossel de imagens para que múltiplas imagens possam ser carregadas nos equipamentos cadastrados, facilitando a visualiação das mesmas;</p>
 <br>
   
  <span id="entrega">
