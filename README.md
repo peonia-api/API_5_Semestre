@@ -69,7 +69,7 @@
 - Redefinição de senha (neste caso já havia sido feito o disparo do e-mail para gerar o token):
 ![](https://github.com/peonia-api/API_5_Semestre/blob/main/videos/Redefinir_Senha.gif)
 
-<h4> Entrega da Sprint 2 </h4>
+<h4> Entrega da Sprint 3 </h4>
 
 ...
   
