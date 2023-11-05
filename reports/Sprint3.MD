@@ -17,9 +17,9 @@
   
 <h3 align="center" id="wireframe"> WIREFRAME </h3>
 <p align="center">
-<img src=""/>
+<img src="https://github.com/peonia-api/API_5_Semestre/blob/main/images/Wireframes%20-%20Gestão%20Usuário%20Admin.png"/>
 <br>
-<img src=""/>
+<img src="https://github.com/peonia-api/API_5_Semestre/blob/main/images/Wireframes%20-%20Aprovação%20e%20desativação%20de%20usuários.png"/>
 </p>
 </br>
 
