@@ -314,6 +314,8 @@
 
 **http://localhost:3000/auth2fa_email/renan.mendonca@fatec.sp.gov.br**
 
+<p align="justify"> Parâmetro do Método:</p>
+
 | PARAM | Value | Description |
 | --- | --- | --- |
 | `e-mail` | **renan.mendonca@fatec.sp.gov.br** | Endereço de e-mail a ser verificado. Vai pela URL.
@@ -328,10 +330,29 @@
 
 **http://localhost:3000/auth2fa/getEmail/renanv.f.m@hotmail.com/456TH7**
 
+<p align="justify"> Parâmetro do Método:</p>
+
 | PARAM | Value | Description |
 | --- | --- | --- |
 | `e-mail` | **renan.mendonca@fatec.sp.gov.br** | Endereço de e-mail a ser verificado. Vai pela URL.
 | `token` | **456TH7** | Token gerado para a validação de 2 fatores do usuário.
+<br>
+
+
+<h2> 📔 MÉTODO: GET (E-MAIL E STATUS)</h2>
+
+<p align="justify"> Requisição que verifica o e-mail e o status do cadastro que está na parte de análise a ser feita pelo administrador. Quando criado, e-mail é disparado para que o usuário aguarde a análise. Quando aprovado, e-mail é disparado informando que cadastro foi ativado para acesso.</p>
+
+<p align="justify"> Endereço da rota:</p>
+
+**http://localhost:3000/status/renan.mendonca@fatec.sp.gov.br/1**
+
+<p align="justify"> Parâmetro do Método:</p>
+
+| PARAM | Value | Description |
+| --- | --- | --- |
+| `e-mail` | **renan.mendonca@fatec.sp.gov.br** | Endereço de e-mail a ser verificado. Vai pela URL.
+| `status` | **1** | Status do cadastro (1 - Aprovado / 2 - Pendente / 3 - Arquivado)
 <br>
 
 
@@ -491,6 +512,22 @@
 | `userPassword` | **Senha!123489** | Senha que será criptografada e sobreposta a anteriormente cadastrada. Vai através do local storage inserido na tela de Redefinição de senha.
 <br>
 
+
+<h2> 📔 MÉTODO: PATCH (STATUS DO CADASTRO)</h2>
+
+<p align="justify"> Requisição exclusiva para a alteração do Status de um cadastro quando da aprovação ou desativação feita por um administrador.</p>
+
+<p align="justify"> Endereço da rota:</p>
+
+**http://localhost:3000//user/alterStatus/renan.mendonca@fatec.sp.gov.br**
+
+<p align="justify"> Parâmetros do Método:</p>
+
+| PARAMS | Value | Description |
+| --- | --- | --- |
+| `userEmail` | **renan.mendonca@fatec.sp.gov.br** | String - E-mail do usuário que vai pela URL
+| `status` | **3** | Number - Status do cadastro em relação à aplicação e vai pelo body da req. (1 - Aprovado / 2 - Pendente / 3 - Arquivado)
+<br>
 
 → [Voltar ao topo](#topo)
 
