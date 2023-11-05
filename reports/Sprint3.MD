@@ -34,7 +34,7 @@
 
 <p align="justify"> - Realização de ajustes visuais e de layout da aplicação, tornando mais agradável e intuitiva a utilização por parte do usuário;</p>
 
-<p align="justify"> - Implementação do carrossel de imagens para que múltiplas imagens possam ser carregadas nos equipamentos cadastrados, facilitando a visualiação das mesmas;</p>
+<p align="justify"> - Implementação do carrossel de imagens para que múltiplas fotos possam ser carregadas nos equipamentos cadastrados, facilitando a visualiação das mesmas;</p>
 <br>
   
  <span id="entrega">
