@@ -1,35 +1,12 @@
 <br id="topo">
 
 <h1 align="center"> Documentação das rotas</br> Entendendo a lógica da API desenvolvida neste projeto. </h1>
-<p align="center">
-    <a href="#objetivo">Objetivo</a> | 
-    <a href="#postEQ">Método: POST (EQUIPMENT)</a> |
-    <a href="#postUS">Método: POST (USER)</a> |
-    <a href="#postLG">Método: POST (LOGIN - USER)</a> |
-    <a href="#getEQ">Método: GET (EQUIPMENT)</a> |
-    <a href="#getespecificoEQ">Método: GET pelo ID (EQUIPMENT)</a> |
-    <a href="#getUS">Método: GET (USER)</a> |
-    <a href="#getEMAIL">Método: GET (VERIFICA E-MAIL - USER)</a> |
-    <a href="#getespecificoUS">Método: GET pelo ID (USER)</a> |
-    <a href="#getAUTHUS">Método: GET pelo ID (AUTENTICA E-MAIL - USER)</a> |
-    <a href="#getTK">Método: GET (VERIFICA TOKEN)</a> |
-    <a href="#updateEQ">Método: PUT pelo ID (EQUIPMENT)</a> |
-    <a href="#updateUS">Método: PUT pelo ID (USER)</a> |
-    <a href="#updatePF">Método: PUT pelo ID (MEU PERFIL)</a> |
-    <a href="#statusEQ">Método: PATCH pelo ID (EQUIPMENT)</a> |
-    <a href="#statusPW">Método: PATCH pelo BODY (PASSWORD)</a>
-</p>
-
-
-<span id="objetivo">
 
 <h2> :dart: Objetivo</h2>
 
 <p align="justify"> Este documento tem por objetivo estabeler a documentação das rotas (requisições) constantes dentro deste projeto. Dessa forma, torna-se possível e mais fácil o entendimento do funcionamento da API criada no Back para consumo no Front, estabelecendo a lógica de funcionamento do aplicativo e os parâmetros necessários para cada método utilizado.</p>
 <br>
 
-
-<span id="postEQ">
 
 <h2> 📔 MÉTODO: POST (EQUIPMENT)</h2>
 
@@ -68,8 +45,6 @@
 | `status` | **true** | Boolean - Status do Equipamento (true para Ativo e false para Desativado). Vai pelo body da requisição
 <br>
 
-
-<span id="postUS">
 
 <h2> 📔 MÉTODO: POST (USER)</h2>
 
@@ -111,8 +86,6 @@
 <br>
 
 
-<span id="postLG">
-
 <h2> 📔 MÉTODO: POST (LOGIN - USER)</h2>
 
 <p align="justify"> Requisição, via JSON, para o login do usuário no aplicativo</p>
@@ -137,8 +110,6 @@
 | `userEmail` | **renan.mendonca@fatec.sp.gov.br** | String - E-mail do usuário
 <br>
 
-
-<span id="getEQ">
 
 <h2> 📔 MÉTODO: GET (EQUIPMENT)</h2>
 
@@ -198,8 +169,6 @@
 <br>
 
 
-<span id="getespecificoEQ">
-
 <h2> 📔 MÉTODO: GET pelo ID (EQUIPMENT)</h2>
 
 <p align="justify"> Requisição para busca e exibição de um Equipamento identificado pelo seu ID no Banco de Dados, retornando o resultado no formado JSON.</p>
@@ -233,8 +202,6 @@
 | `_id` | **650daa56a3c4ce65afb9b862** | ID de identificação do registro do Equipamento no Banco de Dados. Vai pela URL da requisição.
 <br>
 
-
-<span id="getUS">
 
 <h2> 📔 MÉTODO: GET (USER)</h2>
 
@@ -285,8 +252,6 @@
 <br>
 
 
-<span id="getEMAIL">
-
 <h2> 📔 MÉTODO: GET (VERIFICA E-MAIL - USER)</h2>
 
 <p align="justify"> Requisição para a verificação de existência de um e-mail no banco de dados, retornando o resultado em JSON.</p>
@@ -309,8 +274,6 @@
 | `e-mail` | **renan.mendonca@fatec.sp.gov.br** | Endereço de e-mail a ser verificado. Vai pela URL.
 <br>
 
-
-<span id="getespecificoUS">
 
 <h2> 📔 MÉTODO: GET pelo ID (USER)</h2>
 
@@ -343,8 +306,6 @@
 <br>
 
 
-<span id="getAUTHUS">
-
 <h2> 📔 MÉTODO: GET pelo E-mail (AUTENTICA E-MAIL - USER)</h2>
 
 <p align="justify"> Requisição para autenticação do e-mail digitado. Se autenticação correta, token de 6 dígitos é gerado para ser enviado em disparo de e-mail ao usuário para fins de autenticação.</p>
@@ -358,8 +319,6 @@
 | `e-mail` | **renan.mendonca@fatec.sp.gov.br** | Endereço de e-mail a ser verificado. Vai pela URL.
 <br>
 
-
-<span id="getTK">
 
 <h2> 📔 MÉTODO: GET (VERIFICA TOKEN)</h2>
 
@@ -375,8 +334,6 @@
 | `token` | **456TH7** | Token gerado para a validação de 2 fatores do usuário.
 <br>
 
-
-<span id="updateEQ">
 
 <h2> 📔 MÉTODO: PUT pelo ID (EQUIPMENT)</h2>
 
@@ -420,8 +377,6 @@
 <br>
 
 
-<span id="updateUS">
-
 <h2> 📔 MÉTODO: PUT pelo ID (USER)</h2>
 
 <p align="justify"> Requisição para alterar os dados de um usuário específico, identificado pelo seu ID no Banco de Dados.</p>
@@ -460,8 +415,6 @@
 <br>
 
 
-<span id="updatePF">
-
 <h2> 📔 MÉTODO: PUT pelo ID (MEU PERFIL)</h2>
 
 <p align="justify"> Requisição para alterar os dados de um usuário específico quando da modificação feita pela Tela - Meu Perfil, indo através do local storage inserido na tela.</p>
@@ -498,8 +451,6 @@
 <br>
 
 
-<span id="statusEQ">
-
 <h2> 📔 MÉTODO: PATCH pelo ID (EQUIPMENT)</h2>
 
 <p align="justify"> Requisição exclusiva para a alteração do Status de um Equipamento quando da Ativação e Desativação dele para manobra.</p>
@@ -523,8 +474,6 @@
 | `status` | **false** | Boolean - Status do Equipamento (true para Ativo e false para Desativado). Vai pelo body da requisição.
 <br>
 
-
-<span id="statusPW">
 
 <h2> 📔 MÉTODO: PATCH pelo BODY (PASSWORD)</h2>
 
