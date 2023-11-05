@@ -10,7 +10,7 @@ import  CardUser  from "../Card/cardUser";
 
 
 function AprovacaoCadastro({ navigation }: any) {
-  const { listUser, loading } = useContextUser();
+  const { listUser, loading, setLoading } = useContextUser();
   const [filteredUser, setFilteredUser] = useState<Props[]>(listUser);
   const [searchValue, setSearchValue] = useState(""); 
 
@@ -32,6 +32,7 @@ function AprovacaoCadastro({ navigation }: any) {
   }
   
   useEffect(() => {
+    setLoading(false);
     const filtered = listUser.filter((item: {userName: string; status: number; icon: string; id: string}) =>
       item.userName.toLowerCase().includes(searchValue.toLowerCase()) ||
       status(item.status).toString().includes(searchValue.toLowerCase())

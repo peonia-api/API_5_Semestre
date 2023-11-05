@@ -17,8 +17,7 @@ import AprovacaCadastro from '../AprovacaCadastro';
 import { Image } from 'react-native';
 import { useContextUser } from '../../hooks';
 import PerfilAprovacao from '../PerfilAprovacao';
-import PerfilDesativado from '../PerfilDesativado';
-import PerfilUsuario from '../PerfilUsuario';
+
 
 Icon.loadFont();
 
@@ -27,7 +26,7 @@ const Stack = createNativeStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
 const TabNavigator = () => {
 
-  const { iconePerfil, userType } = useContextUser()
+  const { iconePerfil, userType, typeCor } = useContextUser()
 
 
   return (
@@ -35,14 +34,14 @@ const TabNavigator = () => {
       initialRouteName="Equipamentos"
       activeColor="#000000"
       shifting={false}
-      barStyle={{ backgroundColor: '#4DB9DB' }}
+      barStyle={{ backgroundColor: typeCor[1] }}
       sceneAnimationEnabled={false}
     >
       <Tab.Screen
         name="Equipamentos"
         component={ListaEquipamento}
         options={{
-          tabBarLabel: 'Equipamentos',
+          tabBarLabel: 'Ativos',
           tabBarIcon: () => (
             <Icon name="list" size={25} color="#000000" />
           ),
@@ -87,32 +86,6 @@ const TabNavigator = () => {
         component={Perfil}
         options={{
           tabBarLabel: 'Perfil',
-          tabBarIcon: () => (
-            <Image
-              source={{ uri: iconePerfil }}
-              style={{ width: 40, height: 30, borderRadius: 50 }}
-            />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Perfil Desativado"
-        component={PerfilDesativado}
-        options={{
-          tabBarLabel: 'PerfilDesativado',
-          tabBarIcon: () => (
-            <Image
-              source={{ uri: iconePerfil }}
-              style={{ width: 40, height: 30, borderRadius: 50 }}
-            />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Perfil Usuário"
-        component={PerfilUsuario}
-        options={{
-          tabBarLabel: 'perfilUsuario',
           tabBarIcon: () => (
             <Image
               source={{ uri: iconePerfil }}
@@ -177,17 +150,6 @@ export default function Navigation() {
             options={{ headerBackVisible: true, headerShown: true}} 
           />
 
-          <Stack.Screen 
-            name="Perfil Desativado" 
-            component={PerfilDesativado} 
-            options={{ headerBackVisible: true, headerShown: true}} 
-          />
-
-          <Stack.Screen 
-            name="Perfil Usuario" 
-            component={PerfilUsuario} 
-            options={{ headerBackVisible: true, headerShown: true}} 
-          />
           </>
         )}
       </Stack.Navigator>

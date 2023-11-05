@@ -153,6 +153,29 @@ const styles = StyleSheet.create({
         alignItems: 'center',
       },
 
+
+
+      containerCor: {
+        flex: 1,
+        justifyContent: 'space-around',
+        alignItems: 'center',
+      },
+      telaCor: {
+        flexDirection: 'row',
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 20,
+      },
+      botaoCor: {
+        backgroundColor: '#4DB9DB',
+        width: 35,
+        height :35,
+        borderRadius: 50,
+        margin: 16, 
+        marginBottom: 20
+      },
+
 });
 
 export default styles;

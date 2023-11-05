@@ -119,13 +119,8 @@ const styles = StyleSheet.create({
       containerB: {
         flexDirection: "row",
         justifyContent: "center",
-        backgroundColor: 'black',
-        marginTop: 15,
-        marginLeft: 75,
-        padding: 12,
-        borderRadius: 5,
-        width: '60%',
       },
+
 
       textPassword: {
         marginLeft: 50,
@@ -177,8 +172,8 @@ const styles = StyleSheet.create({
         marginBottom: 20,
 
       },
-      botaoA: {
-        backgroundColor: '#000000',
+      botaoArroz: {
+        backgroundColor: 'black',
         padding: 12,
         borderRadius: 5,
         width: '70%',

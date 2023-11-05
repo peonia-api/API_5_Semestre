@@ -13,9 +13,9 @@ export const AuthProvider = ({children}:any) => {
     const [ user, setUser ] = useState<Props[] | null>(null);
     const [listUser, setListUser] = useState<Props[] | null>(null);
     const [loading, setLoading] = useState(true)
-    const [ iconePerfil, setIconePerfil ] = useState(true)
-    const [ userType, setUserType ] = useState<string>()
-
+    const [iconePerfil, setIconePerfil ] = useState(true)
+    const [userType, setUserType ] = useState<string>()
+    const [ typeCor, setTypeCor] = useState<string[]>(['#92CFE1', '#4DB9DB'])
     
  
     useEffect(() => {
@@ -101,9 +101,12 @@ export const AuthProvider = ({children}:any) => {
                 Storage.removeItem({key: "userMatricula"})
                 Storage.removeItem({key: "userTelefone"})
                 Storage.removeItem({key: "userid"})
-            
-                alert("Usuário ou senha incorreto!")
-                //avisoErroLogin()
+                
+                if(err.response.status == 401){
+                  alert("Usuário sem permissão!")
+                }else{
+                  alert("Usuário ou senha incorreto!")
+                }
             })
         }catch(err){
           throw err
@@ -140,7 +143,7 @@ export const AuthProvider = ({children}:any) => {
  
     return (
 
-      <AuthContext.Provider value={{authenticated: Boolean(user), user, loading, setLoading, logout, login, createUser, listUser, iconePerfil, userType, getUser}}>
+      <AuthContext.Provider value={{authenticated: Boolean(user), user, loading, setLoading, logout, login, createUser, listUser, setListUser, iconePerfil, userType, getUser, setTypeCor, typeCor}}>
         {children}
       </AuthContext.Provider>
     )

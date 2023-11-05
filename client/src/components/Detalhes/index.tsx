@@ -5,7 +5,7 @@ import { Picker } from "@react-native-picker/picker";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import * as ImagePicker from 'expo-image-picker';
 import { BotaoAtualizar, BotoesDetalhes } from "../Botao";
-import { useContextoEquipmente } from "../../hooks";
+import { useContextUser, useContextoEquipmente } from "../../hooks";
 import LottieView from 'lottie-react-native';
 import { useFocusEffect } from "@react-navigation/native";
 import { removeFileOne } from "../../supabase/delete";
@@ -22,7 +22,7 @@ export default function Detalhe({ route, navigation }: any) {
 
     const { equipmente, setLoaded, loaded, getEquipment, putEquipment } = useContextoEquipmente();
     const { itemId } = route.params
-
+    const { typeCor } = useContextUser()
     const [selectedEquipa, setSelectedEquipa] = useState<string>();
     const [image, setImage] = useState<any>();
     const [numero, setNumero] = useState<number | null>(null);
@@ -312,11 +312,11 @@ export default function Detalhe({ route, navigation }: any) {
                     </View>
 
                     <View style={styles.containerIcons}>
-                        <TouchableOpacity style={styles.icons} onPress={pickImage}>
+                        <TouchableOpacity style={[styles.icons, {backgroundColor: typeCor[1]}]} onPress={pickImage}>
                             <Icon name="plus" size={25} color="#000000" />
                         </TouchableOpacity>
 
-                        <TouchableOpacity style={styles.icons} onPress={() => setCameraVisible(true)}>
+                        <TouchableOpacity style={[styles.icons, {backgroundColor: typeCor[1]}]} onPress={() => setCameraVisible(true)}>
                             <Icon name="camera" size={25} color="#000000" />
                         </TouchableOpacity>
 

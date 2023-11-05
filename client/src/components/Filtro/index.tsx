@@ -5,14 +5,14 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import FiltroModal from "./FiltroModal";
 
 interface FiltroProps {
-    onFilter: (isActive: boolean | null) => void;
+    onFilter: (isActive: number | null) => void;
 }
 
 export default function Filtro({ onFilter }: FiltroProps) {
     const [modalVisible, setModalVisible] = useState(false);
-    const [selectedOption, setSelectedOption] = useState<boolean | null>(null);
+    const [selectedOption, setSelectedOption] = useState<number | null>(null);
 
-    const handleFilterToggle = (isActive: boolean | null) => {
+    const handleFilterToggle = (isActive: number | null ) => {
         setSelectedOption(isActive);
         setModalVisible(false);
         onFilter(isActive);

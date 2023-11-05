@@ -21,9 +21,8 @@ export default function Perfil({ navigation }: any) {
     const [image, setImage] = useState<any>(null);
     const [verficaImage, setVerificaImagem] = useState<any>()
     const [ isVisible, setIsVisible ] = useState<boolean>(false)
-
     const { setLoaded, loaded} = useContextoEquipmente();
-    const { logout } = useContextUser()
+    const { logout, setTypeCor, typeCor } = useContextUser()
 
 
     const [senhaInserida, setSenhaInserida] = useState("");
@@ -163,6 +162,9 @@ export default function Perfil({ navigation }: any) {
         setIsVisible(!isVisible)
     }
 
+
+
+
     return (
         <View style={styles.container}>
             {loaded && (
@@ -247,7 +249,7 @@ export default function Perfil({ navigation }: any) {
             <ScrollView>
                 <TouchableOpacity  onPress={pickImage}>
                     <View style={styles.containerImagem}>
-                        {image && <Image source={{ uri: image }} style={[styles.image]} />}
+                        {image && <Image source={{ uri: image }} style={[styles.image, {borderColor: typeCor[1]}]} />}
                     </View>
                     </TouchableOpacity>
                     <View>
@@ -259,7 +261,7 @@ export default function Perfil({ navigation }: any) {
                     <View style={styles.inputWrapper}>
                         <TextInput
                             placeholder="Nome completo"
-                            style={styles.inputLogin}
+                            style={[styles.inputLogin, {borderColor: typeCor[1]}]}
                             value={userName}
                             onChangeText={(text) => setUserName(text)}
                         />
@@ -267,7 +269,7 @@ export default function Perfil({ navigation }: any) {
                     <View style={styles.inputWrapper}>
                         <TextInput
                             placeholder="CPF"
-                            style={styles.inputLogin}
+                            style={[styles.inputLogin, {borderColor: typeCor[1]}]}
                             value={userCpf}
                             onChangeText={(text) => setUserCpf(text)}
                         />
@@ -275,7 +277,7 @@ export default function Perfil({ navigation }: any) {
                     <View style={styles.inputWrapper}>
                         <TextInput
                             placeholder="E-mail"
-                            style={styles.inputLogin}
+                            style={[styles.inputLogin, {borderColor: typeCor[1]}]}
                             value={userEmail}
                             onChangeText={(text) => setUserEmail(text)}
                         />
@@ -284,7 +286,7 @@ export default function Perfil({ navigation }: any) {
                     <View style={styles.inputWrapper}>
                         <TextInput
                             placeholder="Telefone"
-                            style={styles.inputLogin}
+                            style={[styles.inputLogin, {borderColor: typeCor[1]}]}
                             value={userTelefone}
                             onChangeText={(text) => setUserTelefone(text)}
                         />
@@ -292,10 +294,21 @@ export default function Perfil({ navigation }: any) {
                     <View style={styles.inputWrapper}>
                         <TextInput
                             placeholder="Matrícula"
-                            style={styles.inputLogin}
+                            style={[styles.inputLogin, {borderColor: typeCor[1]}]}
                             value={userMatricula}
                             onChangeText={(text) => setUserMatricula(text)}
                         />
+                    </View>
+
+                    <View style={styles.containerCor}>
+                        <View style={styles.telaCor}>
+                            <TouchableOpacity style={[styles.botaoCor, { backgroundColor: '#4DB9DB' }]} onPress={() => setTypeCor(['#4DAFCF', '#4DB9DB'])} />
+                            <TouchableOpacity style={[styles.botaoCor, { backgroundColor: '#D19195' }]} onPress={() => setTypeCor(['#D19195', '#DB91A0'])} />
+                            <TouchableOpacity style={[styles.botaoCor, { backgroundColor: '#5480ba' }]} onPress={() => setTypeCor(['#5480ba', '#7caff2'])} />
+                            <TouchableOpacity style={[styles.botaoCor, { backgroundColor: '#4D993A' }]} onPress={() => setTypeCor(['#4D993A', '#47CC25'])} />
+                            <TouchableOpacity style={[styles.botaoCor, { backgroundColor: '#ff9800' }]} onPress={() => setTypeCor(['#ff9800', '#ffcc50'])}/>
+                            {/* <TouchableOpacity style={[styles.botaoCor, { backgroundColor: '#6F7073' }]} onPress={() => setTypeCor(['#ff9800', '#ffcc50'])}/>  */}
+                        </View>
                     </View>
                 </View>
 
@@ -313,7 +326,6 @@ export default function Perfil({ navigation }: any) {
                         texto={'Alterar senha'}
                     />
                 </View>
-
             </ScrollView>
         </View>
     );

@@ -9,7 +9,7 @@ import { AuthContext } from "../../contexts";
 function NavBar({ navigation }: any) {
 
   const element = <FontAwesomeIcon icon={faUser} />;
-  const { authenticated, logout } = useContext(AuthContext);
+  const { authenticated, logout, typeCor } = useContext(AuthContext);
   const [ confirm, setConfirm ] = useState(false)
 
   function alertSair() {
@@ -37,7 +37,8 @@ function NavBar({ navigation }: any) {
     <>
     {authenticated ?  <View>
     <LinearGradient
-        colors={['#3B8FA8', '#4DB9DB', '#92CFE1']}
+        colors={[typeCor[0], typeCor[1]]}
+        // colors={['#3B8FA8', '#4DB9DB', '#92CFE1']}
         style={styles.gradient}
       >
       <View style={styles.container}>

@@ -34,7 +34,7 @@ function ApprovalProfile({ route, navigation }: any) {
     const [userType, setUserType] = useState<string>();
     const [status, setStatus] = useState<Status | null>(null);
 
-    const {user, loading , getUser } = useContextUser();
+    const {user, loading , getUser, listUser, setListUser, setLoading, typeCor } = useContextUser();
    
 
     useFocusEffect(useCallback(() => {
@@ -69,15 +69,57 @@ function ApprovalProfile({ route, navigation }: any) {
 
     }, [user, route.params]))
 
-   
-    console.log("perereca")
-    console.log('userType:', userType);
-    console.log('Status.Pendente:', Status.Pendente);
+    const handleAction = async (change: number) => {
 
+        try {
+            setLoading(true);
+            const list = await User.patchStatus(userEmail, {status: change}).catch(() => {
+                alert("Erro ao alterar status")
+            })
+            if (list) {
+                setListUser((prevListUser: any) => {
+                  const updatedIndex = prevListUser.findIndex((item: any) => item.id === list.id);
+                  if (updatedIndex !== -1) {
+                    const updatedList = [...prevListUser];
+                    updatedList[updatedIndex] = list;
+                    return updatedList;
+                  }
+                  return prevListUser;
+                });
+                const status = (valor:any) => {
+                    console.log(valor);
+
+                    if(valor == 1){
+                        return "Aprovado"
+                      }
+                      else if(valor == 2){
+                        return "Pendente"
+                      }
+                      else if(valor == 3){
+                        return "Arquivado"
+                      }
+                
+                }
+
+                const changed:any = status(change)
+             
+                await User.getEmailStatus(userEmail, changed)
+            }
+        } catch (err) {
+            console.log("erro")
+            
+        }
+        finally{
+            setLoading(false)
+            navigation.navigate('Usuários')
+            
+        }
+    }
+   
 
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, {backgroundColor: typeCor[1]}]}>
             {loading && (
                 <View style={styles.uploadingAnimation}>
                     <LottieView
@@ -102,43 +144,49 @@ function ApprovalProfile({ route, navigation }: any) {
                     <View style={styles.inputWrapper}>
                         <TextInput
                             placeholder="NOME COMPLETO"
-                            style={styles.inputLogin}
+                            style={[styles.inputLogin, { color: "black" }]}
                             defaultValue={userName}
                             placeholderTextColor="black"
+                            editable={false}
                            
                         />
                     </View>
                     <View style={styles.inputWrapper}>
                         <TextInput
                             placeholder="CPF"
-                            style={styles.inputLogin}
+                            style={[styles.inputLogin, { color: "black" }]}
                             defaultValue={userCpf}
                             placeholderTextColor="black"
+                            editable={false}
                         />
                     </View>
                     <View style={styles.inputWrapper}>
                         <TextInput
                             placeholder="E-MAIL"
-                            style={styles.inputLogin}
+                            style={[styles.inputLogin, { color: "black" }]}
                             defaultValue={userEmail}
                             placeholderTextColor="black"
+                            editable={false}
                         />
                     </View>
                     <View style={styles.inputWrapper}>
                         <TextInput
                             placeholder="TELEFONE"
-                            style={styles.inputLogin}
+                            style={[styles.inputLogin, { color: "black" }]}
                             defaultValue={userName}
                             placeholderTextColor="black"
+                            editable={false}
                         />
                     </View>
 
                     <View style={styles.inputWrapper}>
                         <TextInput
                             placeholder="MATRÍCULA"
-                            style={styles.inputLogin}
+                            style={[styles.inputLogin, { color: "black" }]}
                             defaultValue={userMatricula}
                             placeholderTextColor="black"
+                            editable={false}
+
                         />
                     </View>
         
@@ -162,13 +210,13 @@ function ApprovalProfile({ route, navigation }: any) {
                 <View>
                     {status === Status.Pendente && (
                         <View style={styles.containerBotao}>
-                        <TouchableOpacity style={styles.botaoAcao}>
+                        <TouchableOpacity style={styles.botaoAcao} onPress={() => handleAction(1)}>
                             <View style={styles.botaoConteudo}>
                             <Icon name="check" size={25} color="#4DB9DB" />
                             <Text style={{ color: 'white', marginLeft: 10 }}>Aprovar</Text>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.botaoAcao}>
+                        <TouchableOpacity style={styles.botaoAcao} onPress={() => handleAction(3)}>
                             <View style={styles.botaoConteudo}>
                             <Icon name="trash" size={25} color="#4DB9DB" />
                             <Text style={{ color: 'white', marginLeft: 10 }}>Excluir</Text>
@@ -182,8 +230,10 @@ function ApprovalProfile({ route, navigation }: any) {
                         <Button
                             styles={styles.botaoAction}
                             stylesText={styles.textoBotao}
-                            // onPress={handleAtivar}
-                            texto={'Ativar'}
+                            texto={'ATIVAR'}
+                            onPress={() => handleAction(1)}
+
+
                         />
                         </View>
                     )}
@@ -191,10 +241,11 @@ function ApprovalProfile({ route, navigation }: any) {
                     {status === Status.Ativo && (
                         <View style={styles.containerB}>
                         <Button
-                            style={styles.botaoA}
+                            styles={styles.botaoArroz}
                             stylesText={styles.textoBotao}
-                            // onPress={handleAtualizarDados}
-                            texto={'Atualizar dados'}
+                            onPress={() => handleAction(3)}
+                            texto={'DESATIVAR USUÁRIO'}
+
                         />
                         </View>
                     )}
