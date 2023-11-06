@@ -71,7 +71,20 @@
 
 <h4> Entrega da Sprint 3 </h4>
 
-...
+- Login do usuário Admin e página para gestão de cadastro de usuários:
+![](https://github.com/peonia-api/API_5_Semestre/blob/main/videos/Login-do-Admin-e-aprovação-de-cadastros.gif)
+
+- Carrossel de Imagens:
+![]()
+
+- Novo sistema de listagem de equipamentos e filtros (ativos, desativados e 10km):
+![](https://github.com/peonia-api/API_5_Semestre/blob/main/videos/Nova-Listagem-Equipamentos.gif)
+
+- Novos elementos de mapa e listagem de equipamentos:
+![](https://github.com/peonia-api/API_5_Semestre/blob/main/videos/Novos-Elementos-de-Mapa-e-Listagem-de-Equipamentos.gif)
+
+- Alteração de cor e estilização no Meu Perfil:
+![](https://github.com/peonia-api/API_5_Semestre/blob/main/videos/Alteração-de-Cor-e-Estilo.gif)
   
 <br>
 
