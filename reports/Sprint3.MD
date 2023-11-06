@@ -11,11 +11,11 @@
 <span id="mvp">
  
 ## :rocket: MVP 
-<p align="justify">Como ponto focal, prosseguindo com a evolução deste projeto, nesta sprint houve a implementação funcional da aprovação de novos usuários a ser feita pelo usuário administrador.</p>
+<p align="justify">Como ponto principal, prosseguindo com a evolução deste projeto, nesta sprint houve a implementação funcional da aprovação de novos usuários a ser feita pelo usuário administrador.</p>
 
 <p align="justify">Dessa forma, quando um novo usuário se cadastra para fazer o uso da aplicação, esse formulário fica suspenso até que algum usuário admin faça a verificação dos dados preenchidos e decida por aprovar ou não este cadastro. Uma vez aprovado, este fica habilitado de poder acessar e proceder com a utilização. O usuário admin também consegue fazer a gestão dos usuários, não apenas aprovando novos cadastros, mas também podendo desativar perfis de usuários.</p>
 
-<p align="justify">Focou-se também na implementação do carrossel de imagens dos equipamentos, melhorias visuais e ajustes de layout a fim de tornar mais agradável a navegação por parte do usuário, implementação do raio de 10km para exibição em tela (baseado na posição geográfica do usuário) e realização dos ajustes pendentes da sprint anterior.</p>
+<p align="justify">Focou-se também na implementação do carrossel de fotos dos equipamentos, melhorias visuais e ajustes de layout a fim de tornar mais agradável a navegação por parte do usuário, implementação do raio de 10km para exibição em tela (baseado na posição geográfica do usuário) e realização dos ajustes pendentes da sprint anterior.</p>
   
 <h3 align="center" id="wireframe"> WIREFRAME </h3>
 <p align="center">
@@ -32,6 +32,8 @@
 
 <p align="justify"> - Implementação funcional do nível de acesso do usuário Admin que permite a análise dos novos cadastros pendentes de aprovação, a gestão de usuários (ativando e desativando perfis) e visualização exclusiva em tela de seu próprio nível de perfil;</p>
 
+<p align="justify"> - Delimitação do raio de 10km, partindo do ponto em que o usuário se encontra (GPS), aplicado tanto na página de listagem de equipamentos quanto na exibição dentro do mapa;</p>
+
 <p align="justify"> - Realização de ajustes visuais e de layout da aplicação, tornando mais agradável e intuitiva a utilização por parte do usuário;</p>
 
 <p align="justify"> - Implementação do carrossel de imagens para que múltiplas fotos possam ser carregadas nos equipamentos cadastrados, facilitando a visualiação das mesmas;</p>
@@ -44,6 +46,9 @@
 
 - Login do usuário Admin e página para gestão de cadastro de usuários:
 ![](https://github.com/peonia-api/API_5_Semestre/blob/main/videos/Login-do-Admin-e-aprovação-de-cadastros.gif)
+
+- Carrossel de Imagens:
+![](https://github.com/peonia-api/API_5_Semestre/blob/main/videos/Carrossel-de-Imagens.gif)
 
 - Novo sistema de listagem de equipamentos e filtros (ativos, desativados e 10km):
 ![](https://github.com/peonia-api/API_5_Semestre/blob/main/videos/Nova-Listagem-Equipamentos.gif)
