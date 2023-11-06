@@ -32,6 +32,8 @@
 
 <p align="justify"> - Implementação funcional do nível de acesso do usuário Admin que permite a análise dos novos cadastros pendentes de aprovação, a gestão de usuários (ativando e desativando perfis) e visualização exclusiva em tela de seu próprio nível de perfil;</p>
 
+<p align="justify"> - Estabelececimento de visualização de tela por nível de acesso, baseado no tipo de usuário (Admin ou Comum);</p>
+
 <p align="justify"> - Delimitação do raio de 10km, partindo do ponto em que o usuário se encontra (GPS), aplicado tanto na página de listagem de equipamentos quanto na exibição dentro do mapa;</p>
 
 <p align="justify"> - Realização de ajustes visuais e de layout da aplicação, tornando mais agradável e intuitiva a utilização por parte do usuário;</p>
