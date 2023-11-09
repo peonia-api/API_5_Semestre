@@ -8,6 +8,7 @@ import { Props } from "../../types/equipmente";
 import CardEquipmet from "../Card";
 import Filtro from "../Filtro";
 import { useTheme } from '../../hooks'
+import { Equipment } from "../../controllers";
 
 function ListaEquipamento({ navigation }: any) {
   const { equipmente, loaded, list10km } = useContextoEquipmente();
@@ -16,6 +17,9 @@ function ListaEquipamento({ navigation }: any) {
 
   const [showActive, setShowActive] = useState<number | null>(null); // Inicialize com null
   const theme = useTheme();
+
+  
+  
 
   useEffect(() => {
     const filtered = equipmente.filter((item) => {
