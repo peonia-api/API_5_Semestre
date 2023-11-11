@@ -20,6 +20,11 @@ function ListaEquipamento({ navigation }: any) {
 
   
   
+  async function teste() {
+  console.log( await Equipment.get());
+    
+  }
+  teste()
 
   useEffect(() => {
     const filtered = equipmente.filter((item) => {
