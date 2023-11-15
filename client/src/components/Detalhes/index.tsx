@@ -68,6 +68,8 @@ export default function Detalhe({ route, navigation }: any) {
         } catch (err) {
             console.log("Assim não");
             //navigation.navigate('Cadastro')
+        }finally{
+            setLoaded(false)
         }
 
 
@@ -417,18 +419,30 @@ export default function Detalhe({ route, navigation }: any) {
 
 
                 <View style={styles.containerBotao}>
-
-                    <BotoesDetalhes
-                        text={status === true ? "Desativar" : "Ativar"}
-                        style={[
-                            styles.botaoAtivar,
-                            { backgroundColor: status === true ? 'rgb(174, 59, 59)' : 'rgb(96, 145, 193)' }
-                        ]}
-                        label={(status === true ? "Desativar" : "Ativar") + " Equipamento"}
-                        id={itemId}
-                        status={status}
-                    />
-
+                    {
+                        status === true ?
+                            <BotoesDetalhes
+                                text={"Desativar"}
+                                style={[
+                                    styles.botaoAtivar,
+                                    { backgroundColor: 'rgb(174, 59, 59)'}
+                                ]}
+                                label={("Desativar") + " Equipamento"}
+                                id={itemId}
+                                status={status}
+                            />
+                        :
+                            <BotoesDetalhes
+                                text={"Ativar"}
+                                style={[
+                                    styles.botaoAtivar,
+                                    { backgroundColor: 'rgb(96, 145, 193)' }
+                                ]}
+                                label={("Ativar") + " Equipamento"}
+                                id={itemId}
+                                status={status}
+                            />
+                    }
                     <BotaoAtualizar handle={handleAtualizar} />
                 </View>
 
