@@ -18,16 +18,8 @@ function ListaEquipamento({ navigation }: any) {
   const [showActive, setShowActive] = useState<number | null>(null); // Inicialize com null
   const theme = useTheme();
 
-  
-  
-  async function teste() {
-  console.log( await Equipment.get());
-    
-  }
-  teste()
-
   useEffect(() => {
-    const filtered = equipmente.filter((item) => {
+    const filtered = equipmente.filter((item:any) => {
       const isActiveFilter = showActive === null ? true : (showActive === 1 ? item.status : showActive === 2 ? !item.status : false);
       return (
         isActiveFilter &&

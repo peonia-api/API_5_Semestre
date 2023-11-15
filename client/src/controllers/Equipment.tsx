@@ -4,13 +4,13 @@ class Equipmente{
 
     constructor(){
         this.create()
-        this.removeDuplicatas()
     }
     create(){
         db.transaction((tx) => {
+          //CREATE TABLE IF NOT EXISTS equipment (id TEXT, dados_json TEXT UNIQUE)
             let sql = [`DROP TABLE IF EXISTS equipment`, 'CREATE TABLE IF NOT EXISTS equipment (id INTEGER PRIMARY KEY AUTOINCREMENT, dados_json TEXT UNIQUE)']
             tx.executeSql(
-                'CREATE TABLE IF NOT EXISTS equipment (id INTEGER PRIMARY KEY AUTOINCREMENT, dados_json TEXT UNIQUE)'
+                'CREATE TABLE  equipment (id INTEGER PRIMARY KEY AUTOINCREMENT, dados_json TEXT UNIQUE)'
             );
         })
     }
@@ -29,7 +29,8 @@ class Equipmente{
                 }
               );
             });
-        });
+          });
+        this.removeDuplicatas()
     }
 
     get(): Promise<string[]> {
@@ -40,8 +41,31 @@ class Equipmente{
             [],
             (_, { rows }) => {
               const dataFromDatabase = rows._array.map((row) => JSON.parse(row.dados_json));
-              console.log('Dados recuperados do banco de dados:', dataFromDatabase);
+              //console.log('Dados recuperados do banco de dados:', dataFromDatabase);
               resolve(dataFromDatabase);
+            },
+            (_, error) => {
+              console.error('Erro ao recuperar dados:', error);
+              return false
+            }
+          );
+        });
+      });
+    }
+
+    teste(): Promise<{}>{
+      return new Promise((resolve, reject) => {
+        db.transaction((tx) => {
+          tx.executeSql(
+            'SELECT * FROM equipment',
+            [],
+            (_, { rows }) => {
+              const teste = rows._array.map((row) => ([              
+                row.id, JSON.parse(row.dados_json),]
+              ));
+    
+              // console.log('Dados recuperados do banco de dados:', teste);
+              resolve(teste);
             },
             (_, error) => {
               console.error('Erro ao recuperar dados:', error);
@@ -54,20 +78,30 @@ class Equipmente{
 
     async removeDuplicatas() {
       try {
-        const dados = await this.get();
+
+        const achaIds = async (arr:any) => {
+          const list:any = []
+          const ids:number[] = []
+          const posi:number[] = []
+          arr.forEach((item:any) => {
+            console.log(item[1]._id);
+            console.log(item);
+            if(list.includes(item[1]._id) === true){
+              posi.push(ids[list.indexOf(item[1]._id)])
+            }else{
+              list.push(item[1]._id)
+              ids.push(item[0])
+            }
+              
+          })        
+          return posi
+        }
         
-        const mapaIds: Record<string, number> = {};
-        
-        for (let i = 0; i < dados.length; i++) {
-          const id = Object.values(dados[i])[0]
-  
-          if (mapaIds[id] !== undefined) {
-            // Se já encontrou um registro com o mesmo _id, remove o registro atual
-            await this.removerRegistro(mapaIds[id]);
-          } else {
-            // Se é a primeira vez que encontra esse _id, armazena o índice
-            mapaIds[id] = i;
-          }
+        const dados:any = await this.teste();
+        const ids = achaIds(dados)
+
+        if((await ids).length > 0){
+          (await ids).forEach((item) => this.removerRegistro(item))
         }
   
         console.log("Duplicatas removidas com sucesso!");
@@ -77,23 +111,37 @@ class Equipmente{
     }
   
     async removerRegistro(id: number) {
-      return new Promise<void>((resolve, reject) => {
-        db.transaction((tx) => {
-          tx.executeSql(
-            'DELETE FROM equipment WHERE id = ?',
-            [id],
-            () => {
-              console.log('Registro removido com sucesso!' + id);
+      console.log(id);
+    
+      return new Promise<void>(async (resolve, reject) => {
+        db.transaction(async (tx) => {
+          try {
+            const result = await new Promise<any>((resolve, reject) => {
+              tx.executeSql(
+                `DELETE FROM equipment WHERE id = ?`,
+                [id],
+                (_, result) => resolve(result),
+                (_, error) => {
+                  console.error('Erro no SQL:', error);
+                  return false;
+                }
+              );
+            });
+
+            if (result.rowsAffected > 0) {
+              console.log(`Registro removido com sucesso! ID: ${id}`);
               resolve();
-            },
-            (_, error) => {
-              console.error('Erro ao remover registro:', error);
-              return false
+            } else {
+              console.log(`Nenhum registro foi removido. ID: ${id}`);
+              resolve();
             }
-          );
+          } catch (error) {
+            console.error('Erro ao remover registro:', error);
+            reject(error);
+          }
         });
       });
-    }
+  }
       
 }
 
