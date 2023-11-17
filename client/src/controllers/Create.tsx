@@ -1,6 +1,6 @@
 import { db } from "../database";
 
-class Equipmente{
+class Create{
 
     constructor(){
         this.create()
@@ -8,9 +8,9 @@ class Equipmente{
     create(){
         db.transaction((tx) => {
           //CREATE TABLE IF NOT EXISTS equipment (id TEXT, dados_json TEXT UNIQUE)
-            let sql = [`DROP TABLE IF EXISTS equipment`, 'CREATE TABLE IF NOT EXISTS equipment (id INTEGER PRIMARY KEY AUTOINCREMENT, dados_json TEXT UNIQUE)']
+            let sql = [`DROP TABLE IF EXISTS equipmentCreate`, 'CREATE TABLE IF NOT EXISTS equipment (id INTEGER PRIMARY KEY AUTOINCREMENT, dados_json TEXT UNIQUE)']
             tx.executeSql(
-                'CREATE TABLE IF NOT EXISTS equipment (id INTEGER PRIMARY KEY AUTOINCREMENT, dados_json TEXT UNIQUE)'
+                'CREATE TABLE IF NOT EXISTS equipmentCreate (id INTEGER PRIMARY KEY AUTOINCREMENT, body TEXT UNIQUE)'
             );
         })
     }
@@ -19,7 +19,7 @@ class Equipmente{
         listaJson.forEach((jsonData:any) => {
             db.transaction((tx) => {
               tx.executeSql(
-                'INSERT INTO equipment (dados_json) VALUES (?)',
+                'INSERT INTO equipmentCreate (body) VALUES (?)',
                 [JSON.stringify(jsonData)],
                 (_, { rows }) => {
                   console.log('Dados inseridos com sucesso!');
@@ -30,17 +30,17 @@ class Equipmente{
               );
             });
           });
-        this.removeDuplicatas()
+        //this.removeDuplicatas()
     }
 
     get(): Promise<string[]> {
       return new Promise((resolve, reject) => {
         db.transaction((tx) => {
           tx.executeSql(
-            'SELECT * FROM equipment',
+            'SELECT * FROM equipmentCreate',
             [],
             (_, { rows }) => {
-              const dataFromDatabase = rows._array.map((row) => JSON.parse(row.dados_json));
+              const dataFromDatabase = rows._array.map((row) => JSON.parse(row.body));
               //console.log('Dados recuperados do banco de dados:', dataFromDatabase);
               resolve(dataFromDatabase);
             },
@@ -57,11 +57,11 @@ class Equipmente{
       return new Promise((resolve, reject) => {
         db.transaction((tx) => {
           tx.executeSql(
-            'SELECT * FROM equipment',
+            'SELECT * FROM equipmentCreate',
             [],
             (_, { rows }) => {
               const teste = rows._array.map((row) => ([              
-                row.id, JSON.parse(row.dados_json),]
+                row.id, JSON.parse(row.body),]
               ));
     
               // console.log('Dados recuperados do banco de dados:', teste);
@@ -118,7 +118,7 @@ class Equipmente{
           try {
             const result = await new Promise<any>((resolve, reject) => {
               tx.executeSql(
-                `DELETE FROM equipment WHERE id = ?`,
+                `DELETE FROM equipmentCreate WHERE id = ?`,
                 [id],
                 (_, result) => resolve(result),
                 (_, error) => {
@@ -145,4 +145,4 @@ class Equipmente{
       
 }
 
-export default new Equipmente()
+export default new Create()

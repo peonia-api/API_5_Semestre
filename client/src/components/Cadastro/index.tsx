@@ -12,6 +12,9 @@ import { Camera, CameraType } from 'expo-camera';
 import { FontAwesome } from "@expo/vector-icons"
 import { useFocusEffect } from "@react-navigation/native";
 import Carousel from 'react-native-snap-carousel';
+import { isConnectad } from "../../utils";
+import { Create } from "../../controllers";
+import { useNetInfo } from "@react-native-community/netinfo";
 
 
 Icon.loadFont();
@@ -37,6 +40,7 @@ export default function Cadastro({ route, navigation }: any) {
   const [isCameraVisible, setCameraVisible] = useState(false);
   const theme = useTheme()
   const { typeCor } = useContextUser()
+  const { isInternetReachable } = useNetInfo()
 
   useEffect(() => {
     (async () => {
@@ -160,7 +164,6 @@ export default function Cadastro({ route, navigation }: any) {
   };
 
 
-
   const uploadImage = async () => {
     if (selectedImages.length === 0) {
       Alert.alert("Campo obrigatório", "Selecione uma Imagem.");
@@ -203,17 +206,35 @@ export default function Cadastro({ route, navigation }: any) {
     console.log(selectedImages);
 
     try {
-      const response = await upload(serial, selectedImages);
-      await createEquipment({
-        type: selectedEquipa,
-        numero: numero,
-        serial: serial,
-        latitude: latitude,
-        longitude: longitude,
-        observations: observacao,
-        url: response,
-        status: true
-      });
+      console.log("Tem: ",isInternetReachable);
+      
+      if(isInternetReachable === true){
+        console.log("sdsdsadsadsadasds");
+        
+        const response = await upload(serial, selectedImages);
+        await createEquipment({
+          type: selectedEquipa,
+          numero: numero,
+          serial: serial,
+          latitude: latitude,
+          longitude: longitude,
+          observations: observacao,
+          url: response,
+          status: true
+        });
+      }else{
+        Create.insert({
+          type: selectedEquipa,
+          numero: numero,
+          serial: serial,
+          latitude: latitude,
+          longitude: longitude,
+          observations: observacao,
+          url: selectedImages,
+          status: true
+        })
+      }
+      
     } catch (error) {
       console.error(error);
       Alert.alert("Erro", "Ocorreu um erro ao enviar os dados para o banco.");

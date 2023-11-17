@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { View, Pressable } from "react-native";
+import { Text, View } from "react-native";
 import styles from "./style";
 import { useContextoEquipmente } from '../../hooks';
 import Pesquisa from "../Pesquisa";
@@ -8,8 +8,9 @@ import { Props } from "../../types/equipmente";
 import CardEquipmet from "../Card";
 import Filtro from "../Filtro";
 import { useTheme } from '../../hooks'
-import { Equipment } from "../../controllers";
+import { Create } from "../../controllers";
 import { AuthContext } from "../../contexts";
+import { isConnectad } from "../../utils";
 
 function ListaEquipamento({ navigation }: any) {
   const { equipmente, loaded, list10km } = useContextoEquipmente();
@@ -20,7 +21,11 @@ function ListaEquipamento({ navigation }: any) {
   const theme = useTheme();
   const { typeCorMoon } = useContext(AuthContext);
 
+  async function teste() {
+    console.log(await Create.get());
+  }
 
+  teste()
 
   useEffect(() => {
     const filtered = equipmente.filter((item:any) => {
@@ -48,6 +53,8 @@ function ListaEquipamento({ navigation }: any) {
   const handleFilterToggle = (isActive: number | null) => {
     setShowActive(isActive);
   };
+
+ 
 
   return (
     <View style={[styles.container, { backgroundColor: typeCorMoon[0] }]}>
