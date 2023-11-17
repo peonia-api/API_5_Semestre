@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { View, Pressable } from "react-native";
 import styles from "./style";
 import { useContextoEquipmente } from '../../hooks';
@@ -9,6 +9,7 @@ import CardEquipmet from "../Card";
 import Filtro from "../Filtro";
 import { useTheme } from '../../hooks'
 import { Equipment } from "../../controllers";
+import { AuthContext } from "../../contexts";
 
 function ListaEquipamento({ navigation }: any) {
   const { equipmente, loaded, list10km } = useContextoEquipmente();
@@ -17,6 +18,9 @@ function ListaEquipamento({ navigation }: any) {
 
   const [showActive, setShowActive] = useState<number | null>(null); // Inicialize com null
   const theme = useTheme();
+  const { typeCorMoon } = useContext(AuthContext);
+
+
 
   useEffect(() => {
     const filtered = equipmente.filter((item:any) => {
@@ -46,7 +50,7 @@ function ListaEquipamento({ navigation }: any) {
   };
 
   return (
-    <View style={[styles.container]}>
+    <View style={[styles.container, { backgroundColor: typeCorMoon[0] }]}>
       <View style={styles.searchFilterContainer}>
         <Pesquisa onSearch={(text) => setSearchValue(text)} customStyle={styles.searchInFilter} />
         <Filtro onFilter={(isActive) => handleFilterToggle(isActive)} />

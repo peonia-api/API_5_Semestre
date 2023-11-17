@@ -35,9 +35,20 @@ const styles = StyleSheet.create({
       marginLeft:10
     },
 
-    containerPeople: {
+
+    containerIcons: {
+      flexDirection: 'row',
       alignItems: 'flex-end',
-      marginRight: 10
+    },
+
+   containerIcon: {
+      margin: 5,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+
+    testecon: {
+      textAlign: "center"
     },
 
     iconSignOut: {
