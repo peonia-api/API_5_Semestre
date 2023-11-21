@@ -21,19 +21,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  
   searchFilterContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
     paddingHorizontal: 5,
-    width: '100%',
   },
-  searchInFilter: {
-    width: "160%",
-    marginLeft: 150,
-    paddingHorizontal: 15,
-    marginRight: 10
-  }
+  pesquisaContainer: {
+    flex: 1, 
+    marginRight: 5, 
+  },
+  filtroContainer: {
+    width: '8%', 
+  },
 });
 
 export default styles

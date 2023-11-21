@@ -59,8 +59,12 @@ function ListaEquipamento({ navigation }: any) {
   return (
     <View style={[styles.container, { backgroundColor: typeCorMoon[0] }]}>
       <View style={styles.searchFilterContainer}>
-        <Pesquisa onSearch={(text) => setSearchValue(text)} customStyle={styles.searchInFilter} />
-        <Filtro onFilter={(isActive) => handleFilterToggle(isActive)} />
+        <View style={styles.pesquisaContainer}>
+          <Pesquisa onSearch={(text) => setSearchValue(text)} />
+        </View>
+        <View style={styles.filtroContainer}>
+          <Filtro onFilter={(isActive) => handleFilterToggle(isActive)} />
+        </View>
       </View>
       <View style={styles.listaContainer}>
         {loaded && (

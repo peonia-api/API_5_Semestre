@@ -14,7 +14,7 @@ Icon.loadFont();
 
 function NavBar({ navigation }: any) {
   const element = <FontAwesomeIcon icon={faUser} />;
-  const { authenticated, logout, typeCor  } = useContext(AuthContext);
+  const { authenticated, logout, typeCor, toggleDarkMode  } = useContext(AuthContext);
 
   const { typeCorMoon, setTypeCorMoon } = useContextUser()
   
@@ -46,7 +46,6 @@ function NavBar({ navigation }: any) {
       {authenticated ? <View>
         <LinearGradient
           colors={[typeCor[0], typeCor[1]]}
-          // colors={['#3B8FA8', '#4DB9DB', '#92CFE1']}
           style={styles.gradient}
         >
           <View style={styles.container}>
@@ -60,8 +59,8 @@ function NavBar({ navigation }: any) {
      
             <View style={styles.containerIcons}>
               <View  style={styles.containerIcon}>
-                <TouchableOpacity onPress={() => alertSair()} >
-                  <Feather name="moon" size={29} color="black"  style={styles.testecon} onPress={() => setTypeCorMoon(['#1E1E1E', '#4DB9DB'])} />
+                <TouchableOpacity  onPress={() => toggleDarkMode()} >
+                  <Feather name="moon" size={29} color="black"  style={styles.testecon}/>
                  <Text style={styles.testecon}>Escuro</Text>
                </TouchableOpacity>
               </View>

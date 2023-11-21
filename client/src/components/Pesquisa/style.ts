@@ -26,10 +26,12 @@ const styles = StyleSheet.create({
     width: 25,
     height: 25,
     marginRight: 5,
+    color: "white"
   },
   input: {
     flex: 1,
     height: 40,
+    marginLeft: 10
   },
 
 });
