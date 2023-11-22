@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef, useCallback, useContext } from "react";
 import { View, Text, Image, TextInput, TouchableOpacity, ScrollView, Alert, Modal } from "react-native";
 import styles from "./style";
 import { Picker } from "@react-native-picker/picker";
@@ -15,6 +15,7 @@ import Carousel from 'react-native-snap-carousel';
 import { isConnectad } from "../../utils";
 import { Create } from "../../controllers";
 import { useNetInfo } from "@react-native-community/netinfo";
+import { AuthContext } from "../../contexts";
 
 
 Icon.loadFont();
@@ -41,6 +42,7 @@ export default function Cadastro({ route, navigation }: any) {
   const theme = useTheme()
   const { typeCor } = useContextUser()
   const { isInternetReachable } = useNetInfo()
+  const { typeCorMoon } = useContext(AuthContext);
 
   useEffect(() => {
     (async () => {
@@ -249,10 +251,10 @@ export default function Cadastro({ route, navigation }: any) {
   console.log(selectedImages);
 
   return (
-    <View style={[styles.containerPrincipal]}>
+    <View style={[styles.containerPrincipal, { backgroundColor: typeCorMoon[0] }]}>
       <ScrollView>
         <View style={styles.container}>
-        <View style={styles.containerImagem}>
+        <View style={[styles.containerImagem, {borderColor: typeCorMoon[1]}]}>
               {selectedImages.length > 0 && (
                 <Carousel
                   data={selectedImages}
@@ -317,20 +319,20 @@ export default function Cadastro({ route, navigation }: any) {
 
         <View style={styles.containerInput}>
           <View style={styles.containerTrans}>
-            <Picker
-              selectedValue={selectedEquipa}
-              onValueChange={handleEquipamentoChange}
-              style={styles.picker}
-            >
-              <Picker.Item label="Equipamento" value="" enabled={false} />
-              <Picker.Item label="Transformador" value="Transformador" />
-              <Picker.Item label="Poste" value="Poste" />
-              <Picker.Item label="Bomba hidráulica" value="Bomba hidráulica" />
-            </Picker>
+                <Picker
+                  selectedValue={selectedEquipa}
+                  onValueChange={handleEquipamentoChange}
+                  style={[styles.picker]}
+                >
+                  <Picker.Item label="Equipamento" value="" enabled={false} />
+                  <Picker.Item label="Transformador" value="Transformador" />
+                  <Picker.Item label="Poste" value="Poste" />
+                  <Picker.Item label="Bomba hidráulica" value="Bomba hidráulica" />
+                </Picker>
             <TextInput
               placeholder="Número"
               keyboardType="numeric"
-              style={styles.input}
+              style={[styles.input, {borderColor: typeCorMoon[1]}]}
               onChangeText={(e: any) => setNumero(e)}
               value={numero !== null ? numero.toString() : ''}
             />
@@ -338,26 +340,23 @@ export default function Cadastro({ route, navigation }: any) {
 
           <TextInput
             placeholder="IMEI"
-            style={styles.inputInteiro}
+            style={[styles.inputInteiro, {borderColor: typeCorMoon[1]}]}
             onChangeText={(e: any) => setSerial(e)}
             value={serial || ''}
           />
 
-          <View style={styles.containerLoLa}>
-            <Text style={styles.textFont}>Latitude:</Text>
+          <View style={[styles.containerLoLa]}>
             <TextInput
               placeholder="Latitude"
               keyboardType="numeric"
-              style={styles.inputLoLa}
+              style={[styles.inputLoLa, {borderColor: typeCorMoon[1]}]}
               onChangeText={(e: any) => setLatitude(e)}
               value={latitude !== null ? latitude.toString() : ''}
             />
-
-            <Text style={styles.textFont}>Longitude:</Text>
             <TextInput
               placeholder="Longitude"
               keyboardType="numeric"
-              style={styles.inputLoLa}
+              style={[styles.inputLoLa, {borderColor: typeCorMoon[1]}]}
               onChangeText={(e: any) => setLongitude(e)}
               value={longitude !== null ? longitude.toString() : ''}
             />
@@ -365,7 +364,7 @@ export default function Cadastro({ route, navigation }: any) {
 
           <TextInput
             placeholder="Observações"
-            style={styles.inputInteiro}
+            style={[styles.inputInteiro, {borderColor: typeCorMoon[1]}]}
             onChangeText={(e: any) => setObservacao(e)}
             value={observacao || ''}
           />

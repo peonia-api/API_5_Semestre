@@ -44,7 +44,7 @@ const CardEquipmet = ({filter, onPress}:any) => {
         data={filter.slice(0, currentPage * itemsPerPage)}
         keyExtractor={(item) => item._id}
         renderItem={({ item }) => (
-          <TouchableOpacity style={[styles.card,{ backgroundColor: item.status == 0 ? typeCorMoon[2] : typeCorMoon[0], borderColor: typeCorMoon[1]}]} onPress={() => onPress(item._id)}>
+          <TouchableOpacity style={[styles.card,{ backgroundColor: item.status == 1 ? typeCorMoon[1] : typeCorMoon[0], borderColor: typeCorMoon[1]}]} onPress={() => onPress(item._id)}>
             <Image source={{ uri: item.url[0] }} style={styles.image} />
             <View style={styles.textContainer}>
               <Text style={styles.textfont}>{item.type}</Text>

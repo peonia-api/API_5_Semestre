@@ -4,7 +4,7 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   card: {
     flexDirection: 'row',
-    backgroundColor: "#f0fafc",
+    backgroundColor: "#000000",
     borderRadius: 10,
     marginBottom: 15,
     width: "100%",
