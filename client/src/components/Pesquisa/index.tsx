@@ -11,7 +11,8 @@ interface PesquisaProps {
 
 export default function Pesquisa({ onSearch, customStyle }: PesquisaProps) {
   const [searchValue, setSearchValue] = useState("");
-  const { typeCorMoon, setTypeCorMoon } = useContextUser()
+  const { typeCorMoon } = useContextUser();
+  const { typeCor } = useContextUser();
   
   const handleSearch = (text: string) => {
     setSearchValue(text);
@@ -20,12 +21,12 @@ export default function Pesquisa({ onSearch, customStyle }: PesquisaProps) {
 
   return (
     <View style={styles.container}>
-      <View style={[{ ...styles.inputContainer, ...customStyle, borderColor: typeCorMoon[1] }]}>
+      <View style={[{ ...styles.inputContainer, ...customStyle, borderColor: typeCor[1] }]}>
 
-          <FontAwesome name="search" size={20} style={[{color: typeCorMoon[1]}]} />
+          <FontAwesome name="search" size={20} style={[{color: typeCor[1]}]} />
         <TextInput
           placeholder="Buscar"
-          style={[styles.input, {color: typeCorMoon[2]}]}
+          style={[styles.input, {color: typeCor[1]}]}
           value={searchValue}
           onChangeText={handleSearch}
         />

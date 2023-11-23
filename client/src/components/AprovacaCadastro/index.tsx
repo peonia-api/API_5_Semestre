@@ -6,6 +6,7 @@ import Pesquisa from "../Pesquisa";
 import LottieView from 'lottie-react-native';
 import { Props } from "../../types/user";
 import  CardUser  from "../Card/cardUser";
+import { AuthContext } from "../../contexts";
 
 
 
@@ -13,6 +14,7 @@ function AprovacaoCadastro({ navigation }: any) {
   const { listUser, loading, setLoading } = useContextUser();
   const [filteredUser, setFilteredUser] = useState<Props[]>(listUser);
   const [searchValue, setSearchValue] = useState(""); 
+  const { typeCorMoon } = useContext(AuthContext);
 
   const status = (valor:any) => {
     console.log(valor);
@@ -47,7 +49,7 @@ function AprovacaoCadastro({ navigation }: any) {
 
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: typeCorMoon[0]}]}>
       <SafeAreaView>
         <Pesquisa onSearch={(text) => setSearchValue(text)} />
       </SafeAreaView>

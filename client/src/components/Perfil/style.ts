@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         margin: 10,
-        backgroundColor: '#FFFFFF'
+        backgroundColor: '#FFFFFF',
     },
 
     inputLogin: {
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         height: 45,
         width: "85%",
-        marginTop: 10
+        marginTop: 10,
     },
 
     returnImage: {
@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 20,
+        marginTop: 15,
       },
       botaoCor: {
         backgroundColor: '#4DB9DB',

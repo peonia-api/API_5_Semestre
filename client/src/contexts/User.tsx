@@ -21,7 +21,7 @@ export const AuthProvider = ({children}:any) => {
     const [ typeCorMoon, setTypeCorMoon] = useState<string[]>(['#ffffff', '4DB9DB'])
 
     const toggleDarkMode = () => {
-      setTypeCorMoon((prevTypeCor) => (prevTypeCor[0] === '#ffffff' ? ['#6D6E72', '#4DB9DB', "#ffffff"] : ['#ffffff', ]));
+      setTypeCorMoon((prevTypeCor) => (prevTypeCor[0] === '#ffffff' ? ['#6D6E72', '#4DB9DB', "#ffffff"] : ['#ffffff', '#4DB9DB']));
     };
 
     useEffect(() => {

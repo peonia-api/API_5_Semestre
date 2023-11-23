@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { ScrollView, TextInput, View, Image, TouchableOpacity, Alert, Modal, Text} from "react-native";
 import styles from "./style";
 import { Button } from "../button";
@@ -10,6 +10,7 @@ import { uploadIcone } from "../../supabase/upload";
 import { useContextUser, useContextoEquipmente } from "../../hooks";
 import LottieView from 'lottie-react-native';
 import { InputPassword } from "../Input";
+import { AuthContext } from "../../contexts";
 
 export default function Perfil({ navigation }: any) {
     const [userName, setUserName] = useState <string> ("");
@@ -23,7 +24,7 @@ export default function Perfil({ navigation }: any) {
     const [ isVisible, setIsVisible ] = useState<boolean>(false)
     const { setLoaded, loaded} = useContextoEquipmente();
     const { logout, setTypeCor, typeCor } = useContextUser()
-
+    const { typeCorMoon } = useContext(AuthContext);
 
     const [senhaInserida, setSenhaInserida] = useState("");
     const [senhaInseridaVerifica, setSenhaInseridaVerifica] = useState("");
@@ -166,7 +167,7 @@ export default function Perfil({ navigation }: any) {
 
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, {backgroundColor: typeCorMoon[0]}]}>
             {loaded && (
                 <View style={styles.uploadingAnimation}>
                 <LottieView
@@ -258,43 +259,43 @@ export default function Perfil({ navigation }: any) {
                         </TouchableOpacity>
                     </View>
                 <View>
-                    <View style={styles.inputWrapper}>
+                    <View style={[styles.inputWrapper, {backgroundColor: typeCorMoon[0]}]}>
                         <TextInput
                             placeholder="Nome completo"
-                            style={[styles.inputLogin, {borderColor: typeCor[1]}]}
+                            style={[styles.inputLogin, {backgroundColor: typeCorMoon[0], borderColor: typeCor[1]}]}
                             value={userName}
                             onChangeText={(text) => setUserName(text)}
                         />
                     </View>
-                    <View style={styles.inputWrapper}>
+                    <View style={[styles.inputWrapper, {backgroundColor: typeCorMoon[0]}]}>
                         <TextInput
                             placeholder="CPF"
-                            style={[styles.inputLogin, {borderColor: typeCor[1]}]}
+                            style={[styles.inputLogin, {backgroundColor: typeCorMoon[0], borderColor: typeCor[1]}]}
                             value={userCpf}
                             onChangeText={(text) => setUserCpf(text)}
                         />
                     </View>
-                    <View style={styles.inputWrapper}>
+                    <View style={[styles.inputWrapper, {backgroundColor: typeCorMoon[0]}]}>
                         <TextInput
                             placeholder="E-mail"
-                            style={[styles.inputLogin, {borderColor: typeCor[1]}]}
+                            style={[styles.inputLogin, {backgroundColor: typeCorMoon[0], borderColor: typeCor[1]}]}
                             value={userEmail}
                             onChangeText={(text) => setUserEmail(text)}
                         />
                     </View>
         
-                    <View style={styles.inputWrapper}>
+                    <View style={[styles.inputWrapper, {backgroundColor: typeCorMoon[0]}]}>
                         <TextInput
                             placeholder="Telefone"
-                            style={[styles.inputLogin, {borderColor: typeCor[1]}]}
+                            style={[styles.inputLogin, {backgroundColor: typeCorMoon[0], borderColor: typeCor[1]}]}
                             value={userTelefone}
                             onChangeText={(text) => setUserTelefone(text)}
                         />
                     </View>
-                    <View style={styles.inputWrapper}>
+                    <View style={[styles.inputWrapper, {backgroundColor: typeCorMoon[0]}]}>
                         <TextInput
                             placeholder="Matrícula"
-                            style={[styles.inputLogin, {borderColor: typeCor[1]}]}
+                            style={[styles.inputLogin, {backgroundColor: typeCorMoon[0], borderColor: typeCor[1]}]}
                             value={userMatricula}
                             onChangeText={(text) => setUserMatricula(text)}
                         />

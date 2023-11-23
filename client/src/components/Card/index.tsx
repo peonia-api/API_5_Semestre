@@ -3,6 +3,7 @@ import { TouchableOpacity, Image, Text, ListRenderItem, FlatList, View } from "r
 import styles from "./style";
 import { FooterList } from "./FooterList";
 import { AuthContext } from "../../contexts";
+import { useContextUser } from "../../hooks";
 
 interface Equipamentos{
     _id: string
@@ -25,6 +26,7 @@ const CardEquipmet = ({filter, onPress}:any) => {
   const itemsPerPage = 10;
   const flatListRef = useRef<FlatList | null>(null);
   const [loading, setLoading] = useState(false);
+  const { typeCor } = useContextUser()
   const { typeCorMoon } = useContext(AuthContext);
 
   const loadMoreData = () => {
@@ -44,7 +46,7 @@ const CardEquipmet = ({filter, onPress}:any) => {
         data={filter.slice(0, currentPage * itemsPerPage)}
         keyExtractor={(item) => item._id}
         renderItem={({ item }) => (
-          <TouchableOpacity style={[styles.card,{ backgroundColor: item.status == 1 ? typeCorMoon[1] : typeCorMoon[0], borderColor: typeCorMoon[1]}]} onPress={() => onPress(item._id)}>
+          <TouchableOpacity style={[styles.card,{ backgroundColor: item.status == 1 ? typeCor[1] : typeCorMoon[0], borderColor: typeCor[1]}]} onPress={() => onPress(item._id)}>
             <Image source={{ uri: item.url[0] }} style={styles.image} />
             <View style={styles.textContainer}>
               <Text style={styles.textfont}>{item.type}</Text>
