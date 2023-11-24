@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#ffffff",
-    
+
   },
   card: {
     flexDirection: 'row',
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     alignItems: 'center',
     justifyContent: "center",
-    width: 37, 
+    width: 37,
     height: 37
   },
   triangle: {
@@ -58,12 +58,18 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   showFlatListButton: {
-    
-     // Cor de fundo do botão
+
+    // Cor de fundo do botão
     //borderRadius: 5, // Borda arredondada
     margin: 0, // Margem ao redor do botão
     alignItems: 'center', // Alinhar o conteúdo no centro horizontal
   },
+  iconMap: {
+    position: "absolute",
+    bottom: 16,
+    right: 16,
+    padding: 10,
+  }
 });
 
 export default styles;
