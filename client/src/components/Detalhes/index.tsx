@@ -94,6 +94,8 @@ export default function Detalhe({ route, navigation }: any) {
         })();
     }, []);
 
+    
+
     if (hasPermission === null) {
         return <Text>Verificando permissão de câmera...</Text>;
     }
@@ -436,8 +438,9 @@ export default function Detalhe({ route, navigation }: any) {
                                     { backgroundColor: 'rgb(174, 59, 59)'}
                                 ]}
                                 label={("Desativar") + " Equipamento"}
-                                id={itemId}
+                                id={itemId._id}
                                 status={status}
+                                item={itemId}
                             />
                         :
                             <BotoesDetalhes
@@ -447,8 +450,9 @@ export default function Detalhe({ route, navigation }: any) {
                                     { backgroundColor: 'rgb(96, 145, 193)' }
                                 ]}
                                 label={("Ativar") + " Equipamento"}
-                                id={itemId}
+                                id={itemId._id}
                                 status={status}
+                                item={itemId}
                             />
                     }
                     <BotaoAtualizar handle={handleAtualizar} />
