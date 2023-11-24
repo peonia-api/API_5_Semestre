@@ -12,10 +12,8 @@ import { Camera, CameraType } from 'expo-camera';
 import { FontAwesome } from "@expo/vector-icons"
 import { useFocusEffect } from "@react-navigation/native";
 import Carousel from 'react-native-snap-carousel';
-import { isConnectad } from "../../utils";
 import { Create } from "../../controllers";
 import { useNetInfo } from "@react-native-community/netinfo";
-import { AuthContext } from "../../contexts";
 
 
 Icon.loadFont();
@@ -315,7 +313,6 @@ export default function Cadastro({ route, navigation }: any) {
           </View>
         </View>
 
-
         <View style={styles.containerInput}>
           <View style={styles.containerTrans}>
                 <Picker
@@ -375,14 +372,13 @@ export default function Cadastro({ route, navigation }: any) {
 
 
         {uploading && (
-          <View style={styles.uploadingAnimation}>
+          <View style={[styles.uploadingAnimation, {backgroundColor: typeCorMoon[0]}]}>
             <LottieView
               autoPlay={true}
               loop={true}
               style={{
                 width: '100%',
                 height: '100%',
-                backgroundColor: 'white',
               }}
               source={require('../../assets/carregando.json')}
             />

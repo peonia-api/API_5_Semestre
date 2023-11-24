@@ -1,16 +1,12 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
-import { ScrollView, TextInput, View, Image, TouchableOpacity, Alert, Modal, Text } from "react-native";
+import React, { useState, useCallback, useRef } from "react";
+import { ScrollView, TextInput, View, Image, TouchableOpacity, Text } from "react-native";
 import styles from "./style";
-import Storage from 'expo-storage';
-import * as ImagePicker from 'expo-image-picker';
 import { User } from "../../services";
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { uploadIcone } from "../../supabase/upload";
 import { useContextUser,  } from "../../hooks";
 import LottieView from 'lottie-react-native';
 import { Picker } from "@react-native-picker/picker";
 import { useFocusEffect } from "@react-navigation/native";
-import { Camera, CameraType } from 'expo-camera';
 import { Button } from "../button";
 import {Status} from '../../types/user';
 
@@ -20,16 +16,7 @@ function ApprovalProfile({ route, navigation }: any) {
     const [userCpf, setUserCpf] = useState<string>("");
     const [userMatricula, setUserMatricula] = useState<string>("");
     const [userTelefone, setUserTelefone] = useState<string>("");
-    const { itemId } = route.params
-    const [userId, setUserId] = useState<string>("");
-    const [image, setImage] = useState<any>(null);
-    const [isVisible, setIsVisible] = useState<boolean>(false)
-    const [hasPermission, setHasPermission] = useState<boolean | null>(null);
 
-    const camRef = useRef<any | null>(null);
-    const [capturedPhoto, setCapturedPhoto] = useState(null)
-    const [isCameraVisible, setCameraVisible] = useState(false);
-    const [selectedImages, setSelectedImages] = useState<String[] | any>([]);
     const [icone, setUserIcone] = useState<any>(null);
     const [userType, setUserType] = useState<string>();
     const [status, setStatus] = useState<Status | null>(null);
@@ -118,7 +105,6 @@ function ApprovalProfile({ route, navigation }: any) {
     }
    
 
-
     return (
         <View style={[styles.container, {backgroundColor: typeCor[1]}]}>
             {loading && (
@@ -148,7 +134,6 @@ function ApprovalProfile({ route, navigation }: any) {
                             defaultValue={userName}
                             placeholderTextColor="black"
                             editable={false}
-                           
                         />
                     </View>
                     <View style={styles.inputWrapper}>
@@ -186,7 +171,6 @@ function ApprovalProfile({ route, navigation }: any) {
                             defaultValue={userMatricula}
                             placeholderTextColor="black"
                             editable={false}
-
                         />
                     </View>
         
@@ -232,8 +216,6 @@ function ApprovalProfile({ route, navigation }: any) {
                             stylesText={styles.textoBotao}
                             texto={'ATIVAR'}
                             onPress={() => handleAction(1)}
-
-
                         />
                         </View>
                     )}
@@ -245,7 +227,6 @@ function ApprovalProfile({ route, navigation }: any) {
                             stylesText={styles.textoBotao}
                             onPress={() => handleAction(3)}
                             texto={'DESATIVAR USUÁRIO'}
-
                         />
                         </View>
                     )}
@@ -253,7 +234,6 @@ function ApprovalProfile({ route, navigation }: any) {
                 </ScrollView>
                 </View>
 
-         
     );
 };
 

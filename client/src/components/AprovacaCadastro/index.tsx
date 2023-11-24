@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { View, Text, Image, FlatList, SafeAreaView, TouchableOpacity } from "react-native";
+import { View, SafeAreaView } from "react-native";
 import styles from "./style";
 import { useContextUser } from '../../hooks';
 import Pesquisa from "../Pesquisa";
@@ -7,8 +7,6 @@ import LottieView from 'lottie-react-native';
 import { Props } from "../../types/user";
 import  CardUser  from "../Card/cardUser";
 import { AuthContext } from "../../contexts";
-
-
 
 function AprovacaoCadastro({ navigation }: any) {
   const { listUser, loading, setLoading } = useContextUser();
@@ -55,14 +53,13 @@ function AprovacaoCadastro({ navigation }: any) {
       </SafeAreaView>
       <View style={styles.listaContainer}>
         {loading && (
-          <View style={styles.uploadingAnimation}>
+          <View style={[styles.uploadingAnimation, {backgroundColor: typeCorMoon[0]}]}>
           <LottieView
               autoPlay={true}
               loop={true}
               style={{
                   width: '100%',
                   height: '100%',
-                  backgroundColor: 'white',
               }}
               source={require('../../assets/carregando.json')}
           />

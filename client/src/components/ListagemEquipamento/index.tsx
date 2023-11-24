@@ -67,16 +67,15 @@ function ListaEquipamento({ navigation }: any) {
           <Filtro onFilter={(isActive) => handleFilterToggle(isActive)} />
         </View>
       </View>
-      <View style={styles.listaContainer}>
+      <View style={[styles.listaContainer, { backgroundColor: typeCorMoon[0] }]}>
         {loaded && (
-          <View style={styles.uploadingAnimation}>
+          <View style={[styles.uploadingAnimation, { backgroundColor: typeCorMoon[0] }]}>
             <LottieView
               autoPlay={true}
               loop={true}
               style={{
                 width: '100%',
                 height: '100%',
-                backgroundColor: 'white',
               }}
               source={require('../../assets/carregando.json')}
             />
