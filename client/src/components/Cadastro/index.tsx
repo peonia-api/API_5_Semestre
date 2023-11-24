@@ -40,9 +40,8 @@ export default function Cadastro({ route, navigation }: any) {
   const [capturedPhoto, setCapturedPhoto] = useState(null)
   const [isCameraVisible, setCameraVisible] = useState(false);
   const theme = useTheme()
-  const { typeCor } = useContextUser()
+  const { typeCor, typeCorMoon } = useContextUser()
   const { isInternetReachable } = useNetInfo()
-  const { typeCorMoon } = useContext(AuthContext);
 
   useEffect(() => {
     (async () => {
@@ -254,7 +253,7 @@ export default function Cadastro({ route, navigation }: any) {
     <View style={[styles.containerPrincipal, { backgroundColor: typeCorMoon[0] }]}>
       <ScrollView>
         <View style={styles.container}>
-        <View style={[styles.containerImagem, {borderColor: typeCorMoon[1]}]}>
+        <View style={[styles.containerImagem, {borderColor: typeCor[1]}]}>
               {selectedImages.length > 0 && (
                 <Carousel
                   data={selectedImages}
@@ -332,7 +331,7 @@ export default function Cadastro({ route, navigation }: any) {
             <TextInput
               placeholder="Número"
               keyboardType="numeric"
-              style={[styles.input, {borderColor: typeCorMoon[1]}]}
+              style={[styles.input, {borderColor: typeCor[1]}]}
               onChangeText={(e: any) => setNumero(e)}
               value={numero !== null ? numero.toString() : ''}
             />
@@ -340,7 +339,7 @@ export default function Cadastro({ route, navigation }: any) {
 
           <TextInput
             placeholder="IMEI"
-            style={[styles.inputInteiro, {borderColor: typeCorMoon[1]}]}
+            style={[styles.inputInteiro, {borderColor: typeCor[1]}]}
             onChangeText={(e: any) => setSerial(e)}
             value={serial || ''}
           />
@@ -349,14 +348,14 @@ export default function Cadastro({ route, navigation }: any) {
             <TextInput
               placeholder="Latitude"
               keyboardType="numeric"
-              style={[styles.inputLoLa, {borderColor: typeCorMoon[1]}]}
+              style={[styles.inputLoLa, {borderColor: typeCor[1]}]}
               onChangeText={(e: any) => setLatitude(e)}
               value={latitude !== null ? latitude.toString() : ''}
             />
             <TextInput
               placeholder="Longitude"
               keyboardType="numeric"
-              style={[styles.inputLoLa, {borderColor: typeCorMoon[1]}]}
+              style={[styles.inputLoLa, {borderColor: typeCor[1]}]}
               onChangeText={(e: any) => setLongitude(e)}
               value={longitude !== null ? longitude.toString() : ''}
             />
@@ -364,7 +363,7 @@ export default function Cadastro({ route, navigation }: any) {
 
           <TextInput
             placeholder="Observações"
-            style={[styles.inputInteiro, {borderColor: typeCorMoon[1]}]}
+            style={[styles.inputInteiro, {borderColor: typeCor[1]}]}
             onChangeText={(e: any) => setObservacao(e)}
             value={observacao || ''}
           />

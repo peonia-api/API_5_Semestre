@@ -1,6 +1,6 @@
 import { View, Text, Image, TextInput, TouchableOpacity, ScrollView, Alert, Modal } from "react-native"
 import styles from "./style";
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState, useEffect, useCallback, useRef, useContext } from "react";
 import { Picker } from "@react-native-picker/picker";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import * as ImagePicker from 'expo-image-picker';
@@ -13,6 +13,7 @@ import { upload } from "../../supabase/upload";
 import { Camera, CameraType } from 'expo-camera';
 import { FontAwesome } from "@expo/vector-icons"
 import Carousel from "react-native-snap-carousel";
+import { AuthContext } from "../../contexts";
 
 
 
@@ -32,7 +33,7 @@ export default function Detalhe({ route, navigation }: any) {
     const [observacoes, setObservacoes] = useState<string>();
     const [status, setStatus] = useState<boolean>();
     const [verficaImage, setVerificaImagem] = useState<string[] | any>([])
-    const [isEnabled, setIsEnabled] = useState(false);
+    const { typeCorMoon } = useContext(AuthContext);
 
     const [type, setType] = useState(CameraType.back);
     const [hasPermission, setHasPermission] = useState<boolean | null>(null);
@@ -274,7 +275,7 @@ export default function Detalhe({ route, navigation }: any) {
     };
 
     return (
-        <View style={styles.containerPrincipal}>
+        <View style={[styles.containerPrincipal, {backgroundColor: typeCorMoon[0]}]}>
             {loaded && (
                 <View style={styles.uploadingAnimation}>
                     <LottieView
@@ -291,7 +292,7 @@ export default function Detalhe({ route, navigation }: any) {
             )}
             <ScrollView>
                 <View style={styles.container}>
-                    <View style={styles.containerImagem}>
+                    <View style={[styles.containerImagem, {borderColor: typeCor[1]}]}>
                     {selectedImages.length > 0 && (
                         <Carousel
                         data={selectedImages}
@@ -360,7 +361,8 @@ export default function Detalhe({ route, navigation }: any) {
                         <Picker
                             selectedValue={selectedEquipa}
                             onValueChange={handleEquipamentoChange}
-                            style={styles.picker}
+                            style={{width: '60%', height: 50, marginBottom: 15, backgroundColor: '#f2f2f2' }}
+                            mode="dropdown"
                         >
                             <Picker.Item label="Equipamento" value="" enabled={false} />
                             <Picker.Item label="Transformador" value="Transformador" />
@@ -372,36 +374,32 @@ export default function Detalhe({ route, navigation }: any) {
                         <TextInput
                             placeholder="Número"
                             keyboardType="numeric"
-                            style={styles.input}
+                            style={[styles.input, {borderColor: typeCor[1]}]}
                             defaultValue={numero !== null ? numero.toString() : ''}
                             onChangeText={(text:any) => setNumero(text)}
                         />
 
                     </View>
-
                     <TextInput
                         placeholder="IMEI"
-                        style={styles.inputInteiro}
+                        style={[styles.inputInteiro, {borderColor: typeCor[1]}]}
                         defaultValue={imei}
                         onChangeText={(text) => setImei(text)}
                     />
 
 
                     <View style={styles.containerLoLa}>
-                        <Text style={styles.textFont}>Latitude:</Text>
                         <TextInput
                             keyboardType="numeric"
                             placeholder="Latitude"
-                            style={styles.inputLoLa}
+                            style={[styles.inputLoLa, {borderColor: typeCor[1]}]}
                             defaultValue={latitude}
                             onChangeText={(text) => setLatitude(text)}
                         />
-
-                        <Text style={styles.textFont}>Longitude:</Text>
                         <TextInput
                             keyboardType="numeric"
                             placeholder="Longitude"
-                            style={styles.inputLoLa}
+                            style={[styles.inputLoLa, {borderColor: typeCor[1]}]}
                             defaultValue={longitude}
                             onChangeText={(text) => setLongitude(text)}
                         />
@@ -410,7 +408,7 @@ export default function Detalhe({ route, navigation }: any) {
 
                     <TextInput
                         placeholder="Observações"
-                        style={styles.inputInteiro}
+                        style={[styles.inputInteiro, {borderColor: typeCor[1]}]}
                         defaultValue={observacoes}
                         onChangeText={(text) => setObservacoes(text)}
                     />
