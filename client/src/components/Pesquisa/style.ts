@@ -4,9 +4,9 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 10,
     marginBottom: 10,
-    justifyContent: "center",
-    alignContent: "center",
-    alignItems: "center",
+    // justifyContent: "center",
+    // alignContent: "center",
+    // alignItems: "center",
   },
 
   inputContainer: {
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     borderWidth: 2,
     borderRadius: 6,
-    width: "100%",
+    width: "95%",
     marginTop: 10,
     marginBottom: 10,
     // marginRight: 10,

@@ -11,13 +11,14 @@ import { useTheme } from '../../hooks'
 import { Create } from "../../controllers";
 import { AuthContext } from "../../contexts";
 import { isConnectad } from "../../utils";
+import Reload from "../Reload";
 
 function ListaEquipamento({ navigation }: any) {
   const { equipmente, loaded, list10km } = useContextoEquipmente();
   const [filteredEquipments, setFilteredEquipments] = useState<Props[]>(equipmente);
   const [searchValue, setSearchValue] = useState("");
-
-  const [showActive, setShowActive] = useState<number | null>(null); // Inicialize com null
+  const [reload, setReload] = useState(false); // Estado para forçar a re-renderização
+  const [showActive, setShowActive] = useState<number | null>(null);
   const theme = useTheme();
   const { typeCorMoon } = useContext(AuthContext);
 
@@ -25,10 +26,10 @@ function ListaEquipamento({ navigation }: any) {
     console.log(await Create.get());
   }
 
-  teste()
+  teste();
 
   useEffect(() => {
-    const filtered = equipmente.filter((item:any) => {
+    const filtered = equipmente.filter((item: any) => {
       const isActiveFilter = showActive === null ? true : (showActive === 1 ? item.status : showActive === 2 ? !item.status : false);
       return (
         isActiveFilter &&
@@ -36,18 +37,20 @@ function ListaEquipamento({ navigation }: any) {
           item.serial.toLowerCase().includes(searchValue.toLowerCase()))
       );
     });
+
     if (showActive === 3) {
-      setFilteredEquipments(list10km.filter((item) => {return (
-        (item.type.toLowerCase().includes(searchValue.toLowerCase()) ||
-          item.serial.toLowerCase().includes(searchValue.toLowerCase()))
-      );}));
+      setFilteredEquipments(filtered.filter((item) => {
+        return (
+          (item.type.toLowerCase().includes(searchValue.toLowerCase()) ||
+            item.serial.toLowerCase().includes(searchValue.toLowerCase()))
+        );
+      }));
     } else {
       setFilteredEquipments(filtered);
     }
-  }, [searchValue, showActive, equipmente]);
+  }, [searchValue, showActive, equipmente, reload]); // Adicione "reload" como uma dependência
 
   const handleItemPress = (itemId: string) => {
-    
     navigation.navigate('Detalhes', { itemId });
   };
 
@@ -55,13 +58,20 @@ function ListaEquipamento({ navigation }: any) {
     setShowActive(isActive);
   };
 
- 
+  const handleReload = () => {
+    setSearchValue("");
+    // Altere o estado de "reload" para forçar a re-renderização
+    setReload(!reload);
+  };
 
   return (
     <View style={[styles.container, { backgroundColor: typeCorMoon[0] }]}>
       <View style={styles.searchFilterContainer}>
         <View style={styles.pesquisaContainer}>
           <Pesquisa onSearch={(text) => setSearchValue(text)} />
+        </View>
+        <View>
+          <Reload onReload={handleReload}/>
         </View>
         <View style={styles.filtroContainer}>
           <Filtro onFilter={(isActive) => handleFilterToggle(isActive)} />
@@ -83,10 +93,9 @@ function ListaEquipamento({ navigation }: any) {
         )}
 
         <CardEquipmet filter={filteredEquipments} onPress={handleItemPress} />
-
       </View>
     </View>
   );
 }
 
-export default React.memo(ListaEquipamento)
+export default React.memo(ListaEquipamento);

@@ -32,8 +32,8 @@ const styles = StyleSheet.create({
     marginRight: 5, 
   },
   filtroContainer: {
-    width: '8%', 
-  },
+    width: '10%', 
+  }
 });
 
 export default styles
