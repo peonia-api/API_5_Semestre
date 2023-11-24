@@ -101,6 +101,7 @@ const TabNavigator = () => {
 
 export default function Navigation() {
   const { authenticated } = useContext(AuthContext);
+  const { typeCorMoon } = useContext(AuthContext);
   
   return (
     <NavigationContainer>
@@ -113,22 +114,22 @@ export default function Navigation() {
             <Stack.Screen
               name="Detalhes"
               component={Detalhes}
-              options={{ headerBackVisible: true, headerShown: true }}
+              options={{ headerBackVisible: true, headerShown: true, headerStyle: {backgroundColor: typeCorMoon[0]}}}
             />
             <Stack.Screen
               name="Perfil"
               component={Perfil}
-              options={{ headerBackVisible: true, headerShown: true}}
+              options={{ headerBackVisible: true, headerShown: true, headerStyle: {backgroundColor: typeCorMoon[0]}}}
             />
             <Stack.Screen
               name="Perfil de Aprovação"
               component={PerfilAprovacao}
-              options={{ headerBackVisible: true, headerShown: true}}
+              options={{ headerBackVisible: true, headerShown: true, headerStyle: {backgroundColor: typeCorMoon[0]}}}
             />
             <Stack.Screen
               name="Novo Equipamento"
               component={Cadastro}
-              options={{ headerBackVisible: true, headerShown: true}}
+              options={{ headerBackVisible: true, headerShown: true, headerStyle: {backgroundColor: typeCorMoon[0]}}}
             />
            </>
         ) : (

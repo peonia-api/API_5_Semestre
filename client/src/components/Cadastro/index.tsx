@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef, useCallback, useContext } from "react";
 import { View, Text, Image, TextInput, TouchableOpacity, ScrollView, Alert, Modal } from "react-native";
 import styles from "./style";
 import { Picker } from "@react-native-picker/picker";
@@ -12,6 +12,10 @@ import { Camera, CameraType } from 'expo-camera';
 import { FontAwesome } from "@expo/vector-icons"
 import { useFocusEffect } from "@react-navigation/native";
 import Carousel from 'react-native-snap-carousel';
+import { isConnectad } from "../../utils";
+import { Create } from "../../controllers";
+import { useNetInfo } from "@react-native-community/netinfo";
+import { AuthContext } from "../../contexts";
 
 
 Icon.loadFont();
@@ -36,7 +40,8 @@ export default function Cadastro({ route, navigation }: any) {
   const [capturedPhoto, setCapturedPhoto] = useState(null)
   const [isCameraVisible, setCameraVisible] = useState(false);
   const theme = useTheme()
-  const { typeCor } = useContextUser()
+  const { typeCor, typeCorMoon } = useContextUser()
+  const { isInternetReachable } = useNetInfo()
 
   useEffect(() => {
     (async () => {
@@ -160,7 +165,6 @@ export default function Cadastro({ route, navigation }: any) {
   };
 
 
-
   const uploadImage = async () => {
     if (selectedImages.length === 0) {
       Alert.alert("Campo obrigatório", "Selecione uma Imagem.");
@@ -203,17 +207,35 @@ export default function Cadastro({ route, navigation }: any) {
     console.log(selectedImages);
 
     try {
-      const response = await upload(serial, selectedImages);
-      await createEquipment({
-        type: selectedEquipa,
-        numero: numero,
-        serial: serial,
-        latitude: latitude,
-        longitude: longitude,
-        observations: observacao,
-        url: response,
-        status: true
-      });
+      console.log("Tem: ",isInternetReachable);
+      
+      if(isInternetReachable === true){
+        console.log("sdsdsadsadsadasds");
+        
+        const response = await upload(serial, selectedImages);
+        await createEquipment({
+          type: selectedEquipa,
+          numero: numero,
+          serial: serial,
+          latitude: latitude,
+          longitude: longitude,
+          observations: observacao,
+          url: response,
+          status: true
+        });
+      }else{
+        Create.insert({
+          type: selectedEquipa,
+          numero: numero,
+          serial: serial,
+          latitude: latitude,
+          longitude: longitude,
+          observations: observacao,
+          url: selectedImages,
+          status: true
+        })
+      }
+      
     } catch (error) {
       console.error(error);
       Alert.alert("Erro", "Ocorreu um erro ao enviar os dados para o banco.");
@@ -228,10 +250,10 @@ export default function Cadastro({ route, navigation }: any) {
   console.log(selectedImages);
 
   return (
-    <View style={[styles.containerPrincipal]}>
+    <View style={[styles.containerPrincipal, { backgroundColor: typeCorMoon[0] }]}>
       <ScrollView>
         <View style={styles.container}>
-        <View style={styles.containerImagem}>
+        <View style={[styles.containerImagem, {borderColor: typeCor[1]}]}>
               {selectedImages.length > 0 && (
                 <Carousel
                   data={selectedImages}
@@ -296,20 +318,20 @@ export default function Cadastro({ route, navigation }: any) {
 
         <View style={styles.containerInput}>
           <View style={styles.containerTrans}>
-            <Picker
-              selectedValue={selectedEquipa}
-              onValueChange={handleEquipamentoChange}
-              style={styles.picker}
-            >
-              <Picker.Item label="Equipamento" value="" enabled={false} />
-              <Picker.Item label="Transformador" value="Transformador" />
-              <Picker.Item label="Poste" value="Poste" />
-              <Picker.Item label="Bomba hidráulica" value="Bomba hidráulica" />
-            </Picker>
+                <Picker
+                  selectedValue={selectedEquipa}
+                  onValueChange={handleEquipamentoChange}
+                  style={[styles.picker]}
+                >
+                  <Picker.Item label="Equipamento" value="" enabled={false} />
+                  <Picker.Item label="Transformador" value="Transformador" />
+                  <Picker.Item label="Poste" value="Poste" />
+                  <Picker.Item label="Bomba hidráulica" value="Bomba hidráulica" />
+                </Picker>
             <TextInput
               placeholder="Número"
               keyboardType="numeric"
-              style={styles.input}
+              style={[styles.input, {borderColor: typeCor[1]}]}
               onChangeText={(e: any) => setNumero(e)}
               value={numero !== null ? numero.toString() : ''}
             />
@@ -317,26 +339,23 @@ export default function Cadastro({ route, navigation }: any) {
 
           <TextInput
             placeholder="IMEI"
-            style={styles.inputInteiro}
+            style={[styles.inputInteiro, {borderColor: typeCor[1]}]}
             onChangeText={(e: any) => setSerial(e)}
             value={serial || ''}
           />
 
-          <View style={styles.containerLoLa}>
-            <Text style={styles.textFont}>Latitude:</Text>
+          <View style={[styles.containerLoLa]}>
             <TextInput
               placeholder="Latitude"
               keyboardType="numeric"
-              style={styles.inputLoLa}
+              style={[styles.inputLoLa, {borderColor: typeCor[1]}]}
               onChangeText={(e: any) => setLatitude(e)}
               value={latitude !== null ? latitude.toString() : ''}
             />
-
-            <Text style={styles.textFont}>Longitude:</Text>
             <TextInput
               placeholder="Longitude"
               keyboardType="numeric"
-              style={styles.inputLoLa}
+              style={[styles.inputLoLa, {borderColor: typeCor[1]}]}
               onChangeText={(e: any) => setLongitude(e)}
               value={longitude !== null ? longitude.toString() : ''}
             />
@@ -344,7 +363,7 @@ export default function Cadastro({ route, navigation }: any) {
 
           <TextInput
             placeholder="Observações"
-            style={styles.inputInteiro}
+            style={[styles.inputInteiro, {borderColor: typeCor[1]}]}
             onChangeText={(e: any) => setObservacao(e)}
             value={observacao || ''}
           />

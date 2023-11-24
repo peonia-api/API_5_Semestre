@@ -15,9 +15,15 @@ export const AuthProvider = ({children}:any) => {
     const [loading, setLoading] = useState(true)
     const [iconePerfil, setIconePerfil ] = useState(true)
     const [userType, setUserType ] = useState<string>()
+    
     const [ typeCor, setTypeCor] = useState<string[]>(['#92CFE1', '#4DB9DB'])
     
- 
+    const [ typeCorMoon, setTypeCorMoon] = useState<string[]>(['#ffffff', '4DB9DB'])
+
+    const toggleDarkMode = () => {
+      setTypeCorMoon((prevTypeCor) => (prevTypeCor[0] === '#ffffff' ? ['#6D6E72', '#4DB9DB', "#ffffff"] : ['#ffffff', '#4DB9DB']));
+    };
+
     useEffect(() => {
       (async function () {
         const resp: any = await User.get()
@@ -143,7 +149,10 @@ export const AuthProvider = ({children}:any) => {
  
     return (
 
-      <AuthContext.Provider value={{authenticated: Boolean(user), user, loading, setLoading, logout, login, createUser, listUser, setListUser, iconePerfil, userType, getUser, setTypeCor, typeCor}}>
+      <AuthContext.Provider value={{authenticated: Boolean(user), user, loading, 
+        setLoading, logout, login, createUser, listUser, setListUser, 
+        iconePerfil, userType, getUser, setTypeCor, typeCor, setTypeCorMoon, typeCorMoon, toggleDarkMode}}>
+
         {children}
       </AuthContext.Provider>
     )

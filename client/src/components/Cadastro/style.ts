@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     height: 50,
     backgroundColor: '#f2f2f2',
     marginBottom: 15,
-    gap: 30
+    gap: 30,
   },
 
   input: {
@@ -99,7 +99,8 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
     backgroundColor: '#f2f2f2',
     borderRadius: 5,
-    marginBottom: 15
+    marginBottom: 15,
+    borderWidth: 1,
   },
 
   containerTrans: {
@@ -112,7 +113,8 @@ const styles = StyleSheet.create({
     width: '90%',
     paddingLeft: 15,
     backgroundColor: '#f2f2f2',
-    borderRadius: 5
+    borderRadius: 5,
+    borderWidth: 1,
   },
 
   textFont: {
@@ -123,23 +125,26 @@ const styles = StyleSheet.create({
 
   containerLoLa: {
     flexDirection: "row",
+    justifyContent: "space-between",
     paddingTop: 10,
-    marginTop: 10
+    marginTop: 10,
+    gap: 20,
   },
 
   inputLoLa: {
     height: 55,
-    width: '24%',
+    width: '42%',
     paddingLeft: 15,
     backgroundColor: '#fafafa',
     borderRadius: 5,
-    marginBottom: 15
+    marginBottom: 15,
+    borderWidth: 1,
   },
 
   containerBotao: {
     flexDirection: "row",
     justifyContent: "center",
-    marginBottom: 20,
+    marginBottom: 13,
     color: "#4DB9DB"
   },
 

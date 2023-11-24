@@ -4,6 +4,7 @@ import { Props } from '../types/equipmente'
 import { Equipmente } from "../services";
 import React from 'react';
 import { LocationObject, getCurrentPositionAsync, requestForegroundPermissionsAsync } from "expo-location";
+import { Equipment } from "../controllers";
 
 export const ContextoEquipmente = createContext({} as EquipmenteProps)
 
@@ -16,8 +17,12 @@ export function Provider({ children }: any) {
   useEffect(() => {
     (async function () {
       const resp: any = await Equipmente.get()
-      setEquipmente(resp)
+
+      Equipment.insert(resp)
       await get10()
+      const equipmentController:any[] = await Equipment.get()
+        
+      setEquipmente(equipmentController)
       setLoaded(false)
     })()
   }, [])

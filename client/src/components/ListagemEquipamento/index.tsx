@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { View, Pressable } from "react-native";
+import React, { useContext, useEffect, useState } from "react";
+import { Text, View } from "react-native";
 import styles from "./style";
 import { useContextoEquipmente } from '../../hooks';
 import Pesquisa from "../Pesquisa";
@@ -8,6 +8,9 @@ import { Props } from "../../types/equipmente";
 import CardEquipmet from "../Card";
 import Filtro from "../Filtro";
 import { useTheme } from '../../hooks'
+import { Create } from "../../controllers";
+import { AuthContext } from "../../contexts";
+import { isConnectad } from "../../utils";
 
 function ListaEquipamento({ navigation }: any) {
   const { equipmente, loaded, list10km } = useContextoEquipmente();
@@ -16,9 +19,16 @@ function ListaEquipamento({ navigation }: any) {
 
   const [showActive, setShowActive] = useState<number | null>(null); // Inicialize com null
   const theme = useTheme();
+  const { typeCorMoon } = useContext(AuthContext);
+
+  async function teste() {
+    console.log(await Create.get());
+  }
+
+  teste()
 
   useEffect(() => {
-    const filtered = equipmente.filter((item) => {
+    const filtered = equipmente.filter((item:any) => {
       const isActiveFilter = showActive === null ? true : (showActive === 1 ? item.status : showActive === 2 ? !item.status : false);
       return (
         isActiveFilter &&
@@ -44,11 +54,17 @@ function ListaEquipamento({ navigation }: any) {
     setShowActive(isActive);
   };
 
+ 
+
   return (
-    <View style={[styles.container]}>
+    <View style={[styles.container, { backgroundColor: typeCorMoon[0] }]}>
       <View style={styles.searchFilterContainer}>
-        <Pesquisa onSearch={(text) => setSearchValue(text)} customStyle={styles.searchInFilter} />
-        <Filtro onFilter={(isActive) => handleFilterToggle(isActive)} />
+        <View style={styles.pesquisaContainer}>
+          <Pesquisa onSearch={(text) => setSearchValue(text)} />
+        </View>
+        <View style={styles.filtroContainer}>
+          <Filtro onFilter={(isActive) => handleFilterToggle(isActive)} />
+        </View>
       </View>
       <View style={styles.listaContainer}>
         {loaded && (

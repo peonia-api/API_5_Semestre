@@ -1,7 +1,9 @@
-import React, { useRef, useState } from "react"
+import React, { useContext, useRef, useState } from "react"
 import { TouchableOpacity, Image, Text, ListRenderItem, FlatList, View } from "react-native"
 import styles from "./style";
 import { FooterList } from "./FooterList";
+import { AuthContext } from "../../contexts";
+import { useContextUser } from "../../hooks";
 
 
 enum UserType {
@@ -47,6 +49,8 @@ const CardUser = ({filter, onPress}:any) => {
   const itemsPerPage = 10;
   const flatListRef = useRef<FlatList | null>(null);
   const [loading, setLoading] = useState(false);
+  const { typeCorMoon } = useContext(AuthContext);
+  const { typeCor } = useContextUser();
 
   const loadMoreData = () => {
     if (filter.length > currentPage * itemsPerPage) {
@@ -64,7 +68,7 @@ const CardUser = ({filter, onPress}:any) => {
       data={filter.slice(0, currentPage * itemsPerPage)}
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => (
-        <TouchableOpacity style={[styles.card,{ backgroundColor: item.status == 0 ? '#b3b1b1' : '#f0fafc' }]} onPress={() => onPress(item.id)}>
+        <TouchableOpacity style={[styles.card,{ backgroundColor: item.status == 1 ? typeCor[1] : typeCorMoon[0], borderColor: typeCor[1]}]} onPress={() => onPress(item.id)}>
           <Image source={{ uri: item.icone }} style={styles.image} />
           <View style={styles.textContainer}>
             <Text style={styles.textfont}>{item.userName}</Text>

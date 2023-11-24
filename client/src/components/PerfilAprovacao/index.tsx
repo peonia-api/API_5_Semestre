@@ -33,6 +33,7 @@ function ApprovalProfile({ route, navigation }: any) {
     const [icone, setUserIcone] = useState<any>(null);
     const [userType, setUserType] = useState<string>();
     const [status, setStatus] = useState<Status | null>(null);
+    const {typeCorMoon} = useContextUser();
 
     const {user, loading , getUser, listUser, setListUser, setLoading, typeCor } = useContextUser();
    
@@ -121,14 +122,13 @@ function ApprovalProfile({ route, navigation }: any) {
     return (
         <View style={[styles.container, {backgroundColor: typeCor[1]}]}>
             {loading && (
-                <View style={styles.uploadingAnimation}>
+                <View style={[styles.uploadingAnimation, {backgroundColor: typeCorMoon[0]}]}>
                     <LottieView
                         autoPlay={true}
                         loop={true}
                         style={{
                             width: '100%',
                             height: '100%',
-                            backgroundColor: 'white',
                         }}
                         source={require('../../assets/carregando.json')}
                     />
