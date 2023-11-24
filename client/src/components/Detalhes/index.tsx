@@ -46,31 +46,41 @@ export default function Detalhe({ route, navigation }: any) {
 
     useFocusEffect(useCallback(() => {
         const { itemId } = route.params
+        console.log(itemId);
+        
 
         try {
 
-            async function init() {
-                const novoEquipamento = await getEquipment(itemId)
-                if (novoEquipamento) {
-                    setSelectedEquipa(novoEquipamento?.type || '');
-                    setImage(novoEquipamento?.url[0] || null);
-                    setSelectedImages(novoEquipamento?.url || null);
-                    setNumero(novoEquipamento?.numero.toString() || '');
-                    setImei(novoEquipamento?.serial || '');
-                    setLatitude(novoEquipamento?.latitude.toString() || '');
-                    setLongitude(novoEquipamento?.longitude.toString() || '');
-                    setObservacoes(novoEquipamento?.observations || '');
-                    setStatus(novoEquipamento?.status || '')
-                    setVerificaImagem(novoEquipamento?.url || null)
-                }
-            }
-            init()
+            setSelectedEquipa(itemId?.type || '');
+            setImage(itemId?.url[0] || null);
+            setSelectedImages(itemId?.url || null);
+            setNumero(itemId?.numero.toString() || '');
+            setImei(itemId?.serial || '');
+            setLatitude(itemId?.latitude.toString() || '');
+            setLongitude(itemId?.longitude.toString() || '');
+            setObservacoes(itemId?.observations || '');
+            setStatus(itemId?.status || '')
+            setVerificaImagem(itemId?.url || null)
+            // async function init() {
+            //     const novoEquipamento = await getEquipment(itemId._id)
+            //     if (novoEquipamento) {
+            //         setSelectedEquipa(novoEquipamento?.type || '');
+            //         setImage(novoEquipamento?.url[0] || null);
+            //         setSelectedImages(novoEquipamento?.url || null);
+            //         setNumero(novoEquipamento?.numero.toString() || '');
+            //         setImei(novoEquipamento?.serial || '');
+            //         setLatitude(novoEquipamento?.latitude.toString() || '');
+            //         setLongitude(novoEquipamento?.longitude.toString() || '');
+            //         setObservacoes(novoEquipamento?.observations || '');
+            //         setStatus(novoEquipamento?.status || '')
+            //         setVerificaImagem(novoEquipamento?.url || null)
+            //     }
+            // }
+            // init()
 
         } catch (err) {
             console.log("Assim não");
             //navigation.navigate('Cadastro')
-        }finally{
-            setLoaded(false)
         }
 
 

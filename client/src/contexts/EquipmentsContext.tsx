@@ -95,7 +95,7 @@ export function Provider({ children }: any) {
           return prevEquipmente;
         });
       }
-
+      setLoaded(false)
     } catch (err) {
       console.error('Erro ao atualizar o Status:', err);
     } finally {

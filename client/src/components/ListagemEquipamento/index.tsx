@@ -47,6 +47,7 @@ function ListaEquipamento({ navigation }: any) {
   }, [searchValue, showActive, equipmente]);
 
   const handleItemPress = (itemId: string) => {
+    
     navigation.navigate('Detalhes', { itemId });
   };
 

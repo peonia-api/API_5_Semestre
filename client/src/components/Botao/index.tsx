@@ -17,7 +17,8 @@ interface props {
 
 export function BotoesDetalhes({ text, style, label, id, status }: props) {
   const [ confirm, setConfirm ] = useState(null as any)
-  const { patchStatus } = useContextoEquipmente()
+  const { patchStatus, setLoaded } = useContextoEquipmente()
+
   //const { setConfirm, confirm } = useContextoEquipmente()
 
   // const handlePress = () => {
