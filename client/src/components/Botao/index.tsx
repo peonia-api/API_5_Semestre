@@ -11,21 +11,17 @@ interface props {
   label: string;
   id: string
   status: any
+  item: any
 }
 
 
 
-export function BotoesDetalhes({ text, style, label, id, status }: props) {
+export function BotoesDetalhes({ text, style, label, id, status, item }: props) {
   const [ confirm, setConfirm ] = useState(null as any)
   const { patchStatus, setLoaded } = useContextoEquipmente()
 
-  //const { setConfirm, confirm } = useContextoEquipmente()
-
-  // const handlePress = () => {
-  //   AlertEquipmentt(text, label, message);
-  // };
-
   function AlertEquipmentt(title:string, label:string) {
+    setLoaded(false)
   
       Alert.alert(`${title}`, `${label}`, [
         {
@@ -46,8 +42,10 @@ export function BotoesDetalhes({ text, style, label, id, status }: props) {
 
   async function patch (id:string) {
     if(status === true){
+      item.status = false
       await patchStatus(id, {status: false})
     }else{
+      item.status = true
       await patchStatus(id, {status: true})
     }
 
@@ -56,11 +54,9 @@ export function BotoesDetalhes({ text, style, label, id, status }: props) {
 
   if(confirm === true){
     patch(id)
-    //console.log(`Equipamento ${message} com sucesso`);
     setConfirm(null)
   }
   else if(confirm === false && confirm != null){
-    //console.log(`Equipamento não ${message}`);
     setConfirm(null)
   }
   
