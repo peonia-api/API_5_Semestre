@@ -8,13 +8,14 @@ import { Props } from "../../types/equipmente";
 import CardEquipmet from "../Card";
 import Filtro from "../Filtro";
 import { useTheme } from '../../hooks'
-import { Create } from "../../controllers";
+import { Create, Equipment } from "../../controllers";
 import { AuthContext } from "../../contexts";
 import { isConnectad } from "../../utils";
 import Reload from "../Reload";
+import { Equipmente } from "../../services";
 
 function ListaEquipamento({ navigation }: any) {
-  const { equipmente, loaded, list10km } = useContextoEquipmente();
+  const { equipmente, loaded, list10km, setLoaded, setEquipmente } = useContextoEquipmente();
   const [filteredEquipments, setFilteredEquipments] = useState<Props[]>(equipmente);
   const [searchValue, setSearchValue] = useState("");
   const [reload, setReload] = useState(false); // Estado para forçar a re-renderização
@@ -60,6 +61,16 @@ function ListaEquipamento({ navigation }: any) {
 
   const handleReload = () => {
     setSearchValue("");
+    (async function () {
+      setLoaded(true)
+      const resp: any = await Equipmente.get()
+
+      Equipment.insert(resp)
+      const equipmentController:any[] = await Equipment.get()
+        
+      setEquipmente(equipmentController)
+      setLoaded(false)
+    })()
     // Altere o estado de "reload" para forçar a re-renderização
     setReload(!reload);
   };
