@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, TouchableOpacity } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import { useContextUser, useContextoEquipmente } from "../../hooks";
@@ -21,9 +21,16 @@ const MapaView = (props: Props) => {
   const { equipmente } = useContextoEquipmente();
   const { iconePerfil } = useContextUser();
 
+  const [key, setKey] = useState(1);
+
+  useEffect(() => {
+    console.log("Tela recarregada!");
+  }, [key]);
+
   return (
     <View style={{ flex: 1 }}>
       <MapView
+        key={key}
         style={{ flex: 1 }}
         region={props.mapRegion}
         onPress={(e) => {
@@ -100,7 +107,11 @@ const MapaView = (props: Props) => {
           </Marker>
         )}
       </MapView>
-      <Icon location={props.location} />
+      <Icon
+        location={props.location}
+        setMapRegion={props.setMapRegion}
+        onReload={() => setKey((prevKey) => prevKey + 1)} // Atualizando o key ao clicar no ícone
+      />
     </View>
   );
 };
