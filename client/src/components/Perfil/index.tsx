@@ -254,7 +254,7 @@ export default function Perfil({ navigation }: any) {
                     </TouchableOpacity>
                     <View>
                         <TouchableOpacity style={styles.icon} onPress={pickImage}>
-                            <Icon name="plus" size={25} color="#000000" />
+                            <Icon name="plus" size={25} style={[{ color: typeCor[1] }]}/>
                         </TouchableOpacity>
                     </View>
                 <View>
