@@ -47,7 +47,7 @@ const MapaView = (props: Props) => {
                 latitudeDelta: 0.001,
                 longitudeDelta: 0.0001,
               });
-              props.detalhes(coordenada._id);
+              props.detalhes(coordenada);
             }}
           >
             <CustomMarker
