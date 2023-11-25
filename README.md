@@ -157,6 +157,7 @@ Foram usadas as seguintes ferramentas, linguagens e tecnologias para a execuçã
 - [Azure](https://learn.microsoft.com/en-us/azure/cloud-services/): Cloud usada para hospedar bancos de dados;
 - [MongoDB](https://www.mongodb.com/docs/): Banco de dados NoSQL
 - [PostgresSQL](https://www.postgresql.org/docs/): Banco de dados SQL
+- [SQLite](https://www.sqlite.org/docs.html): Banco de dados SQL para armazenamento local (modo offline)
 
 → [Voltar ao topo](#topo)    
     
