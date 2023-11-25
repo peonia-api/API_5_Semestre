@@ -1,6 +1,8 @@
 import { FlatList, Image, TouchableOpacity, View, Text } from "react-native";
 import styles from "./style";
-import React from "react";
+import React, { useContext } from "react";
+import { useContextUser } from "../../hooks";
+import { AuthContext } from "../../contexts";
 
 interface Props{
     list10km: any[] 
@@ -9,7 +11,9 @@ interface Props{
 }
 
 const Equipamento10km = (props:Props) => {
-
+  const { typeCor } = useContextUser()
+  const { typeCorMoon } = useContext(AuthContext);
+  
     const centerMapOnItem = (item:any) => {  
         props.mapRegion.latitude === item.latitude ? props.setMapRegion({
           latitude: item.latitude,
@@ -32,7 +36,7 @@ const Equipamento10km = (props:Props) => {
                 keyExtractor={(item) => item._id}
                 renderItem={({ item }) => (
                     <TouchableOpacity
-                    style={[styles.card, { backgroundColor: item.status == false ? '#b3b1b1' : '#f0fafc' }]}
+                    style={[styles.card,{ backgroundColor: item.status == 1 ? typeCor[1] : typeCorMoon[0], borderColor: typeCor[1]}]}
                     onPress={() => centerMapOnItem(item)}
                     >
                     <Image source={{ uri: item.url[0] }} style={styles.image} />
