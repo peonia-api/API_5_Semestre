@@ -97,6 +97,7 @@ function ListaEquipamento({ navigation }: any) {
               style={{
                 width: '100%',
                 height: '100%',
+                backgroundColor: typeCorMoon[0]
               }}
               source={require('../../assets/carregando.json')}
             />

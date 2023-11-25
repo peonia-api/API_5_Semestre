@@ -289,14 +289,14 @@ export default function Detalhe({ route, navigation }: any) {
     return (
         <View style={[styles.containerPrincipal, {backgroundColor: typeCorMoon[0]}]}>
             {loaded && (
-                <View style={styles.uploadingAnimation}>
+                <View style={[styles.uploadingAnimation, { backgroundColor: typeCorMoon[0] }]}>
                     <LottieView
                         autoPlay={true}
                         loop={true}
                         style={{
                             width: '100%',
                             height: '100%',
-                            backgroundColor: 'white',
+                            backgroundColor: typeCorMoon[0]
                         }}
                         source={require('../../assets/carregando.json')}
                     />

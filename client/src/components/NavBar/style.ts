@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     },
 
    containerIcon: {
-      margin: 5,
+      margin: 12,
       alignItems: 'center',
       justifyContent: 'center',
     },
