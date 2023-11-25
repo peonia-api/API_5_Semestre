@@ -30,7 +30,8 @@ const Equipamento10km = (props:Props) => {
       };
 
     return(
-        <View style={{ height: '50%' }}>
+        <View style={[styles.teste, { backgroundColor: typeCorMoon[0] }]}>
+        
                 <FlatList
                 data={props.list10km}
                 keyExtractor={(item) => item._id}

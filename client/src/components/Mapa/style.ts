@@ -53,6 +53,10 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 
+  teste: {
+    height: '50%'
+  },
+  
   textSub: {
     fontSize: 18,
     marginTop: 10,
