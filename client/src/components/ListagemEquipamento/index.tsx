@@ -40,7 +40,7 @@ function ListaEquipamento({ navigation }: any) {
     });
 
     if (showActive === 3) {
-      setFilteredEquipments(filtered.filter((item) => {
+      setFilteredEquipments(list10km.filter((item) => {
         return (
           (item.type.toLowerCase().includes(searchValue.toLowerCase()) ||
             item.serial.toLowerCase().includes(searchValue.toLowerCase()))
