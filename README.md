@@ -35,16 +35,16 @@
 - [x] Recuperação de senha por meio de código (6 dígitos);
 - [x] Criptografia de senhas;
 - [x] Busca de equipamentos cadastrados (raio de 10km) de acordo com posição geográfica do App;
-- [ ] Sincronização de dados online em até 30 segundos após uso offline da aplicação;
+- [x] Sincronização de dados online em até 30 segundos após uso offline da aplicação;
 
 <h2> 📋 Requisitos Não Funcionais </h2>
 
 - [x] Aplicação de dois fatores para autenticação em cada acesso (A2F);
 - [x] Implementação de persistência poliglota;
-- [ ] Condições de iluminação de tela adaptáveis à necessidade do usuário;
-- [ ] Segurança das informações em caso de perda do dispositivo móvel;
+- [x] Condições de iluminação de tela adaptáveis à necessidade do usuário;
+- [x] Segurança das informações em caso de perda do dispositivo móvel;
 - [x] Validação dos dados inseridos na aplicação (equipamentos e usuários);
-- [ ] Banco de dados mobile para armazenamento dos dados atualizados dos equipamentos durante estado offline do App;
+- [x] Banco de dados mobile para armazenamento dos dados atualizados dos equipamentos durante estado offline do App;
  
 
  → [Voltar ao topo](#topo)
@@ -101,7 +101,7 @@ Na tabela abaixo é possível visualizar os resultados de cada Sprint clicando e
 | 01 | 24/09/2023 |	:heavy_check_mark: | [Ver relatório](https://github.com/peonia-api/API_5_Semestre/blob/main/reports/Sprint1.MD) |
 | 02 | 15/10/2023 |	:heavy_check_mark: | [Ver relatório](https://github.com/peonia-api/API_5_Semestre/blob/main/reports/Sprint2.MD) |
 | 03 | 05/11/2023 |	:heavy_check_mark: | [Ver relatório](https://github.com/peonia-api/API_5_Semestre/blob/main/reports/Sprint3.MD) |
-| 04 | 26/11/2023 |	Em Desenvolvimento | Em Breve |
+| 04 | 26/11/2023 |	:heavy_check_mark: | Em Breve |
 
 
 → [Voltar ao topo](#topo)
@@ -125,6 +125,7 @@ Na tabela abaixo é possível visualizar os resultados de cada Sprint clicando e
 ![image](https://github.com/peonia-api/API_5_Semestre/blob/main/images/Backlog%20Priorizado%201ª%20Sprint.png)
 ![image](https://github.com/peonia-api/API_5_Semestre/blob/main/images/Backlog%20priorizado%202ª%20Sprint.png)
 ![image](https://github.com/peonia-api/API_5_Semestre/blob/main/images/Backlog%20Priorizado%203ª%20Sprint.png)
+![image](https://github.com/peonia-api/API_5_Semestre/blob/main/images/Backlog%20priorizado%204ª%20Sprint.png)
     
 </p>
 </div>
