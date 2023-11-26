@@ -11,6 +11,7 @@ import { useContextUser, useContextoEquipmente } from "../../hooks";
 import LottieView from 'lottie-react-native';
 import { InputPassword } from "../Input";
 import { AuthContext } from "../../contexts";
+import { useNetInfo } from "@react-native-community/netinfo";
 
 export default function Perfil({ navigation }: any) {
     const [userName, setUserName] = useState <string> ("");
@@ -30,6 +31,7 @@ export default function Perfil({ navigation }: any) {
     const [senhaInseridaVerifica, setSenhaInseridaVerifica] = useState("");
     const [showPasswordRequirements, setShowPasswordRequirements] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
+    const { isInternetReachable } = useNetInfo()
 
     const isPasswordValid = (password: string) => {
         const passwordPattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@#$%^&+=!])[A-Za-z\d@#$%^&+=!]{10,20}$/;
@@ -92,51 +94,62 @@ export default function Perfil({ navigation }: any) {
     }, []);
 
     const handleAtualiza = async () => {
-        try {
-            setLoaded(true)
-            if(image === verficaImage){
-                await User.putProfile(userEmail, {
-                    userCpf: userCpf,
-                    userMatricula: userMatricula,
-                    userTelefone: userTelefone,
-                    userName: userName,
-                    userEmail: userEmail,
-                    icone: image
-                }).then((res) => {
-                    console.log(alert("Perfil atualizado com sucesso!"))
-                    Storage.setItem({key: 'userEmail', value: userEmail})
-                    Storage.setItem({key: "userName", value: userName})
-                    Storage.setItem({key: "userCpf", value: userCpf})
-                    Storage.setItem({key: "userMatricula", value: userMatricula})
-                    Storage.setItem({key: "userTelefone", value: userTelefone})
-                })
-                .catch((err) => Alert.alert("Erro", "Erro ao atualizar!"))
-            }else{                
-                const response:any = await uploadIcone(userCpf, { uri: image })
-                console.log(response);
-                
-                await User.putProfile(userEmail, {
-                    userCpf: userCpf,
-                    userMatricula: userMatricula,
-                    userTelefone: userTelefone,
-                    userName: userName,
-                    userEmail: userEmail,
-                    icone: (response)
-                }).then((res) => {
-                    console.log(alert("Perfil atualizado com sucesso!"))
-                    Storage.setItem({key: 'userEmail', value: userEmail})
-                    Storage.setItem({key: "userName", value: userName})
-                    Storage.setItem({key: "userCpf", value: userCpf})
-                    Storage.setItem({key: "userMatricula", value: userMatricula})
-                    Storage.setItem({key: "userTelefone", value: userTelefone})
-                    Storage.setItem({key: "icone", value: response})
-                })
-                .catch((err) => Alert.alert("Erro", "Erro ao atualizar!"))
+        if(isInternetReachable === true){
+            try {
+                setLoaded(true)
+                if(image === verficaImage){
+                    await User.putProfile(userEmail, {
+                        userCpf: userCpf,
+                        userMatricula: userMatricula,
+                        userTelefone: userTelefone,
+                        userName: userName,
+                        userEmail: userEmail,
+                        icone: image
+                    }).then((res) => {
+                        console.log(alert("Perfil atualizado com sucesso!"))
+                        Storage.setItem({key: 'userEmail', value: userEmail})
+                        Storage.setItem({key: "userName", value: userName})
+                        Storage.setItem({key: "userCpf", value: userCpf})
+                        Storage.setItem({key: "userMatricula", value: userMatricula})
+                        Storage.setItem({key: "userTelefone", value: userTelefone})
+                    })
+                    .catch((err) => Alert.alert("Erro", "Erro ao atualizar!"))
+                }else{                
+                    const response:any = await uploadIcone(userCpf, { uri: image })
+                    console.log(response);
+                    
+                    await User.putProfile(userEmail, {
+                        userCpf: userCpf,
+                        userMatricula: userMatricula,
+                        userTelefone: userTelefone,
+                        userName: userName,
+                        userEmail: userEmail,
+                        icone: (response)
+                    }).then((res) => {
+                        console.log(alert("Perfil atualizado com sucesso!"))
+                        Storage.setItem({key: 'userEmail', value: userEmail})
+                        Storage.setItem({key: "userName", value: userName})
+                        Storage.setItem({key: "userCpf", value: userCpf})
+                        Storage.setItem({key: "userMatricula", value: userMatricula})
+                        Storage.setItem({key: "userTelefone", value: userTelefone})
+                        Storage.setItem({key: "icone", value: response})
+                    })
+                    .catch((err) => Alert.alert("Erro", "Erro ao atualizar!"))
+                }
+            }catch (error) {
+                console.log("Erro ao atualizar");     
+            }finally{
+                setLoaded(false)
             }
-        }catch (error) {
-            console.log("Erro ao atualizar");     
-        }finally{
-            setLoaded(false)
+        }else{
+            Alert.alert(
+                "Sem Conexão",
+                "Não identificamos conexão com a internet, dessa forma não é possível realizar a atualização.",
+                [
+                  { text: "OK", style: "cancel" }
+                ],
+                { cancelable: false }
+              );
         }
     };
 

@@ -14,6 +14,7 @@ import { Camera, CameraType } from 'expo-camera';
 import { FontAwesome } from "@expo/vector-icons"
 import Carousel from "react-native-snap-carousel";
 import { AuthContext } from "../../contexts";
+import { useNetInfo } from "@react-native-community/netinfo";
 
 
 
@@ -43,6 +44,7 @@ export default function Detalhe({ route, navigation }: any) {
 
     const [selectedImages, setSelectedImages] = useState<String[] | any>([]);
 
+    const { isInternetReachable } = useNetInfo()
 
     useFocusEffect(useCallback(() => {
         const { itemId } = route.params
@@ -161,95 +163,107 @@ export default function Detalhe({ route, navigation }: any) {
     
 
     const handleAtualizar = async () => {
-        if (selectedImages.length === 0) {
-            Alert.alert("Campo obrigatório", "Selecione uma Imagem.");
-            return;
-          }
-          if (!validateLatitude(latitude !== null ? latitude.toString() : null)) {
-            return;
-          }
-        
-          if (!validateLongitude(longitude !== null ? longitude.toString() : null)) {
-            return;
-          }
-          if (!selectedEquipa) {
-            Alert.alert("Campo obrigatório", "Selecione um tipo de equipamento.");
-            return;
-          }
-      
-          if (!numero || isNaN(numero)) {
-            Alert.alert("Campo obrigatório", "Número deve ser um número válido.");
-            return;
-          }
-      
-          if (!imei) {
-            Alert.alert("Campo obrigatório", "IMEI é obrigatório.");
-            return;
-          }
-      
-          if (!observacoes) {
-            Alert.alert("Campo obrigatório", "Observação deve ser válido.");
-            return;
-          }
-      
-        try {            
-            setLoaded(true)
-
-            if (verficaImage === selectedImages) {
-                await putEquipment(itemId._id, { type: selectedEquipa, numero: numero, serial: imei, latitude: latitude, longitude: longitude, observations: observacoes, url: selectedImages })
-                console.log('Equipamento atualizado com sucesso');
-                mudarPagi()
-            } else {
-                let imagens:any = []
-                const novosImagem = selectedImages.filter((image:string) => image.startsWith('file:'))
-
-                const listImagens = verficaImage.filter((item:any) => {
-                    if (!selectedImages.includes(item)) {
-                        const nameArquivo = item.split('/')[8];
-                        removeFileOne(nameArquivo).catch((error) => {
-                            console.error('Erro ao remover arquivo:', error);
-                        });                        
-                        return false; // O item será removido da lista
-                    }
+        if(isInternetReachable === true){
+            if (selectedImages.length === 0) {
+                Alert.alert("Campo obrigatório", "Selecione uma Imagem.");
+                return;
+              }
+              if (!validateLatitude(latitude !== null ? latitude.toString() : null)) {
+                return;
+              }
+            
+              if (!validateLongitude(longitude !== null ? longitude.toString() : null)) {
+                return;
+              }
+              if (!selectedEquipa) {
+                Alert.alert("Campo obrigatório", "Selecione um tipo de equipamento.");
+                return;
+              }
+          
+              if (!numero || isNaN(numero)) {
+                Alert.alert("Campo obrigatório", "Número deve ser um número válido.");
+                return;
+              }
+          
+              if (!imei) {
+                Alert.alert("Campo obrigatório", "IMEI é obrigatório.");
+                return;
+              }
+          
+              if (!observacoes) {
+                Alert.alert("Campo obrigatório", "Observação deve ser válido.");
+                return;
+              }
+          
+            try {            
+                setLoaded(true)
+    
+                if (verficaImage === selectedImages) {
+                    await putEquipment(itemId._id, { type: selectedEquipa, numero: numero, serial: imei, latitude: latitude, longitude: longitude, observations: observacoes, url: selectedImages })
+                    console.log('Equipamento atualizado com sucesso');
+                    mudarPagi()
+                } else {
+                    let imagens:any = []
+                    const novosImagem = selectedImages.filter((image:string) => image.startsWith('file:'))
+    
+                    const listImagens = verficaImage.filter((item:any) => {
+                        if (!selectedImages.includes(item)) {
+                            const nameArquivo = item.split('/')[8];
+                            removeFileOne(nameArquivo).catch((error) => {
+                                console.error('Erro ao remover arquivo:', error);
+                            });                        
+                            return false; // O item será removido da lista
+                        }
+                        
+                        return true; // O item será mantido na lista
+                    });
                     
-                    return true; // O item será mantido na lista
-                });
-                
-                
-                if(novosImagem.length > 0){
-                    upload(imei, novosImagem).then(async (res) => {
+                    
+                    if(novosImagem.length > 0){
+                        upload(imei, novosImagem).then(async (res) => {
+                            
+                            imagens = listImagens.concat(res) 
+                            
+                            await putEquipment(itemId._id, { 
+                                type: selectedEquipa, 
+                                numero: numero, 
+                                serial: imei, 
+                                latitude: latitude, 
+                                longitude: longitude, 
+                                observations: observacoes, 
+                                url: imagens
+                            })
+                            mudarPagi()
+                        })
+                    }else{
                         
-                        imagens = listImagens.concat(res) 
-                        
-                        await putEquipment(itemId._id, { 
+                        await putEquipment(itemId._id, {  
                             type: selectedEquipa, 
                             numero: numero, 
                             serial: imei, 
                             latitude: latitude, 
                             longitude: longitude, 
                             observations: observacoes, 
-                            url: imagens
+                            url: listImagens 
                         })
                         mudarPagi()
-                    })
-                }else{
-                    
-                    await putEquipment(itemId._id, {  
-                        type: selectedEquipa, 
-                        numero: numero, 
-                        serial: imei, 
-                        latitude: latitude, 
-                        longitude: longitude, 
-                        observations: observacoes, 
-                        url: listImagens 
-                    })
-                    mudarPagi()
+                    }
                 }
             }
+            catch (err) {
+                console.error('Erro ao atualizar equipamento:', err);
+                mudarPagi()
+            }
         }
-        catch (err) {
-            console.error('Erro ao atualizar equipamento:', err);
-            mudarPagi()
+        else{
+            Alert.alert(
+                "Sem Conexão",
+                "Não identificamos conexão com a internet, dessa forma não é possível realizar a atualização.",
+                [
+                  { text: "OK", style: "cancel" }
+                ],
+                { cancelable: false }
+              );
         }
     };
     
