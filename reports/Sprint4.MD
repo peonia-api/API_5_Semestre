@@ -11,7 +11,9 @@
 <span id="mvp">
  
 ## :rocket: MVP 
-<p align="justify">Enfim a última sprint. Neste ciclo final para o desenvolvimento do projeto optou-se como foco principal o requisito de sincronização offline x online (modo offline), definindo e estruturando tanto o armazenamento local como o script que faz o envio das informações na detecção da rede, permitindo ao usuário fazer o uso da aplicação enquanto não houver conexão. Dessa forma, ao conectar na internet o aplicativo procede com o transporte das informações armazenadas localmente no aplicativo para o armazenamento oficial, junto das demais informações armazenadas.</p>
+<p align="justify">Enfim a última sprint.</p>
+
+<p align="justify">Neste ciclo final para o desenvolvimento do projeto optou-se como foco principal o requisito de sincronização offline x online (modo offline), definindo e estruturando tanto o armazenamento local como o script que faz o envio das informações na detecção da rede, permitindo ao usuário fazer o uso da aplicação enquanto não houver conexão. Dessa forma, ao conectar na internet o aplicativo procede com o transporte das informações armazenadas localmente no aplicativo para o armazenamento oficial, junto das demais informações armazenadas.</p>
 
 <p align="justify">Além disso, também foram feitos alguns ajustes de tela da 3ª Sprint relativos a dinâmica de transição de telas, a implementação do modo escuro como mais uma opção para facilitar a usabilidade do usuário em termos e luminosidade e criação do guia do usuário, ensinando como operar dentro da aplicação e o botão, dentro do mapa, que permite ao usuário ir atualizando sua posição conforme se desloca na área externa.</p>
 
