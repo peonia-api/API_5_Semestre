@@ -33,6 +33,23 @@ class Create{
         //this.removeDuplicatas()
     }
 
+    exite(): Promise<boolean> {
+      return new Promise((resolve, reject) => {
+        db.transaction((tx) => {
+          tx.executeSql(
+            'SELECT * FROM equipmentCreate',
+            [],
+            (_, { rows }) => {
+              return true
+            },
+            (_, error) => {
+              return false
+            }
+          );
+        });
+      });
+    }
+
     drop(){
       return new Promise((resolve, reject) => {
         db.transaction((tx) => {

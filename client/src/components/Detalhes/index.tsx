@@ -196,7 +196,7 @@ export default function Detalhe({ route, navigation }: any) {
             setLoaded(true)
 
             if (verficaImage === selectedImages) {
-                await putEquipment(itemId, { type: selectedEquipa, numero: numero, serial: imei, latitude: latitude, longitude: longitude, observations: observacoes, url: selectedImages })
+                await putEquipment(itemId._id, { type: selectedEquipa, numero: numero, serial: imei, latitude: latitude, longitude: longitude, observations: observacoes, url: selectedImages })
                 console.log('Equipamento atualizado com sucesso');
                 mudarPagi()
             } else {
@@ -221,7 +221,7 @@ export default function Detalhe({ route, navigation }: any) {
                         
                         imagens = listImagens.concat(res) 
                         
-                        await putEquipment(itemId, { 
+                        await putEquipment(itemId._id, { 
                             type: selectedEquipa, 
                             numero: numero, 
                             serial: imei, 
@@ -234,7 +234,7 @@ export default function Detalhe({ route, navigation }: any) {
                     })
                 }else{
                     
-                    await putEquipment(itemId, {  
+                    await putEquipment(itemId._id, {  
                         type: selectedEquipa, 
                         numero: numero, 
                         serial: imei, 

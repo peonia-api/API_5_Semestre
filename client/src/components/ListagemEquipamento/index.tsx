@@ -28,7 +28,8 @@ function ListaEquipamento({ navigation }: any) {
   const { isInternetReachable } = useNetInfo()
 
   async function teste() {
-    if(isInternetReachable === true){
+  
+    if(isInternetReachable === true && await Create.exite()){
       const dados = await Create.get()
       dados.forEach(async (res:any) => {
         const response = await upload(res.serial, res.url);
