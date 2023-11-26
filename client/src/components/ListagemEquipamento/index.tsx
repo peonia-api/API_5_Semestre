@@ -10,11 +10,11 @@ import Filtro from "../Filtro";
 import { useTheme } from '../../hooks'
 import { Create, Equipment } from "../../controllers";
 import { AuthContext } from "../../contexts";
-import { isConnectad, off, reloadAPP } from "../../utils";
+import { isConnectad } from "../../utils";
+import Reload from "../Reload";
 import { Equipmente } from "../../services";
 import { upload } from "../../supabase/upload";
 import { useNetInfo } from "@react-native-community/netinfo";
-import Reload from "../Reload";
 
 function ListaEquipamento({ navigation }: any) {
   const { equipmente, loaded, list10km, setLoaded, setEquipmente } = useContextoEquipmente();
@@ -27,6 +27,37 @@ function ListaEquipamento({ navigation }: any) {
   const { createEquipmentOffiline, get10, } = useContextoEquipmente();
   const { isInternetReachable } = useNetInfo()
 
+
+  async function teste() {
+    
+    if(isInternetReachable === true && await Create.exite() === true){
+      const dados = await Create.get()
+      const item:any = []
+      
+      
+      dados.forEach(async (res:any) => {
+        if(item.indexOf(res.serial) === -1){
+          const response = await upload(res.serial, res.url);
+          await createEquipmentOffiline({
+            type: res.type,
+            numero: res.numero,
+            serial: res.serial,
+            latitude: res.latitude,
+            longitude: res.longitude,
+            observations: res.observations,
+            url: response,
+            status: true
+          });
+          item.push(res.serial)   
+        }
+        
+      })
+      await Create.drop()
+    }
+
+  }
+
+  teste();
 
   useEffect(() => {
     const fetchData = async() => {
@@ -59,9 +90,7 @@ function ListaEquipamento({ navigation }: any) {
       }
     } 
     fetchData()
-    
 
-    
   }, [searchValue, showActive, equipmente, reload]); // Adicione "reload" como uma dependência
 
   const handleItemPress = (itemId: string) => {
@@ -71,11 +100,21 @@ function ListaEquipamento({ navigation }: any) {
   const handleFilterToggle = (isActive: number | null) => {
     setShowActive(isActive);
   };
-  off()
+
   const handleReload = () => {
     setSearchValue("");
-    reloadAPP()
-    off();
+    (async function () {
+      setLoaded(true)
+      const resp: any = await Equipmente.get()
+
+      Equipment.insert(resp)
+      const equipmentController:any[] = await Equipment.get()
+        
+      setEquipmente(equipmentController)
+      await get10()
+      setLoaded(false)
+    })()
+    teste();
     // Altere o estado de "reload" para forçar a re-renderização
     setReload(!reload);
   };
