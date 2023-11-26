@@ -127,6 +127,8 @@ Na tabela abaixo é possível visualizar os resultados de cada Sprint clicando e
 <span id="documentacao">
 <h2> :clipboard: Documentação</h2>
 
+- Para acessar a documentação de Guia do Usuário, basta acessar este [link]().
+
 - Para acessar a documentação das rotas e entender como funciona a API do back, basta acessar este [link](https://github.com/peonia-api/API_5_Semestre/tree/main/documentation/route%20documentation);
 
 - O dicionário de dados pode ser acessado por este [link](https://github.com/peonia-api/API_5_Semestre/tree/main/documentation/data%20dictionary).
