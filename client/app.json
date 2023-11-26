@@ -11,12 +11,12 @@
       [
         "expo-camera",
         {
-          "cameraPermission": "Allow $(cadastro_equipamentos) to access your camera."
+          "cameraPermission": "Allow $(Equipamentos) to access your camera."
         }
       ]
     ],
-    "name": "cadastro_equipamentos",
-    "slug": "cadastro_equipamentos",
+    "name": "Equipamentos",
+    "slug": "Equipamentos",
     "version": "1.0.0",
     "orientation": "portrait",
     "userInterfaceStyle": "automatic",

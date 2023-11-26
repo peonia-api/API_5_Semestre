@@ -13,6 +13,8 @@ import { AuthContext } from "../../contexts";
 import { isConnectad } from "../../utils";
 import Reload from "../Reload";
 import { Equipmente } from "../../services";
+import { upload } from "../../supabase/upload";
+import { useNetInfo } from "@react-native-community/netinfo";
 
 function ListaEquipamento({ navigation }: any) {
   const { equipmente, loaded, list10km, setLoaded, setEquipmente } = useContextoEquipmente();
@@ -22,9 +24,28 @@ function ListaEquipamento({ navigation }: any) {
   const [showActive, setShowActive] = useState<number | null>(null);
   const theme = useTheme();
   const { typeCorMoon } = useContext(AuthContext);
+  const { createEquipment, get10 } = useContextoEquipmente();
+  const { isInternetReachable } = useNetInfo()
 
   async function teste() {
-    console.log(await Create.get());
+    if(isInternetReachable === true){
+      const dados = await Create.get()
+      dados.forEach(async (res:any) => {
+        const response = await upload(res.serial, res.url);
+        await createEquipment({
+          type: res.type,
+          numero: res.numero,
+          serial: res.serial,
+          latitude: res.latitude,
+          longitude: res.longitude,
+          observations: res.observacao,
+          url: response,
+          status: true
+        });
+      })
+      await Create.drop()
+    }
+
   }
 
   teste();

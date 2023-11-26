@@ -52,6 +52,7 @@ export default function Cadastro({ route, navigation }: any) {
 
 
     try {
+      Create.create()
       let { newEquipment } = route.params
       setLatitude(newEquipment.latitude)
       setLongitude(newEquipment.longitude)
@@ -238,7 +239,9 @@ export default function Cadastro({ route, navigation }: any) {
       console.error(error);
       Alert.alert("Erro", "Ocorreu um erro ao enviar os dados para o banco.");
     } finally {
-      await get10()
+      if(isInternetReachable === true){
+        await get10()
+      }
       clearFields();
       setUploading(false);
       navigation.navigate('Equipamentos');

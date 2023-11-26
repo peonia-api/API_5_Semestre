@@ -33,6 +33,15 @@ class Create{
         //this.removeDuplicatas()
     }
 
+    drop(){
+      return new Promise((resolve, reject) => {
+        db.transaction((tx) => {
+          tx.executeSql(
+            'DROP TABLE IF EXISTS equipmentCreate'
+          );
+        });
+      });
+    }
     get(): Promise<string[]> {
       return new Promise((resolve, reject) => {
         db.transaction((tx) => {
