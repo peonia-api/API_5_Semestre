@@ -10,11 +10,11 @@ import Filtro from "../Filtro";
 import { useTheme } from '../../hooks'
 import { Create, Equipment } from "../../controllers";
 import { AuthContext } from "../../contexts";
-import { isConnectad } from "../../utils";
-import Reload from "../Reload";
+import { isConnectad, off, reloadAPP } from "../../utils";
 import { Equipmente } from "../../services";
 import { upload } from "../../supabase/upload";
 import { useNetInfo } from "@react-native-community/netinfo";
+import Reload from "../Reload";
 
 function ListaEquipamento({ navigation }: any) {
   const { equipmente, loaded, list10km, setLoaded, setEquipmente } = useContextoEquipmente();
@@ -28,58 +28,40 @@ function ListaEquipamento({ navigation }: any) {
   const { isInternetReachable } = useNetInfo()
 
 
-  async function teste() {
-    
-    if(isInternetReachable === true && await Create.exite() === true){
-      const dados = await Create.get()
-      const item:any = []
-      
-      
-      dados.forEach(async (res:any) => {
-        if(item.indexOf(res.serial) === -1){
-          const response = await upload(res.serial, res.url);
-          await createEquipmentOffiline({
-            type: res.type,
-            numero: res.numero,
-            serial: res.serial,
-            latitude: res.latitude,
-            longitude: res.longitude,
-            observations: res.observations,
-            url: response,
-            status: true
-          });
-          item.push(res.serial)   
-        }
-        
-      })
-      await Create.drop()
-    }
-
-  }
-
-  teste();
-
   useEffect(() => {
-    const filtered = equipmente.filter((item: any) => {
-      const isActiveFilter = showActive === null ? true : (showActive === 1 ? item.status : showActive === 2 ? !item.status : false);
-      return (
-        isActiveFilter &&
-        (item.type.toLowerCase().includes(searchValue.toLowerCase()) ||
-         item.serial.toLowerCase().includes(searchValue.toLowerCase())
-        )
-      );
-    });
+    const fetchData = async() => {
+      try{
+        if(equipmente != undefined && list10km != undefined){
+          const filtered = equipmente.filter((item: any) => {
+            const isActiveFilter = showActive === null ? true : (showActive === 1 ? item.status : showActive === 2 ? !item.status : false);
+            return (
+              isActiveFilter &&
+              (item.type.toLowerCase().includes(searchValue.toLowerCase()) ||
+               item.serial.toLowerCase().includes(searchValue.toLowerCase())
+              )
+            );
+          });
+      
+          if (showActive === 3) {
+            setFilteredEquipments(list10km.filter((item:any) => {
+              return (
+                (item.type.toLowerCase().includes(searchValue.toLowerCase()) ||
+                  item.serial.toLowerCase().includes(searchValue.toLowerCase()))
+              );
+            }));
+          } else {
+            setFilteredEquipments(filtered);
+          }
+        }
+      }catch(err){
+        console.log(err);
+        
+      }
+    } 
+    fetchData()
+    
 
-    if (showActive === 3) {
-      setFilteredEquipments(list10km.filter((item:any) => {
-        return (
-          (item.type.toLowerCase().includes(searchValue.toLowerCase()) ||
-            item.serial.toLowerCase().includes(searchValue.toLowerCase()))
-        );
-      }));
-    } else {
-      setFilteredEquipments(filtered);
-    }
+    
   }, [searchValue, showActive, equipmente, reload]); // Adicione "reload" como uma dependência
 
   const handleItemPress = (itemId: string) => {
@@ -89,21 +71,11 @@ function ListaEquipamento({ navigation }: any) {
   const handleFilterToggle = (isActive: number | null) => {
     setShowActive(isActive);
   };
-
+  off()
   const handleReload = () => {
     setSearchValue("");
-    (async function () {
-      setLoaded(true)
-      const resp: any = await Equipmente.get()
-
-      Equipment.insert(resp)
-      const equipmentController:any[] = await Equipment.get()
-        
-      setEquipmente(equipmentController)
-      await get10()
-      setLoaded(false)
-    })()
-    teste();
+    reloadAPP()
+    off();
     // Altere o estado de "reload" para forçar a re-renderização
     setReload(!reload);
   };
