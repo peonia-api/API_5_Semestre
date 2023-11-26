@@ -15,6 +15,8 @@
 
 <p align="justify">Além disso, também foram feitos alguns ajustes de tela da 3ª Sprint relativos a dinâmica de transição de telas, a implementação do modo escuro como mais uma opção para facilitar a usabilidade do usuário em termos e luminosidade e criação do guia do usuário, ensinando como operar dentro da aplicação e o botão, dentro do mapa, que permite ao usuário ir atualizando sua posição conforme se desloca na área externa.</p>
 
+<br>
+
  <span id="destaques">
 
 ## 🖥️ Destaques da Sprint
@@ -29,8 +31,6 @@
 <p align="justify"> - Implementação do botão, no mapa, que atualiza a posição do usuário no mapa sem a necessidade de abrir e fechar o aplicativo para isso, conforme o usuário for se movimentando pelo trabalho realizado em campo;</p>
 
 <p align="justify"> - Criação do documento de Guia do Usuário, facilitando o primeiro contato do mesmo com a aplicação e fornecendo orientações para a operação do app;</p>
-
-<p align="justify"> - </p></p>
 
 <br>
   
