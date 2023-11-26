@@ -16,11 +16,11 @@ class Create{
     }
       
     insert(listaJson:any){
-        listaJson.forEach((jsonData:any) => {
+        
             db.transaction((tx) => {
               tx.executeSql(
                 'INSERT INTO equipmentCreate (body) VALUES (?)',
-                [JSON.stringify(jsonData)],
+                [JSON.stringify(listaJson)],
                 (_, { rows }) => {
                   console.log('Dados inseridos com sucesso!');
                 },
@@ -29,7 +29,6 @@ class Create{
                 }
               );
             });
-          });
         //this.removeDuplicatas()
     }
 
@@ -40,9 +39,10 @@ class Create{
             'SELECT * FROM equipmentCreate',
             [],
             (_, { rows }) => {
-              return true
+              resolve(true)
             },
             (_, error) => {
+              resolve(false)
               return false
             }
           );
