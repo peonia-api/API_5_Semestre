@@ -4,6 +4,7 @@ import styles from "./style";
 //import { useNavigation } from "@react-navigation/native";
 
 import { useContextoEquipmente } from "../../hooks";
+import { useNetInfo } from "@react-native-community/netinfo";
 
 interface props {
   text: string;
@@ -19,10 +20,11 @@ interface props {
 export function BotoesDetalhes({ text, style, label, id, status, item }: props) {
   const [ confirm, setConfirm ] = useState(null as any)
   const { patchStatus, setLoaded } = useContextoEquipmente()
-
+  const { isInternetReachable } = useNetInfo()
+  
   function AlertEquipmentt(title:string, label:string) {
     setLoaded(false)
-  
+    if(isInternetReachable === true){
       Alert.alert(`${title}`, `${label}`, [
         {
           text: 'NÃO',
@@ -37,6 +39,17 @@ export function BotoesDetalhes({ text, style, label, id, status, item }: props) 
           },
         },
       ])
+    }
+    else{
+      Alert.alert(
+        "Sem Conexão",
+        "Não identificamos conexão com a internet, dessa forma não é possível realizar a atualização.",
+        [
+          { text: "OK", style: "cancel" }
+        ],
+        { cancelable: false }
+      );
+    }
   }
 
 
