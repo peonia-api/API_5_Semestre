@@ -20,7 +20,7 @@ jobs:
       run:
         docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASS
     - name: Build the Docker image
-      run: docker build server/. -t ${{ secrets.DOCKERHUB_USERNAME }}/server:4.0
+      run: docker build server/. -t ${{ secrets.DOCKERHUB_USERNAME }}/server:4.1
     - name: docker push
-      run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/server:4.0
+      run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/server:4.1
 
