@@ -31,9 +31,7 @@ function ListaEquipamento({ navigation }: any) {
   async function teste() {
     
     if(isInternetReachable === true && await Create.exite() === true){
-      console.log("oii");
       const dados = await Create.get()
-      console.log(dados);
       const item:any = []
       
       
@@ -67,7 +65,8 @@ function ListaEquipamento({ navigation }: any) {
       return (
         isActiveFilter &&
         (item.type.toLowerCase().includes(searchValue.toLowerCase()) ||
-          item.serial.toLowerCase().includes(searchValue.toLowerCase()))
+         item.serial.toLowerCase().includes(searchValue.toLowerCase())
+        )
       );
     });
 
@@ -101,6 +100,7 @@ function ListaEquipamento({ navigation }: any) {
       const equipmentController:any[] = await Equipment.get()
         
       setEquipmente(equipmentController)
+      await get10()
       setLoaded(false)
     })()
     teste();
