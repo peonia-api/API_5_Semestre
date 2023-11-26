@@ -18,7 +18,7 @@ export class Equipment {
     @Column()
     numero: number;
     
-    @Column({ type: "varchar", length: 30 })
+    @Column({ type: "varchar", unique: true, length: 30 })
     serial: string;
 
     @Column({ type: "double precision" })
