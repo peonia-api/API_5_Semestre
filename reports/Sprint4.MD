@@ -52,8 +52,11 @@
 ## 👩‍💻 Entrega
 <p align="center">
 
-- TEXTO ENTREGA:
-![](LINK DO GIF)
+- Modo escuro (Modo Dark) da aplicação (para questões de luminosidade ao usuário):
+![](https://github.com/peonia-api/API_5_Semestre/blob/main/videos/Demonstração-modo-escuro.gif)
+
+- Botão de atualização da posição do usuário:
+![](https://github.com/peonia-api/API_5_Semestre/blob/main/videos/Atualização-da-posição.gif)
 
 </p>
 <br>
