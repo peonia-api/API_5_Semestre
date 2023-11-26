@@ -28,9 +28,12 @@ function ListaEquipamento({ navigation }: any) {
   const { isInternetReachable } = useNetInfo()
 
   async function teste() {
-  
-    if(isInternetReachable === true && await Create.exite()){
+    
+    if(isInternetReachable === true && await Create.exite() === true){
+      console.log("oii");
       const dados = await Create.get()
+      console.log(dados);
+      
       dados.forEach(async (res:any) => {
         const response = await upload(res.serial, res.url);
         await createEquipment({
@@ -39,7 +42,7 @@ function ListaEquipamento({ navigation }: any) {
           serial: res.serial,
           latitude: res.latitude,
           longitude: res.longitude,
-          observations: res.observacao,
+          observations: res.observations,
           url: response,
           status: true
         });
@@ -93,6 +96,7 @@ function ListaEquipamento({ navigation }: any) {
       setEquipmente(equipmentController)
       setLoaded(false)
     })()
+    teste();
     // Altere o estado de "reload" para forçar a re-renderização
     setReload(!reload);
   };
