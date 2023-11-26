@@ -22,7 +22,7 @@ export default function Cadastro({ route, navigation }: any) {
   const [selectedEquipa, setSelectedEquipa] = useState<string>('');
   const [image, setImage] = useState<any>(null);
   const [uploading, setUploading] = useState(false); // Estado para controlar o envio
-  const { createEquipment, get10 } = useContextoEquipmente();
+  const { createEquipment, get10, setEquipmente } = useContextoEquipmente();
 
   const [selectedImages, setSelectedImages] = useState<String[] | any>([]);
 
@@ -233,6 +233,16 @@ export default function Cadastro({ route, navigation }: any) {
           url: selectedImages,
           status: true
         })
+        setEquipmente((prevEquipmente:any) => [...prevEquipmente, {
+          type: selectedEquipa,
+          numero: numero,
+          serial: serial,
+          latitude: latitude,
+          longitude: longitude,
+          observations: observacao,
+          url: selectedImages,
+          status: true
+        }]);
       }
       
     } catch (error) {

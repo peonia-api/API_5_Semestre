@@ -71,7 +71,7 @@ class Create{
               resolve(dataFromDatabase);
             },
             (_, error) => {
-              console.error('Erro ao recuperar dados:', error);
+              //console.error('Erro ao recuperar dados:', error);
               return false
             }
           );

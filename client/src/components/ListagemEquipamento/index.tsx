@@ -24,7 +24,7 @@ function ListaEquipamento({ navigation }: any) {
   const [showActive, setShowActive] = useState<number | null>(null);
   const theme = useTheme();
   const { typeCorMoon } = useContext(AuthContext);
-  const { createEquipment, get10 } = useContextoEquipmente();
+  const { createEquipmentOffiline, get10, } = useContextoEquipmente();
   const { isInternetReachable } = useNetInfo()
 
 
@@ -40,7 +40,7 @@ function ListaEquipamento({ navigation }: any) {
       dados.forEach(async (res:any) => {
         if(item.indexOf(res.serial) === -1){
           const response = await upload(res.serial, res.url);
-          await createEquipment({
+          await createEquipmentOffiline({
             type: res.type,
             numero: res.numero,
             serial: res.serial,
@@ -72,7 +72,7 @@ function ListaEquipamento({ navigation }: any) {
     });
 
     if (showActive === 3) {
-      setFilteredEquipments(list10km.filter((item) => {
+      setFilteredEquipments(list10km.filter((item:any) => {
         return (
           (item.type.toLowerCase().includes(searchValue.toLowerCase()) ||
             item.serial.toLowerCase().includes(searchValue.toLowerCase()))

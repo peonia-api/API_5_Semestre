@@ -36,6 +36,15 @@ export function Provider({ children }: any) {
     }
   };
 
+  const createEquipmentOffiline = async (newEquipment: Props) => {
+    try {
+      const createdEquipment = await Equipmente.postOffiline(newEquipment);
+      setEquipmente((prevEquipmente) => [...prevEquipmente, createdEquipment]);
+    } catch (error) {
+      console.error('Erro ao criar equipamento:', error);
+    }
+  };
+
   const getEquipment = async (id: string) => {
     try {
       setLoaded(true)
@@ -119,7 +128,7 @@ export function Provider({ children }: any) {
 
 
   return (
-    <ContextoEquipmente.Provider value={{ equipmente, setEquipmente, createEquipment, getEquipment, putEquipment, loaded, setLoaded, patchStatus, get10, list10km }}>
+    <ContextoEquipmente.Provider value={{ equipmente, setEquipmente, createEquipment, createEquipmentOffiline ,getEquipment, putEquipment, loaded, setLoaded, patchStatus, get10, list10km }}>
       {children}
     </ContextoEquipmente.Provider>
   )

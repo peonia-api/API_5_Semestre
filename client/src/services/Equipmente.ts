@@ -57,6 +57,15 @@ class Equipmente{
         }
     }
 
+    async postOffiline(body: Props): Promise<Props | any>{
+        try{
+            const res = await api.post('/equipment/createEquipment', body)
+            return res.data
+        }catch(err){            
+            console.log("Erro aqui");
+        }
+    }
+
     async put(id: string, body: Props): Promise<Props>{
         try{
             const res = await api.put(`/equipment/updateEquipment/${id}`, body)
