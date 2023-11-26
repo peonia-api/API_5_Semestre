@@ -61,38 +61,48 @@
 <h4> Entrega da Sprint 2 </h4>
 
 - Cadastro de usuário:
+  
 ![](https://github.com/peonia-api/API_5_Semestre/blob/main/videos/Cadastro_Usu%C3%A1rio.gif)
 
 - Login e operação:
+  
 ![](https://github.com/peonia-api/API_5_Semestre/blob/main/videos/Login_Opera%C3%A7%C3%A3o.gif)
 
 - Redefinição de senha (neste caso já havia sido feito o disparo do e-mail para gerar o token):
+  
 ![](https://github.com/peonia-api/API_5_Semestre/blob/main/videos/Redefinir_Senha.gif)
 
 <h4> Entrega da Sprint 3 </h4>
 
 - Login do usuário Admin e página para gestão de cadastro de usuários:
+  
 ![](https://github.com/peonia-api/API_5_Semestre/blob/main/videos/Login-do-Admin-e-aprovação-de-cadastros.gif)
 
 - Carrossel de Imagens:
+  
 ![](https://github.com/peonia-api/API_5_Semestre/blob/main/videos/Carrossel-de-Imagens.gif)
 
 - Novo sistema de listagem de equipamentos e filtros (ativos, desativados e 10km):
+  
 ![](https://github.com/peonia-api/API_5_Semestre/blob/main/videos/Nova-Listagem-Equipamentos.gif)
 
 - Novos elementos de mapa e listagem de equipamentos:
+  
 ![](https://github.com/peonia-api/API_5_Semestre/blob/main/videos/Novos-Elementos-de-Mapa-e-Listagem-de-Equipamentos.gif)
 
 - Alteração de cor e estilização no Meu Perfil:
+  
 ![](https://github.com/peonia-api/API_5_Semestre/blob/main/videos/Alteração-de-Cor-e-Estilo.gif)
 
 <h4> Entrega da Sprint 4 </h4>
 
 - Modo escuro (Modo Dark) da aplicação (para questões de luminosidade ao usuário):
+  
 ![](https://github.com/peonia-api/API_5_Semestre/blob/main/videos/Demonstração-modo-escuro.gif)
 
 - Botão de atualização da posição do usuário:
-- ![](https://github.com/peonia-api/API_5_Semestre/blob/main/videos/Atualização-da-posição.gif)
+  
+![](https://github.com/peonia-api/API_5_Semestre/blob/main/videos/Atualização-da-posição.gif)
   
 <br>
 
