@@ -1,16 +1,21 @@
-import { View, Text, Image, TextInput, TouchableOpacity, ScrollView, Alert } from "react-native"
+import { View, Text, Image, TextInput, TouchableOpacity, ScrollView, Alert, Modal } from "react-native"
 import styles from "./style";
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef, useContext } from "react";
 import { Picker } from "@react-native-picker/picker";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import * as ImagePicker from 'expo-image-picker';
 import { BotaoAtualizar, BotoesDetalhes } from "../Botao";
-import { useContextoEquipmente } from "../../hooks";
+import { useContextUser, useContextoEquipmente } from "../../hooks";
 import LottieView from 'lottie-react-native';
 import { useFocusEffect } from "@react-navigation/native";
-import { Props } from "../../types";
 import { removeFileOne } from "../../supabase/delete";
-import upload from "../../supabase/upload"; 
+import { upload } from "../../supabase/upload";
+import { Camera, CameraType } from 'expo-camera';
+import { FontAwesome } from "@expo/vector-icons"
+import Carousel from "react-native-snap-carousel";
+import { AuthContext } from "../../contexts";
+
+
 
 Icon.loadFont();
 
@@ -18,26 +23,29 @@ export default function Detalhe({ route, navigation }: any) {
 
     const { equipmente, setLoaded, loaded, getEquipment, putEquipment } = useContextoEquipmente();
     const { itemId } = route.params
-
-    // const [ novoEquipamento, setNovoEquipamento ] = useState<any>()
-
-    // Encontre o equipamento com base no itemId
-
-    // Defina estados iniciais com base no equipamento selecionado
+    const { typeCor } = useContextUser()
     const [selectedEquipa, setSelectedEquipa] = useState<string>();
     const [image, setImage] = useState<any>();
-    const [numero, setNumero] = useState<string>();
+    const [numero, setNumero] = useState<number | null>(null);
     const [imei, setImei] = useState<any>();
-    const [latitude, setLatitude] = useState<string>();
-    const [longitude, setLongitude] = useState<string>();
+    const [latitude, setLatitude] = useState<number| any>();
+    const [longitude, setLongitude] = useState<number | any>();
     const [observacoes, setObservacoes] = useState<string>();
     const [status, setStatus] = useState<boolean>();
-    const [verficaImage, setVerificaImagem] = useState<any>()
-    const [isEnabled, setIsEnabled] = useState(false);
+    const [verficaImage, setVerificaImagem] = useState<string[] | any>([])
+    const { typeCorMoon } = useContext(AuthContext);
+
+    const [type, setType] = useState(CameraType.back);
+    const [hasPermission, setHasPermission] = useState<boolean | null>(null);
+    const camRef = useRef<any | null>(null);
+    const [capturedPhoto, setCapturedPhoto] = useState(null)
+    const [isCameraVisible, setCameraVisible] = useState(false);
+
+    const [selectedImages, setSelectedImages] = useState<String[] | any>([]);
 
 
     useFocusEffect(useCallback(() => {
-    const { itemId } = route.params
+        const { itemId } = route.params
 
         try {
 
@@ -46,13 +54,14 @@ export default function Detalhe({ route, navigation }: any) {
                 if (novoEquipamento) {
                     setSelectedEquipa(novoEquipamento?.type || '');
                     setImage(novoEquipamento?.url[0] || null);
+                    setSelectedImages(novoEquipamento?.url || null);
                     setNumero(novoEquipamento?.numero.toString() || '');
                     setImei(novoEquipamento?.serial || '');
                     setLatitude(novoEquipamento?.latitude.toString() || '');
                     setLongitude(novoEquipamento?.longitude.toString() || '');
                     setObservacoes(novoEquipamento?.observations || '');
                     setStatus(novoEquipamento?.status || '')
-                    setVerificaImagem(novoEquipamento?.url[0] || null)
+                    setVerificaImagem(novoEquipamento?.url || null)
                 }
             }
             init()
@@ -60,39 +69,180 @@ export default function Detalhe({ route, navigation }: any) {
         } catch (err) {
             console.log("Assim não");
             //navigation.navigate('Cadastro')
+        }finally{
+            setLoaded(false)
         }
 
 
     }, [equipmente, route.params]))
 
-    console.log(image);
+
+    useEffect(() => {
+        (async () => {
+            const { status } = await Camera.requestCameraPermissionsAsync();
+            setHasPermission(status === 'granted');
+        })();
+    }, []);
+
+    if (hasPermission === null) {
+        return <Text>Verificando permissão de câmera...</Text>;
+    }
+
+    if (!hasPermission) {
+        return <Text>Permissão de câmera não concedida</Text>;
+    }
+
+    function toggleCameraType() {
+        setType(current => (current === CameraType.back ? CameraType.front : CameraType.back));
+    }
+    async function takePicture() {
+        if (camRef) {
+            const data = await camRef.current.takePictureAsync();
+            setCapturedPhoto(data.uri)
+            selectedImages[selectedImages.length] = data.uri
+            setCameraVisible(false);
+        }
+
+    }
+    const showCamera = () => {
+        setCameraVisible(true);
+    };
+
+    const hideCamera = () => {
+        setCameraVisible(false);
+    };
+
+    const mudarPagi = () => {
+        setLoaded(false)
+        console.log("oii");
+        
+        navigation.navigate('Equipamentos')
+    }
+
+    const validateLatitude = (value: string | null) => {
+        const regex = /^-?\d{2,3}\.\d{3,}$/; // Padrão xx.xxxx ou xxx.xxxxx
+        if (!value) {
+          Alert.alert("Campo obrigatório", "Digite uma latitude" );
+          return false;
+        }
+        const latiValue = value.replace(',', '.');
+        if (!regex.test(latiValue)) {
+          Alert.alert("Formato inválido", "Digite uma latitude válida no formato xx.xxxx ou xxx.xxxxx.");
+          return false;
+        }
+        return true;
+      };
+      
+      const validateLongitude = (value: string | null) => {
+        const regex = /^-?\d{2,3}\.\d{3,}$/; // Padrão xx.xxxx ou xxx.xxxxx
+        if (!value) {
+          Alert.alert("Campo obrigatório", "Digite uma logitude");
+          return false;
+        }
+        const longiValue = value.replace(',', '.');
+        if (!regex.test(longiValue)) {
+          Alert.alert("Formato inválido", "Digite uma longitude válida no formato xx.xxxx ou xxx.xxxxx.");
+          return false;
+        }
+        return true;
+      };
     
 
     const handleAtualizar = async () => {
-        try {
+        if (selectedImages.length === 0) {
+            Alert.alert("Campo obrigatório", "Selecione uma Imagem.");
+            return;
+          }
+          if (!validateLatitude(latitude !== null ? latitude.toString() : null)) {
+            return;
+          }
+        
+          if (!validateLongitude(longitude !== null ? longitude.toString() : null)) {
+            return;
+          }
+          if (!selectedEquipa) {
+            Alert.alert("Campo obrigatório", "Selecione um tipo de equipamento.");
+            return;
+          }
+      
+          if (!numero || isNaN(numero)) {
+            Alert.alert("Campo obrigatório", "Número deve ser um número válido.");
+            return;
+          }
+      
+          if (!imei) {
+            Alert.alert("Campo obrigatório", "IMEI é obrigatório.");
+            return;
+          }
+      
+          if (!observacoes) {
+            Alert.alert("Campo obrigatório", "Observação deve ser válido.");
+            return;
+          }
+      
+        try {            
             setLoaded(true)
-            if(verficaImage === image){
-                await putEquipment(itemId, { type: selectedEquipa, numero: numero, serial: imei, latitude: latitude, longitude: longitude, observations: observacoes, url: [image]  })
-                console.log('Equipamento atualizado com sucesso');           
-            }else{  
-                console.log("entrou aqquiiiiii");
-                const nameArquivo = verficaImage.split('/')[8]
-                removeFileOne(nameArquivo).then(async (res) => {   
-                const response = await upload(imei, { uri: image })
-                await putEquipment(itemId, { type: selectedEquipa, numero: numero, serial: imei, latitude: latitude, longitude: longitude, observations: observacoes, url: response })
-             })  
-            }       
-            
+
+            if (verficaImage === selectedImages) {
+                await putEquipment(itemId, { type: selectedEquipa, numero: numero, serial: imei, latitude: latitude, longitude: longitude, observations: observacoes, url: selectedImages })
+                console.log('Equipamento atualizado com sucesso');
+                mudarPagi()
+            } else {
+                let imagens:any = []
+                const novosImagem = selectedImages.filter((image:string) => image.startsWith('file:'))
+
+                const listImagens = verficaImage.filter((item:any) => {
+                    if (!selectedImages.includes(item)) {
+                        const nameArquivo = item.split('/')[8];
+                        removeFileOne(nameArquivo).catch((error) => {
+                            console.error('Erro ao remover arquivo:', error);
+                        });                        
+                        return false; // O item será removido da lista
+                    }
+                    
+                    return true; // O item será mantido na lista
+                });
+                
+                
+                if(novosImagem.length > 0){
+                    upload(imei, novosImagem).then(async (res) => {
+                        
+                        imagens = listImagens.concat(res) 
+                        
+                        await putEquipment(itemId, { 
+                            type: selectedEquipa, 
+                            numero: numero, 
+                            serial: imei, 
+                            latitude: latitude, 
+                            longitude: longitude, 
+                            observations: observacoes, 
+                            url: imagens
+                        })
+                        mudarPagi()
+                    })
+                }else{
+                    
+                    await putEquipment(itemId, {  
+                        type: selectedEquipa, 
+                        numero: numero, 
+                        serial: imei, 
+                        latitude: latitude, 
+                        longitude: longitude, 
+                        observations: observacoes, 
+                        url: listImagens 
+                    })
+                    mudarPagi()
+                }
+            }
         }
         catch (err) {
             console.error('Erro ao atualizar equipamento:', err);
-        }
-         finally{
-            setLoaded(false)
-            navigation.navigate('Equipamentos')
+            mudarPagi()
         }
     };
-
+    
+   
+    
   
     const pickImage = async () => {
         const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -100,61 +250,32 @@ export default function Detalhe({ route, navigation }: any) {
         if (status === 'granted') {
             let result = await ImagePicker.launchImageLibraryAsync({
                 mediaTypes: ImagePicker.MediaTypeOptions.All,
-                allowsEditing: true,
+                // allowsEditing: true,
+                allowsMultipleSelection: true,
                 aspect: [4, 3],
                 quality: 1,
             });
 
             if (!result.canceled) {
-                setImage(result.assets[0].uri);
+                const uris = result.assets.map((asset) => asset.uri);
+                setSelectedImages([...selectedImages, ...uris]);
             }
         } else {
             Alert.alert("Permissão negada", "Você precisa permitir o acesso à galeria de imagens para adicionar uma imagem.");
         }
     };
 
-    const removeImage = () => {
-        setImage(null);
+    const removeImage = (indexToRemove: number) => {
+        const updatedImages = selectedImages.filter((_:any, index:any) => index !== indexToRemove);
+        setSelectedImages(updatedImages);
     };
 
     const handleEquipamentoChange = (equipamento: string) => {
         setSelectedEquipa(equipamento);
     };
 
-    const handleStatusBotao = () => {
-        try {
-            if (status === true)
-                return (
-                    <BotoesDetalhes
-                        text="Desativar"
-                        style={styles.botaoDesativar}
-                        label="Desativar Equipamento"
-                        message="desativado"
-                        id= {itemId}
-                        status={status}
-                    />)
-
-            else {
-                return (
-                    <BotoesDetalhes
-                        text="Ativar"
-                        style={styles.botaoAtivar}
-                        label="Ativar Equipamento"
-                        message="ativado"
-                        id= {itemId}
-                        status={status}
-                    />
-                )
-            }
-        } catch (err) {
-            console.error('Erro ao atualizar a Imagem:', err);
-        }
-
-    };
-
-
     return (
-        <View style={styles.containerPrincipal}>
+        <View style={[styles.containerPrincipal, {backgroundColor: typeCorMoon[0]}]}>
             {loaded && (
                 <View style={styles.uploadingAnimation}>
                     <LottieView
@@ -171,21 +292,66 @@ export default function Detalhe({ route, navigation }: any) {
             )}
             <ScrollView>
                 <View style={styles.container}>
-                    <View style={styles.containerImagem} >
-                        {image && <Image source={{ uri: image }} style={styles.image} />}
-                        {/* <Image source={require('../../assets/iconImage.png')} style={styles.image}  /> */}
+                    <View style={[styles.containerImagem, {borderColor: typeCor[1]}]}>
+                    {selectedImages.length > 0 && (
+                        <Carousel
+                        data={selectedImages}
+                        renderItem={({ item, index }) => (
+                            <View style={styles.image}>
+                            <Image source={{ uri: item as string }} style={styles.image} />
+                            <TouchableOpacity
+                                style={styles.iconDeletar}
+                                onPress={() => removeImage(index)}
+                            >
+                                <Icon name="trash" size={25} color="#fff" />
+                            </TouchableOpacity>
+                            </View>
+                        )}
+                        sliderWidth={400}
+                        itemWidth={380}
+                        keyExtractor={(item, index) => index.toString()}
+                        />
+                    )}
                     </View>
 
                     <View style={styles.containerIcons}>
-                        <TouchableOpacity style={styles.iconsPlusMinus} onPress={pickImage}>
+                        <TouchableOpacity style={[styles.icons, {backgroundColor: typeCor[1]}]} onPress={pickImage}>
                             <Icon name="plus" size={25} color="#000000" />
                         </TouchableOpacity>
-                        {/* <TouchableOpacity style={styles.iconsPlusMinus} onPress={pickImage}>
+
+                        <TouchableOpacity style={[styles.icons, {backgroundColor: typeCor[1]}]} onPress={() => setCameraVisible(true)}>
                             <Icon name="camera" size={25} color="#000000" />
-                        </TouchableOpacity> */}
-                        <TouchableOpacity style={styles.iconsPlusMinus} onPress={removeImage}>
-                            <Icon name="trash" size={25} color="#000000" />
                         </TouchableOpacity>
+
+
+                        <Modal
+                            visible={isCameraVisible}
+                            transparent={true}
+                            animationType="slide"
+                        >
+                            <View style={{ width: "100%", height: " 100%" }}>
+                                <View style={styles.modalContainer}>
+                                    <Camera type={type} style={styles.camera} ref={camRef}>
+                                        <View style={styles.containerButtonCamera}>
+                                            <TouchableOpacity onPress={hideCamera} style={styles.icons}>
+                                                <FontAwesome name="close" size={30} color="#fff" />
+                                            </TouchableOpacity>
+
+                                            <TouchableOpacity style={styles.icons} onPress={toggleCameraType}>
+                                                <FontAwesome name="exchange" size={30} color="red" />
+                                            </TouchableOpacity>
+
+                                            <TouchableOpacity style={styles.buttonCamera} onPress={takePicture}>
+                                                <FontAwesome name="camera" size={30} color="#fff" />
+                                            </TouchableOpacity>
+
+                                        </View>
+
+                                    </Camera>
+
+                                </View>
+                            </View>
+                        </Modal>
                     </View>
 
                 </View>
@@ -195,7 +361,8 @@ export default function Detalhe({ route, navigation }: any) {
                         <Picker
                             selectedValue={selectedEquipa}
                             onValueChange={handleEquipamentoChange}
-                            style={styles.picker}
+                            style={{width: '60%', height: 50, marginBottom: 15, backgroundColor: '#f2f2f2' }}
+                            mode="dropdown"
                         >
                             <Picker.Item label="Equipamento" value="" enabled={false} />
                             <Picker.Item label="Transformador" value="Transformador" />
@@ -207,37 +374,32 @@ export default function Detalhe({ route, navigation }: any) {
                         <TextInput
                             placeholder="Número"
                             keyboardType="numeric"
-                            style={styles.input}
-                            defaultValue={numero}
-                            onChangeText={(text) => setNumero(text)}
+                            style={[styles.input, {borderColor: typeCor[1]}]}
+                            defaultValue={numero !== null ? numero.toString() : ''}
+                            onChangeText={(text:any) => setNumero(text)}
                         />
 
                     </View>
-
                     <TextInput
                         placeholder="IMEI"
-                        style={styles.inputInteiro}
+                        style={[styles.inputInteiro, {borderColor: typeCor[1]}]}
                         defaultValue={imei}
                         onChangeText={(text) => setImei(text)}
                     />
 
 
                     <View style={styles.containerLoLa}>
-                        <Text style={styles.textFont}>Latitude:</Text>
                         <TextInput
                             keyboardType="numeric"
                             placeholder="Latitude"
-                            style={styles.inputLoLa}
+                            style={[styles.inputLoLa, {borderColor: typeCor[1]}]}
                             defaultValue={latitude}
                             onChangeText={(text) => setLatitude(text)}
                         />
-
-
-                        <Text style={styles.textFont}>Longitude:</Text>
                         <TextInput
                             keyboardType="numeric"
                             placeholder="Longitude"
-                            style={styles.inputLoLa}
+                            style={[styles.inputLoLa, {borderColor: typeCor[1]}]}
                             defaultValue={longitude}
                             onChangeText={(text) => setLongitude(text)}
                         />
@@ -246,7 +408,7 @@ export default function Detalhe({ route, navigation }: any) {
 
                     <TextInput
                         placeholder="Observações"
-                        style={styles.inputInteiro}
+                        style={[styles.inputInteiro, {borderColor: typeCor[1]}]}
                         defaultValue={observacoes}
                         onChangeText={(text) => setObservacoes(text)}
                     />
@@ -255,9 +417,30 @@ export default function Detalhe({ route, navigation }: any) {
 
 
                 <View style={styles.containerBotao}>
-
-                    {handleStatusBotao()}
-
+                    {
+                        status === true ?
+                            <BotoesDetalhes
+                                text={"Desativar"}
+                                style={[
+                                    styles.botaoAtivar,
+                                    { backgroundColor: 'rgb(174, 59, 59)'}
+                                ]}
+                                label={("Desativar") + " Equipamento"}
+                                id={itemId}
+                                status={status}
+                            />
+                        :
+                            <BotoesDetalhes
+                                text={"Ativar"}
+                                style={[
+                                    styles.botaoAtivar,
+                                    { backgroundColor: 'rgb(96, 145, 193)' }
+                                ]}
+                                label={("Ativar") + " Equipamento"}
+                                id={itemId}
+                                status={status}
+                            />
+                    }
                     <BotaoAtualizar handle={handleAtualizar} />
                 </View>
 

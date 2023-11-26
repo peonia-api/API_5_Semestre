@@ -1,4 +1,5 @@
 {
+
   "expo": {
     "plugins": [
       [
@@ -6,13 +7,19 @@
         {
           "photosPermission": "The app accesses your photos to let you share them with your friends."
         }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow $(cadastro_equipamentos) to access your camera."
+        }
       ]
     ],
     "name": "cadastro_equipamentos",
     "slug": "cadastro_equipamentos",
     "version": "1.0.0",
     "orientation": "portrait",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "automatic",
     "splash": {
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"

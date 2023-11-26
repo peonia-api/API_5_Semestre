@@ -1,30 +1,86 @@
-import React, { useEffect, useRef, useState } from "react";
-import { View, Image } from "react-native";
-import MapView, { Marker } from "react-native-maps";
+import React, { useEffect, useState } from "react";
+import { View, Alert } from "react-native";
 import { requestForegroundPermissionsAsync, getCurrentPositionAsync, LocationObject } from "expo-location";
 import LottieView from 'lottie-react-native';
 import { useContextoEquipmente } from '../../hooks'
+import Equipamento10km from './List10km'
+import MapaView from "./Mapa";
+import SubList from "./Animated";
 
-export default function Mapa() {
+export default function Mapa({ navigation }: any) {
   const [location, setLocation] = useState<LocationObject | null>(null);
   const [mapLoaded, setMapLoaded] = useState(false);
-  const { equipmente } = useContextoEquipmente()
+  const { list10km } = useContextoEquipmente()
+
+  const [confirm, setConfirm ] = useState<boolean>(false)
+  const [ newEquipmento, setNewEquipment ] = useState({ latitude: 0, longitude: 0} as any)
+  const [flatListVisible, setFlatListVisible] = useState(false);
+  const [mapRegion, setMapRegion] = useState({} as any);
 
 
-  
   async function requestLocationsPermissions() {
     const { granted } = await requestForegroundPermissionsAsync();
 
     if (granted) {
       const currentPosition = await getCurrentPositionAsync();
+      setMapRegion({
+        latitude: currentPosition.coords.latitude,
+        longitude: currentPosition.coords.longitude,
+        latitudeDelta: 0.010,
+        longitudeDelta: 0.010,
+      })
       setLocation(currentPosition);
       setMapLoaded(true); // Define mapLoaded como true após obter a localização.
+
     }
   }
-
-  useEffect(() => {
+  useEffect( () => { 
     requestLocationsPermissions();
   }, []);
+
+ 
+
+  const alertar = (e:any) => {
+    const newEquipment = e
+    setTimeout(function() {
+      Alert.alert("Criar", "Você deseja criar um equipamento aqui?", [
+        {
+          text: 'NÃO',
+          onPress: () => {
+            setConfirm(false)
+          },
+        },
+        {
+          text: 'SIM',
+          onPress: () => {
+            setConfirm(true)
+            navigation.navigate('Novo Equipamento', {newEquipment})
+          },
+        },
+      ])
+    }, 1000)
+  }
+
+
+  const detalhes = (itemId:any) => {
+    setTimeout(function() {
+      Alert.alert("Detalhes", "Você deseja ver os detalhes do equipamento?", [
+        {
+          text: 'NÃO',
+          onPress: () => {
+            setConfirm(false)
+          },
+        },
+        {
+          text: 'SIM',
+          onPress: () => {
+            setConfirm(true)
+            navigation.navigate('Detalhes', {itemId})
+          },
+        },
+      ])
+    }, 1000); 
+  }
 
   return (
     <View style={{ flex: 1 }}>
@@ -44,40 +100,21 @@ export default function Mapa() {
         />
       ) : (
         location && (
-          <MapView
-            style={{ flex: 1 }}
-            initialRegion={{
-              latitude: location.coords.latitude,
-              longitude: location.coords.longitude,
-              latitudeDelta: 0.010,
-              longitudeDelta: 0.010,
-            }}
-          >
-            {equipmente.map((coordenada, index) => (
-              <Marker
-                key={index}
-                coordinate={{
-                  latitude: Number(coordenada.latitude),
-                  longitude: Number(coordenada.longitude)
-                }}
-                title={`${coordenada.type} (Serial: ${coordenada.serial})`}
-                description={`Latitude: ${coordenada.latitude}, Longitude: ${coordenada.longitude}`}
-              />
-            ))}
-
-            {location.coords.latitude && location.coords.longitude && (
-              <Marker
-                coordinate={{
-                  latitude: location.coords.latitude,
-                  longitude: location.coords.longitude,
-                }}
-                title="Minha Localização"
-                pinColor="blue"
-              />
-            )}
-          </MapView>
+          <MapaView 
+            alertar={alertar} 
+            detalhes={detalhes} 
+            location={location}
+            mapRegion={mapRegion}
+            newEquipmento={newEquipmento}
+            setMapRegion={setMapRegion}
+            setNewEquipment={setNewEquipment}
+          /> 
         )
       )}
+      <SubList flatListVisible={flatListVisible} setFlatListVisible={setFlatListVisible}/>
+      {flatListVisible && (
+        <Equipamento10km list10km={list10km} mapRegion={mapRegion} setMapRegion={setMapRegion}/>
+      )}  
     </View>
   );
 }

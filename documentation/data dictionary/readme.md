@@ -4,7 +4,8 @@
 <p align="center">
     <a href="#objetivo">Objetivo</a> |
     <a href="#bancodados">Banco de Dados</a> |
-    <a href="#colecao">Coleções</a> 
+    <a href="#colecao">Coleções</a> |
+    <a href="#tabelas">Tabelas</a> 
 </p>
 
 
@@ -20,6 +21,8 @@
 <h2> 📓 Banco de Dados</h2>
 
 <p align="justify"> Para a persistência dos dados relativos aos equipamentos cadastrados na aplicação, faz-se o uso do MongoDB (NoSQL). Dessa forma, o tratamento dos dados se dá em Collections (Coleções).</p>
+
+<p align="justify"> Para a persistência dos dados relativos aos usuários cadastrados na aplicação, faz-se o uso do PostgreSQL. Dessa forma, o tratamento dos dados se dá com atributos organizados em colunas que, por sua vez, pertencem a tabelas.</p>
 <br>
 
 <span id="colecao">
@@ -42,6 +45,28 @@
 | `url` | String | **https://cbrqdjaeurmeftioqfaz.supabase.co/storage/v1/object/public/imagens/Linux.jpeg** | Url relativa a imagem do Equipamento (assume null caso não tenha imagem).
 | `status` | boolean | **true** | Status do Equipamento (true para Ativo e false para Desativado)
 <br>
+
+<span id="tabelas">
+
+<h2> :dart: Tabelas</h2>
+
+<p align="justify"> 📔 Tabela User:</p>
+
+<p align="justify"> Dados Relativos aos Usuários cadastrados na aplicação.</p>
+
+| Columns | Type | Example Value | Description |
+| --- | --- | --- | --- |
+| id | Number | 32 | Id sequencial que identifica o registro do usuário cadastrado 
+| userCpf | String | **01234567890** | Número de CPF do Usuário 
+| userMatricula | String | **012345** | Número de matrícula do Usuário 
+| userTelefone | String | **99999999999** | Número de telefone do Usuário 
+| userName | String | **Larissa Silva** | Nome do Usuário 
+| userEmail | String | **larissa.silva179@fatec.sp.gov.br** | E-mail do Usuário 
+| userType | userType | **2** | Enumerador relativo ao tipo do usuário (1 para Admin / 2 para User comum) 
+| userPassword | String | --- | Senha do usuário criptografa em hash 
+| token | String | **AF8T4G** | Token gerado quando da solicitação de senha para verificação em dois fatores 
+| icone | String | **https://cbrqdjaeurmeftioqfaz.supabase.co/storage/v1/object/public/imagens/Linux.jpeg** | Url relativa a foto do Usuário 
+| status | Number | **3** | Indica o status do cadastro em relação à aplicação (1 - Aprovado / 2 - Pendente / 3 - Arquivado)
 
 
 → [Voltar ao topo](#topo)

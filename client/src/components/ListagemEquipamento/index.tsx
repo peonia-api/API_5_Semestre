@@ -1,91 +1,90 @@
-import React, { useEffect, useState } from "react";
-import { View, Text, Image, FlatList, SafeAreaView, TouchableOpacity } from "react-native";
+import React, { useContext, useEffect, useState } from "react";
+import { Text, View } from "react-native";
 import styles from "./style";
 import { useContextoEquipmente } from '../../hooks';
 import Pesquisa from "../Pesquisa";
 import LottieView from 'lottie-react-native';
 import { Props } from "../../types/equipmente";
-
-
+import CardEquipmet from "../Card";
+import Filtro from "../Filtro";
+import { useTheme } from '../../hooks'
+import { Create } from "../../controllers";
+import { AuthContext } from "../../contexts";
+import { isConnectad } from "../../utils";
 
 function ListaEquipamento({ navigation }: any) {
-  const { equipmente, loaded } = useContextoEquipmente();
-  
-  
-  
+  const { equipmente, loaded, list10km } = useContextoEquipmente();
   const [filteredEquipments, setFilteredEquipments] = useState<Props[]>(equipmente);
-  const [searchValue, setSearchValue] = useState(""); 
+  const [searchValue, setSearchValue] = useState("");
+
+  const [showActive, setShowActive] = useState<number | null>(null); // Inicialize com null
+  const theme = useTheme();
+  const { typeCorMoon } = useContext(AuthContext);
+
+  async function teste() {
+    console.log(await Create.get());
+  }
+
+  teste()
 
   useEffect(() => {
-    const filtered = equipmente.filter((item) =>
-      item.type.toLowerCase().includes(searchValue.toLowerCase()) ||
-      item.serial.toLowerCase().includes(searchValue.toLowerCase())
-    );
-    setFilteredEquipments(filtered);
-  }, [searchValue, equipmente]);
-  
+    const filtered = equipmente.filter((item:any) => {
+      const isActiveFilter = showActive === null ? true : (showActive === 1 ? item.status : showActive === 2 ? !item.status : false);
+      return (
+        isActiveFilter &&
+        (item.type.toLowerCase().includes(searchValue.toLowerCase()) ||
+          item.serial.toLowerCase().includes(searchValue.toLowerCase()))
+      );
+    });
+    if (showActive === 3) {
+      setFilteredEquipments(list10km.filter((item) => {return (
+        (item.type.toLowerCase().includes(searchValue.toLowerCase()) ||
+          item.serial.toLowerCase().includes(searchValue.toLowerCase()))
+      );}));
+    } else {
+      setFilteredEquipments(filtered);
+    }
+  }, [searchValue, showActive, equipmente]);
 
   const handleItemPress = (itemId: string) => {
-    // Navegue para a tela de detalhes, passando o ID como parâmetro
     navigation.navigate('Detalhes', { itemId });
   };
 
-  // const handleCadastro = () => {
-  //   navigation.navigate('Cadastro');
-  // }
+  const handleFilterToggle = (isActive: number | null) => {
+    setShowActive(isActive);
+  };
+
+ 
 
   return (
-    <View style={styles.container}>
-      <SafeAreaView>
-        <Pesquisa onSearch={(text) => setSearchValue(text)} />
-      </SafeAreaView>
+    <View style={[styles.container, { backgroundColor: typeCorMoon[0] }]}>
+      <View style={styles.searchFilterContainer}>
+        <View style={styles.pesquisaContainer}>
+          <Pesquisa onSearch={(text) => setSearchValue(text)} />
+        </View>
+        <View style={styles.filtroContainer}>
+          <Filtro onFilter={(isActive) => handleFilterToggle(isActive)} />
+        </View>
+      </View>
       <View style={styles.listaContainer}>
         {loaded && (
           <View style={styles.uploadingAnimation}>
-          <LottieView
+            <LottieView
               autoPlay={true}
               loop={true}
               style={{
-                  width: '100%',
-                  height: '100%',
-                  backgroundColor: 'white',
+                width: '100%',
+                height: '100%',
+                backgroundColor: 'white',
               }}
               source={require('../../assets/carregando.json')}
-          />
+            />
           </View>
         )}
-        <FlatList
-          data={filteredEquipments}
-          keyExtractor={(item) => item._id}
-          numColumns={2}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              style={[
-                styles.column,
-                { backgroundColor: item.status ? 'transparent' : 'gray' },
-              ]}
-              onPress={() => handleItemPress(item._id)}
-            >
-              <Image
-                source={{ uri: item.url[0] }}
-                style={[
-                  styles.image,
-                  { opacity: item.status ? 1 : 0.5 }, 
-                ]}
-              />
-              <Text style={styles.textfont}>{item.type}</Text>
-              <Text>{item.serial}</Text>
-            </TouchableOpacity>
-          )}
-        />
+
+        <CardEquipmet filter={filteredEquipments} onPress={handleItemPress} />
+
       </View>
-      {/* <View style={styles.footerBotao}>
-        <View style={styles.containerBotao}>
-          <TouchableOpacity style={styles.botao} onPress={handleCadastro}>
-            <Text style={styles.textoBotao}>Cadastrar</Text>
-          </TouchableOpacity>
-        </View>
-      </View> */}
     </View>
   );
 }

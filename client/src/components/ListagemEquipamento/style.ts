@@ -4,42 +4,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
-    paddingHorizontal: 10,
-    backgroundColor: '#ffffff'
+    paddingHorizontal: 3,
   },
   listaContainer: {
     flex: 1,
-    marginBottom: 20
-  },
-  row: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 10,
-  },
-  column: {
-    flex: 1,
-    marginRight: 5,
-    alignItems: "center",
-    paddingTop: 15,
-    marginTop: 10,
-    borderRadius: 5,
-    marginLeft: 5,
-    marginBottom: 5
-    
-  },
-  column2: {
-    flex: 1,
-    marginLeft: 5,
-    alignItems: "center",
-    paddingTop: 15
-  },
-  image: {
-    width: "100%",
-    height: 100,
-    resizeMode: "contain",
-  },
-  textfont: {
-    fontWeight: "bold",
+    marginBottom: 2,
   },
   uploadingAnimation: {
     position: 'absolute',
@@ -47,10 +16,23 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    zIndex: 999, // Isso coloca a animação na frente de outros elementos
-    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Um fundo semi-transparente para escurecer a tela de fundo
+    zIndex: 999, 
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', 
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  
+  searchFilterContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 5,
+  },
+  pesquisaContainer: {
+    flex: 1, 
+    marginRight: 5, 
+  },
+  filtroContainer: {
+    width: '8%', 
   },
 });
 

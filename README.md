@@ -30,21 +30,21 @@
 - [x] Visualização geográfica dos equipamentos cadastrados (tanto os ativos quanto os inativos);
 - [x] Visualização detalhada dos equipamentos disponíveis no raio de ação do App;
 - [x] Filtros de busca de equipamentos (baseado no seu tipo);
-- [ ] Cadastro de usuários, incluindo foto;
-- [ ] Liberação de usuários mediante processo de autenticação;
-- [ ] Recuperação de senha por meio de código (6 dígitos);
-- [ ] Criptografia de senhas;
-- [ ] Busca de equipamentos cadastrados (raio de 10km) de acordo com posição geográfica do App;
-- [ ] Sincronização de dados online em até 30 segundos após uso offline da aplicação;
+- [x] Cadastro de usuários, incluindo foto;
+- [x] Liberação de usuários mediante processo de autenticação;
+- [x] Recuperação de senha por meio de código (6 dígitos);
+- [x] Criptografia de senhas;
+- [x] Busca de equipamentos cadastrados (raio de 10km) de acordo com posição geográfica do App;
+- [x] Sincronização de dados online em até 30 segundos após uso offline da aplicação;
 
 <h2> 📋 Requisitos Não Funcionais </h2>
 
 - [x] Aplicação de dois fatores para autenticação em cada acesso (A2F);
 - [x] Implementação de persistência poliglota;
-- [ ] Condições de iluminação de tela adaptáveis à necessidade do usuário;
-- [ ] Segurança das informações em caso de perda do dispositivo móvel;
-- [ ] Validação dos dados inseridos na aplicação (equipamentos e usuários);
-- [ ] Banco de dados mobile para armazenamento dos dados atualizados dos equipamentos durante estado offline do App;
+- [x] Condições de iluminação de tela adaptáveis à necessidade do usuário;
+- [x] Segurança das informações em caso de perda do dispositivo móvel;
+- [x] Validação dos dados inseridos na aplicação (equipamentos e usuários);
+- [x] Banco de dados mobile para armazenamento dos dados atualizados dos equipamentos durante estado offline do App;
  
 
  → [Voltar ao topo](#topo)
@@ -54,9 +54,55 @@
 <h4> Entrega da Sprint 1 </h4>
 <p align="center"> 
     
-- A apresentação relativa à entrega da 1ª Sprint pode ser acessada por este [link](https://www.youtube.com/watch?v=yIUAITkMCFo).
+- A apresentação relativa à entrega da 1ª Sprint, feita via YouTube, pode ser acessada por este [link](https://www.youtube.com/watch?v=yIUAITkMCFo).
 
 </p>
+
+<h4> Entrega da Sprint 2 </h4>
+
+- Cadastro de usuário:
+  
+![](https://github.com/peonia-api/API_5_Semestre/blob/main/videos/Cadastro_Usu%C3%A1rio.gif)
+
+- Login e operação:
+  
+![](https://github.com/peonia-api/API_5_Semestre/blob/main/videos/Login_Opera%C3%A7%C3%A3o.gif)
+
+- Redefinição de senha (neste caso já havia sido feito o disparo do e-mail para gerar o token):
+  
+![](https://github.com/peonia-api/API_5_Semestre/blob/main/videos/Redefinir_Senha.gif)
+
+<h4> Entrega da Sprint 3 </h4>
+
+- Login do usuário Admin e página para gestão de cadastro de usuários:
+  
+![](https://github.com/peonia-api/API_5_Semestre/blob/main/videos/Login-do-Admin-e-aprovação-de-cadastros.gif)
+
+- Carrossel de Imagens:
+  
+![](https://github.com/peonia-api/API_5_Semestre/blob/main/videos/Carrossel-de-Imagens.gif)
+
+- Novo sistema de listagem de equipamentos e filtros (ativos, desativados e 10km):
+  
+![](https://github.com/peonia-api/API_5_Semestre/blob/main/videos/Nova-Listagem-Equipamentos.gif)
+
+- Novos elementos de mapa e listagem de equipamentos:
+  
+![](https://github.com/peonia-api/API_5_Semestre/blob/main/videos/Novos-Elementos-de-Mapa-e-Listagem-de-Equipamentos.gif)
+
+- Alteração de cor e estilização no Meu Perfil:
+  
+![](https://github.com/peonia-api/API_5_Semestre/blob/main/videos/Alteração-de-Cor-e-Estilo.gif)
+
+<h4> Entrega da Sprint 4 </h4>
+
+- Modo escuro (Modo Dark) da aplicação (para questões de luminosidade ao usuário):
+  
+![](https://github.com/peonia-api/API_5_Semestre/blob/main/videos/Demonstração-modo-escuro.gif)
+
+- Botão de atualização da posição do usuário:
+  
+![](https://github.com/peonia-api/API_5_Semestre/blob/main/videos/Atualização-da-posição.gif)
   
 <br>
 
@@ -71,15 +117,17 @@ Na tabela abaixo é possível visualizar os resultados de cada Sprint clicando e
 | Sprint | Entrega | Status | Relatório |
 |:-----:|:----------:|:---------:|:---------:|
 | 01 | 24/09/2023 |	:heavy_check_mark: | [Ver relatório](https://github.com/peonia-api/API_5_Semestre/blob/main/reports/Sprint1.MD) |
-| 02 | 15/10/2023 |	- | - |
-| 03 | 05/11/2023 |	- | - |
-| 04 | 26/11/2023 |	- | - |
+| 02 | 15/10/2023 |	:heavy_check_mark: | [Ver relatório](https://github.com/peonia-api/API_5_Semestre/blob/main/reports/Sprint2.MD) |
+| 03 | 05/11/2023 |	:heavy_check_mark: | [Ver relatório](https://github.com/peonia-api/API_5_Semestre/blob/main/reports/Sprint3.MD) |
+| 04 | 26/11/2023 |	:heavy_check_mark: | [Ver relatório](https://github.com/peonia-api/API_5_Semestre/blob/main/reports/Sprint4.MD) |
 
 
 → [Voltar ao topo](#topo)
     
 <span id="documentacao">
 <h2> :clipboard: Documentação</h2>
+
+- Para acessar a documentação de Guia do Usuário, basta acessar este [link]().
 
 - Para acessar a documentação das rotas e entender como funciona a API do back, basta acessar este [link](https://github.com/peonia-api/API_5_Semestre/tree/main/documentation/route%20documentation);
 
@@ -94,7 +142,10 @@ Na tabela abaixo é possível visualizar os resultados de cada Sprint clicando e
 <div align="center">
     <p> 
     
-![image](https://github.com/peonia-api/API_5_Semestre/blob/main/images/Backlog%20Priorizado.png).
+![image](https://github.com/peonia-api/API_5_Semestre/blob/main/images/Backlog%20Priorizado%201ª%20Sprint.png)
+![image](https://github.com/peonia-api/API_5_Semestre/blob/main/images/Backlog%20priorizado%202ª%20Sprint.png)
+![image](https://github.com/peonia-api/API_5_Semestre/blob/main/images/Backlog%20Priorizado%203ª%20Sprint.png)
+![image](https://github.com/peonia-api/API_5_Semestre/blob/main/images/Backlog%20priorizado%204ª%20Sprint.png)
     
 </p>
 </div>
@@ -109,6 +160,8 @@ Foram usadas as seguintes ferramentas, linguagens e tecnologias para a execuçã
 
 - [HTML5 & CSS3](https://www.w3schools.com/): Linguagens de marcação
 - [TypeScript](https://www.typescriptlang.org/): Linguagem de programação
+- [Python](https://www.python.org/doc/): Linguagem de programação
+- [Flask](https://flask.palletsprojects.com/en/3.0.x/): Roteamento de URL e renderização de página
 - [Git](https://git-scm.com): Versionamento
 - [GitHub](https://github.com/): Armazenamento de código
 - [Teams](https://teams.microsoft.com): Comunicação interna do grupo
@@ -122,6 +175,7 @@ Foram usadas as seguintes ferramentas, linguagens e tecnologias para a execuçã
 - [Azure](https://learn.microsoft.com/en-us/azure/cloud-services/): Cloud usada para hospedar bancos de dados;
 - [MongoDB](https://www.mongodb.com/docs/): Banco de dados NoSQL
 - [PostgresSQL](https://www.postgresql.org/docs/): Banco de dados SQL
+- [SQLite](https://www.sqlite.org/docs.html): Banco de dados SQL para armazenamento local (modo offline)
 
 → [Voltar ao topo](#topo)    
     

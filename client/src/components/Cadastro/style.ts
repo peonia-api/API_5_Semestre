@@ -24,26 +24,31 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "column",
     paddingTop: 10,
-    marginTop: 10
+    marginTop: 10,
+    marginBottom: 10,
+    marginLeft: 10,
+    marginRight: 10
   },
 
-  containerImagem: {
+  containerImagem: {  
+    flex: 1,
     alignItems: "center",
     justifyContent: 'center',
-    width: 325,
-    height: 200,
-    borderWidth: 1,
-    borderRadius: 5,
-    backgroundColor: '#f2f2f2',
-    // gap: 30,
-    marginLeft: 30
+    width: '100%',
+    height: 225,
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    backgroundColor: '#f2f2f2'
   },
 
   image: {
     width: '100%', 
     height: '100%',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    borderLeftWidth: 1,
+    borderRightWidth: 1,
+    position: 'relative',
   },
 
   containerIcons: {
@@ -53,14 +58,26 @@ const styles = StyleSheet.create({
     gap: 50,
   },
 
-  iconsPlusMinus: {
+  icons: {
     height: 50,
     width: 50,
     borderRadius: 10,
-    marginTop: 20,
-    backgroundColor: '#a4cdea',
+    marginTop: 30,
+    backgroundColor: '#4DB9DB',
     alignItems: 'center', 
-    justifyContent: 'center', 
+    justifyContent: 'center'
+  },
+
+  iconDeletar: {
+    position: 'absolute',
+    height: 50,
+    width: 50,
+    borderRadius: 10,
+    backgroundColor: 'rgb(174, 59, 59)',
+    alignItems: 'center', 
+    justifyContent: 'center',
+    right: 10, 
+    bottom: 10,
   },
 
   containerInput: {
@@ -73,7 +90,7 @@ const styles = StyleSheet.create({
     height: 50,
     backgroundColor: '#f2f2f2',
     marginBottom: 15,
-    gap: 30
+    gap: 30,
   },
 
   input: {
@@ -82,7 +99,8 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
     backgroundColor: '#f2f2f2',
     borderRadius: 5,
-    marginBottom: 15
+    marginBottom: 15,
+    borderWidth: 1,
   },
 
   containerTrans: {
@@ -95,7 +113,8 @@ const styles = StyleSheet.create({
     width: '90%',
     paddingLeft: 15,
     backgroundColor: '#f2f2f2',
-    borderRadius: 5
+    borderRadius: 5,
+    borderWidth: 1,
   },
 
   textFont: {
@@ -106,35 +125,65 @@ const styles = StyleSheet.create({
 
   containerLoLa: {
     flexDirection: "row",
+    justifyContent: "space-between",
     paddingTop: 10,
-    marginTop: 10
+    marginTop: 10,
+    gap: 20,
   },
 
   inputLoLa: {
     height: 55,
-    width: '24%',
+    width: '42%',
     paddingLeft: 15,
     backgroundColor: '#fafafa',
     borderRadius: 5,
-    marginBottom: 15
+    marginBottom: 15,
+    borderWidth: 1,
   },
 
   containerBotao: {
     flexDirection: "row",
     justifyContent: "center",
-    marginTop: 10,
-    marginBottom: 10,
+    marginBottom: 13,
+    color: "#4DB9DB"
   },
 
-  // linhaPontilhada: {
-  //   width: "100%",
-  //   borderStyle: "dashed",
-  //   borderColor: "#dfe6f7",
-  //   borderWidth: 1,
-  //   marginTop: 10,
-  //   marginBottom: 10,
-  //   alignSelf: "center",
-  // },
+
+//Modal Camera
+modalContainer: {
+  flex: 1,
+  justifyContent: 'center',
+  alignItems: 'center',
+  backgroundColor: '#d1d1d1',
+  width: '100%',
+  height: '100%',
+},
+
+camera: {
+  width: '100%',
+  height: '80%',
+},
+
+containerButtonCamera: {
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  width: '100%',
+  paddingHorizontal: 20,
+  marginBottom: 20,
+  marginTop: 'auto', 
+},
+
+
+buttonCamera: {
+  height: 50,
+  width: 50,
+  borderRadius: 10,
+  marginTop: 30,
+  backgroundColor: '#4DB9DB',
+  alignItems: 'center', 
+  justifyContent: 'center'
+},
+
 
 });
 
