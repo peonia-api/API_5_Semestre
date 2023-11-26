@@ -27,25 +27,32 @@ function ListaEquipamento({ navigation }: any) {
   const { createEquipment, get10 } = useContextoEquipmente();
   const { isInternetReachable } = useNetInfo()
 
+
   async function teste() {
     
     if(isInternetReachable === true && await Create.exite() === true){
       console.log("oii");
       const dados = await Create.get()
       console.log(dados);
+      const item:any = []
+      
       
       dados.forEach(async (res:any) => {
-        const response = await upload(res.serial, res.url);
-        await createEquipment({
-          type: res.type,
-          numero: res.numero,
-          serial: res.serial,
-          latitude: res.latitude,
-          longitude: res.longitude,
-          observations: res.observations,
-          url: response,
-          status: true
-        });
+        if(item.indexOf(res.serial) === -1){
+          const response = await upload(res.serial, res.url);
+          await createEquipment({
+            type: res.type,
+            numero: res.numero,
+            serial: res.serial,
+            latitude: res.latitude,
+            longitude: res.longitude,
+            observations: res.observations,
+            url: response,
+            status: true
+          });
+          item.push(res.serial)   
+        }
+        
       })
       await Create.drop()
     }
