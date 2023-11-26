@@ -1,8 +1,9 @@
 import React from "react";
-import { View, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity, Alert } from "react-native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { useContextUser } from "../../hooks";
 import styles from "./style";
+import { useNetInfo } from "@react-native-community/netinfo";
 
 interface ReloadProps {
   onReload: () => void;
@@ -10,9 +11,21 @@ interface ReloadProps {
 
 const Reload: React.FC<ReloadProps> = ({ onReload }) => {
   const { typeCor } = useContextUser();
+  const { isInternetReachable } = useNetInfo()
 
   const handleReload = () => {
+    if(isInternetReachable === true){
     onReload();
+    }else{
+      Alert.alert(
+        "Sem Conexão",
+        "Não identificamos conexão com a internet, dessa forma não é possível realizar a atualização.",
+        [
+          { text: "OK", style: "cancel" }
+        ],
+        { cancelable: false }
+      );
+    }
   };
 
   return (
