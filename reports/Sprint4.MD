@@ -19,6 +19,17 @@
 
 <br>
 
+<h3 align="center" id="wireframe"> WIREFRAMES </h3>
+<p align="center">
+<img src="https://github.com/peonia-api/API_5_Semestre/blob/main/images/Wireframe%20%20-%20Modo%20Escuro%20Cadastro.png"/>
+<img src="https://github.com/peonia-api/API_5_Semestre/blob/main/images/Wireframe%20%20-%20Modo%20Escuro%20Listagem.png"/>
+<br>
+<img src="https://github.com/peonia-api/API_5_Semestre/blob/main/images/Wireframe%20%20-%20Modo%20Escuro%20Meu%20Perfil.png"/>
+<img src="https://github.com/peonia-api/API_5_Semestre/blob/main/images/Wireframe%20-%20Modo%20Esculo%20Lista%20de%20Usuários.png"/>
+</p>
+
+</br>
+
  <span id="destaques">
 
 ## 🖥️ Destaques da Sprint
