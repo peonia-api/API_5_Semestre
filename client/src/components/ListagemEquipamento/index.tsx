@@ -86,7 +86,7 @@ function ListaEquipamento({ navigation }: any) {
         }
       }catch(err){
         console.log(err);
-        
+        setReload((prevReload) => !prevReload);
       }
     } 
     fetchData()
