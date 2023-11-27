@@ -53,10 +53,20 @@
 <p align="center">
 
 - Modo escuro (Modo Dark) da aplicação (para questões de luminosidade ao usuário):
+
 ![](https://github.com/peonia-api/API_5_Semestre/blob/main/videos/Demonstração-modo-escuro.gif)
 
 - Botão de atualização da posição do usuário:
+
 ![](https://github.com/peonia-api/API_5_Semestre/blob/main/videos/Atualização-da-posição.gif)
+
+- Sincronização Offline x Online (Parte 1):
+  
+![](https://github.com/peonia-api/API_5_Semestre/blob/main/videos/Sincronização%20Offline%20x%20Online%20-%20Parte%201.gif)
+
+- Sincronização Offline x Online (Parte 2):
+  
+![](https://github.com/peonia-api/API_5_Semestre/blob/main/videos/Sincronização%20Offline%20x%20Online%20-%20Parte%202.gif)
 
 </p>
 <br>
