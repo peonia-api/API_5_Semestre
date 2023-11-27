@@ -52,6 +52,8 @@
 ## 👩‍💻 Entrega
 <p align="center">
 
+- Para acessar a documentação de Guia do Usuário, basta acessar este [link](https://github.com/peonia-api/API_5_Semestre/blob/main/documentation/manual_uso_aplicativo.pdf).
+
 - Modo escuro (Modo Dark) da aplicação (para questões de luminosidade ao usuário):
 
 ![](https://github.com/peonia-api/API_5_Semestre/blob/main/videos/Demonstração-modo-escuro.gif)
